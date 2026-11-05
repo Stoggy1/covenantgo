@@ -116,7 +116,7 @@ function rewardsCardHtml(u, { compact = false } = {}) {
         ${compact ? '' : `<div class="card-meta">${esc(R.prizeDetail)}</div>`}</div></div>
       ${entered ? '<div class="notice ok">You\'re entered! Keep going to stay in the running.</div>' : '<div class="card-meta">Hit either goal to be entered:</div>'}
       <div class="goal"><span>Attend content days</span><b>${days} / ${R.contentDaysGoal}</b></div>${bar(days, R.contentDaysGoal)}
-      <div class="goal"><span>Submit TikTok post links</span><b>${links} / ${R.postLinksGoal}</b></div>${bar(links, R.postLinksGoal)}
+      <div class="goal"><span class="go-inline">${goMark()} Submit TikTok post links</span><b>${links} / ${R.postLinksGoal}</b></div>${bar(links, R.postLinksGoal)}
     </a>`;
 }
 
@@ -124,7 +124,7 @@ function rewardsCardHtml(u, { compact = false } = {}) {
 function postLinkFormHtml(label = 'Posted it? Submit your TikTok link') {
   return `
     <form class="link-form" id="link-form">
-      <label for="post-url">${esc(label)}</label>
+      <label for="post-url" class="go-inline">${goMark()}<span>${esc(label)}</span></label>
       <div class="link-row">
         <input class="input" id="post-url" name="url" type="url" inputmode="url" placeholder="https://www.tiktok.com/@you/video/…" required>
         <button class="btn" type="submit">Submit</button>
@@ -382,7 +382,7 @@ function platformFields(existing = []) {
     const cur = existing.find((x) => x.id === p.id) || {};
     return `
       <div class="platform-row">
-        <span class="name">${esc(p.label)}</span>
+        <span class="name">${p.id === 'tiktok' ? `${goMark()}<span class="sr">TikTok</span>` : esc(p.label)}</span>
         <input class="input" name="handle-${p.id}" placeholder="@handle" value="${esc(cur.handle || '')}" autocapitalize="off" autocorrect="off">
         <input class="input" name="followers-${p.id}" placeholder="Followers" inputmode="numeric" value="${esc(cur.followers || '')}">
       </div>`;
@@ -413,7 +413,7 @@ function signupView() {
       <div class="section-title">Where are you based?</div>
       ${locationFields('su')}
 
-      <div class="section-title">${SINGLE_PLATFORM ? `Your ${esc(PLATFORMS[0].label)}` : 'Your platforms'}</div>
+      <div class="section-title tt-title">${SINGLE_PLATFORM ? `${goMark()}<span>Your ${esc(PLATFORMS[0].label)}</span>` : 'Your platforms'}</div>
       ${platformFields()}
 
       <div class="error" id="err"></div>
@@ -649,6 +649,7 @@ function clipCardHtml(c) {
     <a class="clip" href="#/clip/${c.id}">
       <div class="clip-thumb" style="background-image:url('${photo(c.thumbnail, 400, 711)}')">
         <span class="clip-badge">${esc(c.resolution)}</span>
+        <span class="clip-tt" title="Made for TikTok">${goMark()}</span>
         <span class="clip-play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>
         <span class="clip-duration">${fmtDuration(c.durationSec)}</span>
       </div>
@@ -772,8 +773,8 @@ async function dayView(id) {
     <ul class="list do-list">${(d.activities || []).map((x) => `<li>${esc(x)}</li>`).join('')}</ul>
     <p class="custom-note">${esc(d.customNote || 'Every content day is custom to our partnership with this partner.')}</p>
 
-    <div class="section-title">Deliverables</div>
-    <ul class="list">${d.deliverables.map((x) => `<li>${esc(x)}</li>`).join('')}</ul>
+    <div class="section-title tt-title">${goMark()}<span>Deliverables · ${d.deliverables.length} TikTok posts</span></div>
+    <ul class="list tt-list">${d.deliverables.map((x) => `<li>${goMark()}<span>${esc(x)}</span></li>`).join('')}</ul>
 
     <div class="section-title" ${SINGLE_PLATFORM ? 'hidden' : ''}>Platforms</div>
     <div class="chips" ${SINGLE_PLATFORM ? 'hidden' : ''}>${d.platforms.filter((x) => CONFIG.ENABLED_PLATFORMS.includes(x)).map((x) => `<span class="chip">${esc(platformLabel(x))}</span>`).join('')}</div>
@@ -901,7 +902,7 @@ function profileView() {
       ${agencyFields(u.agency || '', !!u.recruitInterest)}
       <div class="section-title">Location</div>
       ${locationFields('pf', u.location)}
-      <div class="section-title">${SINGLE_PLATFORM ? esc(PLATFORMS[0].label) : 'Platforms'}</div>
+      <div class="section-title tt-title">${SINGLE_PLATFORM ? `${goMark()}<span>${esc(PLATFORMS[0].label)}</span>` : 'Platforms'}</div>
       ${platformFields(u.platforms)}
       <div class="error" id="err"></div>
       <button class="btn" type="submit">Save profile</button>

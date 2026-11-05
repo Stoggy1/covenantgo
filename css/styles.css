@@ -569,3 +569,19 @@ select.input { appearance: none; background-image: linear-gradient(45deg, transp
   font-size: 12px; font-weight: 800; color: #fff; background: var(--pink);
 }
 .custom-note { margin: 8px 2px 0; font-size: 13px; color: var(--muted); font-style: italic; }
+
+/* More TikTok GO branding */
+.tt-title { display: flex; align-items: center; gap: 8px; }
+.tt-title .go-mark { height: 16px; }
+.tt-list li { display: flex; align-items: center; gap: 12px; }
+.tt-list li .go-mark { flex: none; height: 18px; }
+.clip-tt { position: absolute; z-index: 1; top: 8px; right: 8px; padding: 4px 7px; border-radius: 999px; background: rgba(0,0,0,.6); }
+.clip-tt .go-mark { height: 13px; }
+/* on the dark clip badge always use the white-lettering mark */
+:root[data-theme] .clip-tt .mark-dark { display: block !important; }
+:root[data-theme] .clip-tt .mark-light { display: none !important; }
+.platform-row .name { display: flex; align-items: center; }
+.platform-row .name .go-mark { height: 20px; }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.goal .go-inline .go-mark { height: 14px; }
+.link-form label.go-inline .go-mark { height: 14px; }

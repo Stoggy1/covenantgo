@@ -127,7 +127,8 @@ for (const p of partnerRows) {
       commissionRate: pick([5, 6, 8, 10, 12]),
       // (kept so the random sequence, and therefore every existing id/date, stays the same)
       _legacyPerks: pickSome(p.category === 'Things to Do' ? activityPerks : stayPerks, 2, 4),
-      deliverables: ['1 TikTok GO video with booking link', ...pickSome(deliverablePool.slice(1), 1, 3)],
+      // Always 5 deliverables (the booking-link video + 4 more).
+      deliverables: ['1 TikTok GO video with booking link', ...pickSome(deliverablePool.slice(1), 4, 4)],
       status: 'open',
     });
   }

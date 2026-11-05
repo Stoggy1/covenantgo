@@ -1,5 +1,5 @@
 // Offline cache for the app shell + demo data. Bump VERSION on each deploy.
-const VERSION = 'cg-v17';
+const VERSION = 'cg-v18';
 const SHELL = [
   './', './index.html', './css/styles.css', './manifest.webmanifest',
   './js/app.js', './js/config.js', './js/regions.js', './js/cities.js', './js/services/http.js',
