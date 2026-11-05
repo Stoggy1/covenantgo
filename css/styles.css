@@ -494,11 +494,13 @@ select.input { appearance: none; background-image: linear-gradient(45deg, transp
   /* Detail pages: main column + sticky side panel */
   .detail {
     display: grid; grid-template-columns: minmax(0, 1fr) minmax(300px, 380px); gap: 28px;
-    grid-template-areas: "banner side" "body side"; align-items: start;
+    grid-template-areas: "banner side" "about side" "body side"; align-items: start;
   }
   .d-banner { grid-area: banner; }
   .d-side { grid-area: side; position: sticky; top: 92px; display: flex; flex-direction: column; gap: 14px; }
   .d-body { grid-area: body; }
+  .d-about { grid-area: about; margin-top: 0; }
+  .d-about .section-title { margin-top: 0; }
   .detail-banner { height: 320px; margin-bottom: 0; padding: 24px; }
   .detail-banner.has-photo { height: 380px; }
   .detail-banner h1 { font-size: 38px; }
@@ -549,3 +551,21 @@ select.input { appearance: none; background-image: linear-gradient(45deg, transp
 .qualify.yes { color: var(--ok); }
 .qualify.no { color: var(--muted); font-weight: 600; }
 .city-other { margin-top: 8px; }
+
+/* Content day: About the partner (first) and What you'll do */
+.d-about { margin: 4px 0 6px; }
+.partner-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px; }
+.partner-head { display: flex; gap: 12px; align-items: center; }
+.partner-head b { font-size: 17px; }
+.partner-avatar {
+  flex: none; width: 56px; height: 56px; border-radius: 14px; display: grid; place-items: center;
+  background-size: cover; background-position: center; color: #fff; font-weight: 800; font-size: 18px;
+}
+.partner-card p { margin: 10px 0 0; color: var(--muted); font-size: 15px; }
+.do-list li { position: relative; padding-left: 40px; }
+.do-list li::before {
+  content: '✓'; position: absolute; left: 12px; top: 50%; transform: translateY(-50%);
+  width: 20px; height: 20px; border-radius: 50%; display: grid; place-items: center;
+  font-size: 12px; font-weight: 800; color: #fff; background: var(--pink);
+}
+.custom-note { margin: 8px 2px 0; font-size: 13px; color: var(--muted); font-style: italic; }

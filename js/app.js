@@ -739,6 +739,22 @@ async function dayView(id) {
       <p>${esc(p.name)} · ${esc(p.group)}</p>
     </div>
     </div>
+
+    <section class="d-about">
+      <div class="section-title">About the partner</div>
+      <div class="partner-card">
+        <div class="partner-head">
+          <div class="partner-avatar" style="${isFeatured(p) ? `background-image:url('${photo(p.photos[0], 160, 160)}')` : `background:${p.accentColor}`}">${isFeatured(p) ? '' : esc(initials(p.name))}</div>
+          <div>
+            <b>${esc(p.name)}</b>
+            <div class="card-meta">${esc(p.type)} · ${esc(p.group)}</div>
+            <div class="card-meta">${esc(p.location.city)}, ${esc(p.location.state)} · ★ ${p.rating}</div>
+          </div>
+        </div>
+        <p>${esc(p.description)}</p>
+      </div>
+    </section>
+
     <aside class="d-side">
     <div class="facts">
       <div class="fact"><span>Date</span><b>${fmtDate(d.date, { weekday: 'short', month: 'short', day: 'numeric', year: 'numeric' })}</b></div>
@@ -752,17 +768,15 @@ async function dayView(id) {
     </aside>
 
     <section class="d-body">
-    <div class="section-title">What you get</div>
-    <ul class="list">${d.perks.map((x) => `<li>${esc(x)}</li>`).join('')}</ul>
+    <div class="section-title">What you’ll do</div>
+    <ul class="list do-list">${(d.activities || []).map((x) => `<li>${esc(x)}</li>`).join('')}</ul>
+    <p class="custom-note">${esc(d.customNote || 'Every content day is custom to our partnership with this partner.')}</p>
 
     <div class="section-title">Deliverables</div>
     <ul class="list">${d.deliverables.map((x) => `<li>${esc(x)}</li>`).join('')}</ul>
 
     <div class="section-title" ${SINGLE_PLATFORM ? 'hidden' : ''}>Platforms</div>
     <div class="chips" ${SINGLE_PLATFORM ? 'hidden' : ''}>${d.platforms.filter((x) => CONFIG.ENABLED_PLATFORMS.includes(x)).map((x) => `<span class="chip">${esc(platformLabel(x))}</span>`).join('')}</div>
-
-    <div class="section-title">About the partner</div>
-    <p class="card-meta">${esc(p.description)} Rated ${p.rating}★.</p>
 
     <div class="section-title">Availability</div>
     <p>${spotsHtml(d)}</p>

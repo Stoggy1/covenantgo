@@ -56,6 +56,16 @@ const hues = { Resort: '#ff3b5c', Hotel: '#25f4ee', Boutique: '#b388ff', Tour: '
 const slug = (s) => s.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
 const photoUrl = (id) => `https://images.unsplash.com/photo-${id}`;
 
+// Demo partner descriptions by type (real partners will supply their own copy).
+const blurbs = {
+  Resort: (n, c) => `${n} is a ${c} resort known for its pools, spa, and golden-hour views, a favorite backdrop for travel Creators.`,
+  Hotel: (n, c) => `${n} is a stylish ${c} hotel with design-forward rooms, a rooftop scene, and easy access to the city’s best spots.`,
+  Boutique: (n, c) => `${n} is an intimate boutique stay in ${c}, full of handcrafted details, quiet courtyards, and local character.`,
+  Tour: (n, c) => `${n} runs small-group tours around ${c}, led by local guides who know the stories and the flavors.`,
+  Attraction: (n, c) => `${n} is one of ${c}’s signature experiences, with VIP access and views made for vertical video.`,
+  Adventure: (n, c) => `${n} leads outdoor adventures around ${c}, from adrenaline moments to scenic stops built for POV content.`,
+};
+
 let seed = 42;
 const rand = () => ((seed = (seed * 16807) % 2147483647) / 2147483647);
 const pick = (arr) => arr[Math.floor(rand() * arr.length)];
@@ -76,7 +86,7 @@ const partnerRows = partners.map(([name, group, type, country, state, city, phot
   location: { country, state, city },
   accentColor: hues[type],
   rating: Math.round((4.2 + rand() * 0.8) * 10) / 10,
-  description: `${name} is a demo ${type.toLowerCase()} partner in ${city}. Replace with partner-provided copy from the TikTok GO / partner API.`,
+  description: blurbs[type](name, city), // demo copy; real partners supply their own
 }));
 
 // ---------- Content days ----------
@@ -115,11 +125,33 @@ for (const p of partnerRows) {
       spotsTaken: Math.floor(rand() * spots),
       minFollowers: pick([1000, 2500, 5000, 10000, 25000]),
       commissionRate: pick([5, 6, 8, 10, 12]),
-      perks: pickSome(p.category === 'Things to Do' ? activityPerks : stayPerks, 2, 4),
+      // (kept so the random sequence, and therefore every existing id/date, stays the same)
+      _legacyPerks: pickSome(p.category === 'Things to Do' ? activityPerks : stayPerks, 2, 4),
       deliverables: ['1 TikTok GO video with booking link', ...pickSome(deliverablePool.slice(1), 1, 3)],
       status: 'open',
     });
   }
+}
+
+// ---------- What you'll do (custom per content day / partnership) ----------
+// Separate seed so adding this didn't reshuffle ids, dates or follower requirements.
+const doPool = {
+  Resort: ['Visit different room categories and suites', 'Experience exclusive amenities: private cabanas, pools, and lounges', 'Spa treatment and wellness walkthrough', 'Poolside golden-hour session', 'Taste the resort’s signature dining', 'Film a full property tour with the resort team'],
+  Hotel: ['Visit different room categories', 'Experience exclusive amenities and member-only spaces', 'Rooftop or lounge access for skyline shots', 'Film the arrival and check-in experience', 'Behind-the-scenes look with the hotel team', 'Taste the signature menu at the hotel restaurant'],
+  Boutique: ['Tour the design-forward rooms', 'Capture the property’s signature details and decor', 'Morning coffee and courtyard session', 'Story segment with the owners', 'Explore the neighborhood picks the team recommends'],
+  Tour: ['Join the full guided tour', 'Tastings with your local guide', 'Film the key stops along the route', 'Interview your guide on camera', 'Exclusive stop not on the public tour'],
+  Attraction: ['VIP early access before the crowds', 'Behind-the-scenes access with staff', 'Film the signature experience', 'Meet the team for a short interview', 'Golden-hour finale shoot'],
+  Adventure: ['Take part in the full adventure', 'POV / GoPro filming alongside the crew', 'Gear-up and safety briefing content', 'Drone-friendly spots scouted for you', 'Sunset finale with the group'],
+};
+let seed2 = 7;
+const rand2 = () => ((seed2 = (seed2 * 16807) % 2147483647) / 2147483647);
+const partnerById = Object.fromEntries(partnerRows.map((p) => [p.id, p]));
+for (const d of days) {
+  const pool = doPool[partnerById[d.partnerId].type];
+  const n2 = 3 + Math.floor(rand2() * 3);
+  d.activities = [...pool].sort(() => rand2() - 0.5).slice(0, n2);
+  d.customNote = 'Every content day is custom. What you’ll do is set by our partnership with this partner.';
+  delete d._legacyPerks;
 }
 
 // ---------- Footage Vault (clips shot by the Covenant team) ----------

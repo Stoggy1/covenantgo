@@ -85,7 +85,8 @@ create table content_days (
   spots_total     integer not null,
   min_followers   integer not null default 0,
   commission_rate numeric(4,1),                    -- percent paid via TikTok GO bookings
-  perks           text[] not null default '{}',
+  activities      text[] not null default '{}',     -- "What you'll do": set per content day by the partnership
+  custom_note     text,
   deliverables    text[] not null default '{}',
   status          text not null default 'open' check (status in ('draft','open','full','closed','cancelled')),
   created_at      timestamptz not null default now()

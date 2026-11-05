@@ -17,18 +17,19 @@
     "spotsTaken": 3,
     "minFollowers": 2500,
     "commissionRate": 6,
-    "perks": [
-      "Welcome cocktail",
-      "Spa treatment",
-      "Airport transfer"
-    ],
     "deliverables": [
       "1 TikTok GO video with booking link",
       "TikTok LIVE from the property",
       "3 TikTok Stories",
       "Photo carousel post on TikTok"
     ],
-    "status": "open"
+    "status": "open",
+    "activities": [
+      "Visit different room categories and suites",
+      "Spa treatment and wellness walkthrough",
+      "Poolside golden-hour session"
+    ],
+    "customNote": "Every content day is custom. What you’ll do is set by our partnership with this partner."
   },
   {
     "id": "cd_002",
@@ -48,17 +49,19 @@
     "spotsTaken": 1,
     "minFollowers": 2500,
     "commissionRate": 8,
-    "perks": [
-      "Complimentary 2-night stay",
-      "Spa treatment",
-      "Airport transfer"
-    ],
     "deliverables": [
       "1 TikTok GO video with booking link",
       "Photo carousel post on TikTok",
       "1 extra TikTok video"
     ],
-    "status": "open"
+    "status": "open",
+    "activities": [
+      "Visit different room categories and suites",
+      "Spa treatment and wellness walkthrough",
+      "Poolside golden-hour session",
+      "Taste the resort’s signature dining"
+    ],
+    "customNote": "Every content day is custom. What you’ll do is set by our partnership with this partner."
   },
   {
     "id": "cd_003",
@@ -78,18 +81,19 @@
     "spotsTaken": 0,
     "minFollowers": 10000,
     "commissionRate": 6,
-    "perks": [
-      "Late checkout",
-      "Spa treatment",
-      "$150 food & beverage credit"
-    ],
     "deliverables": [
       "1 TikTok GO video with booking link",
       "Photo carousel post on TikTok",
       "Raw clips shared with partner",
       "TikTok LIVE from the property"
     ],
-    "status": "open"
+    "status": "open",
+    "activities": [
+      "Visit different room categories and suites",
+      "Experience exclusive amenities: private cabanas, pools, and lounges",
+      "Spa treatment and wellness walkthrough"
+    ],
+    "customNote": "Every content day is custom. What you’ll do is set by our partnership with this partner."
   },
   {
     "id": "cd_004",
@@ -109,16 +113,19 @@
     "spotsTaken": 6,
     "minFollowers": 10000,
     "commissionRate": 5,
-    "perks": [
-      "Late checkout",
-      "Airport transfer",
-      "Spa treatment"
-    ],
     "deliverables": [
       "1 TikTok GO video with booking link",
       "TikTok LIVE from the property"
     ],
-    "status": "open"
+    "status": "open",
+    "activities": [
+      "Behind-the-scenes look with the hotel team",
+      "Film the arrival and check-in experience",
+      "Visit different room categories",
+      "Rooftop or lounge access for skyline shots",
+      "Experience exclusive amenities and member-only spaces"
+    ],
+    "customNote": "Every content day is custom. What you’ll do is set by our partnership with this partner."
   },
   {
     "id": "cd_005",
@@ -138,16 +145,19 @@
     "spotsTaken": 5,
     "minFollowers": 25000,
     "commissionRate": 12,
-    "perks": [
-      "Complimentary 1-night stay",
-      "Complimentary 2-night stay",
-      "Airport transfer"
-    ],
     "deliverables": [
       "1 TikTok GO video with booking link",
       "TikTok LIVE from the property"
     ],
-    "status": "open"
+    "status": "open",
+    "activities": [
+      "Tour the design-forward rooms",
+      "Morning coffee and courtyard session",
+      "Explore the neighborhood picks the team recommends",
+      "Story segment with the owners",
+      "Capture the property’s signature details and decor"
+    ],
+    "customNote": "Every content day is custom. What you’ll do is set by our partnership with this partner."
   },
   {
     "id": "cd_006",
@@ -167,18 +177,19 @@
     "spotsTaken": 1,
     "minFollowers": 10000,
     "commissionRate": 5,
-    "perks": [
-      "Late checkout",
-      "$150 food & beverage credit",
-      "Complimentary 1-night stay"
-    ],
     "deliverables": [
       "1 TikTok GO video with booking link",
       "Raw clips shared with partner",
       "1 extra TikTok video",
       "3 TikTok Stories"
     ],
-    "status": "open"
+    "status": "open",
+    "activities": [
+      "Explore the neighborhood picks the team recommends",
+      "Morning coffee and courtyard session",
+      "Capture the property’s signature details and decor"
+    ],
+    "customNote": "Every content day is custom. What you’ll do is set by our partnership with this partner."
   },
   {
     "id": "cd_007",
@@ -198,17 +209,19 @@
     "spotsTaken": 0,
     "minFollowers": 10000,
     "commissionRate": 6,
-    "perks": [
-      "Airport transfer",
-      "$150 food & beverage credit",
-      "Plus-one included"
-    ],
     "deliverables": [
       "1 TikTok GO video with booking link",
       "1 extra TikTok video",
       "3 TikTok Stories"
     ],
-    "status": "open"
+    "status": "open",
+    "activities": [
+      "Morning coffee and courtyard session",
+      "Capture the property’s signature details and decor",
+      "Story segment with the owners",
+      "Explore the neighborhood picks the team recommends"
+    ],
+    "customNote": "Every content day is custom. What you’ll do is set by our partnership with this partner."
   },
   {
     "id": "cd_008",
@@ -228,17 +241,20 @@
     "spotsTaken": 3,
     "minFollowers": 25000,
     "commissionRate": 10,
-    "perks": [
-      "Airport transfer",
-      "Plus-one included",
-      "$150 food & beverage credit"
-    ],
     "deliverables": [
       "1 TikTok GO video with booking link",
       "1 extra TikTok video",
       "Raw clips shared with partner"
     ],
-    "status": "open"
+    "status": "open",
+    "activities": [
+      "Visit different room categories and suites",
+      "Experience exclusive amenities: private cabanas, pools, and lounges",
+      "Spa treatment and wellness walkthrough",
+      "Poolside golden-hour session",
+      "Taste the resort’s signature dining"
+    ],
+    "customNote": "Every content day is custom. What you’ll do is set by our partnership with this partner."
   },
   {
     "id": "cd_009",
@@ -258,16 +274,19 @@
     "spotsTaken": 3,
     "minFollowers": 2500,
     "commissionRate": 5,
-    "perks": [
-      "Late checkout",
-      "Spa treatment",
-      "$150 food & beverage credit"
-    ],
     "deliverables": [
       "1 TikTok GO video with booking link",
       "TikTok LIVE from the property"
     ],
-    "status": "open"
+    "status": "open",
+    "activities": [
+      "Poolside golden-hour session",
+      "Experience exclusive amenities: private cabanas, pools, and lounges",
+      "Taste the resort’s signature dining",
+      "Spa treatment and wellness walkthrough",
+      "Film a full property tour with the resort team"
+    ],
+    "customNote": "Every content day is custom. What you’ll do is set by our partnership with this partner."
   },
   {
     "id": "cd_010",
@@ -287,16 +306,17 @@
     "spotsTaken": 7,
     "minFollowers": 2500,
     "commissionRate": 8,
-    "perks": [
-      "$150 food & beverage credit",
-      "Complimentary 2-night stay",
-      "Plus-one included"
-    ],
     "deliverables": [
       "1 TikTok GO video with booking link",
       "TikTok LIVE from the property"
     ],
-    "status": "open"
+    "status": "open",
+    "activities": [
+      "Story segment with the owners",
+      "Morning coffee and courtyard session",
+      "Explore the neighborhood picks the team recommends"
+    ],
+    "customNote": "Every content day is custom. What you’ll do is set by our partnership with this partner."
   },
   {
     "id": "cd_011",
@@ -316,17 +336,19 @@
     "spotsTaken": 8,
     "minFollowers": 2500,
     "commissionRate": 8,
-    "perks": [
-      "$150 food & beverage credit",
-      "Complimentary 2-night stay"
-    ],
     "deliverables": [
       "1 TikTok GO video with booking link",
       "3 TikTok Stories",
       "Raw clips shared with partner",
       "1 extra TikTok video"
     ],
-    "status": "open"
+    "status": "open",
+    "activities": [
+      "Capture the property’s signature details and decor",
+      "Morning coffee and courtyard session",
+      "Tour the design-forward rooms"
+    ],
+    "customNote": "Every content day is custom. What you’ll do is set by our partnership with this partner."
   },
   {
     "id": "cd_012",
@@ -346,17 +368,19 @@
     "spotsTaken": 2,
     "minFollowers": 2500,
     "commissionRate": 10,
-    "perks": [
-      "Welcome cocktail",
-      "Airport transfer",
-      "Complimentary 1-night stay",
-      "Complimentary 2-night stay"
-    ],
     "deliverables": [
       "1 TikTok GO video with booking link",
       "Raw clips shared with partner"
     ],
-    "status": "open"
+    "status": "open",
+    "activities": [
+      "Explore the neighborhood picks the team recommends",
+      "Story segment with the owners",
+      "Morning coffee and courtyard session",
+      "Capture the property’s signature details and decor",
+      "Tour the design-forward rooms"
+    ],
+    "customNote": "Every content day is custom. What you’ll do is set by our partnership with this partner."
   },
   {
     "id": "cd_013",
@@ -376,17 +400,17 @@
     "spotsTaken": 4,
     "minFollowers": 10000,
     "commissionRate": 5,
-    "perks": [
-      "Spa treatment",
-      "Plus-one included",
-      "Complimentary 2-night stay",
-      "Complimentary 1-night stay"
-    ],
     "deliverables": [
       "1 TikTok GO video with booking link",
       "3 TikTok Stories"
     ],
-    "status": "open"
+    "status": "open",
+    "activities": [
+      "Tour the design-forward rooms",
+      "Story segment with the owners",
+      "Explore the neighborhood picks the team recommends"
+    ],
+    "customNote": "Every content day is custom. What you’ll do is set by our partnership with this partner."
   },
   {
     "id": "cd_014",
@@ -406,19 +430,19 @@
     "spotsTaken": 5,
     "minFollowers": 1000,
     "commissionRate": 12,
-    "perks": [
-      "Welcome cocktail",
-      "Complimentary 1-night stay",
-      "Plus-one included",
-      "Complimentary 2-night stay"
-    ],
     "deliverables": [
       "1 TikTok GO video with booking link",
       "Photo carousel post on TikTok",
       "TikTok LIVE from the property",
       "3 TikTok Stories"
     ],
-    "status": "open"
+    "status": "open",
+    "activities": [
+      "Morning coffee and courtyard session",
+      "Story segment with the owners",
+      "Capture the property’s signature details and decor"
+    ],
+    "customNote": "Every content day is custom. What you’ll do is set by our partnership with this partner."
   },
   {
     "id": "cd_015",
@@ -438,17 +462,17 @@
     "spotsTaken": 3,
     "minFollowers": 10000,
     "commissionRate": 8,
-    "perks": [
-      "Complimentary experience",
-      "Hotel pickup & drop-off",
-      "Priority skip-the-line access",
-      "Snacks & drinks included"
-    ],
     "deliverables": [
       "1 TikTok GO video with booking link",
       "3 TikTok Stories"
     ],
-    "status": "open"
+    "status": "open",
+    "activities": [
+      "Exclusive stop not on the public tour",
+      "Join the full guided tour",
+      "Tastings with your local guide"
+    ],
+    "customNote": "Every content day is custom. What you’ll do is set by our partnership with this partner."
   },
   {
     "id": "cd_016",
@@ -468,17 +492,20 @@
     "spotsTaken": 6,
     "minFollowers": 25000,
     "commissionRate": 10,
-    "perks": [
-      "Complimentary 1-night stay",
-      "Plus-one included"
-    ],
     "deliverables": [
       "1 TikTok GO video with booking link",
       "Raw clips shared with partner",
       "Photo carousel post on TikTok",
       "3 TikTok Stories"
     ],
-    "status": "open"
+    "status": "open",
+    "activities": [
+      "Experience exclusive amenities and member-only spaces",
+      "Behind-the-scenes look with the hotel team",
+      "Taste the signature menu at the hotel restaurant",
+      "Visit different room categories"
+    ],
+    "customNote": "Every content day is custom. What you’ll do is set by our partnership with this partner."
   },
   {
     "id": "cd_017",
@@ -498,18 +525,20 @@
     "spotsTaken": 0,
     "minFollowers": 5000,
     "commissionRate": 10,
-    "perks": [
-      "Airport transfer",
-      "Welcome cocktail",
-      "Late checkout",
-      "Spa treatment"
-    ],
     "deliverables": [
       "1 TikTok GO video with booking link",
       "TikTok LIVE from the property",
       "3 TikTok Stories"
     ],
-    "status": "open"
+    "status": "open",
+    "activities": [
+      "Experience exclusive amenities and member-only spaces",
+      "Visit different room categories",
+      "Taste the signature menu at the hotel restaurant",
+      "Rooftop or lounge access for skyline shots",
+      "Behind-the-scenes look with the hotel team"
+    ],
+    "customNote": "Every content day is custom. What you’ll do is set by our partnership with this partner."
   },
   {
     "id": "cd_018",
@@ -529,18 +558,21 @@
     "spotsTaken": 6,
     "minFollowers": 5000,
     "commissionRate": 6,
-    "perks": [
-      "Complimentary 1-night stay",
-      "Late checkout",
-      "Complimentary 2-night stay"
-    ],
     "deliverables": [
       "1 TikTok GO video with booking link",
       "3 TikTok Stories",
       "1 extra TikTok video",
       "TikTok LIVE from the property"
     ],
-    "status": "open"
+    "status": "open",
+    "activities": [
+      "Film the arrival and check-in experience",
+      "Rooftop or lounge access for skyline shots",
+      "Experience exclusive amenities and member-only spaces",
+      "Behind-the-scenes look with the hotel team",
+      "Visit different room categories"
+    ],
+    "customNote": "Every content day is custom. What you’ll do is set by our partnership with this partner."
   },
   {
     "id": "cd_019",
@@ -560,17 +592,20 @@
     "spotsTaken": 6,
     "minFollowers": 5000,
     "commissionRate": 12,
-    "perks": [
-      "Complimentary 1-night stay",
-      "Complimentary 2-night stay"
-    ],
     "deliverables": [
       "1 TikTok GO video with booking link",
       "Photo carousel post on TikTok",
       "TikTok LIVE from the property",
       "3 TikTok Stories"
     ],
-    "status": "open"
+    "status": "open",
+    "activities": [
+      "Morning coffee and courtyard session",
+      "Tour the design-forward rooms",
+      "Capture the property’s signature details and decor",
+      "Story segment with the owners"
+    ],
+    "customNote": "Every content day is custom. What you’ll do is set by our partnership with this partner."
   },
   {
     "id": "cd_020",
@@ -590,16 +625,19 @@
     "spotsTaken": 0,
     "minFollowers": 10000,
     "commissionRate": 10,
-    "perks": [
-      "Complimentary 1-night stay",
-      "Complimentary 2-night stay",
-      "Late checkout"
-    ],
     "deliverables": [
       "1 TikTok GO video with booking link",
       "1 extra TikTok video"
     ],
-    "status": "open"
+    "status": "open",
+    "activities": [
+      "Morning coffee and courtyard session",
+      "Capture the property’s signature details and decor",
+      "Tour the design-forward rooms",
+      "Explore the neighborhood picks the team recommends",
+      "Story segment with the owners"
+    ],
+    "customNote": "Every content day is custom. What you’ll do is set by our partnership with this partner."
   },
   {
     "id": "cd_021",
@@ -619,18 +657,18 @@
     "spotsTaken": 1,
     "minFollowers": 1000,
     "commissionRate": 5,
-    "perks": [
-      "Spa treatment",
-      "Complimentary 2-night stay",
-      "Welcome cocktail",
-      "Plus-one included"
-    ],
     "deliverables": [
       "1 TikTok GO video with booking link",
       "Raw clips shared with partner",
       "Photo carousel post on TikTok"
     ],
-    "status": "open"
+    "status": "open",
+    "activities": [
+      "Morning coffee and courtyard session",
+      "Capture the property’s signature details and decor",
+      "Tour the design-forward rooms"
+    ],
+    "customNote": "Every content day is custom. What you’ll do is set by our partnership with this partner."
   },
   {
     "id": "cd_022",
@@ -650,16 +688,19 @@
     "spotsTaken": 2,
     "minFollowers": 5000,
     "commissionRate": 6,
-    "perks": [
-      "Snacks & drinks included",
-      "Hotel pickup & drop-off"
-    ],
     "deliverables": [
       "1 TikTok GO video with booking link",
       "Raw clips shared with partner",
       "Photo carousel post on TikTok"
     ],
-    "status": "open"
+    "status": "open",
+    "activities": [
+      "Take part in the full adventure",
+      "Sunset finale with the group",
+      "Drone-friendly spots scouted for you",
+      "Gear-up and safety briefing content"
+    ],
+    "customNote": "Every content day is custom. What you’ll do is set by our partnership with this partner."
   },
   {
     "id": "cd_023",
@@ -679,16 +720,19 @@
     "spotsTaken": 5,
     "minFollowers": 10000,
     "commissionRate": 8,
-    "perks": [
-      "Private guide",
-      "Plus-one included"
-    ],
     "deliverables": [
       "1 TikTok GO video with booking link",
       "Raw clips shared with partner",
       "TikTok LIVE from the property"
     ],
-    "status": "open"
+    "status": "open",
+    "activities": [
+      "POV / GoPro filming alongside the crew",
+      "Take part in the full adventure",
+      "Gear-up and safety briefing content",
+      "Drone-friendly spots scouted for you"
+    ],
+    "customNote": "Every content day is custom. What you’ll do is set by our partnership with this partner."
   },
   {
     "id": "cd_024",
@@ -708,18 +752,19 @@
     "spotsTaken": 1,
     "minFollowers": 1000,
     "commissionRate": 8,
-    "perks": [
-      "Hotel pickup & drop-off",
-      "Plus-one included",
-      "Priority skip-the-line access"
-    ],
     "deliverables": [
       "1 TikTok GO video with booking link",
       "1 extra TikTok video",
       "Photo carousel post on TikTok",
       "3 TikTok Stories"
     ],
-    "status": "open"
+    "status": "open",
+    "activities": [
+      "Take part in the full adventure",
+      "POV / GoPro filming alongside the crew",
+      "Gear-up and safety briefing content"
+    ],
+    "customNote": "Every content day is custom. What you’ll do is set by our partnership with this partner."
   },
   {
     "id": "cd_025",
@@ -739,18 +784,18 @@
     "spotsTaken": 1,
     "minFollowers": 10000,
     "commissionRate": 10,
-    "perks": [
-      "Photos & drone footage shared",
-      "Hotel pickup & drop-off",
-      "Private guide",
-      "Plus-one included"
-    ],
     "deliverables": [
       "1 TikTok GO video with booking link",
       "Photo carousel post on TikTok",
       "Raw clips shared with partner"
     ],
-    "status": "open"
+    "status": "open",
+    "activities": [
+      "Exclusive stop not on the public tour",
+      "Interview your guide on camera",
+      "Film the key stops along the route"
+    ],
+    "customNote": "Every content day is custom. What you’ll do is set by our partnership with this partner."
   },
   {
     "id": "cd_026",
@@ -770,19 +815,19 @@
     "spotsTaken": 11,
     "minFollowers": 1000,
     "commissionRate": 12,
-    "perks": [
-      "Plus-one included",
-      "Complimentary experience",
-      "Snacks & drinks included",
-      "Priority skip-the-line access"
-    ],
     "deliverables": [
       "1 TikTok GO video with booking link",
       "Raw clips shared with partner",
       "3 TikTok Stories",
       "Photo carousel post on TikTok"
     ],
-    "status": "open"
+    "status": "open",
+    "activities": [
+      "Interview your guide on camera",
+      "Join the full guided tour",
+      "Tastings with your local guide"
+    ],
+    "customNote": "Every content day is custom. What you’ll do is set by our partnership with this partner."
   },
   {
     "id": "cd_027",
@@ -802,15 +847,18 @@
     "spotsTaken": 9,
     "minFollowers": 5000,
     "commissionRate": 10,
-    "perks": [
-      "Snacks & drinks included",
-      "Photos & drone footage shared"
-    ],
     "deliverables": [
       "1 TikTok GO video with booking link",
       "Raw clips shared with partner"
     ],
-    "status": "open"
+    "status": "open",
+    "activities": [
+      "Exclusive stop not on the public tour",
+      "Join the full guided tour",
+      "Tastings with your local guide",
+      "Interview your guide on camera"
+    ],
+    "customNote": "Every content day is custom. What you’ll do is set by our partnership with this partner."
   },
   {
     "id": "cd_028",
@@ -830,17 +878,21 @@
     "spotsTaken": 1,
     "minFollowers": 5000,
     "commissionRate": 8,
-    "perks": [
-      "Priority skip-the-line access",
-      "Snacks & drinks included"
-    ],
     "deliverables": [
       "1 TikTok GO video with booking link",
       "Photo carousel post on TikTok",
       "3 TikTok Stories",
       "1 extra TikTok video"
     ],
-    "status": "open"
+    "status": "open",
+    "activities": [
+      "VIP early access before the crowds",
+      "Behind-the-scenes access with staff",
+      "Golden-hour finale shoot",
+      "Meet the team for a short interview",
+      "Film the signature experience"
+    ],
+    "customNote": "Every content day is custom. What you’ll do is set by our partnership with this partner."
   },
   {
     "id": "cd_029",
@@ -860,15 +912,17 @@
     "spotsTaken": 3,
     "minFollowers": 1000,
     "commissionRate": 6,
-    "perks": [
-      "Plus-one included",
-      "Welcome cocktail"
-    ],
     "deliverables": [
       "1 TikTok GO video with booking link",
       "Photo carousel post on TikTok"
     ],
-    "status": "open"
+    "status": "open",
+    "activities": [
+      "Taste the signature menu at the hotel restaurant",
+      "Rooftop or lounge access for skyline shots",
+      "Experience exclusive amenities and member-only spaces"
+    ],
+    "customNote": "Every content day is custom. What you’ll do is set by our partnership with this partner."
   },
   {
     "id": "cd_030",
@@ -888,18 +942,19 @@
     "spotsTaken": 0,
     "minFollowers": 5000,
     "commissionRate": 8,
-    "perks": [
-      "$150 food & beverage credit",
-      "Welcome cocktail",
-      "Complimentary 2-night stay"
-    ],
     "deliverables": [
       "1 TikTok GO video with booking link",
       "Photo carousel post on TikTok",
       "Raw clips shared with partner",
       "TikTok LIVE from the property"
     ],
-    "status": "open"
+    "status": "open",
+    "activities": [
+      "Film the arrival and check-in experience",
+      "Rooftop or lounge access for skyline shots",
+      "Taste the signature menu at the hotel restaurant"
+    ],
+    "customNote": "Every content day is custom. What you’ll do is set by our partnership with this partner."
   },
   {
     "id": "cd_031",
@@ -919,17 +974,20 @@
     "spotsTaken": 3,
     "minFollowers": 25000,
     "commissionRate": 5,
-    "perks": [
-      "Complimentary 1-night stay",
-      "Airport transfer",
-      "Complimentary 2-night stay"
-    ],
     "deliverables": [
       "1 TikTok GO video with booking link",
       "1 extra TikTok video",
       "3 TikTok Stories"
     ],
-    "status": "open"
+    "status": "open",
+    "activities": [
+      "Behind-the-scenes look with the hotel team",
+      "Visit different room categories",
+      "Experience exclusive amenities and member-only spaces",
+      "Rooftop or lounge access for skyline shots",
+      "Film the arrival and check-in experience"
+    ],
+    "customNote": "Every content day is custom. What you’ll do is set by our partnership with this partner."
   },
   {
     "id": "cd_032",
@@ -949,17 +1007,18 @@
     "spotsTaken": 4,
     "minFollowers": 1000,
     "commissionRate": 8,
-    "perks": [
-      "Late checkout",
-      "Plus-one included",
-      "$150 food & beverage credit",
-      "Airport transfer"
-    ],
     "deliverables": [
       "1 TikTok GO video with booking link",
       "Raw clips shared with partner"
     ],
-    "status": "open"
+    "status": "open",
+    "activities": [
+      "Visit different room categories",
+      "Experience exclusive amenities and member-only spaces",
+      "Rooftop or lounge access for skyline shots",
+      "Film the arrival and check-in experience"
+    ],
+    "customNote": "Every content day is custom. What you’ll do is set by our partnership with this partner."
   },
   {
     "id": "cd_033",
@@ -979,19 +1038,20 @@
     "spotsTaken": 2,
     "minFollowers": 5000,
     "commissionRate": 6,
-    "perks": [
-      "Complimentary 1-night stay",
-      "Plus-one included",
-      "Complimentary 2-night stay",
-      "$150 food & beverage credit"
-    ],
     "deliverables": [
       "1 TikTok GO video with booking link",
       "Raw clips shared with partner",
       "Photo carousel post on TikTok",
       "TikTok LIVE from the property"
     ],
-    "status": "open"
+    "status": "open",
+    "activities": [
+      "Story segment with the owners",
+      "Capture the property’s signature details and decor",
+      "Explore the neighborhood picks the team recommends",
+      "Tour the design-forward rooms"
+    ],
+    "customNote": "Every content day is custom. What you’ll do is set by our partnership with this partner."
   },
   {
     "id": "cd_034",
@@ -1011,17 +1071,19 @@
     "spotsTaken": 3,
     "minFollowers": 1000,
     "commissionRate": 6,
-    "perks": [
-      "Complimentary 2-night stay",
-      "Late checkout",
-      "Airport transfer",
-      "Welcome cocktail"
-    ],
     "deliverables": [
       "1 TikTok GO video with booking link",
       "3 TikTok Stories"
     ],
-    "status": "open"
+    "status": "open",
+    "activities": [
+      "Tour the design-forward rooms",
+      "Capture the property’s signature details and decor",
+      "Explore the neighborhood picks the team recommends",
+      "Morning coffee and courtyard session",
+      "Story segment with the owners"
+    ],
+    "customNote": "Every content day is custom. What you’ll do is set by our partnership with this partner."
   },
   {
     "id": "cd_035",
@@ -1041,15 +1103,17 @@
     "spotsTaken": 2,
     "minFollowers": 1000,
     "commissionRate": 6,
-    "perks": [
-      "Late checkout",
-      "Airport transfer"
-    ],
     "deliverables": [
       "1 TikTok GO video with booking link",
       "Photo carousel post on TikTok"
     ],
-    "status": "open"
+    "status": "open",
+    "activities": [
+      "Visit different room categories",
+      "Experience exclusive amenities and member-only spaces",
+      "Rooftop or lounge access for skyline shots"
+    ],
+    "customNote": "Every content day is custom. What you’ll do is set by our partnership with this partner."
   },
   {
     "id": "cd_036",
@@ -1069,15 +1133,18 @@
     "spotsTaken": 11,
     "minFollowers": 2500,
     "commissionRate": 6,
-    "perks": [
-      "Welcome cocktail",
-      "Spa treatment"
-    ],
     "deliverables": [
       "1 TikTok GO video with booking link",
       "Photo carousel post on TikTok"
     ],
-    "status": "open"
+    "status": "open",
+    "activities": [
+      "Visit different room categories and suites",
+      "Film a full property tour with the resort team",
+      "Experience exclusive amenities: private cabanas, pools, and lounges",
+      "Spa treatment and wellness walkthrough"
+    ],
+    "customNote": "Every content day is custom. What you’ll do is set by our partnership with this partner."
   },
   {
     "id": "cd_037",
@@ -1097,19 +1164,19 @@
     "spotsTaken": 0,
     "minFollowers": 1000,
     "commissionRate": 12,
-    "perks": [
-      "Complimentary 2-night stay",
-      "Complimentary 1-night stay",
-      "Late checkout",
-      "Airport transfer"
-    ],
     "deliverables": [
       "1 TikTok GO video with booking link",
       "3 TikTok Stories",
       "TikTok LIVE from the property",
       "1 extra TikTok video"
     ],
-    "status": "open"
+    "status": "open",
+    "activities": [
+      "Film a full property tour with the resort team",
+      "Visit different room categories and suites",
+      "Taste the resort’s signature dining"
+    ],
+    "customNote": "Every content day is custom. What you’ll do is set by our partnership with this partner."
   },
   {
     "id": "cd_038",
@@ -1129,15 +1196,17 @@
     "spotsTaken": 8,
     "minFollowers": 2500,
     "commissionRate": 8,
-    "perks": [
-      "Complimentary 1-night stay",
-      "Complimentary 2-night stay"
-    ],
     "deliverables": [
       "1 TikTok GO video with booking link",
       "1 extra TikTok video"
     ],
-    "status": "open"
+    "status": "open",
+    "activities": [
+      "Tour the design-forward rooms",
+      "Story segment with the owners",
+      "Capture the property’s signature details and decor"
+    ],
+    "customNote": "Every content day is custom. What you’ll do is set by our partnership with this partner."
   },
   {
     "id": "cd_039",
@@ -1157,16 +1226,17 @@
     "spotsTaken": 1,
     "minFollowers": 5000,
     "commissionRate": 6,
-    "perks": [
-      "Plus-one included",
-      "Spa treatment",
-      "Airport transfer"
-    ],
     "deliverables": [
       "1 TikTok GO video with booking link",
       "3 TikTok Stories"
     ],
-    "status": "open"
+    "status": "open",
+    "activities": [
+      "Visit different room categories",
+      "Behind-the-scenes look with the hotel team",
+      "Experience exclusive amenities and member-only spaces"
+    ],
+    "customNote": "Every content day is custom. What you’ll do is set by our partnership with this partner."
   },
   {
     "id": "cd_040",
@@ -1186,18 +1256,19 @@
     "spotsTaken": 5,
     "minFollowers": 1000,
     "commissionRate": 8,
-    "perks": [
-      "Airport transfer",
-      "Late checkout",
-      "Complimentary 1-night stay",
-      "Complimentary 2-night stay"
-    ],
     "deliverables": [
       "1 TikTok GO video with booking link",
       "3 TikTok Stories",
       "Photo carousel post on TikTok"
     ],
-    "status": "open"
+    "status": "open",
+    "activities": [
+      "Visit different room categories",
+      "Experience exclusive amenities and member-only spaces",
+      "Taste the signature menu at the hotel restaurant",
+      "Rooftop or lounge access for skyline shots"
+    ],
+    "customNote": "Every content day is custom. What you’ll do is set by our partnership with this partner."
   },
   {
     "id": "cd_041",
@@ -1217,16 +1288,17 @@
     "spotsTaken": 0,
     "minFollowers": 25000,
     "commissionRate": 5,
-    "perks": [
-      "Complimentary 1-night stay",
-      "Complimentary 2-night stay",
-      "Late checkout"
-    ],
     "deliverables": [
       "1 TikTok GO video with booking link",
       "Photo carousel post on TikTok"
     ],
-    "status": "open"
+    "status": "open",
+    "activities": [
+      "Visit different room categories",
+      "Rooftop or lounge access for skyline shots",
+      "Taste the signature menu at the hotel restaurant"
+    ],
+    "customNote": "Every content day is custom. What you’ll do is set by our partnership with this partner."
   },
   {
     "id": "cd_042",
@@ -1246,18 +1318,19 @@
     "spotsTaken": 1,
     "minFollowers": 2500,
     "commissionRate": 5,
-    "perks": [
-      "Welcome cocktail",
-      "Late checkout",
-      "Spa treatment",
-      "Airport transfer"
-    ],
     "deliverables": [
       "1 TikTok GO video with booking link",
       "TikTok LIVE from the property",
       "Photo carousel post on TikTok"
     ],
-    "status": "open"
+    "status": "open",
+    "activities": [
+      "Visit different room categories and suites",
+      "Experience exclusive amenities: private cabanas, pools, and lounges",
+      "Spa treatment and wellness walkthrough",
+      "Poolside golden-hour session"
+    ],
+    "customNote": "Every content day is custom. What you’ll do is set by our partnership with this partner."
   },
   {
     "id": "cd_043",
@@ -1277,17 +1350,19 @@
     "spotsTaken": 0,
     "minFollowers": 1000,
     "commissionRate": 8,
-    "perks": [
-      "Spa treatment",
-      "Complimentary 2-night stay",
-      "Complimentary 1-night stay",
-      "$150 food & beverage credit"
-    ],
     "deliverables": [
       "1 TikTok GO video with booking link",
       "Photo carousel post on TikTok"
     ],
-    "status": "open"
+    "status": "open",
+    "activities": [
+      "Tour the design-forward rooms",
+      "Capture the property’s signature details and decor",
+      "Morning coffee and courtyard session",
+      "Explore the neighborhood picks the team recommends",
+      "Story segment with the owners"
+    ],
+    "customNote": "Every content day is custom. What you’ll do is set by our partnership with this partner."
   },
   {
     "id": "cd_044",
@@ -1307,18 +1382,19 @@
     "spotsTaken": 2,
     "minFollowers": 5000,
     "commissionRate": 10,
-    "perks": [
-      "Complimentary 1-night stay",
-      "Complimentary 2-night stay",
-      "Late checkout"
-    ],
     "deliverables": [
       "1 TikTok GO video with booking link",
       "Photo carousel post on TikTok",
       "1 extra TikTok video",
       "TikTok LIVE from the property"
     ],
-    "status": "open"
+    "status": "open",
+    "activities": [
+      "Film the arrival and check-in experience",
+      "Visit different room categories",
+      "Experience exclusive amenities and member-only spaces"
+    ],
+    "customNote": "Every content day is custom. What you’ll do is set by our partnership with this partner."
   },
   {
     "id": "cd_045",
@@ -1338,19 +1414,19 @@
     "spotsTaken": 5,
     "minFollowers": 25000,
     "commissionRate": 12,
-    "perks": [
-      "Late checkout",
-      "Plus-one included",
-      "Airport transfer",
-      "Complimentary 2-night stay"
-    ],
     "deliverables": [
       "1 TikTok GO video with booking link",
       "Raw clips shared with partner",
       "TikTok LIVE from the property",
       "3 TikTok Stories"
     ],
-    "status": "open"
+    "status": "open",
+    "activities": [
+      "Behind-the-scenes look with the hotel team",
+      "Film the arrival and check-in experience",
+      "Rooftop or lounge access for skyline shots"
+    ],
+    "customNote": "Every content day is custom. What you’ll do is set by our partnership with this partner."
   },
   {
     "id": "cd_046",
@@ -1370,17 +1446,19 @@
     "spotsTaken": 2,
     "minFollowers": 10000,
     "commissionRate": 8,
-    "perks": [
-      "Complimentary 1-night stay",
-      "Spa treatment",
-      "Late checkout",
-      "Welcome cocktail"
-    ],
     "deliverables": [
       "1 TikTok GO video with booking link",
       "Raw clips shared with partner"
     ],
-    "status": "open"
+    "status": "open",
+    "activities": [
+      "Visit different room categories",
+      "Experience exclusive amenities and member-only spaces",
+      "Rooftop or lounge access for skyline shots",
+      "Film the arrival and check-in experience",
+      "Behind-the-scenes look with the hotel team"
+    ],
+    "customNote": "Every content day is custom. What you’ll do is set by our partnership with this partner."
   },
   {
     "id": "cd_047",
@@ -1400,19 +1478,21 @@
     "spotsTaken": 2,
     "minFollowers": 5000,
     "commissionRate": 5,
-    "perks": [
-      "Airport transfer",
-      "Complimentary 1-night stay",
-      "Complimentary 2-night stay",
-      "Plus-one included"
-    ],
     "deliverables": [
       "1 TikTok GO video with booking link",
       "TikTok LIVE from the property",
       "1 extra TikTok video",
       "3 TikTok Stories"
     ],
-    "status": "open"
+    "status": "open",
+    "activities": [
+      "Taste the signature menu at the hotel restaurant",
+      "Rooftop or lounge access for skyline shots",
+      "Experience exclusive amenities and member-only spaces",
+      "Film the arrival and check-in experience",
+      "Behind-the-scenes look with the hotel team"
+    ],
+    "customNote": "Every content day is custom. What you’ll do is set by our partnership with this partner."
   },
   {
     "id": "cd_048",
@@ -1432,19 +1512,19 @@
     "spotsTaken": 1,
     "minFollowers": 10000,
     "commissionRate": 8,
-    "perks": [
-      "$150 food & beverage credit",
-      "Welcome cocktail",
-      "Plus-one included",
-      "Airport transfer"
-    ],
     "deliverables": [
       "1 TikTok GO video with booking link",
       "TikTok LIVE from the property",
       "3 TikTok Stories",
       "Raw clips shared with partner"
     ],
-    "status": "open"
+    "status": "open",
+    "activities": [
+      "Behind-the-scenes look with the hotel team",
+      "Film the arrival and check-in experience",
+      "Rooftop or lounge access for skyline shots"
+    ],
+    "customNote": "Every content day is custom. What you’ll do is set by our partnership with this partner."
   },
   {
     "id": "cd_049",
@@ -1464,17 +1544,17 @@
     "spotsTaken": 2,
     "minFollowers": 2500,
     "commissionRate": 5,
-    "perks": [
-      "Complimentary experience",
-      "Priority skip-the-line access",
-      "Plus-one included",
-      "Snacks & drinks included"
-    ],
     "deliverables": [
       "1 TikTok GO video with booking link",
       "TikTok LIVE from the property"
     ],
-    "status": "open"
+    "status": "open",
+    "activities": [
+      "Join the full guided tour",
+      "Film the key stops along the route",
+      "Interview your guide on camera"
+    ],
+    "customNote": "Every content day is custom. What you’ll do is set by our partnership with this partner."
   },
   {
     "id": "cd_050",
@@ -1494,15 +1574,18 @@
     "spotsTaken": 6,
     "minFollowers": 2500,
     "commissionRate": 10,
-    "perks": [
-      "Private guide",
-      "Snacks & drinks included"
-    ],
     "deliverables": [
       "1 TikTok GO video with booking link",
       "1 extra TikTok video"
     ],
-    "status": "open"
+    "status": "open",
+    "activities": [
+      "Interview your guide on camera",
+      "Film the key stops along the route",
+      "Tastings with your local guide",
+      "Exclusive stop not on the public tour"
+    ],
+    "customNote": "Every content day is custom. What you’ll do is set by our partnership with this partner."
   },
   {
     "id": "cd_051",
@@ -1522,16 +1605,19 @@
     "spotsTaken": 0,
     "minFollowers": 5000,
     "commissionRate": 10,
-    "perks": [
-      "$150 food & beverage credit",
-      "Complimentary 1-night stay",
-      "Late checkout"
-    ],
     "deliverables": [
       "1 TikTok GO video with booking link",
       "1 extra TikTok video"
     ],
-    "status": "open"
+    "status": "open",
+    "activities": [
+      "Spa treatment and wellness walkthrough",
+      "Poolside golden-hour session",
+      "Film a full property tour with the resort team",
+      "Visit different room categories and suites",
+      "Experience exclusive amenities: private cabanas, pools, and lounges"
+    ],
+    "customNote": "Every content day is custom. What you’ll do is set by our partnership with this partner."
   },
   {
     "id": "cd_052",
@@ -1551,17 +1637,20 @@
     "spotsTaken": 1,
     "minFollowers": 25000,
     "commissionRate": 5,
-    "perks": [
-      "Plus-one included",
-      "Complimentary 2-night stay",
-      "Late checkout"
-    ],
     "deliverables": [
       "1 TikTok GO video with booking link",
       "1 extra TikTok video",
       "3 TikTok Stories"
     ],
-    "status": "open"
+    "status": "open",
+    "activities": [
+      "Visit different room categories and suites",
+      "Experience exclusive amenities: private cabanas, pools, and lounges",
+      "Spa treatment and wellness walkthrough",
+      "Poolside golden-hour session",
+      "Film a full property tour with the resort team"
+    ],
+    "customNote": "Every content day is custom. What you’ll do is set by our partnership with this partner."
   },
   {
     "id": "cd_053",
@@ -1581,18 +1670,18 @@
     "spotsTaken": 3,
     "minFollowers": 10000,
     "commissionRate": 10,
-    "perks": [
-      "Late checkout",
-      "Airport transfer",
-      "Plus-one included",
-      "Welcome cocktail"
-    ],
     "deliverables": [
       "1 TikTok GO video with booking link",
       "Photo carousel post on TikTok",
       "3 TikTok Stories"
     ],
-    "status": "open"
+    "status": "open",
+    "activities": [
+      "Film a full property tour with the resort team",
+      "Visit different room categories and suites",
+      "Experience exclusive amenities: private cabanas, pools, and lounges"
+    ],
+    "customNote": "Every content day is custom. What you’ll do is set by our partnership with this partner."
   },
   {
     "id": "cd_054",
@@ -1612,16 +1701,18 @@
     "spotsTaken": 1,
     "minFollowers": 1000,
     "commissionRate": 8,
-    "perks": [
-      "$150 food & beverage credit",
-      "Plus-one included"
-    ],
     "deliverables": [
       "1 TikTok GO video with booking link",
       "Raw clips shared with partner",
       "Photo carousel post on TikTok"
     ],
-    "status": "open"
+    "status": "open",
+    "activities": [
+      "Visit different room categories and suites",
+      "Experience exclusive amenities: private cabanas, pools, and lounges",
+      "Spa treatment and wellness walkthrough"
+    ],
+    "customNote": "Every content day is custom. What you’ll do is set by our partnership with this partner."
   },
   {
     "id": "cd_055",
@@ -1641,17 +1732,19 @@
     "spotsTaken": 1,
     "minFollowers": 10000,
     "commissionRate": 5,
-    "perks": [
-      "Spa treatment",
-      "Plus-one included",
-      "Late checkout",
-      "Airport transfer"
-    ],
     "deliverables": [
       "1 TikTok GO video with booking link",
       "1 extra TikTok video"
     ],
-    "status": "open"
+    "status": "open",
+    "activities": [
+      "Rooftop or lounge access for skyline shots",
+      "Taste the signature menu at the hotel restaurant",
+      "Experience exclusive amenities and member-only spaces",
+      "Visit different room categories",
+      "Behind-the-scenes look with the hotel team"
+    ],
+    "customNote": "Every content day is custom. What you’ll do is set by our partnership with this partner."
   },
   {
     "id": "cd_056",
@@ -1671,18 +1764,21 @@
     "spotsTaken": 1,
     "minFollowers": 1000,
     "commissionRate": 10,
-    "perks": [
-      "Complimentary 1-night stay",
-      "Complimentary 2-night stay",
-      "Plus-one included"
-    ],
     "deliverables": [
       "1 TikTok GO video with booking link",
       "1 extra TikTok video",
       "3 TikTok Stories",
       "Raw clips shared with partner"
     ],
-    "status": "open"
+    "status": "open",
+    "activities": [
+      "Rooftop or lounge access for skyline shots",
+      "Experience exclusive amenities and member-only spaces",
+      "Visit different room categories",
+      "Behind-the-scenes look with the hotel team",
+      "Film the arrival and check-in experience"
+    ],
+    "customNote": "Every content day is custom. What you’ll do is set by our partnership with this partner."
   },
   {
     "id": "cd_057",
@@ -1702,16 +1798,18 @@
     "spotsTaken": 11,
     "minFollowers": 10000,
     "commissionRate": 8,
-    "perks": [
-      "Spa treatment",
-      "Complimentary 1-night stay",
-      "Complimentary 2-night stay"
-    ],
     "deliverables": [
       "1 TikTok GO video with booking link",
       "Photo carousel post on TikTok"
     ],
-    "status": "open"
+    "status": "open",
+    "activities": [
+      "Taste the signature menu at the hotel restaurant",
+      "Rooftop or lounge access for skyline shots",
+      "Film the arrival and check-in experience",
+      "Visit different room categories"
+    ],
+    "customNote": "Every content day is custom. What you’ll do is set by our partnership with this partner."
   },
   {
     "id": "cd_058",
@@ -1731,15 +1829,17 @@
     "spotsTaken": 6,
     "minFollowers": 10000,
     "commissionRate": 8,
-    "perks": [
-      "Hotel pickup & drop-off",
-      "Private guide"
-    ],
     "deliverables": [
       "1 TikTok GO video with booking link",
       "TikTok LIVE from the property"
     ],
-    "status": "open"
+    "status": "open",
+    "activities": [
+      "Exclusive stop not on the public tour",
+      "Interview your guide on camera",
+      "Film the key stops along the route"
+    ],
+    "customNote": "Every content day is custom. What you’ll do is set by our partnership with this partner."
   },
   {
     "id": "cd_059",
@@ -1759,16 +1859,18 @@
     "spotsTaken": 2,
     "minFollowers": 10000,
     "commissionRate": 5,
-    "perks": [
-      "Complimentary 1-night stay",
-      "Welcome cocktail"
-    ],
     "deliverables": [
       "1 TikTok GO video with booking link",
       "TikTok LIVE from the property",
       "Photo carousel post on TikTok"
     ],
-    "status": "open"
+    "status": "open",
+    "activities": [
+      "Taste the resort’s signature dining",
+      "Film a full property tour with the resort team",
+      "Spa treatment and wellness walkthrough"
+    ],
+    "customNote": "Every content day is custom. What you’ll do is set by our partnership with this partner."
   },
   {
     "id": "cd_060",
@@ -1788,17 +1890,18 @@
     "spotsTaken": 3,
     "minFollowers": 2500,
     "commissionRate": 12,
-    "perks": [
-      "Complimentary 1-night stay",
-      "Complimentary 2-night stay",
-      "Spa treatment",
-      "Welcome cocktail"
-    ],
     "deliverables": [
       "1 TikTok GO video with booking link",
       "3 TikTok Stories"
     ],
-    "status": "open"
+    "status": "open",
+    "activities": [
+      "Visit different room categories and suites",
+      "Experience exclusive amenities: private cabanas, pools, and lounges",
+      "Taste the resort’s signature dining",
+      "Spa treatment and wellness walkthrough"
+    ],
+    "customNote": "Every content day is custom. What you’ll do is set by our partnership with this partner."
   },
   {
     "id": "cd_061",
@@ -1818,15 +1921,18 @@
     "spotsTaken": 2,
     "minFollowers": 1000,
     "commissionRate": 8,
-    "perks": [
-      "Hotel pickup & drop-off",
-      "Private guide"
-    ],
     "deliverables": [
       "1 TikTok GO video with booking link",
       "TikTok LIVE from the property"
     ],
-    "status": "open"
+    "status": "open",
+    "activities": [
+      "Meet the team for a short interview",
+      "VIP early access before the crowds",
+      "Golden-hour finale shoot",
+      "Behind-the-scenes access with staff"
+    ],
+    "customNote": "Every content day is custom. What you’ll do is set by our partnership with this partner."
   },
   {
     "id": "cd_062",
@@ -1846,18 +1952,20 @@
     "spotsTaken": 0,
     "minFollowers": 25000,
     "commissionRate": 6,
-    "perks": [
-      "Hotel pickup & drop-off",
-      "Private guide",
-      "Priority skip-the-line access",
-      "Snacks & drinks included"
-    ],
     "deliverables": [
       "1 TikTok GO video with booking link",
       "TikTok LIVE from the property",
       "Photo carousel post on TikTok"
     ],
-    "status": "open"
+    "status": "open",
+    "activities": [
+      "Take part in the full adventure",
+      "POV / GoPro filming alongside the crew",
+      "Sunset finale with the group",
+      "Gear-up and safety briefing content",
+      "Drone-friendly spots scouted for you"
+    ],
+    "customNote": "Every content day is custom. What you’ll do is set by our partnership with this partner."
   },
   {
     "id": "cd_063",
@@ -1877,15 +1985,19 @@
     "spotsTaken": 0,
     "minFollowers": 10000,
     "commissionRate": 10,
-    "perks": [
-      "Private guide",
-      "Hotel pickup & drop-off"
-    ],
     "deliverables": [
       "1 TikTok GO video with booking link",
       "1 extra TikTok video"
     ],
-    "status": "open"
+    "status": "open",
+    "activities": [
+      "Take part in the full adventure",
+      "Drone-friendly spots scouted for you",
+      "POV / GoPro filming alongside the crew",
+      "Gear-up and safety briefing content",
+      "Sunset finale with the group"
+    ],
+    "customNote": "Every content day is custom. What you’ll do is set by our partnership with this partner."
   },
   {
     "id": "cd_064",
@@ -1905,17 +2017,21 @@
     "spotsTaken": 7,
     "minFollowers": 10000,
     "commissionRate": 8,
-    "perks": [
-      "Snacks & drinks included",
-      "Complimentary experience"
-    ],
     "deliverables": [
       "1 TikTok GO video with booking link",
       "1 extra TikTok video",
       "3 TikTok Stories",
       "Raw clips shared with partner"
     ],
-    "status": "open"
+    "status": "open",
+    "activities": [
+      "Take part in the full adventure",
+      "POV / GoPro filming alongside the crew",
+      "Gear-up and safety briefing content",
+      "Drone-friendly spots scouted for you",
+      "Sunset finale with the group"
+    ],
+    "customNote": "Every content day is custom. What you’ll do is set by our partnership with this partner."
   },
   {
     "id": "cd_065",
@@ -1935,17 +2051,17 @@
     "spotsTaken": 9,
     "minFollowers": 5000,
     "commissionRate": 10,
-    "perks": [
-      "Complimentary experience",
-      "Plus-one included",
-      "Snacks & drinks included",
-      "Priority skip-the-line access"
-    ],
     "deliverables": [
       "1 TikTok GO video with booking link",
       "1 extra TikTok video"
     ],
-    "status": "open"
+    "status": "open",
+    "activities": [
+      "Take part in the full adventure",
+      "Drone-friendly spots scouted for you",
+      "POV / GoPro filming alongside the crew"
+    ],
+    "customNote": "Every content day is custom. What you’ll do is set by our partnership with this partner."
   },
   {
     "id": "cd_066",
@@ -1965,18 +2081,19 @@
     "spotsTaken": 9,
     "minFollowers": 1000,
     "commissionRate": 8,
-    "perks": [
-      "Snacks & drinks included",
-      "Complimentary experience",
-      "Plus-one included"
-    ],
     "deliverables": [
       "1 TikTok GO video with booking link",
       "Raw clips shared with partner",
       "Photo carousel post on TikTok",
       "TikTok LIVE from the property"
     ],
-    "status": "open"
+    "status": "open",
+    "activities": [
+      "Take part in the full adventure",
+      "POV / GoPro filming alongside the crew",
+      "Gear-up and safety briefing content"
+    ],
+    "customNote": "Every content day is custom. What you’ll do is set by our partnership with this partner."
   },
   {
     "id": "cd_067",
@@ -1996,15 +2113,17 @@
     "spotsTaken": 1,
     "minFollowers": 25000,
     "commissionRate": 8,
-    "perks": [
-      "Hotel pickup & drop-off",
-      "Complimentary experience"
-    ],
     "deliverables": [
       "1 TikTok GO video with booking link",
       "Raw clips shared with partner",
       "Photo carousel post on TikTok"
     ],
-    "status": "open"
+    "status": "open",
+    "activities": [
+      "Golden-hour finale shoot",
+      "Meet the team for a short interview",
+      "Film the signature experience"
+    ],
+    "customNote": "Every content day is custom. What you’ll do is set by our partnership with this partner."
   }
 ]

@@ -18,7 +18,7 @@
     },
     "accentColor": "#ff3b5c",
     "rating": 4.2,
-    "description": "Casa Marea Resort is a demo resort partner in Tulum. Replace with partner-provided copy from the TikTok GO / partner API."
+    "description": "Casa Marea Resort is a Tulum resort known for its pools, spa, and golden-hour views, a favorite backdrop for travel Creators."
   },
   {
     "id": "ptn_hotel-coral-azul",
@@ -39,7 +39,7 @@
     },
     "accentColor": "#25f4ee",
     "rating": 4.6,
-    "description": "Hotel Coral Azul is a demo hotel partner in Cancún. Replace with partner-provided copy from the TikTok GO / partner API."
+    "description": "Hotel Coral Azul is a stylish Cancún hotel with design-forward rooms, a rooftop scene, and easy access to the city’s best spots."
   },
   {
     "id": "ptn_la-selva-boutique",
@@ -60,7 +60,7 @@
     },
     "accentColor": "#b388ff",
     "rating": 4.8,
-    "description": "La Selva Boutique is a demo boutique partner in Playa del Carmen. Replace with partner-provided copy from the TikTok GO / partner API."
+    "description": "La Selva Boutique is an intimate boutique stay in Playa del Carmen, full of handcrafted details, quiet courtyards, and local character."
   },
   {
     "id": "ptn_pacific-cliffs-cabo",
@@ -81,7 +81,7 @@
     },
     "accentColor": "#ff3b5c",
     "rating": 4.4,
-    "description": "Pacific Cliffs Cabo is a demo resort partner in Los Cabos. Replace with partner-provided copy from the TikTok GO / partner API."
+    "description": "Pacific Cliffs Cabo is a Los Cabos resort known for its pools, spa, and golden-hour views, a favorite backdrop for travel Creators."
   },
   {
     "id": "ptn_villa-sol-vallarta",
@@ -102,7 +102,7 @@
     },
     "accentColor": "#ff3b5c",
     "rating": 4.5,
-    "description": "Villa Sol Vallarta is a demo resort partner in Puerto Vallarta. Replace with partner-provided copy from the TikTok GO / partner API."
+    "description": "Villa Sol Vallarta is a Puerto Vallarta resort known for its pools, spa, and golden-hour views, a favorite backdrop for travel Creators."
   },
   {
     "id": "ptn_casa-tapatia",
@@ -123,7 +123,7 @@
     },
     "accentColor": "#b388ff",
     "rating": 4.4,
-    "description": "Casa Tapatía is a demo boutique partner in Guadalajara. Replace with partner-provided copy from the TikTok GO / partner API."
+    "description": "Casa Tapatía is an intimate boutique stay in Guadalajara, full of handcrafted details, quiet courtyards, and local character."
   },
   {
     "id": "ptn_roma-norte-house",
@@ -144,7 +144,7 @@
     },
     "accentColor": "#b388ff",
     "rating": 5,
-    "description": "Roma Norte House is a demo boutique partner in Mexico City. Replace with partner-provided copy from the TikTok GO / partner API."
+    "description": "Roma Norte House is an intimate boutique stay in Mexico City, full of handcrafted details, quiet courtyards, and local character."
   },
   {
     "id": "ptn_oaxaca-mezcal-trails",
@@ -165,7 +165,7 @@
     },
     "accentColor": "#ffb547",
     "rating": 4.6,
-    "description": "Oaxaca Mezcal Trails is a demo tour partner in Oaxaca City. Replace with partner-provided copy from the TikTok GO / partner API."
+    "description": "Oaxaca Mezcal Trails runs small-group tours around Oaxaca City, led by local guides who know the stories and the flavors."
   },
   {
     "id": "ptn_hacienda-blanca",
@@ -186,7 +186,7 @@
     },
     "accentColor": "#25f4ee",
     "rating": 4.6,
-    "description": "Hacienda Blanca is a demo hotel partner in Mérida. Replace with partner-provided copy from the TikTok GO / partner API."
+    "description": "Hacienda Blanca is a stylish Mérida hotel with design-forward rooms, a rooftop scene, and easy access to the city’s best spots."
   },
   {
     "id": "ptn_casa-colonial-sma",
@@ -207,7 +207,7 @@
     },
     "accentColor": "#b388ff",
     "rating": 4.4,
-    "description": "Casa Colonial SMA is a demo boutique partner in San Miguel de Allende. Replace with partner-provided copy from the TikTok GO / partner API."
+    "description": "Casa Colonial SMA is an intimate boutique stay in San Miguel de Allende, full of handcrafted details, quiet courtyards, and local character."
   },
   {
     "id": "ptn_surf-shack-sayulita",
@@ -228,7 +228,7 @@
     },
     "accentColor": "#5cff9d",
     "rating": 4.3,
-    "description": "Surf Shack Sayulita is a demo adventure partner in Sayulita. Replace with partner-provided copy from the TikTok GO / partner API."
+    "description": "Surf Shack Sayulita leads outdoor adventures around Sayulita, from adrenaline moments to scenic stops built for POV content."
   },
   {
     "id": "ptn_cenote-explorers",
@@ -249,7 +249,7 @@
     },
     "accentColor": "#5cff9d",
     "rating": 4.9,
-    "description": "Cenote Explorers is a demo adventure partner in Tulum. Replace with partner-provided copy from the TikTok GO / partner API."
+    "description": "Cenote Explorers leads outdoor adventures around Tulum, from adrenaline moments to scenic stops built for POV content."
   },
   {
     "id": "ptn_cabo-sail-snorkel",
@@ -270,7 +270,7 @@
     },
     "accentColor": "#ffb547",
     "rating": 4.9,
-    "description": "Cabo Sail & Snorkel is a demo tour partner in Los Cabos. Replace with partner-provided copy from the TikTok GO / partner API."
+    "description": "Cabo Sail & Snorkel runs small-group tours around Los Cabos, led by local guides who know the stories and the flavors."
   },
   {
     "id": "ptn_chapultepec-art-walks",
@@ -291,7 +291,7 @@
     },
     "accentColor": "#ff8a3d",
     "rating": 4.6,
-    "description": "Chapultepec Art Walks is a demo attraction partner in Mexico City. Replace with partner-provided copy from the TikTok GO / partner API."
+    "description": "Chapultepec Art Walks is one of Mexico City’s signature experiences, with VIP access and views made for vertical video."
   },
   {
     "id": "ptn_the-sunset-marlowe",
@@ -312,7 +312,7 @@
     },
     "accentColor": "#25f4ee",
     "rating": 4.4,
-    "description": "The Sunset Marlowe is a demo hotel partner in Los Angeles. Replace with partner-provided copy from the TikTok GO / partner API."
+    "description": "The Sunset Marlowe is a stylish Los Angeles hotel with design-forward rooms, a rooftop scene, and easy access to the city’s best spots."
   },
   {
     "id": "ptn_harborview-inn",
@@ -333,7 +333,7 @@
     },
     "accentColor": "#25f4ee",
     "rating": 4.4,
-    "description": "Harborview Inn is a demo hotel partner in San Diego. Replace with partner-provided copy from the TikTok GO / partner API."
+    "description": "Harborview Inn is a stylish San Diego hotel with design-forward rooms, a rooftop scene, and easy access to the city’s best spots."
   },
   {
     "id": "ptn_desert-bloom-palms",
@@ -354,7 +354,7 @@
     },
     "accentColor": "#b388ff",
     "rating": 4.4,
-    "description": "Desert Bloom Palms is a demo boutique partner in Palm Springs. Replace with partner-provided copy from the TikTok GO / partner API."
+    "description": "Desert Bloom Palms is an intimate boutique stay in Palm Springs, full of handcrafted details, quiet courtyards, and local character."
   },
   {
     "id": "ptn_biscayne-bay-suites",
@@ -375,7 +375,7 @@
     },
     "accentColor": "#25f4ee",
     "rating": 4.5,
-    "description": "Biscayne Bay Suites is a demo hotel partner in Miami. Replace with partner-provided copy from the TikTok GO / partner API."
+    "description": "Biscayne Bay Suites is a stylish Miami hotel with design-forward rooms, a rooftop scene, and easy access to the city’s best spots."
   },
   {
     "id": "ptn_magic-lakes-resort",
@@ -396,7 +396,7 @@
     },
     "accentColor": "#ff3b5c",
     "rating": 4.3,
-    "description": "Magic Lakes Resort is a demo resort partner in Orlando. Replace with partner-provided copy from the TikTok GO / partner API."
+    "description": "Magic Lakes Resort is a Orlando resort known for its pools, spa, and golden-hour views, a favorite backdrop for travel Creators."
   },
   {
     "id": "ptn_conch-key-cottages",
@@ -417,7 +417,7 @@
     },
     "accentColor": "#b388ff",
     "rating": 4.8,
-    "description": "Conch Key Cottages is a demo boutique partner in Key West. Replace with partner-provided copy from the TikTok GO / partner API."
+    "description": "Conch Key Cottages is an intimate boutique stay in Key West, full of handcrafted details, quiet courtyards, and local character."
   },
   {
     "id": "ptn_the-hudson-loft",
@@ -438,7 +438,7 @@
     },
     "accentColor": "#25f4ee",
     "rating": 4.6,
-    "description": "The Hudson Loft is a demo hotel partner in New York City. Replace with partner-provided copy from the TikTok GO / partner API."
+    "description": "The Hudson Loft is a stylish New York City hotel with design-forward rooms, a rooftop scene, and easy access to the city’s best spots."
   },
   {
     "id": "ptn_neon-strip-tower",
@@ -459,7 +459,7 @@
     },
     "accentColor": "#ff3b5c",
     "rating": 4.9,
-    "description": "Neon Strip Tower is a demo resort partner in Las Vegas. Replace with partner-provided copy from the TikTok GO / partner API."
+    "description": "Neon Strip Tower is a Las Vegas resort known for its pools, spa, and golden-hour views, a favorite backdrop for travel Creators."
   },
   {
     "id": "ptn_live-oak-lodge",
@@ -480,7 +480,7 @@
     },
     "accentColor": "#b388ff",
     "rating": 4.8,
-    "description": "Live Oak Lodge is a demo boutique partner in Austin. Replace with partner-provided copy from the TikTok GO / partner API."
+    "description": "Live Oak Lodge is an intimate boutique stay in Austin, full of handcrafted details, quiet courtyards, and local character."
   },
   {
     "id": "ptn_riverwalk-grand",
@@ -501,7 +501,7 @@
     },
     "accentColor": "#25f4ee",
     "rating": 4.3,
-    "description": "Riverwalk Grand is a demo hotel partner in San Antonio. Replace with partner-provided copy from the TikTok GO / partner API."
+    "description": "Riverwalk Grand is a stylish San Antonio hotel with design-forward rooms, a rooftop scene, and easy access to the city’s best spots."
   },
   {
     "id": "ptn_honky-tonk-house",
@@ -522,7 +522,7 @@
     },
     "accentColor": "#25f4ee",
     "rating": 4.6,
-    "description": "Honky Tonk House is a demo hotel partner in Nashville. Replace with partner-provided copy from the TikTok GO / partner API."
+    "description": "Honky Tonk House is a stylish Nashville hotel with design-forward rooms, a rooftop scene, and easy access to the city’s best spots."
   },
   {
     "id": "ptn_bayou-jazz-swamp-tours",
@@ -543,7 +543,7 @@
     },
     "accentColor": "#ffb547",
     "rating": 4.3,
-    "description": "Bayou Jazz & Swamp Tours is a demo tour partner in New Orleans. Replace with partner-provided copy from the TikTok GO / partner API."
+    "description": "Bayou Jazz & Swamp Tours runs small-group tours around New Orleans, led by local guides who know the stories and the flavors."
   },
   {
     "id": "ptn_aloha-tides",
@@ -564,7 +564,7 @@
     },
     "accentColor": "#ff3b5c",
     "rating": 4.9,
-    "description": "Aloha Tides is a demo resort partner in Honolulu. Replace with partner-provided copy from the TikTok GO / partner API."
+    "description": "Aloha Tides is a Honolulu resort known for its pools, spa, and golden-hour views, a favorite backdrop for travel Creators."
   },
   {
     "id": "ptn_saguaro-spa-retreat",
@@ -585,7 +585,7 @@
     },
     "accentColor": "#ff3b5c",
     "rating": 4.6,
-    "description": "Saguaro Spa Retreat is a demo resort partner in Scottsdale. Replace with partner-provided copy from the TikTok GO / partner API."
+    "description": "Saguaro Spa Retreat is a Scottsdale resort known for its pools, spa, and golden-hour views, a favorite backdrop for travel Creators."
   },
   {
     "id": "ptn_windy-city-social",
@@ -606,7 +606,7 @@
     },
     "accentColor": "#25f4ee",
     "rating": 4.6,
-    "description": "Windy City Social is a demo hotel partner in Chicago. Replace with partner-provided copy from the TikTok GO / partner API."
+    "description": "Windy City Social is a stylish Chicago hotel with design-forward rooms, a rooftop scene, and easy access to the city’s best spots."
   },
   {
     "id": "ptn_peachtree-food-crawl",
@@ -627,7 +627,7 @@
     },
     "accentColor": "#ffb547",
     "rating": 4.6,
-    "description": "Peachtree Food Crawl is a demo tour partner in Atlanta. Replace with partner-provided copy from the TikTok GO / partner API."
+    "description": "Peachtree Food Crawl runs small-group tours around Atlanta, led by local guides who know the stories and the flavors."
   },
   {
     "id": "ptn_summit-peak-chalet",
@@ -648,7 +648,7 @@
     },
     "accentColor": "#ff3b5c",
     "rating": 4.4,
-    "description": "Summit Peak Chalet is a demo resort partner in Aspen. Replace with partner-provided copy from the TikTok GO / partner API."
+    "description": "Summit Peak Chalet is a Aspen resort known for its pools, spa, and golden-hour views, a favorite backdrop for travel Creators."
   },
   {
     "id": "ptn_skyline-helicopter-tours",
@@ -669,7 +669,7 @@
     },
     "accentColor": "#ff8a3d",
     "rating": 4.2,
-    "description": "Skyline Helicopter Tours is a demo attraction partner in Las Vegas. Replace with partner-provided copy from the TikTok GO / partner API."
+    "description": "Skyline Helicopter Tours is one of Las Vegas’s signature experiences, with VIP access and views made for vertical video."
   },
   {
     "id": "ptn_everglades-airboat-co",
@@ -690,7 +690,7 @@
     },
     "accentColor": "#5cff9d",
     "rating": 4.2,
-    "description": "Everglades Airboat Co. is a demo adventure partner in Miami. Replace with partner-provided copy from the TikTok GO / partner API."
+    "description": "Everglades Airboat Co. leads outdoor adventures around Miami, from adrenaline moments to scenic stops built for POV content."
   },
   {
     "id": "ptn_red-rock-jeep-adventures",
@@ -711,7 +711,7 @@
     },
     "accentColor": "#5cff9d",
     "rating": 5,
-    "description": "Red Rock Jeep Adventures is a demo adventure partner in Scottsdale. Replace with partner-provided copy from the TikTok GO / partner API."
+    "description": "Red Rock Jeep Adventures leads outdoor adventures around Scottsdale, from adrenaline moments to scenic stops built for POV content."
   },
   {
     "id": "ptn_harbor-lights-cruises",
@@ -732,6 +732,6 @@
     },
     "accentColor": "#ff8a3d",
     "rating": 4.9,
-    "description": "Harbor Lights Cruises is a demo attraction partner in New York City. Replace with partner-provided copy from the TikTok GO / partner API."
+    "description": "Harbor Lights Cruises is one of New York City’s signature experiences, with VIP access and views made for vertical video."
   }
 ]

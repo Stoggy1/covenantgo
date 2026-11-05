@@ -13,7 +13,7 @@ data, and it's set up so a real API and database can be plugged in later.
 
 - **Account creation**: name, email, password, home location (country/state/city), and social platforms (TikTok, Instagram, Snapchat, Facebook, YouTube, X) with handles and follower counts
 - **Discover**: browse upcoming content days, search by keyword, filter by **Country → State → City** (USA and Mexico), platform, and category (Hotels & Resorts / Things to Do)
-- **Content day details**: perks, deliverables, TikTok GO commission %, minimum followers, spots left
+- **Content day details**: About the partner first, then "What you'll do" (custom per partnership: `activities` on each content day), deliverables, TikTok GO commission %, minimum followers, spots left
 - **Request a spot**: eligibility check against the creator's follower count
 - **Footage Vault**: browse clips the Covenant team shot at partner properties and save them to repurpose
 - **Saved**: track content day requests and saved vault clips
