@@ -2,6 +2,7 @@ import { CONFIG } from './config.js';
 import { dataService } from './services/dataService.js';
 import { authService } from './services/authService.js';
 import { REGIONS } from './regions.js';
+import { CITIES } from './cities.js';
 
 const app = document.getElementById('app');
 const tabbar = document.getElementById('tabbar');
@@ -9,7 +10,7 @@ const adbar = document.getElementById('adbar');
 const state = {
   user: null,
   locations: null,
-  filters: { q: '', country: '', state: '', city: '', platform: '', category: '', followers: '' },
+  filters: { q: '', country: '', state: '', city: '', platform: '', category: '', followers: '', when: '' },
 };
 
 // ---------- helpers ----------
@@ -327,12 +328,26 @@ function locationFields(prefix, loc = {}) {
       <select class="input" id="${prefix}-country" name="country" required>
         ${options(state.locations.countries.map((c) => ({ value: c.code, label: c.name })), country, 'Select country')}
       </select></div>
-    <div class="row">
-      <div class="field"><label for="${prefix}-state">State</label>
-        <select class="input" id="${prefix}-state" name="state" required>${stateOptions(country, loc.state)}</select></div>
-      <div class="field"><label for="${prefix}-city">City</label><input class="input" id="${prefix}-city" name="city" value="${esc(loc.city || '')}" placeholder="e.g. Austin" required></div>
+    <div class="field"><label for="${prefix}-state">State</label>
+      <select class="input" id="${prefix}-state" name="state" required>${stateOptions(country, loc.state)}</select></div>
+    <div class="field"><label for="${prefix}-city">City</label>
+      <select class="input" id="${prefix}-city" name="city" required ${loc.state ? '' : 'disabled'}>${cityOptions(loc.state, loc.city)}</select>
+      <input class="input city-other" id="${prefix}-city-other" name="cityOther" placeholder="Type your city" value="${esc(cityIsListed(loc.state, loc.city) ? '' : loc.city || '')}" ${loc.city && !cityIsListed(loc.state, loc.city) ? '' : 'hidden'}>
     </div>`;
 }
+
+// City dropdown filled from the chosen state, plus "Other" to type one that isn't listed.
+const CITY_OTHER = '__other';
+const cityIsListed = (st, city) => (CITIES[st] || []).includes(city);
+function cityOptions(st, selected = '') {
+  if (!st) return '<option value="">Choose a state first</option>';
+  const list = CITIES[st] || [];
+  const other = selected && !list.includes(selected);
+  return '<option value="">Select city</option>'
+    + list.map((c) => `<option value="${esc(c)}" ${c === selected ? 'selected' : ''}>${esc(c)}</option>`).join('')
+    + `<option value="${CITY_OTHER}" ${other ? 'selected' : ''}>Other (type it)</option>`;
+}
+const readCity = (f) => String(f.get('city') === CITY_OTHER ? f.get('cityOther') || '' : f.get('city') || '').trim();
 
 // State dropdown: "IA – Iowa"; saves the full name. Keeps an older free-text value if it isn't in the list.
 function stateOptions(country, selected = '') {
@@ -342,9 +357,24 @@ function stateOptions(country, selected = '') {
     + (selected && !known ? `<option value="${esc(selected)}" selected>${esc(selected)}</option>` : '')
     + list.map(([abbr, name]) => `<option value="${esc(name)}" ${name === selected ? 'selected' : ''}>${abbr} – ${esc(name)}</option>`).join('');
 }
-// Re-fill the state list when the country changes.
+// Country → refills states; State → refills cities; "Other" reveals a text box.
 function wireLocation(prefix) {
-  $(`#${prefix}-country`).addEventListener('change', (e) => { $(`#${prefix}-state`).innerHTML = stateOptions(e.target.value); });
+  const stateSel = $(`#${prefix}-state`), citySel = $(`#${prefix}-city`), other = $(`#${prefix}-city-other`);
+  const syncOther = () => {
+    const show = citySel.value === CITY_OTHER;
+    other.hidden = !show;
+    other.required = show;
+    if (show) other.focus();
+  };
+  const fillCities = () => {
+    citySel.innerHTML = cityOptions(stateSel.value);
+    citySel.disabled = !stateSel.value;
+    syncOther();
+  };
+  $(`#${prefix}-country`).addEventListener('change', (e) => { stateSel.innerHTML = stateOptions(e.target.value); fillCities(); });
+  stateSel.addEventListener('change', fillCities);
+  citySel.addEventListener('change', syncOther);
+  other.required = citySel.value === CITY_OTHER;
 }
 
 function platformFields(existing = []) {
@@ -404,7 +434,7 @@ function signupView() {
         password: f.get('password'),
         phone: String(f.get('phone') || '').trim(),
         ...readAgency(f),
-        location: { country: f.get('country'), state: f.get('state').trim(), city: f.get('city').trim() },
+        location: { country: f.get('country'), state: f.get('state').trim(), city: readCity(f) },
         platforms,
       });
       go('#/discover');
@@ -414,40 +444,88 @@ function signupView() {
   });
 }
 
+// Expedia-style Discover: category tabs → Content Days / Vault switch → search card.
+const CATEGORY_TABS = [
+  ['', 'All', '<rect x="4" y="4" width="7" height="7" rx="1.5"/><rect x="13" y="4" width="7" height="7" rx="1.5"/><rect x="4" y="13" width="7" height="7" rx="1.5"/><rect x="13" y="13" width="7" height="7" rx="1.5"/>'],
+  ['Hotels & Resorts', 'Hotels & Resorts', '<path d="M3 18V8M3 14h18v4M21 18v-6a3 3 0 0 0-3-3h-7v5"/><circle cx="7" cy="11" r="2"/>'],
+  ['Things to Do', 'Things to Do', '<path d="M4 9V7a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v2a2 2 0 0 0 0 4v2a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-2a2 2 0 0 0 0-4z"/><path d="M14 6v10" stroke-dasharray="2 2"/>'],
+];
+const WHEN_OPTIONS = [['', 'Any time'], ['7', 'Next 7 days'], ['30', 'Next 30 days'], ['90', 'Next 90 days']];
+const ICONS = {
+  pin: '<path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/>',
+  cal: '<rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/>',
+  people: '<circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c.8-3.5 3.4-5.5 6.5-5.5s5.7 2 6.5 5.5"/><path d="M16 4.5a3.5 3.5 0 0 1 0 7M18 14.8c1.9.7 3.1 2.5 3.5 5.2"/>',
+  search: '<circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/>',
+};
+const svg = (paths) => `<svg viewBox="0 0 24 24" aria-hidden="true">${paths}</svg>`;
+
+// "Where to?" suggestions: cities, states, countries, and partner names.
+async function whereIndex() {
+  const partners = await dataService.getPartners();
+  const items = [];
+  for (const c of state.locations.countries) {
+    items.push({ kind: 'Country', label: c.name, sub: 'Country', set: { country: c.code, state: '', city: '', q: '' } });
+    for (const s of c.states) {
+      items.push({ kind: 'State', label: s.name, sub: `State · ${c.name}`, set: { country: c.code, state: s.name, city: '', q: '' } });
+      for (const city of s.cities) items.push({ kind: 'City', label: city, sub: `${s.name}, ${c.name}`, set: { country: c.code, state: s.name, city, q: '' } });
+    }
+  }
+  for (const p of partners) items.push({ kind: p.type, label: p.name, sub: `${p.type} · ${p.location.city}, ${p.location.state}`, set: { country: '', state: '', city: '', q: p.name } });
+  return items;
+}
+// Places before hotels; names that start with the query before ones that merely contain it.
+const KIND_ORDER = { City: 0, State: 1, Country: 2 };
+function rank(item, q) {
+  const label = norm(item.label), sub = norm(item.sub);
+  const match = label.startsWith(q) ? 0 : label.split(/[\s,]+/).some((w) => w.startsWith(q)) ? 1 : label.includes(q) ? 2 : sub.includes(q) ? 4 : 9;
+  if (match === 9) return 9;
+  return match + (KIND_ORDER[item.kind] ?? 3) * 0.1;
+}
+const norm = (s) => s.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
+function whereLabel(f) {
+  if (f.q) return f.q;
+  if (f.city) return `${f.city}, ${f.state}`;
+  if (f.state) return f.state;
+  if (f.country) return countryName(f.country);
+  return '';
+}
+
 async function discoverView(mode = 'days') {
   const f = state.filters;
   const vault = mode === 'vault';
-  const categories = ['Hotels & Resorts', 'Things to Do'];
+  const me = totalFollowers(state.user);
   app.innerHTML = `
+    <nav class="cat-tabs" id="categories" aria-label="Category">
+      ${CATEGORY_TABS.map(([v, label, icon]) => `<button type="button" class="${f.category === v ? 'active' : ''}" data-category="${esc(v)}">${svg(icon)}<span>${label}</span></button>`).join('')}
+    </nav>
     <nav class="segmented" aria-label="Browse">
       <a href="#/discover" class="${vault ? '' : 'active'}">Content Days</a>
       <a href="#/vault" class="${vault ? 'active' : ''}">Footage Vault</a>
     </nav>
     ${vault ? '<p class="mode-intro">Clips our team shot at partner properties. Save them and repurpose them in your own TikTok GO posts.</p>' : ''}
-    <div class="controls">
-    <div class="search">
-      <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
-      <input class="input" id="q" type="search" placeholder="Search hotels, groups, cities…" value="${esc(f.q)}">
-    </div>
-    <div class="filters">
-      <select class="input" id="country" aria-label="Country">${options(state.locations.countries.map((c) => ({ value: c.code, label: c.name })), f.country, 'Country')}</select>
-      <select class="input" id="state" aria-label="State" ${f.country ? '' : 'disabled'}>${options(statesFor(f.country).map((s) => s.name), f.state, 'State')}</select>
-      <select class="input" id="city" aria-label="City" ${f.state ? '' : 'disabled'}>${options(citiesFor(f.country, f.state), f.city, 'City')}</select>
-    </div>
-    </div>
-    <div class="chips" id="platforms" ${SINGLE_PLATFORM ? 'hidden' : ''}>
-      <button class="chip ${f.platform ? '' : 'active'}" data-platform="">All platforms</button>
-      ${PLATFORMS.map((p) => `<button class="chip ${f.platform === p.id ? 'active' : ''}" data-platform="${p.id}">${esc(p.label)}</button>`).join('')}
-    </div>
-    <div class="chips" id="categories">
-      <button class="chip ${f.category ? '' : 'active'}" data-category="">All</button>
-      ${categories.map((c) => `<button class="chip ${f.category === c ? 'active' : ''}" data-category="${c}">${c}</button>`).join('')}
-    </div>
-    ${vault ? '' : `
-    <div class="chips followers-row" id="followers" role="group" aria-label="Followers needed">
-      <span class="chips-label">Followers needed</span>
-      ${FOLLOWER_FILTERS.map(([v, label]) => `<button class="chip ${String(f.followers) === v ? 'active' : ''}" data-followers="${v}">${v === 'me' ? `✓ I qualify (${fmtNum(totalFollowers(state.user))})` : label}</button>`).join('')}
-    </div>`}
+
+    <form class="search-card ${vault ? 'is-vault' : ''}" id="search" role="search" autocomplete="off">
+      <div class="sfield where">
+        ${svg(ICONS.pin)}
+        <label for="where">Where to?</label>
+        <input id="where" type="text" placeholder="City, state, or hotel" value="${esc(whereLabel(f))}" aria-autocomplete="list" aria-controls="where-list">
+        <button type="button" class="sfield-clear" id="where-clear" aria-label="Clear location" ${whereLabel(f) ? '' : 'hidden'}>×</button>
+        <ul class="suggest" id="where-list" role="listbox" hidden></ul>
+      </div>
+      ${vault ? '' : `
+      <div class="sfield">
+        ${svg(ICONS.cal)}
+        <label for="when">When</label>
+        <select id="when">${WHEN_OPTIONS.map(([v, l]) => `<option value="${v}" ${String(f.when || '') === v ? 'selected' : ''}>${l}</option>`).join('')}</select>
+      </div>
+      <div class="sfield">
+        ${svg(ICONS.people)}
+        <label for="followers">Followers needed</label>
+        <select id="followers">${FOLLOWER_FILTERS.map(([v, l]) => `<option value="${v}" ${String(f.followers || '') === v ? 'selected' : ''}>${v === 'me' ? `I qualify (${fmtNum(me)})` : l}</option>`).join('')}</select>
+      </div>`}
+      <button class="btn search-btn" type="submit">${svg(ICONS.search)}<span>Search</span></button>
+    </form>
+
     <div class="result-count"><span id="count"></span><button id="clear" type="button">Clear filters</button></div>
     <div class="${vault ? 'clip-grid' : 'cards'}" id="results"><div class="loading">Loading…</div></div>`;
 
@@ -460,33 +538,70 @@ async function discoverView(mode = 'days') {
         : `<div class="empty">No vault clips for those filters yet.</div>`;
       return;
     }
-    const maxFollowers = f.followers === 'me' ? totalFollowers(state.user) : Number(f.followers) || '';
-    const days = await dataService.getContentDays({ ...f, followers: undefined, maxFollowers, fromDate: new Date().toISOString().slice(0, 10) });
+    const today = new Date();
+    const toDate = f.when ? new Date(today.getTime() + Number(f.when) * 864e5).toISOString().slice(0, 10) : '';
+    const maxFollowers = f.followers === 'me' ? me : Number(f.followers) || '';
+    const days = await dataService.getContentDays({ ...f, followers: undefined, when: undefined, maxFollowers, toDate, fromDate: today.toISOString().slice(0, 10) });
     $('#count').textContent = `${days.length} content day${days.length === 1 ? '' : 's'}`;
     $('#results').innerHTML = days.length
       ? days.map(cardHtml).join('')
       : `<div class="empty">No content days match those filters yet.</div>`;
   };
 
-  let t;
-  $('#q').addEventListener('input', (e) => { f.q = e.target.value; clearTimeout(t); t = setTimeout(refresh, 150); });
-  $('#country').addEventListener('change', (e) => { Object.assign(f, { country: e.target.value, state: '', city: '' }); discoverView(mode); });
-  $('#state').addEventListener('change', (e) => { Object.assign(f, { state: e.target.value, city: '' }); discoverView(mode); });
-  $('#city').addEventListener('change', (e) => { f.city = e.target.value; refresh(); });
-  $('#platforms').addEventListener('click', (e) => {
-    const b = e.target.closest('[data-platform]'); if (!b) return;
-    f.platform = b.dataset.platform; discoverView(mode);
+  // ---- Where to? autocomplete ----
+  const index = await whereIndex();
+  const input = $('#where'), list = $('#where-list');
+  let pending = null; // suggestion picked but not yet searched
+  const render = () => {
+    const q = norm(input.value.trim());
+    const hits = q
+      ? index.map((i) => ({ i, score: rank(i, q) })).filter((x) => x.score < 9)
+        .sort((x, y) => x.score - y.score).map((x) => x.i).slice(0, 8)
+      : index.filter((i) => i.kind === 'City').slice(0, 6);
+    list.innerHTML = (q ? '' : '<li class="suggest-head">Popular destinations</li>')
+      + hits.map((h, i) => `<li role="option" data-i="${index.indexOf(h)}" class="${i === 0 && q ? 'hl' : ''}">
+          <span class="suggest-icon">${svg(h.kind === 'City' || h.kind === 'State' || h.kind === 'Country' ? ICONS.pin : '<path d="M3 18V8M3 14h18v4M21 18v-6a3 3 0 0 0-3-3h-7v5"/>')}</span>
+          <span><b>${esc(h.label)}</b><small>${esc(h.sub)}</small></span></li>`).join('')
+      + (q && !hits.length ? `<li class="suggest-head">Press Search to look for “${esc(input.value.trim())}”</li>` : '');
+    list.hidden = false;
+  };
+  const pick = (item) => { pending = item.set; input.value = item.label; list.hidden = true; $('#where-clear').hidden = false; };
+  input.addEventListener('focus', render);
+  input.addEventListener('click', () => { if (list.hidden) render(); });
+  input.addEventListener('input', () => { pending = null; $('#where-clear').hidden = !input.value; render(); });
+  input.addEventListener('blur', () => setTimeout(() => { list.hidden = true; }, 150));
+  input.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' && !list.hidden) {
+      const first = list.querySelector('li[data-i]');
+      if (first && input.value.trim()) { e.preventDefault(); pick(index[first.dataset.i]); }
+    }
+    if (e.key === 'Escape') list.hidden = true;
   });
+  list.addEventListener('pointerdown', (e) => {
+    const li = e.target.closest('li[data-i]'); if (!li) return;
+    e.preventDefault(); pick(index[li.dataset.i]);
+  });
+  $('#where-clear').addEventListener('click', () => {
+    input.value = ''; pending = { country: '', state: '', city: '', q: '' }; $('#where-clear').hidden = true; input.focus();
+  });
+
+  // ---- Search (applies everything, like Expedia) ----
+  $('#search').addEventListener('submit', (e) => {
+    e.preventDefault();
+    const typed = input.value.trim();
+    Object.assign(f, pending || (typed === whereLabel(f) ? {} : { country: '', state: '', city: '', q: typed }));
+    if (!vault) { f.when = $('#when').value; f.followers = $('#followers').value; }
+    list.hidden = true;
+    input.blur();
+    refresh();
+  });
+  // Category tabs apply instantly.
   $('#categories').addEventListener('click', (e) => {
     const b = e.target.closest('[data-category]'); if (!b) return;
     f.category = b.dataset.category; discoverView(mode);
   });
-  $('#followers')?.addEventListener('click', (e) => {
-    const b = e.target.closest('[data-followers]'); if (!b) return;
-    f.followers = b.dataset.followers; discoverView(mode);
-  });
   $('#clear').addEventListener('click', () => {
-    Object.assign(f, { q: '', country: '', state: '', city: '', platform: '', category: '', followers: '' }); discoverView(mode);
+    Object.assign(f, { q: '', country: '', state: '', city: '', platform: '', category: '', followers: '', when: '' }); discoverView(mode);
   });
   await refresh();
 }
@@ -799,7 +914,7 @@ function profileView() {
         name: f.get('name').trim(),
         phone: String(f.get('phone') || '').trim(),
         ...readAgency(f),
-        location: { country: f.get('country'), state: f.get('state').trim(), city: f.get('city').trim() },
+        location: { country: f.get('country'), state: f.get('state').trim(), city: readCity(f) },
         platforms: [...readPlatforms(f), ...(u.platforms || []).filter((p) => !CONFIG.ENABLED_PLATFORMS.includes(p.id))],
       });
       profileView();

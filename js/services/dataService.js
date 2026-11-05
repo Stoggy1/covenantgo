@@ -23,6 +23,7 @@ function matches(day, partner, f) {
   if (f.category && partner?.category !== f.category) return false;
   if (f.maxFollowers !== undefined && f.maxFollowers !== '' && day.minFollowers > Number(f.maxFollowers)) return false;
   if (f.fromDate && day.date < f.fromDate) return false;
+  if (f.toDate && day.date > f.toDate) return false;
   if (f.q) {
     const q = f.q.toLowerCase();
     const hay = [day.title, partner?.name, partner?.group, day.location.city, day.location.state, day.location.country]

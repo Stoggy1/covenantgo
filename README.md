@@ -22,7 +22,8 @@ data, and it's set up so a real API and database can be plugged in later.
 - **Rewards**: progress toward a prize (attend X content days or submit X TikTok post links); goals set in `CONFIG.REWARDS`
 - **Sponsored ads**: swipeable ad carousel under the header (paid placement); data in `data/ads.json`
 - **Featured first**: featured partners' content days sort to the top of Discover
-- **Followers filter**: "I qualify" / "Up to 1K…25K"; cards show "✓ You qualify" or "Needs X+ followers"
+- **Expedia-style search**: category tabs (All / Hotels & Resorts / Things to Do), Content Days / Footage Vault switch, then a search card with Where to? (autocomplete: cities, states, countries, hotels), When, and Followers needed ("I qualify" / "Up to 1K…25K"); cards show "✓ You qualify" or "Needs X+ followers"
+- **Location picker**: State dropdown (IA – Iowa…) fills the City dropdown (`js/cities.js`), with "Other" to type a city
 - **Appearance**: Dark / Light / Match device in Profile (saved per device)
 - **Profile**: edit phone, agency, location and TikTok
 - **Desktop layout** (900px+): top menu, multi-column grids, two-column detail pages; phone layout unchanged

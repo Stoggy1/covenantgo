@@ -42,7 +42,7 @@ All authenticated requests send `Authorization: Bearer <token>`.
 | GET | `/locations` | — | `{ countries: [{ code, name, states: [{ name, cities: [] }] }] }` |
 | GET | `/partners` | — | `Partner[]` (see `data/partners.json`) |
 | GET | `/partners/:id` | — | `Partner` |
-| GET | `/content-days` | `q, country, state, city, platform, category, maxFollowers, fromDate` | `ContentDay[]` with an embedded `partner`, **featured partners first**, then by date. `maxFollowers` keeps days whose `minFollowers` ≤ it |
+| GET | `/content-days` | `q, country, state, city, platform, category, maxFollowers, fromDate, toDate` | `ContentDay[]` with an embedded `partner`, **featured partners first**, then by date. `maxFollowers` keeps days whose `minFollowers` ≤ it |
 | GET | `/content-days/:id` | — | `ContentDay` with an embedded `partner` |
 | POST | `/content-days/:id/applications` | `{ note }` | `201` |
 | GET | `/vault/clips` | `q, country, state, city, category` | `Clip[]` (see `data/vault-clips.json`) with an embedded `partner` |
