@@ -6,6 +6,13 @@ import { apiRequest, tokenStore } from './http.js';
 const USERS_KEY = 'cg_users';
 const SESSION_KEY = 'cg_session';
 const DEMO_EMAIL = 'demo@covenantgo.demo';
+const TIKTOK_DEMO_KEY = 'tiktok:demo-open-id';
+
+// Texts and emails are ON by default; Creators opt out in Profile → Notifications.
+export const NOTIFY_DEFAULTS = {
+  sms: true, email: true,                       // channels
+  promotions: true, matches: true, rewards: true, reengagement: true, // message types
+};
 
 function read(key, fallback) {
   try { return JSON.parse(localStorage.getItem(key)) ?? fallback; } catch { return fallback; }
@@ -44,6 +51,8 @@ const localProvider = {
       applications: [],
       savedClips: [],
       postLinks: [],
+      signedInWith: 'email',
+      notifications: { ...NOTIFY_DEFAULTS },
       createdAt: new Date().toISOString(),
       salt,
       passwordHash: await hash(password, salt),
@@ -169,6 +178,39 @@ function mutateUser(fn) {
   return publicUser(user);
 }
 Object.assign(localProvider, {
+  // "Continue with TikTok" (DEMO). Real TikTok Login Kit needs the backend: the
+  // server exchanges the OAuth code for the Creator's open_id, display name,
+  // avatar and follower count. TikTok doesn't share email or phone, so these
+  // accounts start incomplete and are asked for both before booking.
+  async signInWithTikTok() {
+    const users = read(USERS_KEY, {});
+    if (!users[TIKTOK_DEMO_KEY]) {
+      users[TIKTOK_DEMO_KEY] = {
+        id: 'usr_tiktok_demo',
+        signedInWith: 'tiktok',
+        tiktok: { openId: 'demo-open-id', handle: '@alexgoescreates' },
+        name: 'Alex Rivera',
+        email: '',
+        phone: '',
+        agency: '',
+        recruitInterest: false,
+        location: { country: 'US', state: '', city: '' },
+        platforms: [{ id: 'tiktok', handle: '@alexgoescreates', followers: 18400 }],
+        applications: [],
+        savedClips: [],
+        postLinks: [],
+        notifications: { ...NOTIFY_DEFAULTS },
+        createdAt: new Date().toISOString(),
+      };
+      write(USERS_KEY, users);
+    }
+    write(SESSION_KEY, TIKTOK_DEMO_KEY);
+    return publicUser(users[TIKTOK_DEMO_KEY]);
+  },
+  // Records activity so the backend can send "we miss you" teasers after a week away.
+  async touchActive() {
+    return mutateUser((u) => { u.lastActiveAt = new Date().toISOString(); });
+  },
   // Pricing: DEMO subscription, no payment is taken.
   async setPlan(planId) {
     return mutateUser((u) => { u.plan = planId ? { id: planId, since: new Date().toISOString(), demo: true } : null; });
@@ -229,6 +271,12 @@ const apiProvider = {
     await apiRequest('/me/post-links', { method: 'POST', body: { ...link, url: normalizeTikTokUrl(link.url) } });
     return apiRequest('/me');
   },
+  // Real TikTok Login Kit: the backend starts OAuth and redirects back with a session.
+  async signInWithTikTok() {
+    location.href = `${CONFIG.API_BASE_URL.replace(/\/$/, '')}/auth/tiktok/start`;
+    return new Promise(() => {}); // page is navigating away
+  },
+  touchActive: () => apiRequest('/me/active', { method: 'POST' }).then(() => apiRequest('/me')),
   async setPlan(planId) {
     await apiRequest('/me/subscription', { method: planId ? 'PUT' : 'DELETE', body: planId ? { planId } : undefined });
     return apiRequest('/me');

@@ -29,7 +29,10 @@ data, and it's set up so a real API and database can be plugged in later.
 - **Learn**: course on creating TikTok GO content (content day playbook + using Footage Vault clips) with lesson progress; content in `data/course.json`
 - **Pricing**: three subscription plans in `CONFIG.PLANS` (Footage Vault Unlimited, Content Day Pass, All Access). Demo prices; subscribing is a preview, no payment taken
 - **Switch dates**: content day pages list the partner's other dates; cards show "+N more dates"
-- **Profile**: edit phone, agency, location and TikTok
+- **Continue with TikTok** (demo): real TikTok Login Kit needs the backend, see docs/API.md
+- **Complete profile before booking / vault**: valid email + phone required; a sheet asks for them in place
+- **Texts & emails (opt-out)**: Profile → Notifications; triggers and rules in docs/MESSAGING.md
+- **Profile**: edit email, phone, agency, location and TikTok
 - **Desktop layout** (900px+): top menu, multi-column grids, two-column detail pages; phone layout unchanged
 - **Demo preview** (temporary): "Preview the app (demo)" opens a pre-filled sample creator. Turn off with `DEMO_MODE: false` in `js/config.js` before launch
 

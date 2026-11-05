@@ -1,6 +1,6 @@
 import { CONFIG } from './config.js';
 import { dataService } from './services/dataService.js';
-import { authService } from './services/authService.js';
+import { authService, NOTIFY_DEFAULTS } from './services/authService.js';
 import { REGIONS } from './regions.js';
 import { CITIES } from './cities.js';
 
@@ -78,8 +78,82 @@ function setTheme(t) {
 }
 matchMedia('(prefers-color-scheme: light)').addEventListener('change', () => applyTheme(getTheme()));
 
+// ---------- profile completeness (needed to book or use the vault) ----------
+const isValidEmail = (v = '') => /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(String(v).trim());
+const isValidPhone = (v = '') => { const n = String(v).replace(/\D/g, ''); return n.length >= 10 && n.length <= 15; };
+const missingProfile = (u) => [!isValidEmail(u?.email) && 'email', !isValidPhone(u?.phone) && 'phone'].filter(Boolean);
+const profileComplete = (u) => missingProfile(u).length === 0;
+
+// Shows a "Complete your profile" sheet if email/phone are missing.
+// Resolves true when the profile is complete (already, or after saving), false if dismissed.
+function requireCompleteProfile(action) {
+  if (profileComplete(state.user)) return Promise.resolve(true);
+  return new Promise((resolve) => {
+    const u = state.user;
+    const sheet = document.createElement('div');
+    sheet.className = 'sheet-backdrop';
+    sheet.innerHTML = `
+      <form class="sheet" role="dialog" aria-modal="true" aria-labelledby="sheet-title" novalidate>
+        <div class="sheet-grab" aria-hidden="true"></div>
+        <h2 id="sheet-title">Complete your profile</h2>
+        <p class="sheet-sub">Add a valid email and phone number to ${esc(action)}. We’ll use them to confirm bookings and send you content days picked for you.</p>
+        <div class="field"><label for="cp-email">Email</label><input class="input" id="cp-email" name="email" type="email" autocomplete="email" value="${esc(u.email || '')}" placeholder="you@example.com" required></div>
+        <div class="field"><label for="cp-phone">Phone number</label><input class="input" id="cp-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" value="${esc(u.phone || '')}" placeholder="(555) 555-5555" required></div>
+        <p class="consent">${esc(CONFIG.MESSAGING.smsDisclosure)}</p>
+        <div class="error" id="cp-err"></div>
+        <button class="btn" type="submit">Save and continue</button>
+        <button class="btn ghost" type="button" id="cp-cancel">Not now</button>
+      </form>`;
+    document.body.appendChild(sheet);
+    document.body.classList.add('sheet-open');
+    const close = (ok) => { sheet.remove(); document.body.classList.remove('sheet-open'); resolve(ok); };
+    sheet.querySelector('#cp-' + missingProfile(u)[0])?.focus();
+    sheet.addEventListener('click', (e) => { if (e.target === sheet) close(false); });
+    sheet.querySelector('#cp-cancel').addEventListener('click', () => close(false));
+    sheet.querySelector('form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const email = e.target.email.value.trim(), phone = e.target.phone.value.trim();
+      const err = !isValidEmail(email) ? 'Enter a valid email address.' : !isValidPhone(phone) ? 'Enter a valid phone number (10+ digits).' : '';
+      if (err) { sheet.querySelector('#cp-err').textContent = err; return; }
+      state.user = await authService.updateProfile({ email: email.toLowerCase(), phone });
+      close(true);
+    });
+  });
+}
+
+// "Continue with TikTok" (demo until the backend connects TikTok Login Kit).
+function tiktokButtonHtml(label = 'Continue with TikTok') {
+  return `<button class="btn tiktok-btn" type="button" id="tiktok-login"><img class="mark-dark" src="icons/brand/tiktokgo-mark-w.png" alt=""><span>${esc(label)}</span></button>`;
+}
+function wireTikTokButton() {
+  $('#tiktok-login')?.addEventListener('click', async () => {
+    state.user = await authService.signInWithTikTok();
+    go('#/discover');
+  });
+}
+
+// Message types Creators get by text/email (opt-out). Previews use demo values.
+const NOTIFY_TYPES = [
+  ['matches', 'Content days for you', 'New content days that match your location and followers.'],
+  ['rewards', 'Prizes & rewards', 'Contest updates, prizes, and when you’re close to winning.'],
+  ['promotions', 'Promotions', 'Special offers from CovenantGO and our partners.'],
+  ['reengagement', 'Weekly updates when you’re away', `If you haven’t opened the app in ${CONFIG.MESSAGING.inactivityDays} days, a quick look at what Creators are earning.`],
+];
+const notifyPrefs = (u) => ({ ...NOTIFY_DEFAULTS, ...(u?.notifications || {}) });
+function messagePreviews(u) {
+  const first = (u.name || 'there').split(' ')[0];
+  const city = u.location?.city || 'your area';
+  const avg = CONFIG.MESSAGING.avgMonthlyEarnings.toLocaleString('en-US');
+  return [
+    ['matches', 'Text', `CovenantGO: Hi ${first}! 3 new content days near ${city} match your followers. Spots go fast → covenantgo.app/discover  Reply STOP to opt out`],
+    ['rewards', 'Email', `Subject: You’re 2 posts away from a Creator trip for two 🏆`],
+    ['promotions', 'Text', `CovenantGO: Featured resorts in Tulum just added content days with spa + 2-night stays. Request a spot today. Reply STOP to opt out`],
+    ['reengagement', 'Text', `CovenantGO: We miss you, ${first}! TikTok GO Creators on CovenantGO earned $${avg} on average last month. New content days are waiting → covenantgo.app  Reply STOP to opt out`],
+  ];
+}
+
 // ---------- agency + recruiting ----------
-const agencyLabel = (a) => (!a || a === CONFIG.NO_AGENCY ? 'No agency' : a);
+const agencyLabel = (a) => (!a ? 'Not set' : a === CONFIG.NO_AGENCY ? 'No agency' : a);
 
 function agencyFields(selected = '', recruit = false) {
   return `
@@ -270,6 +344,7 @@ async function welcomeView() {
         <a class="btn" href="#/signup">Create Creator account</a>
         <a class="btn secondary" href="#/login">I already have an account</a>
       </div>
+      ${tiktokButtonHtml()}
       ${demoButtonHtml()}
       <p class="trademark">TikTok and TikTok GO are trademarks of TikTok. CovenantGO is an independent Creator platform.</p>
       </div>
@@ -278,6 +353,7 @@ async function welcomeView() {
       </div>
     </section>`;
   wireDemoButton();
+  wireTikTokButton();
   fitHeroTitle();
 }
 
@@ -308,6 +384,8 @@ function loginView() {
   app.innerHTML = `
     <a class="back" href="#/welcome">‹ Back</a>
     <div class="page-head"><h1>Welcome back</h1></div>
+    ${tiktokButtonHtml('Log in with TikTok')}
+    <div class="or-divider"><span>or log in with email</span></div>
     <form class="stack" id="login">
       <div class="field"><label for="email">Email</label><input class="input" id="email" name="email" type="email" autocomplete="email" required></div>
       <div class="field"><label for="password">Password</label><input class="input" id="password" name="password" type="password" autocomplete="current-password" required></div>
@@ -317,6 +395,7 @@ function loginView() {
       ${demoButtonHtml()}
     </form>`;
   wireDemoButton();
+  wireTikTokButton();
   $('#login').addEventListener('submit', async (e) => {
     e.preventDefault();
     const f = new FormData(e.target);
@@ -409,11 +488,14 @@ function signupView() {
   app.innerHTML = `
     <a class="back" href="#/welcome">‹ Back</a>
     <div class="page-head"><h1>Create your account</h1></div>
+    ${tiktokButtonHtml('Sign up with TikTok')}
+    <div class="or-divider"><span>or sign up with email</span></div>
     <form class="stack" id="signup">
       <div class="field"><label for="name">Full name</label><input class="input" id="name" name="name" autocomplete="name" required></div>
       <div class="field"><label for="email">Email</label><input class="input" id="email" name="email" type="email" autocomplete="email" required></div>
       <div class="field"><label for="password">Password</label><input class="input" id="password" name="password" type="password" minlength="8" autocomplete="new-password" required></div>
-      <div class="field"><label for="phone">Phone number</label><input class="input" id="phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" placeholder="(555) 555-5555"></div>
+      <div class="field"><label for="phone">Phone number</label><input class="input" id="phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" placeholder="(555) 555-5555">
+        <p class="consent">${esc(CONFIG.MESSAGING.smsDisclosure)}</p></div>
 
       <div class="section-title">TikTok GO agency</div>
       ${agencyFields()}
@@ -430,6 +512,7 @@ function signupView() {
   wireAgency();
   wireLocation('su');
 
+  wireTikTokButton();
   $('#signup').addEventListener('submit', async (e) => {
     e.preventDefault();
     const f = new FormData(e.target);
@@ -735,6 +818,7 @@ async function clipView(id) {
       ? `<button class="btn secondary" id="save">✓ Saved to your clips · tap to remove</button>`
       : `<button class="btn" id="save">Save to my clips</button>`;
     $('#save').addEventListener('click', async () => {
+      if (!saved && !(await requireCompleteProfile('use the Footage Vault'))) return;
       state.user = await authService.toggleSavedClip(id);
       renderCta();
     });
@@ -840,6 +924,7 @@ async function dayView(id) {
     } else {
       cta.innerHTML = `<button class="btn" id="apply">${full ? 'Join waitlist' : 'Request a spot'}</button>`;
       $('#apply').addEventListener('click', async () => {
+        if (!(await requireCompleteProfile('book a content day'))) return;
         state.user = await authService.applyToContentDay(id);
         renderCta(true);
       });
@@ -910,8 +995,8 @@ function profileView() {
       <div class="avatar">${esc(initials(u.name))}</div>
       <div>
         <h1 style="font-size:22px">${esc(u.name)}</h1>
-        <div class="card-meta">${esc(u.email)}${u.phone ? ` · ${esc(u.phone)}` : ''}</div>
-        <div class="card-meta">${esc(u.location?.city)}, ${esc(u.location?.state)} · ${esc(countryName(u.location?.country))}</div>
+        <div class="card-meta">${esc(u.tiktok?.handle || u.platforms?.find((p) => p.id === 'tiktok')?.handle || '')}${u.signedInWith === 'tiktok' ? ' · Signed in with TikTok' : ''}</div>
+        <div class="card-meta">${u.location?.city ? `${esc(u.location.city)}, ${esc(u.location.state)} · ${esc(countryName(u.location.country))}` : 'Location not set'}</div>
       </div>
     </div>
     <div class="facts" style="margin-top:12px">
@@ -925,9 +1010,28 @@ function profileView() {
         <p>${esc(CONFIG.RECRUITING_AGENCY)} works with TikTok GO Creators on hospitality deals. Tick the box under <b>Agency</b> below and our team will reach out.</p>
       </div>` : ''}
 
+    ${profileComplete(u) ? '' : `
+      <div class="incomplete-card" id="incomplete">
+        <b>Complete your profile</b>
+        <p>Add a valid ${missingProfile(u).join(' and ')} to book content days and use the Footage Vault.</p>
+        <button class="btn" type="button" id="complete-now">Complete profile</button>
+      </div>`}
     <div class="profile-tiles">
       <a class="ptile" href="#/pricing"><span class="ptile-kicker">Your plan</span><b>${esc(planName(u))}</b><span class="ptile-cta">${u.plan ? 'Manage plan ›' : 'See plans ›'}</span></a>
       <a class="ptile" href="#/rewards"><span class="ptile-kicker">Rewards</span><b>${esc(CONFIG.REWARDS.prize)}</b><span class="ptile-cta">View progress ›</span></a>
+    </div>
+
+    <div class="section-title">Notifications</div>
+    <div class="notify-card" id="notify">
+      <div class="notify-row channel"><span><b>Text messages</b><small>${u.phone ? esc(u.phone) : 'Add a phone number to get texts'}</small></span><label class="switch"><input type="checkbox" data-pref="sms" ${notifyPrefs(u).sms ? 'checked' : ''}><span></span></label></div>
+      <div class="notify-row channel"><span><b>Email</b><small>${u.email ? esc(u.email) : 'Add an email to get emails'}</small></span><label class="switch"><input type="checkbox" data-pref="email" ${notifyPrefs(u).email ? 'checked' : ''}><span></span></label></div>
+      <div class="notify-sub">What we’ll send you</div>
+      ${NOTIFY_TYPES.map(([k, label, desc]) => `<div class="notify-row"><span><b>${label}</b><small>${esc(desc)}</small></span><label class="switch"><input type="checkbox" data-pref="${k}" ${notifyPrefs(u)[k] ? 'checked' : ''}><span></span></label></div>`).join('')}
+      <details class="notify-preview">
+        <summary>Preview the messages</summary>
+        ${messagePreviews(u).map(([k, ch, text]) => `<div class="msg ${ch === 'Email' ? 'email' : 'sms'} ${notifyPrefs(u)[k] ? '' : 'off'}"><span class="msg-ch">${ch}</span><p>${esc(text)}</p></div>`).join('')}
+      </details>
+      <p class="consent">You’re subscribed by default. Turn off anything you don’t want, reply STOP to any text, or unsubscribe from any email.</p>
     </div>
 
     <div class="section-title">Appearance</div>
@@ -938,8 +1042,11 @@ function profileView() {
     <form class="stack" id="profile">
       <div class="section-title">Name</div>
       <input class="input" name="name" value="${esc(u.name)}" required>
+      <div class="section-title">Email</div>
+      <input class="input" name="email" type="email" autocomplete="email" value="${esc(u.email || '')}" placeholder="you@example.com">
       <div class="section-title">Phone</div>
       <input class="input" name="phone" type="tel" autocomplete="tel" inputmode="tel" value="${esc(u.phone || '')}" placeholder="(555) 555-5555">
+      <p class="consent">${esc(CONFIG.MESSAGING.smsDisclosure)}</p>
       <div class="section-title">Agency</div>
       ${agencyFields(u.agency || '', !!u.recruitInterest)}
       <div class="section-title">Location</div>
@@ -953,6 +1060,12 @@ function profileView() {
     <p class="demo-banner">MVP demo · data source: ${CONFIG.DATA_SOURCE} · auth: ${CONFIG.AUTH_PROVIDER}</p>`;
   wireAgency();
   wireLocation('pf');
+  $('#complete-now')?.addEventListener('click', async () => { if (await requireCompleteProfile('book content days and use the Footage Vault')) profileView(); });
+  // Notification switches save instantly.
+  $('#notify').addEventListener('change', async (e) => {
+    const k = e.target.dataset.pref; if (!k) return;
+    state.user = await authService.updateProfile({ notifications: { ...notifyPrefs(state.user), [k]: e.target.checked } });
+  });
   // Appearance applies instantly (no Save needed) and is remembered on this device.
   $('#theme-picker').addEventListener('click', (e) => {
     const b = e.target.closest('[data-theme]'); if (!b) return;
@@ -966,9 +1079,13 @@ function profileView() {
   $('#profile').addEventListener('submit', async (e) => {
     e.preventDefault();
     const f = new FormData(e.target);
+    const em = String(f.get('email') || '').trim(), ph = String(f.get('phone') || '').trim();
+    if (em && !isValidEmail(em)) return ($('#err').textContent = 'Enter a valid email address.');
+    if (ph && !isValidPhone(ph)) return ($('#err').textContent = 'Enter a valid phone number (10+ digits).');
     try {
       state.user = await authService.updateProfile({
         name: f.get('name').trim(),
+        email: String(f.get('email') || '').trim().toLowerCase(),
         phone: String(f.get('phone') || '').trim(),
         ...readAgency(f),
         location: { country: f.get('country'), state: f.get('state').trim(), city: readCity(f) },
@@ -1169,6 +1286,7 @@ async function boot() {
   renderAdbar().catch(() => {});
   app.innerHTML = `<div class="loading">Loading…</div>`;
   [state.user, state.locations] = await Promise.all([authService.currentUser(), dataService.getLocations()]);
+  if (state.user) authService.touchActive().then((u) => { if (u) state.user = u; }).catch(() => {});
   window.addEventListener('hashchange', router);
   router();
   if ('serviceWorker' in navigator && location.protocol === 'https:') {

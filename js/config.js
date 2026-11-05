@@ -46,6 +46,15 @@ export const CONFIG = {
     },
   ],
 
+  // Texts + emails (opt-out). Sending happens on the backend (e.g. Twilio + SendGrid).
+  MESSAGING: {
+    inactivityDays: 7,            // "we miss you" teaser after this many days away
+    avgMonthlyEarnings: 1240,     // DEMO figure for the teaser; replace with real data
+    // Consent shown wherever we collect a phone number. Have counsel review before launch.
+    smsDisclosure: 'By adding your phone number, you agree to receive recurring automated texts from CovenantGO about content days for you, rewards, and promotions. Msg frequency varies. Msg & data rates may apply. Reply STOP to opt out or HELP for help, or turn texts off anytime in Profile.',
+    emailDisclosure: 'We’ll email you content days for you, rewards, and promotions. Unsubscribe anytime from any email or in Profile.',
+  },
+
   // true = every listing shows a photo (MVP demo look).
   // false = only Featured (paid) partners get photos; others show a plain banner (the upsell).
   PHOTOS_FOR_ALL_LISTINGS: true,

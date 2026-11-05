@@ -12,11 +12,14 @@ All authenticated requests send `Authorization: Bearer <token>`.
 | Method | Path | Body | Returns |
 |---|---|---|---|
 | POST | `/auth/signup` | `{ name, email, password, phone?, agency, recruitInterest, location: {country,state,city}, platforms: [{id,handle,followers}] }` | `{ token, user }` |
+| GET | `/auth/tiktok/start` | none | redirects to TikTok Login Kit (OAuth) |
+| GET | `/auth/tiktok/callback` | `code`, `state` | creates/updates the user from TikTok (open_id, name, handle, followers), sets session, redirects to the app |
+| POST | `/me/active` | none | records `lastActiveAt` (weekly teaser) |
 | POST | `/auth/login` | `{ email, password }` | `{ token, user }` |
 | POST | `/auth/logout` | — | `204` |
 | GET | `/me` | — | `user` |
 | POST | `/me/post-links` | `{ url, source: "vault" / "content_day" / "other", clipId?, contentDayId? }` | `201`, counts toward rewards once approved |
-| PATCH | `/me` | partial `user` (`name`, `phone`, `agency`, `recruitInterest`, `location`, `platforms`) | `user` |
+| PATCH | `/me` | partial `user` (`name`, `email`, `phone`, `notifications`, `agency`, `recruitInterest`, `location`, `platforms`) | `user` |
 
 `user` shape:
 

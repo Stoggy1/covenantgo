@@ -13,16 +13,19 @@ create table agencies (
 -- ---------- Creators ----------
 create table users (
   id              uuid primary key default gen_random_uuid(),
-  email           text not null unique,
-  password_hash   text,                       -- null if using an auth provider (Supabase Auth, Auth0, Sign in with Apple)
+  email           text unique,                -- null until provided (TikTok sign-in doesn't share it)
+  password_hash   text,                       -- null for TikTok sign-in
+  signed_in_with  text not null default 'email' check (signed_in_with in ('email','tiktok')),
+  tiktok_open_id  text unique,                -- from TikTok Login Kit
   name            text not null,
-  phone           text,                       -- optional
+  phone           text,                       -- E.164; required (with email) before booking / vault use
   agency_id       uuid references agencies(id), -- null = independent GO creator (no agency)
   recruit_interest boolean not null default false, -- independent creator opted in to hear from our agency
   recruit_status  text check (recruit_status in ('new','contacted','signed','declined')),
   country         char(2) not null,           -- ISO 3166-1 alpha-2 (US, MX, …)
-  state           text not null,
-  city            text not null,
+  state           text,
+  city            text,
+  last_active_at  timestamptz,                -- drives the weekly "we miss you" teaser
   latitude        numeric(9,6),
   longitude       numeric(9,6),
   role            text not null default 'creator' check (role in ('creator','partner_admin','admin')),
@@ -213,6 +216,33 @@ create table lesson_progress (
   completed_at    timestamptz not null default now(),
   primary key (user_id, lesson_id)
 );
+
+-- ---------- Texts & emails (opt-out) ----------
+-- Everyone starts subscribed; a row flips to false when the Creator opts out
+-- (Profile switch, STOP reply, or email unsubscribe link).
+create table notification_prefs (
+  user_id         uuid primary key references users(id) on delete cascade,
+  sms             boolean not null default true,
+  email           boolean not null default true,
+  promotions      boolean not null default true,
+  matches         boolean not null default true,   -- content days for you
+  rewards         boolean not null default true,
+  reengagement    boolean not null default true,   -- weekly teaser after inactivity
+  sms_consent_at  timestamptz,                     -- when they saw the SMS disclosure and gave a phone
+  sms_consent_text text,                           -- exact disclosure shown (keep for compliance)
+  updated_at      timestamptz not null default now()
+);
+
+create table message_log (
+  id              uuid primary key default gen_random_uuid(),
+  user_id         uuid not null references users(id) on delete cascade,
+  channel         text not null check (channel in ('sms','email')),
+  type            text not null check (type in ('promotions','matches','rewards','reengagement','transactional')),
+  template        text not null,
+  provider_ref    text,                            -- Twilio SID / SendGrid message id
+  sent_at         timestamptz not null default now()
+);
+create index message_log_user_type_idx on message_log (user_id, type, sent_at desc);
 
 -- spots_taken is derived, never stored
 create view content_days_with_spots as
