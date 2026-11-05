@@ -19,7 +19,7 @@ function matches(day, partner, f) {
   if (f.country && day.location.country !== f.country) return false;
   if (f.state && day.location.state !== f.state) return false;
   if (f.city && day.location.city !== f.city) return false;
-  if (f.platform && !day.platforms.includes(f.platform)) return false;
+  if (f.platform && day.platforms && !day.platforms.includes(f.platform)) return false;
   if (f.category && partner?.category !== f.category) return false;
   if (f.fromDate && day.date < f.fromDate) return false;
   if (f.q) {
@@ -53,6 +53,18 @@ const staticProvider = {
     const all = await this.getContentDays();
     return all.find((d) => d.id === id) || null;
   },
+  async getClips(filters = {}) {
+    const [clips, partners] = await Promise.all([loadJson('vault-clips'), loadJson('partners')]);
+    const byId = Object.fromEntries(partners.map((p) => [p.id, p]));
+    return clips
+      .filter((c) => matches(c, byId[c.partnerId], filters))
+      .map((c) => ({ ...c, partner: byId[c.partnerId] }))
+      .sort((a, b) => b.shotOn.localeCompare(a.shotOn));
+  },
+  async getClip(id) {
+    const all = await this.getClips();
+    return all.find((c) => c.id === id) || null;
+  },
 };
 
 const apiProvider = {
@@ -61,6 +73,8 @@ const apiProvider = {
   getPartner: (id) => apiRequest(`/partners/${encodeURIComponent(id)}`),
   getContentDays: (filters = {}) => apiRequest('/content-days', { query: filters }),
   getContentDay: (id) => apiRequest(`/content-days/${encodeURIComponent(id)}`),
+  getClips: (filters = {}) => apiRequest('/vault/clips', { query: filters }),
+  getClip: (id) => apiRequest(`/vault/clips/${encodeURIComponent(id)}`),
 };
 
 export const dataService = CONFIG.DATA_SOURCE === 'api' ? apiProvider : staticProvider;

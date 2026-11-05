@@ -15,7 +15,9 @@ data, and it's set up so a real API and database can be plugged in later.
 - **Discover**: browse upcoming content days, search by keyword, filter by **Country → State → City** (USA and Mexico), platform, and category (Hotels & Resorts / Things to Do)
 - **Content day details**: perks, deliverables, TikTok GO commission %, minimum followers, spots left
 - **Request a spot**: eligibility check against the creator's follower count
-- **My Days**: track requests
+- **Footage Vault**: browse clips the Covenant team shot at partner properties and save them to repurpose
+- **Saved**: track content day requests and saved vault clips
+- **Featured listings** (future paid upsell): featured partners show photos on list views; standard listings show a plain banner
 - **Profile**: edit location and platforms
 
 ## Run it locally

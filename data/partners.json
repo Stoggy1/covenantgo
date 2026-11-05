@@ -6,6 +6,11 @@
     "category": "Hotels & Resorts",
     "type": "Resort",
     "tiktokGoListed": true,
+    "listingTier": "featured",
+    "photos": [
+      "https://images.unsplash.com/photo-1623718649591-311775a30c43",
+      "https://images.unsplash.com/photo-1549294413-26f195200c16"
+    ],
     "location": {
       "country": "MX",
       "state": "Quintana Roo",
@@ -22,6 +27,11 @@
     "category": "Hotels & Resorts",
     "type": "Hotel",
     "tiktokGoListed": true,
+    "listingTier": "standard",
+    "photos": [
+      "https://images.unsplash.com/photo-1582719508461-905c673771fd",
+      "https://images.unsplash.com/photo-1611892440504-42a792e24d32"
+    ],
     "location": {
       "country": "MX",
       "state": "Quintana Roo",
@@ -38,6 +48,11 @@
     "category": "Hotels & Resorts",
     "type": "Boutique",
     "tiktokGoListed": true,
+    "listingTier": "standard",
+    "photos": [
+      "https://images.unsplash.com/photo-1610641818989-c2051b5e2cfd",
+      "https://images.unsplash.com/photo-1629140727571-9b5c6f6267b4"
+    ],
     "location": {
       "country": "MX",
       "state": "Quintana Roo",
@@ -54,6 +69,11 @@
     "category": "Hotels & Resorts",
     "type": "Resort",
     "tiktokGoListed": true,
+    "listingTier": "featured",
+    "photos": [
+      "https://images.unsplash.com/photo-1757924382007-7b3228526d09",
+      "https://images.unsplash.com/photo-1445019980597-93fa8acb246c"
+    ],
     "location": {
       "country": "MX",
       "state": "Baja California Sur",
@@ -70,6 +90,11 @@
     "category": "Hotels & Resorts",
     "type": "Resort",
     "tiktokGoListed": true,
+    "listingTier": "standard",
+    "photos": [
+      "https://images.unsplash.com/photo-1584132869994-873f9363a562",
+      "https://images.unsplash.com/photo-1587870306141-4f19861e6c73"
+    ],
     "location": {
       "country": "MX",
       "state": "Jalisco",
@@ -86,6 +111,11 @@
     "category": "Hotels & Resorts",
     "type": "Boutique",
     "tiktokGoListed": true,
+    "listingTier": "standard",
+    "photos": [
+      "https://images.unsplash.com/photo-1761828122922-5a839ada5b76",
+      "https://images.unsplash.com/photo-1759472659432-3232e42d04d2"
+    ],
     "location": {
       "country": "MX",
       "state": "Jalisco",
@@ -102,6 +132,11 @@
     "category": "Hotels & Resorts",
     "type": "Boutique",
     "tiktokGoListed": true,
+    "listingTier": "featured",
+    "photos": [
+      "https://images.unsplash.com/photo-1584132967334-10e028bd69f7",
+      "https://images.unsplash.com/photo-1618773928121-c32242e63f39"
+    ],
     "location": {
       "country": "MX",
       "state": "Ciudad de México",
@@ -118,6 +153,11 @@
     "category": "Things to Do",
     "type": "Tour",
     "tiktokGoListed": true,
+    "listingTier": "standard",
+    "photos": [
+      "https://images.unsplash.com/photo-1648528538533-269fde2f9d07",
+      "https://images.unsplash.com/photo-1614578042874-43557c183d4f"
+    ],
     "location": {
       "country": "MX",
       "state": "Oaxaca",
@@ -134,6 +174,11 @@
     "category": "Hotels & Resorts",
     "type": "Hotel",
     "tiktokGoListed": true,
+    "listingTier": "standard",
+    "photos": [
+      "https://images.unsplash.com/photo-1551882547-ff40c63fe5fa",
+      "https://images.unsplash.com/photo-1578683010236-d716f9a3f461"
+    ],
     "location": {
       "country": "MX",
       "state": "Yucatán",
@@ -150,6 +195,11 @@
     "category": "Hotels & Resorts",
     "type": "Boutique",
     "tiktokGoListed": true,
+    "listingTier": "standard",
+    "photos": [
+      "https://images.unsplash.com/photo-1793113907901-067c231c89c9",
+      "https://images.unsplash.com/photo-1575540203949-54ccd7a66d98"
+    ],
     "location": {
       "country": "MX",
       "state": "Guanajuato",
@@ -166,6 +216,11 @@
     "category": "Things to Do",
     "type": "Adventure",
     "tiktokGoListed": true,
+    "listingTier": "standard",
+    "photos": [
+      "https://images.unsplash.com/photo-1632299768491-51d27b80d088",
+      "https://images.unsplash.com/photo-1548288973-797009d1e14d"
+    ],
     "location": {
       "country": "MX",
       "state": "Nayarit",
@@ -182,6 +237,11 @@
     "category": "Things to Do",
     "type": "Adventure",
     "tiktokGoListed": true,
+    "listingTier": "featured",
+    "photos": [
+      "https://images.unsplash.com/photo-1763722682615-60ebd0ee2268",
+      "https://images.unsplash.com/photo-1546838849-6eb6269ae2db"
+    ],
     "location": {
       "country": "MX",
       "state": "Quintana Roo",
@@ -198,6 +258,11 @@
     "category": "Things to Do",
     "type": "Tour",
     "tiktokGoListed": true,
+    "listingTier": "featured",
+    "photos": [
+      "https://images.unsplash.com/photo-1526761122248-c31c93f8b2b9",
+      "https://images.unsplash.com/photo-1658298208155-ab71765747a1"
+    ],
     "location": {
       "country": "MX",
       "state": "Baja California Sur",
@@ -214,6 +279,11 @@
     "category": "Things to Do",
     "type": "Attraction",
     "tiktokGoListed": true,
+    "listingTier": "standard",
+    "photos": [
+      "https://images.unsplash.com/photo-1739224739514-f8456bb4f709",
+      "https://images.unsplash.com/photo-1698864606778-936dc77599e7"
+    ],
     "location": {
       "country": "MX",
       "state": "Ciudad de México",
@@ -224,12 +294,17 @@
     "description": "Chapultepec Art Walks is a demo attraction partner in Mexico City. Replace with partner-provided copy from the TikTok GO / partner API."
   },
   {
-    "id": "ptn_the-sunset-arlo",
-    "name": "The Sunset Arlo",
+    "id": "ptn_the-sunset-marlowe",
+    "name": "The Sunset Marlowe",
     "group": "Horizon Stays Group",
     "category": "Hotels & Resorts",
     "type": "Hotel",
     "tiktokGoListed": true,
+    "listingTier": "featured",
+    "photos": [
+      "https://images.unsplash.com/photo-1746475611952-1b12c680f3bc",
+      "https://images.unsplash.com/photo-1761971976519-7e27a35c9c49"
+    ],
     "location": {
       "country": "US",
       "state": "California",
@@ -237,7 +312,7 @@
     },
     "accentColor": "#25f4ee",
     "rating": 4.4,
-    "description": "The Sunset Arlo is a demo hotel partner in Los Angeles. Replace with partner-provided copy from the TikTok GO / partner API."
+    "description": "The Sunset Marlowe is a demo hotel partner in Los Angeles. Replace with partner-provided copy from the TikTok GO / partner API."
   },
   {
     "id": "ptn_harborview-inn",
@@ -246,6 +321,11 @@
     "category": "Hotels & Resorts",
     "type": "Hotel",
     "tiktokGoListed": true,
+    "listingTier": "standard",
+    "photos": [
+      "https://images.unsplash.com/photo-1657639753220-8d59b05958d1",
+      "https://images.unsplash.com/photo-1652532836237-f744649ec8fd"
+    ],
     "location": {
       "country": "US",
       "state": "California",
@@ -262,6 +342,11 @@
     "category": "Hotels & Resorts",
     "type": "Boutique",
     "tiktokGoListed": true,
+    "listingTier": "standard",
+    "photos": [
+      "https://images.unsplash.com/photo-1775152928511-a18ed5197827",
+      "https://images.unsplash.com/photo-1770306924876-acf5fd638eb6"
+    ],
     "location": {
       "country": "US",
       "state": "California",
@@ -278,6 +363,11 @@
     "category": "Hotels & Resorts",
     "type": "Hotel",
     "tiktokGoListed": true,
+    "listingTier": "featured",
+    "photos": [
+      "https://images.unsplash.com/photo-1657639754447-950d2f314481",
+      "https://images.unsplash.com/photo-1630587148265-761cbd139043"
+    ],
     "location": {
       "country": "US",
       "state": "Florida",
@@ -294,6 +384,11 @@
     "category": "Hotels & Resorts",
     "type": "Resort",
     "tiktokGoListed": true,
+    "listingTier": "standard",
+    "photos": [
+      "https://images.unsplash.com/photo-1770306924890-cee53fab5871",
+      "https://images.unsplash.com/photo-1782890790046-2aefb0b503cb"
+    ],
     "location": {
       "country": "US",
       "state": "Florida",
@@ -310,6 +405,11 @@
     "category": "Hotels & Resorts",
     "type": "Boutique",
     "tiktokGoListed": true,
+    "listingTier": "standard",
+    "photos": [
+      "https://images.unsplash.com/photo-1658394182922-fae0590632d6",
+      "https://images.unsplash.com/photo-1607340696730-3a73c584dc92"
+    ],
     "location": {
       "country": "US",
       "state": "Florida",
@@ -326,6 +426,11 @@
     "category": "Hotels & Resorts",
     "type": "Hotel",
     "tiktokGoListed": true,
+    "listingTier": "standard",
+    "photos": [
+      "https://images.unsplash.com/photo-1652058812572-fad90a1ee06b",
+      "https://images.unsplash.com/photo-1618773928121-c32242e63f39"
+    ],
     "location": {
       "country": "US",
       "state": "New York",
@@ -342,6 +447,11 @@
     "category": "Hotels & Resorts",
     "type": "Resort",
     "tiktokGoListed": true,
+    "listingTier": "featured",
+    "photos": [
+      "https://images.unsplash.com/photo-1664020361093-79cdc912cfb2",
+      "https://images.unsplash.com/photo-1575540616469-cc6185554e1c"
+    ],
     "location": {
       "country": "US",
       "state": "Nevada",
@@ -358,6 +468,11 @@
     "category": "Hotels & Resorts",
     "type": "Boutique",
     "tiktokGoListed": true,
+    "listingTier": "standard",
+    "photos": [
+      "https://images.unsplash.com/photo-1759472659432-3232e42d04d2",
+      "https://images.unsplash.com/photo-1629140727571-9b5c6f6267b4"
+    ],
     "location": {
       "country": "US",
       "state": "Texas",
@@ -374,6 +489,11 @@
     "category": "Hotels & Resorts",
     "type": "Hotel",
     "tiktokGoListed": true,
+    "listingTier": "standard",
+    "photos": [
+      "https://images.unsplash.com/photo-1630587148265-761cbd139043",
+      "https://images.unsplash.com/photo-1578683010236-d716f9a3f461"
+    ],
     "location": {
       "country": "US",
       "state": "Texas",
@@ -390,6 +510,11 @@
     "category": "Hotels & Resorts",
     "type": "Hotel",
     "tiktokGoListed": true,
+    "listingTier": "standard",
+    "photos": [
+      "https://images.unsplash.com/photo-1560110734-f03640ca8eda",
+      "https://images.unsplash.com/photo-1611892440504-42a792e24d32"
+    ],
     "location": {
       "country": "US",
       "state": "Tennessee",
@@ -406,6 +531,11 @@
     "category": "Things to Do",
     "type": "Tour",
     "tiktokGoListed": true,
+    "listingTier": "standard",
+    "photos": [
+      "https://images.unsplash.com/photo-1525994886773-080587e161c2",
+      "https://images.unsplash.com/photo-1549965738-e1aaf1168943"
+    ],
     "location": {
       "country": "US",
       "state": "Louisiana",
@@ -422,6 +552,11 @@
     "category": "Hotels & Resorts",
     "type": "Resort",
     "tiktokGoListed": true,
+    "listingTier": "featured",
+    "photos": [
+      "https://images.unsplash.com/photo-1746640546116-9bde035148e9",
+      "https://images.unsplash.com/photo-1623718649591-311775a30c43"
+    ],
     "location": {
       "country": "US",
       "state": "Hawaii",
@@ -438,6 +573,11 @@
     "category": "Hotels & Resorts",
     "type": "Resort",
     "tiktokGoListed": true,
+    "listingTier": "standard",
+    "photos": [
+      "https://images.unsplash.com/photo-1445019980597-93fa8acb246c",
+      "https://images.unsplash.com/photo-1775152928511-a18ed5197827"
+    ],
     "location": {
       "country": "US",
       "state": "Arizona",
@@ -454,6 +594,11 @@
     "category": "Hotels & Resorts",
     "type": "Hotel",
     "tiktokGoListed": true,
+    "listingTier": "standard",
+    "photos": [
+      "https://images.unsplash.com/photo-1782890790046-2aefb0b503cb",
+      "https://images.unsplash.com/photo-1761971976519-7e27a35c9c49"
+    ],
     "location": {
       "country": "US",
       "state": "Illinois",
@@ -470,6 +615,11 @@
     "category": "Things to Do",
     "type": "Tour",
     "tiktokGoListed": true,
+    "listingTier": "standard",
+    "photos": [
+      "https://images.unsplash.com/photo-1599974579688-8dbdd335c77f",
+      "https://images.unsplash.com/photo-1552332386-f8dd00dc2f85"
+    ],
     "location": {
       "country": "US",
       "state": "Georgia",
@@ -480,19 +630,45 @@
     "description": "Peachtree Food Crawl is a demo tour partner in Atlanta. Replace with partner-provided copy from the TikTok GO / partner API."
   },
   {
+    "id": "ptn_summit-peak-chalet",
+    "name": "Summit Peak Chalet",
+    "group": "Horizon Stays Group",
+    "category": "Hotels & Resorts",
+    "type": "Resort",
+    "tiktokGoListed": true,
+    "listingTier": "featured",
+    "photos": [
+      "https://images.unsplash.com/photo-1678384982946-69f649058b68",
+      "https://images.unsplash.com/photo-1548873903-3c3fe3800582"
+    ],
+    "location": {
+      "country": "US",
+      "state": "Colorado",
+      "city": "Aspen"
+    },
+    "accentColor": "#ff3b5c",
+    "rating": 4.4,
+    "description": "Summit Peak Chalet is a demo resort partner in Aspen. Replace with partner-provided copy from the TikTok GO / partner API."
+  },
+  {
     "id": "ptn_skyline-helicopter-tours",
     "name": "Skyline Helicopter Tours",
     "group": "Independent",
     "category": "Things to Do",
     "type": "Attraction",
     "tiktokGoListed": true,
+    "listingTier": "featured",
+    "photos": [
+      "https://images.unsplash.com/photo-1607525884336-66ccfac7ab56",
+      "https://images.unsplash.com/photo-1484249326436-4e8628de5c54"
+    ],
     "location": {
       "country": "US",
       "state": "Nevada",
       "city": "Las Vegas"
     },
     "accentColor": "#ff8a3d",
-    "rating": 4.4,
+    "rating": 4.2,
     "description": "Skyline Helicopter Tours is a demo attraction partner in Las Vegas. Replace with partner-provided copy from the TikTok GO / partner API."
   },
   {
@@ -502,6 +678,11 @@
     "category": "Things to Do",
     "type": "Adventure",
     "tiktokGoListed": true,
+    "listingTier": "standard",
+    "photos": [
+      "https://images.unsplash.com/photo-1671678075677-eae303b606aa",
+      "https://images.unsplash.com/photo-1660724281862-bf5c98448250"
+    ],
     "location": {
       "country": "US",
       "state": "Florida",
@@ -518,13 +699,18 @@
     "category": "Things to Do",
     "type": "Adventure",
     "tiktokGoListed": true,
+    "listingTier": "featured",
+    "photos": [
+      "https://images.unsplash.com/photo-1467489904517-075c242c2b4f",
+      "https://images.unsplash.com/photo-1591394262835-d04983289f2e"
+    ],
     "location": {
       "country": "US",
       "state": "Arizona",
       "city": "Scottsdale"
     },
     "accentColor": "#5cff9d",
-    "rating": 4.2,
+    "rating": 5,
     "description": "Red Rock Jeep Adventures is a demo adventure partner in Scottsdale. Replace with partner-provided copy from the TikTok GO / partner API."
   },
   {
@@ -534,29 +720,18 @@
     "category": "Things to Do",
     "type": "Attraction",
     "tiktokGoListed": true,
+    "listingTier": "standard",
+    "photos": [
+      "https://images.unsplash.com/photo-1669652513253-98335d27e82e",
+      "https://images.unsplash.com/photo-1669652513226-7eb0923077d3"
+    ],
     "location": {
       "country": "US",
       "state": "New York",
       "city": "New York City"
     },
     "accentColor": "#ff8a3d",
-    "rating": 5,
-    "description": "Harbor Lights Cruises is a demo attraction partner in New York City. Replace with partner-provided copy from the TikTok GO / partner API."
-  },
-  {
-    "id": "ptn_summit-peak-chalet",
-    "name": "Summit Peak Chalet",
-    "group": "Horizon Stays Group",
-    "category": "Hotels & Resorts",
-    "type": "Resort",
-    "tiktokGoListed": true,
-    "location": {
-      "country": "US",
-      "state": "Colorado",
-      "city": "Aspen"
-    },
-    "accentColor": "#ff3b5c",
     "rating": 4.9,
-    "description": "Summit Peak Chalet is a demo resort partner in Aspen. Replace with partner-provided copy from the TikTok GO / partner API."
+    "description": "Harbor Lights Cruises is a demo attraction partner in New York City. Replace with partner-provided copy from the TikTok GO / partner API."
   }
 ]

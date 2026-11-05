@@ -844,7 +844,7 @@
   },
   {
     "id": "cd_029",
-    "partnerId": "ptn_the-sunset-arlo",
+    "partnerId": "ptn_the-sunset-marlowe",
     "title": "Suite Tour Content Day",
     "date": "2027-02-08",
     "time": "1:00 PM",
@@ -1743,14 +1743,14 @@
   },
   {
     "id": "cd_059",
-    "partnerId": "ptn_skyline-helicopter-tours",
-    "title": "Golden Hour Experience",
+    "partnerId": "ptn_summit-peak-chalet",
+    "title": "Family Fun Weekend",
     "date": "2027-01-26",
     "time": "3:00 PM",
     "location": {
       "country": "US",
-      "state": "Nevada",
-      "city": "Las Vegas"
+      "state": "Colorado",
+      "city": "Aspen"
     },
     "platforms": [
       "tiktok"
@@ -1760,23 +1760,52 @@
     "minFollowers": 10000,
     "commissionRate": 5,
     "perks": [
-      "Complimentary experience",
-      "Photos & drone footage shared"
+      "Complimentary 1-night stay",
+      "Welcome cocktail"
     ],
     "deliverables": [
       "1 TikTok GO video with booking link",
-      "Photo carousel post on TikTok",
-      "3 TikTok Stories",
-      "1 extra TikTok video"
+      "TikTok LIVE from the property",
+      "Photo carousel post on TikTok"
     ],
     "status": "open"
   },
   {
     "id": "cd_060",
+    "partnerId": "ptn_summit-peak-chalet",
+    "title": "Spa & Wellness Day",
+    "date": "2027-01-22",
+    "time": "1:00 PM",
+    "location": {
+      "country": "US",
+      "state": "Colorado",
+      "city": "Aspen"
+    },
+    "platforms": [
+      "tiktok"
+    ],
+    "spotsTotal": 4,
+    "spotsTaken": 3,
+    "minFollowers": 2500,
+    "commissionRate": 12,
+    "perks": [
+      "Complimentary 1-night stay",
+      "Complimentary 2-night stay",
+      "Spa treatment",
+      "Welcome cocktail"
+    ],
+    "deliverables": [
+      "1 TikTok GO video with booking link",
+      "3 TikTok Stories"
+    ],
+    "status": "open"
+  },
+  {
+    "id": "cd_061",
     "partnerId": "ptn_skyline-helicopter-tours",
     "title": "Behind-the-Scenes Shoot",
-    "date": "2027-02-09",
-    "time": "3:00 PM",
+    "date": "2026-12-27",
+    "time": "5:30 PM",
     "location": {
       "country": "US",
       "state": "Nevada",
@@ -1786,29 +1815,25 @@
       "tiktok"
     ],
     "spotsTotal": 6,
-    "spotsTaken": 0,
-    "minFollowers": 10000,
+    "spotsTaken": 2,
+    "minFollowers": 1000,
     "commissionRate": 8,
     "perks": [
-      "Plus-one included",
-      "Complimentary experience",
-      "Snacks & drinks included",
-      "Priority skip-the-line access"
+      "Hotel pickup & drop-off",
+      "Private guide"
     ],
     "deliverables": [
       "1 TikTok GO video with booking link",
-      "1 extra TikTok video",
-      "3 TikTok Stories",
       "TikTok LIVE from the property"
     ],
     "status": "open"
   },
   {
-    "id": "cd_061",
+    "id": "cd_062",
     "partnerId": "ptn_everglades-airboat-co",
     "title": "Adventure Day Takeover",
-    "date": "2026-11-15",
-    "time": "1:00 PM",
+    "date": "2026-12-04",
+    "time": "9:00 AM",
     "location": {
       "country": "US",
       "state": "Florida",
@@ -1817,28 +1842,87 @@
     "platforms": [
       "tiktok"
     ],
-    "spotsTotal": 8,
-    "spotsTaken": 6,
-    "minFollowers": 5000,
+    "spotsTotal": 4,
+    "spotsTaken": 0,
+    "minFollowers": 25000,
     "commissionRate": 6,
     "perks": [
+      "Hotel pickup & drop-off",
+      "Private guide",
       "Priority skip-the-line access",
-      "Snacks & drinks included",
-      "Photos & drone footage shared"
+      "Snacks & drinks included"
     ],
     "deliverables": [
       "1 TikTok GO video with booking link",
-      "1 extra TikTok video",
-      "3 TikTok Stories"
+      "TikTok LIVE from the property",
+      "Photo carousel post on TikTok"
     ],
     "status": "open"
   },
   {
-    "id": "cd_062",
+    "id": "cd_063",
+    "partnerId": "ptn_everglades-airboat-co",
+    "title": "Adventure Day Takeover",
+    "date": "2027-02-12",
+    "time": "9:00 AM",
+    "location": {
+      "country": "US",
+      "state": "Florida",
+      "city": "Miami"
+    },
+    "platforms": [
+      "tiktok"
+    ],
+    "spotsTotal": 6,
+    "spotsTaken": 0,
+    "minFollowers": 10000,
+    "commissionRate": 10,
+    "perks": [
+      "Private guide",
+      "Hotel pickup & drop-off"
+    ],
+    "deliverables": [
+      "1 TikTok GO video with booking link",
+      "1 extra TikTok video"
+    ],
+    "status": "open"
+  },
+  {
+    "id": "cd_064",
+    "partnerId": "ptn_everglades-airboat-co",
+    "title": "Thrill Seeker Shoot",
+    "date": "2027-01-06",
+    "time": "11:00 AM",
+    "location": {
+      "country": "US",
+      "state": "Florida",
+      "city": "Miami"
+    },
+    "platforms": [
+      "tiktok"
+    ],
+    "spotsTotal": 12,
+    "spotsTaken": 7,
+    "minFollowers": 10000,
+    "commissionRate": 8,
+    "perks": [
+      "Snacks & drinks included",
+      "Complimentary experience"
+    ],
+    "deliverables": [
+      "1 TikTok GO video with booking link",
+      "1 extra TikTok video",
+      "3 TikTok Stories",
+      "Raw clips shared with partner"
+    ],
+    "status": "open"
+  },
+  {
+    "id": "cd_065",
     "partnerId": "ptn_red-rock-jeep-adventures",
     "title": "Adventure Day Takeover",
-    "date": "2027-01-08",
-    "time": "9:00 AM",
+    "date": "2027-02-11",
+    "time": "1:00 PM",
     "location": {
       "country": "US",
       "state": "Arizona",
@@ -1847,28 +1931,59 @@
     "platforms": [
       "tiktok"
     ],
-    "spotsTotal": 4,
-    "spotsTaken": 3,
+    "spotsTotal": 12,
+    "spotsTaken": 9,
     "minFollowers": 5000,
-    "commissionRate": 5,
+    "commissionRate": 10,
     "perks": [
-      "Priority skip-the-line access",
-      "Hotel pickup & drop-off",
-      "Private guide",
-      "Complimentary experience"
+      "Complimentary experience",
+      "Plus-one included",
+      "Snacks & drinks included",
+      "Priority skip-the-line access"
     ],
     "deliverables": [
       "1 TikTok GO video with booking link",
-      "3 TikTok Stories"
+      "1 extra TikTok video"
     ],
     "status": "open"
   },
   {
-    "id": "cd_063",
+    "id": "cd_066",
+    "partnerId": "ptn_red-rock-jeep-adventures",
+    "title": "Adventure Day Takeover",
+    "date": "2027-01-02",
+    "time": "3:00 PM",
+    "location": {
+      "country": "US",
+      "state": "Arizona",
+      "city": "Scottsdale"
+    },
+    "platforms": [
+      "tiktok"
+    ],
+    "spotsTotal": 12,
+    "spotsTaken": 9,
+    "minFollowers": 1000,
+    "commissionRate": 8,
+    "perks": [
+      "Snacks & drinks included",
+      "Complimentary experience",
+      "Plus-one included"
+    ],
+    "deliverables": [
+      "1 TikTok GO video with booking link",
+      "Raw clips shared with partner",
+      "Photo carousel post on TikTok",
+      "TikTok LIVE from the property"
+    ],
+    "status": "open"
+  },
+  {
+    "id": "cd_067",
     "partnerId": "ptn_harbor-lights-cruises",
     "title": "VIP Access Content Day",
-    "date": "2027-02-14",
-    "time": "9:00 AM",
+    "date": "2027-01-05",
+    "time": "1:00 PM",
     "location": {
       "country": "US",
       "state": "New York",
@@ -1877,52 +1992,18 @@
     "platforms": [
       "tiktok"
     ],
-    "spotsTotal": 6,
-    "spotsTaken": 5,
-    "minFollowers": 5000,
-    "commissionRate": 10,
-    "perks": [
-      "Photos & drone footage shared",
-      "Hotel pickup & drop-off",
-      "Priority skip-the-line access",
-      "Private guide"
-    ],
-    "deliverables": [
-      "1 TikTok GO video with booking link",
-      "3 TikTok Stories",
-      "1 extra TikTok video",
-      "Photo carousel post on TikTok"
-    ],
-    "status": "open"
-  },
-  {
-    "id": "cd_064",
-    "partnerId": "ptn_summit-peak-chalet",
-    "title": "Family Fun Weekend",
-    "date": "2027-01-28",
-    "time": "5:30 PM",
-    "location": {
-      "country": "US",
-      "state": "Colorado",
-      "city": "Aspen"
-    },
-    "platforms": [
-      "tiktok"
-    ],
-    "spotsTotal": 8,
-    "spotsTaken": 7,
+    "spotsTotal": 10,
+    "spotsTaken": 1,
     "minFollowers": 25000,
-    "commissionRate": 10,
+    "commissionRate": 8,
     "perks": [
-      "Late checkout",
-      "Complimentary 1-night stay",
-      "$150 food & beverage credit"
+      "Hotel pickup & drop-off",
+      "Complimentary experience"
     ],
     "deliverables": [
       "1 TikTok GO video with booking link",
-      "1 extra TikTok video",
-      "3 TikTok Stories",
-      "TikTok LIVE from the property"
+      "Raw clips shared with partner",
+      "Photo carousel post on TikTok"
     ],
     "status": "open"
   }

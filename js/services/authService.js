@@ -86,6 +86,20 @@ const localProvider = {
     write(USERS_KEY, users);
     return publicUser(user);
   },
+
+  // Footage Vault: toggle a clip in the creator's saved list.
+  async toggleSavedClip(clipId) {
+    const email = read(SESSION_KEY, null);
+    const users = read(USERS_KEY, {});
+    const user = users[email];
+    if (!user) throw new Error('Not signed in.');
+    user.savedClips ||= [];
+    const i = user.savedClips.findIndex((s) => s.clipId === clipId);
+    if (i >= 0) user.savedClips.splice(i, 1);
+    else user.savedClips.push({ clipId, savedAt: new Date().toISOString() });
+    write(USERS_KEY, users);
+    return publicUser(user);
+  },
 };
 
 const apiProvider = {
@@ -110,6 +124,10 @@ const apiProvider = {
   updateProfile: (patch) => apiRequest('/me', { method: 'PATCH', body: patch }),
   async applyToContentDay(contentDayId, note = '') {
     await apiRequest(`/content-days/${encodeURIComponent(contentDayId)}/applications`, { method: 'POST', body: { note } });
+    return apiRequest('/me');
+  },
+  async toggleSavedClip(clipId) {
+    await apiRequest(`/vault/clips/${encodeURIComponent(clipId)}/save`, { method: 'POST' });
     return apiRequest('/me');
   },
 };

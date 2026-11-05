@@ -21,6 +21,14 @@ const fmtNum = (n) => (n >= 1000 ? `${(n / 1000).toFixed(n % 1000 ? 1 : 0)}K` : 
 const parseDate = (iso) => new Date(`${iso}T12:00:00`);
 const fmtDate = (iso, opts) => parseDate(iso).toLocaleDateString('en-US', opts);
 const banner = (color) => `background: radial-gradient(circle at 85% 20%, ${color}cc, transparent 60%), linear-gradient(135deg, ${color}55, #1f1f2b);`;
+// Unsplash supports on-the-fly resizing via query params.
+const photo = (url, w = 800, h) => `${url}?auto=format&fit=crop&q=70&w=${w}${h ? `&h=${h}` : ''}`;
+const isFeatured = (p) => p.listingTier === 'featured' && p.photos?.length;
+// Featured (paid) partners show their photo; standard listings keep the plain banner.
+const partnerBanner = (p, w) => (isFeatured(p)
+  ? `background-image: linear-gradient(180deg, rgba(0,0,0,.15), rgba(0,0,0,.55)), url('${photo(p.photos[0], w)}');`
+  : banner(p.accentColor));
+const fmtDuration = (sec) => `${Math.floor(sec / 60)}:${String(sec % 60).padStart(2, '0')}`;
 const initials = (name = '') => name.split(/\s+/).map((w) => w[0]).slice(0, 2).join('').toUpperCase();
 const totalFollowers = (u) => (u?.platforms || []).filter((p) => CONFIG.ENABLED_PLATFORMS.includes(p.id)).reduce((s, p) => s + (Number(p.followers) || 0), 0);
 
@@ -53,7 +61,9 @@ const routes = [
   { path: /^#\/welcome$/, view: welcomeView, public: true },
   { path: /^#\/login$/, view: loginView, public: true },
   { path: /^#\/signup$/, view: signupView, public: true },
-  { path: /^#\/discover$/, view: discoverView, tab: 'discover' },
+  { path: /^#\/discover$/, view: () => discoverView('days'), tab: 'discover' },
+  { path: /^#\/vault$/, view: () => discoverView('vault'), tab: 'discover' },
+  { path: /^#\/clip\/([\w-]+)$/, view: clipView, tab: 'discover' },
   { path: /^#\/day\/([\w-]+)$/, view: dayView, tab: 'discover' },
   { path: /^#\/my-days$/, view: myDaysView, tab: 'my-days' },
   { path: /^#\/profile$/, view: profileView, tab: 'profile' },
@@ -80,8 +90,7 @@ const go = (hash) => { location.hash = hash; };
 
 // ---------- views ----------
 async function welcomeView() {
-  const days = await dataService.getContentDays();
-  const partners = new Set(days.map((d) => d.partnerId)).size;
+  const [days, clips] = await Promise.all([dataService.getContentDays(), dataService.getClips()]);
   const cities = new Set(days.map((d) => d.location.city)).size;
   app.innerHTML = `
     <section class="hero">
@@ -91,7 +100,7 @@ async function welcomeView() {
       <div class="built-for"><span>Built for</span><img src="icons/brand/tiktokgo-wordmark-w.png" alt="TikTok GO"><span>creators</span></div>
       <div class="hero-stats">
         <div><b>${days.length}</b><span>Open content days</span></div>
-        <div><b>${partners}</b><span>Partners</span></div>
+        <div><b>${clips.length}</b><span>Vault clips</span></div>
         <div><b>${cities}</b><span>Cities</span></div>
       </div>
       <div class="stack">
@@ -197,13 +206,19 @@ function signupView() {
   });
 }
 
-async function discoverView() {
+async function discoverView(mode = 'days') {
   const f = state.filters;
+  const vault = mode === 'vault';
   const categories = ['Hotels & Resorts', 'Things to Do'];
   app.innerHTML = `
     <div class="page-head">
       ${logoHtml()}
     </div>
+    <nav class="segmented" aria-label="Browse">
+      <a href="#/discover" class="${vault ? '' : 'active'}">Content Days</a>
+      <a href="#/vault" class="${vault ? 'active' : ''}">Footage Vault</a>
+    </nav>
+    ${vault ? '<p class="mode-intro">Clips our team shot at partner properties. Save them and repurpose them in your own TikTok GO posts.</p>' : ''}
     <div class="search">
       <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
       <input class="input" id="q" type="search" placeholder="Search hotels, groups, cities…" value="${esc(f.q)}">
@@ -222,9 +237,17 @@ async function discoverView() {
       ${categories.map((c) => `<button class="chip ${f.category === c ? 'active' : ''}" data-category="${c}">${c}</button>`).join('')}
     </div>
     <div class="result-count"><span id="count"></span><button id="clear" type="button">Clear filters</button></div>
-    <div class="cards" id="results"><div class="loading">Loading content days…</div></div>`;
+    <div class="${vault ? 'clip-grid' : 'cards'}" id="results"><div class="loading">Loading…</div></div>`;
 
   const refresh = async () => {
+    if (vault) {
+      const clips = await dataService.getClips(f);
+      $('#count').textContent = `${clips.length} clip${clips.length === 1 ? '' : 's'}`;
+      $('#results').innerHTML = clips.length
+        ? clips.map(clipCardHtml).join('')
+        : `<div class="empty">No vault clips for those filters yet.</div>`;
+      return;
+    }
     const days = await dataService.getContentDays({ ...f, fromDate: new Date().toISOString().slice(0, 10) });
     $('#count').textContent = `${days.length} content day${days.length === 1 ? '' : 's'}`;
     $('#results').innerHTML = days.length
@@ -234,19 +257,19 @@ async function discoverView() {
 
   let t;
   $('#q').addEventListener('input', (e) => { f.q = e.target.value; clearTimeout(t); t = setTimeout(refresh, 150); });
-  $('#country').addEventListener('change', (e) => { Object.assign(f, { country: e.target.value, state: '', city: '' }); discoverView(); });
-  $('#state').addEventListener('change', (e) => { Object.assign(f, { state: e.target.value, city: '' }); discoverView(); });
+  $('#country').addEventListener('change', (e) => { Object.assign(f, { country: e.target.value, state: '', city: '' }); discoverView(mode); });
+  $('#state').addEventListener('change', (e) => { Object.assign(f, { state: e.target.value, city: '' }); discoverView(mode); });
   $('#city').addEventListener('change', (e) => { f.city = e.target.value; refresh(); });
   $('#platforms').addEventListener('click', (e) => {
     const b = e.target.closest('[data-platform]'); if (!b) return;
-    f.platform = b.dataset.platform; discoverView();
+    f.platform = b.dataset.platform; discoverView(mode);
   });
   $('#categories').addEventListener('click', (e) => {
     const b = e.target.closest('[data-category]'); if (!b) return;
-    f.category = b.dataset.category; discoverView();
+    f.category = b.dataset.category; discoverView(mode);
   });
   $('#clear').addEventListener('click', () => {
-    Object.assign(f, { q: '', country: '', state: '', city: '', platform: '', category: '' }); discoverView();
+    Object.assign(f, { q: '', country: '', state: '', city: '', platform: '', category: '' }); discoverView(mode);
   });
   await refresh();
 }
@@ -261,9 +284,12 @@ function cardHtml(d) {
   const p = d.partner;
   return `
     <a class="card" href="#/day/${d.id}">
-      <div class="card-banner" style="${banner(p.accentColor)}">
+      <div class="card-banner ${isFeatured(p) ? 'has-photo' : ''}" style="${partnerBanner(p, 800)}">
         <div class="date-badge"><b>${fmtDate(d.date, { day: 'numeric' })}</b><span>${fmtDate(d.date, { month: 'short' })}</span></div>
-        <span class="pill go">${goMark()}<span>${d.commissionRate}%</span></span>
+        <div class="pill-stack">
+          <span class="pill go">${goMark()}<span>${d.commissionRate}%</span></span>
+          ${isFeatured(p) ? '<span class="pill featured">Featured</span>' : ''}
+        </div>
       </div>
       <div class="card-body">
         <h3>${esc(d.title)}</h3>
@@ -278,6 +304,64 @@ function cardHtml(d) {
     </a>`;
 }
 
+function clipCardHtml(c) {
+  return `
+    <a class="clip" href="#/clip/${c.id}">
+      <div class="clip-thumb" style="background-image:url('${photo(c.thumbnail, 400, 711)}')">
+        <span class="clip-badge">${esc(c.resolution)}</span>
+        <span class="clip-play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>
+        <span class="clip-duration">${fmtDuration(c.durationSec)}</span>
+      </div>
+      <div class="clip-body">
+        <h3>${esc(c.title)}</h3>
+        <div class="card-meta">${esc(c.partner.name)}</div>
+        <div class="card-meta">${esc(c.location.city)}, ${esc(c.location.country)}</div>
+      </div>
+    </a>`;
+}
+
+async function clipView(id) {
+  const c = await dataService.getClip(id);
+  if (!c) { app.innerHTML = `<div class="empty">Clip not found.</div>`; return; }
+  const p = c.partner;
+  app.innerHTML = `
+    <a class="back" href="#/vault">‹ Footage Vault</a>
+    <div class="clip-hero" style="background-image:url('${photo(c.thumbnail, 720, 1280)}')">
+      <span class="clip-badge">${esc(c.resolution)} · ${esc(c.orientation)}</span>
+      <span class="clip-play big" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>
+      <span class="clip-duration">${fmtDuration(c.durationSec)}</span>
+    </div>
+    <h1 class="clip-title">${esc(c.title)}</h1>
+    <p class="card-meta">${esc(p.type)} · ${esc(p.name)} · ${esc(c.location.city)}, ${esc(c.location.state)}</p>
+
+    <div class="facts" style="margin-top:14px">
+      <div class="fact"><span>Shot by</span><b>${esc(c.shotBy)}</b></div>
+      <div class="fact"><span>Shot on</span><b>${fmtDate(c.shotOn, { month: 'short', day: 'numeric', year: 'numeric' })}</b></div>
+      <div class="fact"><span>Length</span><b>${fmtDuration(c.durationSec)}</b></div>
+      <div class="fact"><span>Saved by creators</span><b>${c.saves}</b></div>
+    </div>
+
+    <div class="section-title">Tags</div>
+    <div class="chips">${c.tags.map((t) => `<span class="chip">${esc(t)}</span>`).join('')}</div>
+
+    <div class="section-title">How you can use it</div>
+    <div class="notice usage">${goMark()}<span>${esc(c.usage)}</span></div>
+
+    <div class="sticky-cta"><div id="cta"></div></div>`;
+
+  const renderCta = () => {
+    const saved = (state.user.savedClips || []).some((s) => s.clipId === id);
+    $('#cta').innerHTML = saved
+      ? `<button class="btn secondary" id="save">✓ Saved to your clips · tap to remove</button>`
+      : `<button class="btn" id="save">Save to my clips</button>`;
+    $('#save').addEventListener('click', async () => {
+      state.user = await authService.toggleSavedClip(id);
+      renderCta();
+    });
+  };
+  renderCta();
+}
+
 async function dayView(id) {
   const d = await dataService.getContentDay(id);
   if (!d) { app.innerHTML = `<div class="empty">Content day not found.</div>`; return; }
@@ -289,7 +373,7 @@ async function dayView(id) {
 
   app.innerHTML = `
     <a class="back" href="#/discover">‹ Discover</a>
-    <div class="detail-banner" style="${banner(p.accentColor)}">
+    <div class="detail-banner ${isFeatured(p) ? 'has-photo' : ''}" style="${partnerBanner(p, 1000)}">
       <span class="pill go" style="align-self:flex-start;margin-bottom:auto">${goMark()}<span>Bookable partner</span></span>
       <h1>${esc(d.title)}</h1>
       <p>${esc(p.name)} · ${esc(p.group)}</p>
@@ -342,9 +426,12 @@ async function myDaysView() {
   const all = await dataService.getContentDays();
   const byId = Object.fromEntries(all.map((d) => [d.id, d]));
   const rows = apps.map((a) => ({ ...a, day: byId[a.contentDayId] })).filter((a) => a.day);
+  const clipsById = Object.fromEntries((await dataService.getClips()).map((c) => [c.id, c]));
+  const saved = (state.user.savedClips || []).map((s) => clipsById[s.clipId]).filter(Boolean);
 
   app.innerHTML = `
-    <div class="page-head"><h1>My Content Days</h1></div>
+    <div class="page-head"><h1>Saved</h1></div>
+    <div class="section-title">My content days</div>
     ${rows.length ? `<div class="cards">${rows.map((r) => `
       <a class="card" href="#/day/${r.day.id}">
         <div class="card-body">
@@ -353,7 +440,11 @@ async function myDaysView() {
           <div class="card-meta">${esc(r.day.partner.name)} · ${esc(r.day.location.city)}, ${esc(r.day.location.state)}</div>
         </div>
       </a>`).join('')}</div>`
-    : `<div class="empty">You haven't requested any content days yet.<a class="btn" href="#/discover">Find content days</a></div>`}`;
+    : `<div class="empty">You haven't requested any content days yet.<a class="btn" href="#/discover">Find content days</a></div>`}
+    <div class="section-title">My vault clips</div>
+    ${saved.length
+      ? `<div class="clip-grid">${saved.map(clipCardHtml).join('')}</div>`
+      : `<div class="empty">No saved clips yet.<a class="btn secondary" href="#/vault">Browse the Footage Vault</a></div>`}`;
 }
 
 function profileView() {

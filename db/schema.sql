@@ -52,6 +52,9 @@ create table partners (
   description     text,
   rating          numeric(2,1),
   accent_color    text,
+  listing_tier    text not null default 'standard' check (listing_tier in ('standard','featured')),  -- featured = paid upsell: photos on list views
+  featured_until  timestamptz,                     -- when the paid placement expires
+  photos          text[] not null default '{}',
   source          text not null default 'manual',  -- manual | tiktok_go | channel_manager | ...
   synced_at       timestamptz
 );
@@ -88,6 +91,35 @@ create table applications (
   applied_at      timestamptz not null default now(),
   decided_at      timestamptz,
   unique (content_day_id, user_id)
+);
+
+-- ---------- Footage Vault (clips shot by the Covenant team) ----------
+create table vault_clips (
+  id              text primary key,                -- e.g. clip_001
+  partner_id      text not null references partners(id) on delete cascade,
+  title           text not null,
+  video_url       text,                            -- storage path / CDN url of the master file
+  thumbnail_url   text,
+  duration_sec    integer not null,
+  orientation     text not null default '9:16',
+  resolution      text,
+  shot_on         date,
+  shot_by         text not null default 'Covenant Creative team',
+  country         char(2) not null,
+  state           text not null,
+  city            text not null,
+  tags            text[] not null default '{}',
+  usage_terms     text not null,
+  created_at      timestamptz not null default now()
+);
+create index vault_clips_search_idx on vault_clips (country, state, city);
+
+create table saved_clips (
+  user_id         uuid not null references users(id) on delete cascade,
+  clip_id         text not null references vault_clips(id) on delete cascade,
+  saved_at        timestamptz not null default now(),
+  downloaded_at   timestamptz,
+  primary key (user_id, clip_id)
 );
 
 -- spots_taken is derived, never stored

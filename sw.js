@@ -1,10 +1,10 @@
 // Offline cache for the app shell + demo data. Bump VERSION on each deploy.
-const VERSION = 'cg-v4';
+const VERSION = 'cg-v5';
 const SHELL = [
   './', './index.html', './css/styles.css', './manifest.webmanifest',
   './js/app.js', './js/config.js', './js/services/http.js',
   './js/services/dataService.js', './js/services/authService.js',
-  './data/partners.json', './data/content-days.json', './data/locations.json',
+  './data/partners.json', './data/content-days.json', './data/locations.json', './data/vault-clips.json',
   './icons/icon.svg', './icons/brand/tiktokgo-mark-w.png', './icons/brand/tiktokgo-wordmark-w.png', './icons/icon-180.png', './icons/icon-192.png', './icons/icon-512.png',
 ];
 

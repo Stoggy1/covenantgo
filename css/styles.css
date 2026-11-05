@@ -131,6 +131,13 @@ select.input { appearance: none; background-image: linear-gradient(45deg, transp
 .date-badge span { font-size: 11px; text-transform: uppercase; letter-spacing: .06em; }
 .pill { font-size: 12px; font-weight: 700; padding: 4px 10px; border-radius: 999px; background: rgba(0,0,0,.55); }
 .pill.go { color: var(--cyan); }
+.pill.featured { background: var(--warn); color: #1a1205; letter-spacing: .02em; }
+.pill-stack { display: flex; flex-direction: column; align-items: flex-end; gap: 6px; }
+
+/* Featured (paid) listings show a partner photo and a taller banner */
+.card-banner.has-photo, .detail-banner.has-photo { background-size: cover; background-position: center; }
+.card-banner.has-photo { height: 150px; }
+.detail-banner.has-photo { height: 240px; }
 .card-body { padding: 12px 14px 14px; }
 .card-body h3 { font-size: 17px; margin-bottom: 2px; }
 .card-meta { color: var(--muted); font-size: 14px; }
@@ -140,6 +147,44 @@ select.input { appearance: none; background-image: linear-gradient(45deg, transp
 .spots.full { color: var(--pink); }
 .icons { display: flex; gap: 4px; }
 .icons span { font-size: 11px; font-weight: 700; padding: 3px 7px; border-radius: 6px; background: var(--surface-2); color: var(--muted); }
+
+/* ---------- Content Days / Footage Vault switch ---------- */
+.segmented {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 4px; padding: 4px; margin-bottom: 12px;
+  background: var(--surface); border: 1px solid var(--border); border-radius: 14px;
+}
+.segmented a { text-align: center; padding: 10px 6px; border-radius: 10px; color: var(--muted); font-weight: 700; font-size: 15px; }
+.segmented a.active { background: var(--text); color: var(--bg); }
+.mode-intro { color: var(--muted); font-size: 14px; margin: 0 0 12px; }
+
+/* ---------- Footage Vault ---------- */
+.clip-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.clip { display: block; color: inherit; }
+.clip-thumb, .clip-hero {
+  position: relative; aspect-ratio: 9 / 16; border-radius: 14px; overflow: hidden;
+  background: var(--surface-2) center / cover no-repeat;
+}
+.clip-hero { max-width: 340px; margin: 0 auto 14px; border-radius: var(--radius); }
+.clip-thumb::after, .clip-hero::after {
+  content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,.25), transparent 30%, transparent 65%, rgba(0,0,0,.6));
+}
+.clip-badge, .clip-duration {
+  position: absolute; z-index: 1; font-size: 11px; font-weight: 700; padding: 3px 8px; border-radius: 999px; background: rgba(0,0,0,.6);
+}
+.clip-badge { top: 8px; left: 8px; }
+.clip-duration { bottom: 8px; right: 8px; }
+.clip-play {
+  position: absolute; z-index: 1; inset: 0; margin: auto; width: 42px; height: 42px; border-radius: 50%;
+  background: rgba(255,255,255,.22); backdrop-filter: blur(6px); display: grid; place-items: center;
+}
+.clip-play.big { width: 64px; height: 64px; }
+.clip-play svg { width: 55%; height: 55%; fill: #fff; margin-left: 8%; }
+.clip-body { padding: 8px 2px 0; }
+.clip-body h3 { font-size: 15px; margin-bottom: 2px; }
+.clip-body .card-meta { font-size: 13px; }
+.clip-title { font-size: 24px; margin-bottom: 4px; }
+.notice.usage { display: flex; align-items: center; gap: 10px; color: var(--text); }
+.notice.usage .go-mark { flex: none; }
 
 /* ---------- Detail ---------- */
 .detail-banner { height: 170px; border-radius: var(--radius); padding: 16px; display: flex; flex-direction: column; justify-content: flex-end; margin-bottom: 16px; }
