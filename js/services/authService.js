@@ -26,7 +26,7 @@ function publicUser(u) {
 }
 
 const localProvider = {
-  async signUp({ name, email, password, location, platforms = [] }) {
+  async signUp({ name, email, password, phone = '', agency, recruitInterest = false, location, platforms = [] }) {
     email = email.trim().toLowerCase();
     const users = read(USERS_KEY, {});
     if (users[email]) throw new Error('An account with that email already exists.');
@@ -35,9 +35,14 @@ const localProvider = {
       id: `usr_${Date.now().toString(36)}`,
       name: name.trim(),
       email,
+      phone,
+      agency,
+      recruitInterest,
       location,
       platforms,
       applications: [],
+      savedClips: [],
+      postLinks: [],
       createdAt: new Date().toISOString(),
       salt,
       passwordHash: await hash(password, salt),
@@ -100,7 +105,30 @@ const localProvider = {
     write(USERS_KEY, users);
     return publicUser(user);
   },
+
+  // Rewards: a TikTok post the creator made from a content day or vault clip.
+  async submitPostLink({ url, source = 'other', clipId = null, contentDayId = null }) {
+    const email = read(SESSION_KEY, null);
+    const users = read(USERS_KEY, {});
+    const user = users[email];
+    if (!user) throw new Error('Not signed in.');
+    url = normalizeTikTokUrl(url);
+    user.postLinks ||= [];
+    if (user.postLinks.some((l) => l.url === url)) throw new Error('You already submitted that link.');
+    user.postLinks.push({ url, source, clipId, contentDayId, status: 'pending', submittedAt: new Date().toISOString() });
+    write(USERS_KEY, users);
+    return publicUser(user);
+  },
 };
+
+// Accepts tiktok.com links only; returns a cleaned URL or throws.
+export function normalizeTikTokUrl(raw) {
+  let u;
+  try { u = new URL(String(raw).trim()); } catch { throw new Error('Paste the full TikTok link (starts with https://).'); }
+  if (!/(^|\.)tiktok\.com$/i.test(u.hostname)) throw new Error('That isn’t a TikTok link.');
+  u.hash = '';
+  return u.toString();
+}
 
 const apiProvider = {
   async signUp(payload) {
@@ -128,6 +156,10 @@ const apiProvider = {
   },
   async toggleSavedClip(clipId) {
     await apiRequest(`/vault/clips/${encodeURIComponent(clipId)}/save`, { method: 'POST' });
+    return apiRequest('/me');
+  },
+  async submitPostLink(link) {
+    await apiRequest('/me/post-links', { method: 'POST', body: { ...link, url: normalizeTikTokUrl(link.url) } });
     return apiRequest('/me');
   },
 };

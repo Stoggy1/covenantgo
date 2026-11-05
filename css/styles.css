@@ -186,6 +186,35 @@ select.input { appearance: none; background-image: linear-gradient(45deg, transp
 .notice.usage { display: flex; align-items: center; gap: 10px; color: var(--text); }
 .notice.usage .go-mark { flex: none; }
 
+/* ---------- Sign-up extras ---------- */
+.optional { font-weight: 500; color: var(--muted); text-transform: none; letter-spacing: 0; }
+.check { display: flex; gap: 10px; align-items: flex-start; font-size: 14px; color: var(--muted); padding: 4px 2px; }
+.check input { width: 20px; height: 20px; margin: 1px 0 0; accent-color: var(--pink); flex: none; }
+.open-to-all { font-size: 14px !important; color: var(--text) !important; margin: -6px 0 0 !important; }
+.recruit-card {
+  margin-top: 12px; padding: 14px; border-radius: 14px;
+  background: linear-gradient(135deg, color-mix(in srgb, var(--cyan) 18%, var(--surface)), color-mix(in srgb, var(--pink) 18%, var(--surface)));
+  border: 1px solid var(--border);
+}
+.recruit-card p { margin: 4px 0 0; font-size: 14px; color: var(--muted); }
+
+/* ---------- Rewards ---------- */
+.reward-card {
+  display: flex; flex-direction: column; gap: 8px; color: inherit; padding: 16px; border-radius: var(--radius);
+  background: linear-gradient(135deg, #2a1f05, var(--surface) 60%); border: 1px solid color-mix(in srgb, var(--warn) 45%, var(--border));
+}
+.reward-head { display: flex; gap: 12px; align-items: center; }
+.reward-head b { font-size: 17px; }
+.trophy { font-size: 30px; line-height: 1; }
+.goal { display: flex; justify-content: space-between; font-size: 14px; margin-top: 4px; }
+.bar { height: 8px; border-radius: 999px; background: var(--surface-2); overflow: hidden; }
+.bar span { display: block; height: 100%; border-radius: inherit; background: linear-gradient(90deg, var(--warn), var(--pink)); }
+.link-form { display: flex; flex-direction: column; gap: 6px; margin-top: 4px; }
+.link-form label { font-size: 13px; color: var(--muted); font-weight: 600; }
+.link-row { display: grid; grid-template-columns: 1fr auto; gap: 8px; }
+.link-row .btn { width: auto; min-height: 48px; padding: 0 16px; }
+.list.links a { display: block; font-size: 13px; overflow-wrap: anywhere; margin-top: 4px; }
+
 /* ---------- Detail ---------- */
 .detail-banner { height: 170px; border-radius: var(--radius); padding: 16px; display: flex; flex-direction: column; justify-content: flex-end; margin-bottom: 16px; }
 .detail-banner h1 { font-size: 26px; text-shadow: 0 2px 12px rgba(0,0,0,.5); }

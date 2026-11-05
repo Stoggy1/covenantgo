@@ -18,6 +18,25 @@ export const CONFIG = {
 
   SUPPORTED_COUNTRIES: ['US', 'MX'],
 
+  // TikTok GO agencies for the sign-up picker.
+  // TODO: replace the placeholders with the 14 official TikTok GO agency names.
+  AGENCIES: [
+    'Covenant Creative',
+    ...Array.from({ length: 13 }, (_, i) => `TikTok GO Agency ${i + 2} (placeholder)`),
+  ],
+  NO_AGENCY: 'none',
+
+  // Creators with no agency can opt in to hear from this agency (recruiting).
+  RECRUITING_AGENCY: 'Covenant Creative',
+
+  // Rewards contest. Hitting EITHER goal enters the creator for the prize.
+  REWARDS: {
+    prize: 'Win a creator trip for two',
+    prizeDetail: 'Flights + 3 nights at a featured partner resort. Demo prize, final prize and rules TBD.',
+    contentDaysGoal: 5,
+    postLinksGoal: 10,
+  },
+
   // Platforms shown in the app. Add ids from PLATFORMS to turn more back on.
   ENABLED_PLATFORMS: ['tiktok'],
 

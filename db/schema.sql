@@ -3,12 +3,23 @@
 
 create extension if not exists "pgcrypto";
 
+-- ---------- TikTok GO agencies (the 14 official agencies) ----------
+create table agencies (
+  id              uuid primary key default gen_random_uuid(),
+  name            text not null unique,
+  is_recruiter    boolean not null default false   -- our agency: receives opted-in independent creators
+);
+
 -- ---------- Creators ----------
 create table users (
   id              uuid primary key default gen_random_uuid(),
   email           text not null unique,
   password_hash   text,                       -- null if using an auth provider (Supabase Auth, Auth0, Sign in with Apple)
   name            text not null,
+  phone           text,                       -- optional
+  agency_id       uuid references agencies(id), -- null = independent GO creator (no agency)
+  recruit_interest boolean not null default false, -- independent creator opted in to hear from our agency
+  recruit_status  text check (recruit_status in ('new','contacted','signed','declined')),
   country         char(2) not null,           -- ISO 3166-1 alpha-2 (US, MX, …)
   state           text not null,
   city            text not null,
@@ -121,6 +132,30 @@ create table saved_clips (
   downloaded_at   timestamptz,
   primary key (user_id, clip_id)
 );
+
+-- ---------- Rewards (gamification) ----------
+create table reward_programs (
+  id              uuid primary key default gen_random_uuid(),
+  name            text not null,                   -- e.g. "Win a creator trip for two"
+  prize_detail    text,
+  content_days_goal integer not null,              -- attend this many content days, OR
+  post_links_goal integer not null,                -- submit this many approved post links
+  starts_at       timestamptz not null,
+  ends_at         timestamptz not null
+);
+
+create table post_links (
+  id              uuid primary key default gen_random_uuid(),
+  user_id         uuid not null references users(id) on delete cascade,
+  url             text not null,
+  source          text not null check (source in ('vault','content_day','other')),
+  clip_id         text references vault_clips(id),
+  content_day_id  text references content_days(id),
+  status          text not null default 'pending' check (status in ('pending','approved','rejected')),
+  submitted_at    timestamptz not null default now(),
+  unique (user_id, url)
+);
+-- Content days count toward rewards when applications.status = 'completed' (partner check-in).
 
 -- spots_taken is derived, never stored
 create view content_days_with_spots as

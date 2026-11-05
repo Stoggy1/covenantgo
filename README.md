@@ -18,7 +18,9 @@ data, and it's set up so a real API and database can be plugged in later.
 - **Footage Vault**: browse clips the Covenant team shot at partner properties and save them to repurpose
 - **Saved**: track content day requests and saved vault clips
 - **Featured listings** (future paid upsell): featured partners show photos on list views; standard listings show a plain banner
-- **Profile**: edit location and platforms
+- **Agency + recruiting**: creators pick one of the TikTok GO agencies or "No agency"; independent creators can opt in to hear from Covenant Creative
+- **Rewards**: progress toward a prize (attend X content days or submit X TikTok post links); goals set in `CONFIG.REWARDS`
+- **Profile**: edit phone (optional), agency, location and TikTok
 
 ## Run it locally
 

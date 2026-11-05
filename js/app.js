@@ -56,6 +56,75 @@ function logoHtml(extra = '') {
 
 const goMark = () => `<img class="go-mark" src="icons/brand/tiktokgo-mark-w.png" alt="TikTok GO">`;
 
+// ---------- agency + recruiting ----------
+const agencyLabel = (a) => (!a || a === CONFIG.NO_AGENCY ? 'No agency' : a);
+
+function agencyFields(selected = '', recruit = false) {
+  return `
+    <div class="field"><label for="agency">Your TikTok GO agency</label>
+      <select class="input" id="agency" name="agency" required>
+        ${options(CONFIG.AGENCIES, selected, 'Select your agency')}
+        <option value="${CONFIG.NO_AGENCY}" ${selected === CONFIG.NO_AGENCY ? 'selected' : ''}>No agency, I'm an independent GO creator</option>
+      </select></div>
+    <label class="check" id="recruit-row" ${selected === CONFIG.NO_AGENCY ? '' : 'hidden'}>
+      <input type="checkbox" name="recruitInterest" ${recruit ? 'checked' : ''}>
+      <span>I'd like to hear about joining <b>${esc(CONFIG.RECRUITING_AGENCY)}</b>.</span>
+    </label>`;
+}
+function wireAgency() {
+  $('#agency').addEventListener('change', (e) => { $('#recruit-row').hidden = e.target.value !== CONFIG.NO_AGENCY; });
+}
+const readAgency = (f) => ({
+  agency: f.get('agency'),
+  recruitInterest: f.get('agency') === CONFIG.NO_AGENCY && f.get('recruitInterest') === 'on',
+});
+
+// ---------- rewards ----------
+const ATTENDED = ['attended', 'completed'];
+function rewardProgress(u) {
+  const days = (u.applications || []).filter((a) => ATTENDED.includes(a.status)).length;
+  const links = (u.postLinks || []).length;
+  const R = CONFIG.REWARDS;
+  return { days, links, R, entered: days >= R.contentDaysGoal || links >= R.postLinksGoal };
+}
+const bar = (n, goal) => `<div class="bar"><span style="width:${Math.min(100, (n / goal) * 100)}%"></span></div>`;
+
+function rewardsCardHtml(u, { compact = false } = {}) {
+  const { days, links, R, entered } = rewardProgress(u);
+  return `
+    <a class="reward-card" href="#/rewards">
+      <div class="reward-head"><span class="trophy" aria-hidden="true">🏆</span><div><b>${esc(R.prize)}</b>
+        ${compact ? '' : `<div class="card-meta">${esc(R.prizeDetail)}</div>`}</div></div>
+      ${entered ? '<div class="notice ok">You\'re entered! Keep going to stay in the running.</div>' : '<div class="card-meta">Hit either goal to be entered:</div>'}
+      <div class="goal"><span>Attend content days</span><b>${days} / ${R.contentDaysGoal}</b></div>${bar(days, R.contentDaysGoal)}
+      <div class="goal"><span>Submit TikTok post links</span><b>${links} / ${R.postLinksGoal}</b></div>${bar(links, R.postLinksGoal)}
+    </a>`;
+}
+
+// Inline form for submitting a TikTok post link (rewards credit).
+function postLinkFormHtml(label = 'Posted it? Submit your TikTok link') {
+  return `
+    <form class="link-form" id="link-form">
+      <label for="post-url">${esc(label)}</label>
+      <div class="link-row">
+        <input class="input" id="post-url" name="url" type="url" inputmode="url" placeholder="https://www.tiktok.com/@you/video/…" required>
+        <button class="btn" type="submit">Submit</button>
+      </div>
+      <div class="error" id="link-err"></div>
+    </form>`;
+}
+function wirePostLinkForm(extra, onDone) {
+  $('#link-form').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    try {
+      state.user = await authService.submitPostLink({ url: e.target.url.value, ...extra });
+      onDone();
+    } catch (err) {
+      $('#link-err').textContent = err.message;
+    }
+  });
+}
+
 // ---------- router ----------
 const routes = [
   { path: /^#\/welcome$/, view: welcomeView, public: true },
@@ -66,6 +135,7 @@ const routes = [
   { path: /^#\/clip\/([\w-]+)$/, view: clipView, tab: 'discover' },
   { path: /^#\/day\/([\w-]+)$/, view: dayView, tab: 'discover' },
   { path: /^#\/my-days$/, view: myDaysView, tab: 'my-days' },
+  { path: /^#\/rewards$/, view: rewardsView, tab: 'rewards' },
   { path: /^#\/profile$/, view: profileView, tab: 'profile' },
 ];
 
@@ -98,6 +168,7 @@ async function welcomeView() {
       <h1>Get booked for content days.</h1>
       <p>CovenantGo connects TikTok GO <strong class="accent">CREATORS</strong> with hotels, resorts, and things to do across the United States and Mexico.</p>
       <div class="built-for"><span>Built for</span><img src="icons/brand/tiktokgo-wordmark-w.png" alt="TikTok GO"><span>creators</span></div>
+      <p class="open-to-all">Open to every TikTok GO creator, with an agency or without one.</p>
       <div class="hero-stats">
         <div><b>${days.length}</b><span>Open content days</span></div>
         <div><b>${clips.length}</b><span>Vault clips</span></div>
@@ -175,6 +246,10 @@ function signupView() {
       <div class="field"><label for="name">Full name</label><input class="input" id="name" name="name" autocomplete="name" required></div>
       <div class="field"><label for="email">Email</label><input class="input" id="email" name="email" type="email" autocomplete="email" required></div>
       <div class="field"><label for="password">Password</label><input class="input" id="password" name="password" type="password" minlength="8" autocomplete="new-password" required></div>
+      <div class="field"><label for="phone">Phone number <span class="optional">(optional)</span></label><input class="input" id="phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" placeholder="(555) 555-5555"></div>
+
+      <div class="section-title">TikTok GO agency</div>
+      ${agencyFields()}
 
       <div class="section-title">Where are you based?</div>
       ${locationFields('su')}
@@ -185,6 +260,7 @@ function signupView() {
       <div class="error" id="err"></div>
       <button class="btn" type="submit">Join CovenantGo</button>
     </form>`;
+  wireAgency();
 
   $('#signup').addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -196,6 +272,8 @@ function signupView() {
         name: f.get('name'),
         email: f.get('email'),
         password: f.get('password'),
+        phone: String(f.get('phone') || '').trim(),
+        ...readAgency(f),
         location: { country: f.get('country'), state: f.get('state').trim(), city: f.get('city').trim() },
         platforms,
       });
@@ -347,7 +425,18 @@ async function clipView(id) {
     <div class="section-title">How you can use it</div>
     <div class="notice usage">${goMark()}<span>${esc(c.usage)}</span></div>
 
+    <div class="section-title">Earn rewards</div>
+    <div id="clip-link"></div>
+
     <div class="sticky-cta"><div id="cta"></div></div>`;
+
+  const renderLink = () => {
+    const mine = (state.user.postLinks || []).filter((l) => l.clipId === id);
+    $('#clip-link').innerHTML = (mine.length ? `<div class="notice ok">${mine.length} post link${mine.length === 1 ? '' : 's'} submitted with this clip.</div>` : '')
+      + postLinkFormHtml('Posted with this clip? Submit your TikTok link');
+    wirePostLinkForm({ source: 'vault', clipId: id }, renderLink);
+  };
+  renderLink();
 
   const renderCta = () => {
     const saved = (state.user.savedClips || []).some((s) => s.clipId === id);
@@ -402,12 +491,19 @@ async function dayView(id) {
     <div class="section-title">Availability</div>
     <p>${spotsHtml(d)}</p>
 
+    <div id="day-link"></div>
+
     <div class="sticky-cta"><div id="cta"></div></div>`;
 
   const cta = $('#cta');
   const renderCta = (isApplied) => {
     if (isApplied) {
       cta.innerHTML = `<div class="notice ok">Request sent — the partner will confirm your spot.</div>`;
+      const mine = (state.user.postLinks || []).filter((l) => l.contentDayId === id);
+      $('#day-link').innerHTML = `<div class="section-title">Earn rewards</div>`
+        + (mine.length ? `<div class="notice ok">${mine.length} post link${mine.length === 1 ? '' : 's'} submitted for this day.</div>` : '')
+        + postLinkFormHtml('After the shoot, submit your TikTok post link');
+      wirePostLinkForm({ source: 'content_day', contentDayId: id }, () => renderCta(true));
     } else if (!eligible) {
       cta.innerHTML = `<div class="notice">This day needs ${fmtNum(d.minFollowers)}+ followers. Your profile shows ${fmtNum(followers)}. <a href="#/profile">Update profile</a></div>`;
     } else {
@@ -421,6 +517,33 @@ async function dayView(id) {
   renderCta(!!applied);
 }
 
+function rewardsView() {
+  const u = state.user;
+  const links = [...(u.postLinks || [])].reverse();
+  const sourceLabel = { vault: 'Footage Vault', content_day: 'Content day', other: 'Other GO post' };
+  app.innerHTML = `
+    <div class="page-head"><h1>Rewards</h1></div>
+    ${rewardsCardHtml(u)}
+
+    <div class="section-title">How to earn</div>
+    <ul class="list">
+      <li><b>Attend content days.</b> Counted when the partner checks you in.</li>
+      <li><b>Post with Footage Vault clips</b> and submit the TikTok link.</li>
+      <li><b>Post from a content day</b> and submit the TikTok link.</li>
+    </ul>
+
+    <div class="section-title">Submit a post</div>
+    ${postLinkFormHtml('TikTok GO post link')}
+
+    <div class="section-title">Your submitted links</div>
+    ${links.length ? `<ul class="list links">${links.map((l) => `
+      <li><div class="card-foot" style="margin:0"><span class="card-meta">${esc(sourceLabel[l.source] || 'Post')} · ${fmtDate(l.submittedAt.slice(0, 10), { month: 'short', day: 'numeric' })}</span><span class="status">${esc(l.status)}</span></div>
+      <a href="${esc(l.url)}" target="_blank" rel="noopener">${esc(l.url)}</a></li>`).join('')}</ul>`
+    : '<div class="empty">No links yet. Post with a vault clip or after a content day, then drop the link here.</div>'}
+    <p class="demo-banner">Demo: prize, goals and contest rules are placeholders.</p>`;
+  wirePostLinkForm({ source: 'other' }, rewardsView);
+}
+
 async function myDaysView() {
   const apps = state.user.applications || [];
   const all = await dataService.getContentDays();
@@ -431,6 +554,7 @@ async function myDaysView() {
 
   app.innerHTML = `
     <div class="page-head"><h1>Saved</h1></div>
+    ${rewardsCardHtml(state.user, { compact: true })}
     <div class="section-title">My content days</div>
     ${rows.length ? `<div class="cards">${rows.map((r) => `
       <a class="card" href="#/day/${r.day.id}">
@@ -454,18 +578,28 @@ function profileView() {
       <div class="avatar">${esc(initials(u.name))}</div>
       <div>
         <h1 style="font-size:22px">${esc(u.name)}</h1>
-        <div class="card-meta">${esc(u.email)}</div>
+        <div class="card-meta">${esc(u.email)}${u.phone ? ` · ${esc(u.phone)}` : ''}</div>
         <div class="card-meta">${esc(u.location?.city)}, ${esc(u.location?.state)} · ${esc(countryName(u.location?.country))}</div>
       </div>
     </div>
     <div class="facts" style="margin-top:12px">
       <div class="fact"><span>Total followers</span><b>${fmtNum(totalFollowers(u))}</b></div>
       <div class="fact"><span>Requests</span><b>${(u.applications || []).length}</b></div>
+      <div class="fact" style="grid-column: 1 / -1"><span>TikTok GO agency</span><b>${esc(agencyLabel(u.agency))}</b></div>
     </div>
+    ${u.agency === CONFIG.NO_AGENCY && !u.recruitInterest ? `
+      <div class="recruit-card">
+        <b>Not with an agency yet?</b>
+        <p>${esc(CONFIG.RECRUITING_AGENCY)} works with TikTok GO creators on hospitality deals. Tick the box under <b>Agency</b> below and our team will reach out.</p>
+      </div>` : ''}
 
     <form class="stack" id="profile">
       <div class="section-title">Name</div>
       <input class="input" name="name" value="${esc(u.name)}" required>
+      <div class="section-title">Phone <span class="optional">(optional)</span></div>
+      <input class="input" name="phone" type="tel" autocomplete="tel" inputmode="tel" value="${esc(u.phone || '')}" placeholder="(555) 555-5555">
+      <div class="section-title">Agency</div>
+      ${agencyFields(u.agency || '', !!u.recruitInterest)}
       <div class="section-title">Location</div>
       ${locationFields('pf', u.location)}
       <div class="section-title">${SINGLE_PLATFORM ? esc(PLATFORMS[0].label) : 'Platforms'}</div>
@@ -475,6 +609,7 @@ function profileView() {
       <button class="btn secondary" type="button" id="logout">Log out</button>
     </form>
     <p class="demo-banner">MVP demo · data source: ${CONFIG.DATA_SOURCE} · auth: ${CONFIG.AUTH_PROVIDER}</p>`;
+  wireAgency();
 
   $('#profile').addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -482,6 +617,8 @@ function profileView() {
     try {
       state.user = await authService.updateProfile({
         name: f.get('name').trim(),
+        phone: String(f.get('phone') || '').trim(),
+        ...readAgency(f),
         location: { country: f.get('country'), state: f.get('state').trim(), city: f.get('city').trim() },
         platforms: [...readPlatforms(f), ...(u.platforms || []).filter((p) => !CONFIG.ENABLED_PLATFORMS.includes(p.id))],
       });

@@ -11,23 +11,29 @@ All authenticated requests send `Authorization: Bearer <token>`.
 
 | Method | Path | Body | Returns |
 |---|---|---|---|
-| POST | `/auth/signup` | `{ name, email, password, location: {country,state,city}, platforms: [{id,handle,followers}] }` | `{ token, user }` |
+| POST | `/auth/signup` | `{ name, email, password, phone?, agency, recruitInterest, location: {country,state,city}, platforms: [{id,handle,followers}] }` | `{ token, user }` |
 | POST | `/auth/login` | `{ email, password }` | `{ token, user }` |
 | POST | `/auth/logout` | — | `204` |
 | GET | `/me` | — | `user` |
-| PATCH | `/me` | partial `user` (`name`, `location`, `platforms`) | `user` |
+| POST | `/me/post-links` | `{ url, source: "vault" / "content_day" / "other", clipId?, contentDayId? }` | `201`, counts toward rewards once approved |
+| PATCH | `/me` | partial `user` (`name`, `phone`, `agency`, `recruitInterest`, `location`, `platforms`) | `user` |
 
 `user` shape:
 
 ```json
 {
-  "id": "usr_…", "name": "…", "email": "…",
+  "id": "usr_…", "name": "…", "email": "…", "phone": "",
+  "agency": "Covenant Creative", "recruitInterest": false,
   "location": { "country": "US", "state": "Texas", "city": "Austin" },
   "platforms": [{ "id": "tiktok", "handle": "@me", "followers": 12000 }],
   "applications": [{ "contentDayId": "cd_001", "status": "pending", "appliedAt": "ISO-8601" }],
+  "savedClips": [{ "clipId": "clip_001", "savedAt": "ISO-8601" }],
+  "postLinks": [{ "url": "https://www.tiktok.com/@me/video/…", "source": "vault", "clipId": "clip_001", "status": "pending", "submittedAt": "ISO-8601" }],
   "createdAt": "ISO-8601"
 }
 ```
+
+`agency` is one of the TikTok GO agency names, or `"none"` for independent creators. Independent creators with `recruitInterest: true` are recruiting leads.
 
 ## Discovery
 
