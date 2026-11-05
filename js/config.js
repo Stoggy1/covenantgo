@@ -1,8 +1,8 @@
-// CovenantGo runtime configuration.
+// CovenantGO runtime configuration.
 // Flip DATA_SOURCE / AUTH_PROVIDER to "api" once the backend exists —
 // no UI code needs to change.
 export const CONFIG = {
-  APP_NAME: 'CovenantGo',
+  APP_NAME: 'CovenantGO',
 
   // Brand logo image, e.g. "icons/logo.png". Empty = text logo.
   LOGO_URL: '',

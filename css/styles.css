@@ -5,7 +5,7 @@
   --border: #2b2b3a;
   --text: #f4f4f8;
   --muted: #9a9ab0;
-  --pink: #ff3b5c;
+  --pink: #FE2C55;   /* TikTok red-pink */
   --cyan: #25f4ee;
   --ok: #5cff9d;
   --warn: #ffb547;
@@ -129,9 +129,12 @@ button, input, select, textarea { font: inherit; color: inherit; }
 
 /* ---------- Brand ---------- */
 .logo { font-weight: 800; font-size: 28px; letter-spacing: -0.5px; }
+/* "GO" uses the exact colors sampled from TikTok's GO logo (orange → red-pink → cyan),
+   fixed in both themes so it always matches the official mark. */
 .logo .go {
-  background: linear-gradient(90deg, var(--cyan), var(--pink));
+  background: linear-gradient(65deg, #FE4908 8%, #FE2C55 42%, #2FFAF6 78%);
   -webkit-background-clip: text; background-clip: text; color: transparent;
+  filter: saturate(1.15);
 }
 .logo-img { display: block; height: 40px; width: auto; max-width: 70%; }
 .hero-logo.logo-img { height: 72px; }

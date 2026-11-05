@@ -57,7 +57,7 @@ function citiesFor(country, st) {
 function logoHtml(extra = '') {
   return CONFIG.LOGO_URL
     ? `<img class="logo-img ${extra}" src="${CONFIG.LOGO_URL}" alt="${CONFIG.APP_NAME}">`
-    : `<div class="logo ${extra}">Covenant<span class="go">Go</span></div>`;
+    : `<div class="logo ${extra}">Covenant<span class="go">GO</span></div>`;
 }
 
 // White-lettering mark for dark backgrounds, black-lettering for light (CSS shows the right one).
@@ -253,7 +253,7 @@ async function welcomeView() {
     <section class="hero">
       <div class="hero-copy">
       <h1>Get Booked For Content Days.</h1>
-      <p>CovenantGo connects TikTok GO <strong class="accent">CREATORS</strong> with hotels, resorts, and things to do across the United States and Mexico.</p>
+      <p>CovenantGO connects TikTok GO <strong class="accent">CREATORS</strong> with hotels, resorts, and things to do across the United States and Mexico.</p>
       <div class="built-for"><img class="mark-dark" src="icons/brand/tiktokgo-mark-w.png" alt=""><img class="mark-light" src="icons/brand/tiktokgo-mark-b.png" alt=""><span>Built for TikTok GO Creators</span></div>
       <p class="open-to-all">Open to every TikTok GO Creator, with an agency or without one.</p>
       <div class="hero-stats">
@@ -266,7 +266,7 @@ async function welcomeView() {
         <a class="btn secondary" href="#/login">I already have an account</a>
       </div>
       ${demoButtonHtml()}
-      <p class="trademark">TikTok and TikTok GO are trademarks of TikTok. CovenantGo is an independent Creator platform.</p>
+      <p class="trademark">TikTok and TikTok GO are trademarks of TikTok. CovenantGO is an independent Creator platform.</p>
       </div>
       <div class="hero-art" aria-hidden="true">
         ${art.map((p) => `<div class="art-tile" style="background-image:url('${photo(p.photos[0], 600, 800)}')"><span>${esc(p.location.city)}</span></div>`).join('')}
@@ -420,7 +420,7 @@ function signupView() {
       ${platformFields()}
 
       <div class="error" id="err"></div>
-      <button class="btn" type="submit">Join CovenantGo</button>
+      <button class="btn" type="submit">Join CovenantGO</button>
     </form>`;
   wireAgency();
   wireLocation('su');

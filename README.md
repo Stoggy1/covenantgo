@@ -1,6 +1,6 @@
-# CovenantGo
+# CovenantGO
 
-**CovenantGo** connects TikTok GO creators with **hotels, resorts, and things
+**CovenantGO** connects TikTok GO creators with **hotels, resorts, and things
 to do** for **content days** across the United States and Mexico.
 
 This is the MVP. It's an installable web app (PWA) hosted free on GitHub Pages
@@ -41,7 +41,7 @@ Then open http://localhost:5173.
 
 1. Create a repo on GitHub (e.g. `covenantgo`) and push this folder:
    ```bash
-   git init && git add . && git commit -m "CovenantGo MVP"
+   git init && git add . && git commit -m "CovenantGO MVP"
    git branch -M main
    git remote add origin https://github.com/<you>/covenantgo.git
    git push -u origin main
