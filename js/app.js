@@ -678,13 +678,19 @@ function profileView() {
 // ---------- boot ----------
 async function boot() {
   // Shared header on every page.
-  document.getElementById('brand').innerHTML = `${logoHtml()}<span class="brand-tag">for TikTok creators</span>`;
+  document.getElementById('brand').innerHTML = `${logoHtml()}<span class="brand-tag">for TikTok Creators</span>`;
   app.innerHTML = `<div class="loading">Loading…</div>`;
   [state.user, state.locations] = await Promise.all([authService.currentUser(), dataService.getLocations()]);
   window.addEventListener('hashchange', router);
   router();
   if ('serviceWorker' in navigator && location.protocol === 'https:') {
-    navigator.serviceWorker.register('./sw.js').catch(() => {});
+    // Always check for a new app version; when one takes over, reload once to show it.
+    navigator.serviceWorker.register('./sw.js', { updateViaCache: 'none' }).catch(() => {});
+    let reloaded = false;
+    const hadController = !!navigator.serviceWorker.controller;
+    navigator.serviceWorker.addEventListener('controllerchange', () => {
+      if (hadController && !reloaded) { reloaded = true; location.reload(); }
+    });
   }
 }
 boot();

@@ -1,5 +1,5 @@
 // Offline cache for the app shell + demo data. Bump VERSION on each deploy.
-const VERSION = 'cg-v8';
+const VERSION = 'cg-v9';
 const SHELL = [
   './', './index.html', './css/styles.css', './manifest.webmanifest',
   './js/app.js', './js/config.js', './js/services/http.js',
@@ -24,7 +24,8 @@ self.addEventListener('fetch', (e) => {
   const url = new URL(e.request.url);
   if (e.request.method !== 'GET' || url.origin !== location.origin) return;
   e.respondWith(
-    fetch(e.request)
+    // no-cache = always check the server for a newer file (GitHub Pages caches 10 min)
+    fetch(e.request, { cache: 'no-cache' })
       .then((res) => {
         const copy = res.clone();
         caches.open(VERSION).then((c) => c.put(e.request, copy));
