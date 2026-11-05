@@ -171,7 +171,7 @@ async function welcomeView() {
       <div class="hero-copy">
       <h1>Get Booked For Content Days.</h1>
       <p>CovenantGo connects TikTok GO <strong class="accent">CREATORS</strong> with hotels, resorts, and things to do across the United States and Mexico.</p>
-      <div class="built-for"><span>Built for</span><img src="icons/brand/tiktokgo-wordmark-w.png" alt="TikTok GO"><span>Creators</span></div>
+      <div class="built-for"><img src="icons/brand/tiktokgo-mark-w.png" alt=""><span>Built for TikTok GO Creators</span></div>
       <p class="open-to-all">Open to every TikTok GO Creator, with an agency or without one.</p>
       <div class="hero-stats">
         <div><b>${days.length}</b><span>Open content days</span></div>
@@ -706,7 +706,7 @@ function profileView() {
 // ---------- boot ----------
 async function boot() {
   // Shared header on every page.
-  document.getElementById('brand').innerHTML = `${logoHtml()}<span class="brand-tag">for TikTok Creators</span>`;
+  document.getElementById('brand').innerHTML = `${logoHtml()}<span class="brand-tag">for TikTok GO Creators</span>`;
   app.innerHTML = `<div class="loading">Loading…</div>`;
   [state.user, state.locations] = await Promise.all([authService.currentUser(), dataService.getLocations()]);
   window.addEventListener('hashchange', router);

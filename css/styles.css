@@ -57,7 +57,7 @@ button, input, select, textarea { font: inherit; color: inherit; }
 
 /* ---------- TikTok GO brand marks ---------- */
 .built-for { display: flex; align-items: center; gap: 10px; color: var(--muted); font-size: 14px; font-weight: 600; }
-.built-for img { height: 26px; width: auto; }
+.built-for img { height: 30px; width: auto; }
 .go-mark { height: 16px; width: auto; display: block; }
 .pill.go { display: inline-flex; align-items: center; gap: 6px; padding: 5px 10px; }
 .go-inline { display: inline-flex; align-items: center; gap: 6px; flex-wrap: wrap; }
