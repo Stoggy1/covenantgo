@@ -48,15 +48,5 @@
     "cta": "See content day",
     "href": "#/day/cd_008",
     "image": "https://images.unsplash.com/photo-1757924382007-7b3228526d09"
-  },
-  {
-    "id": "ad_house",
-    "placement": "top",
-    "house": true,
-    "headline": "Your property here",
-    "body": "Put your hotel or experience in front of TikTok GO Creators. Ad space available.",
-    "cta": "Advertise with Covenant Creative",
-    "href": "",
-    "image": ""
   }
 ]
