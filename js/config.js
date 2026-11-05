@@ -18,6 +18,9 @@ export const CONFIG = {
 
   SUPPORTED_COUNTRIES: ['US', 'MX'],
 
+  // Platforms shown in the app. Add ids from PLATFORMS to turn more back on.
+  ENABLED_PLATFORMS: ['tiktok'],
+
   PLATFORMS: [
     { id: 'tiktok', label: 'TikTok' },
     { id: 'instagram', label: 'Instagram' },

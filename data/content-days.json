@@ -11,148 +11,141 @@
       "city": "Tulum"
     },
     "platforms": [
-      "tiktok",
-      "youtube",
-      "facebook"
+      "tiktok"
     ],
     "spotsTotal": 10,
-    "spotsTaken": 5,
-    "minFollowers": 1000,
-    "commissionRate": 8,
+    "spotsTaken": 3,
+    "minFollowers": 2500,
+    "commissionRate": 6,
     "perks": [
-      "$150 food & beverage credit",
-      "Late checkout"
+      "Welcome cocktail",
+      "Spa treatment",
+      "Airport transfer"
     ],
     "deliverables": [
       "1 TikTok GO video with booking link",
-      "Facebook Reel cross-post"
+      "TikTok LIVE from the property",
+      "3 TikTok Stories",
+      "Photo carousel post on TikTok"
     ],
     "status": "open"
   },
   {
     "id": "cd_002",
     "partnerId": "ptn_casa-marea-resort",
-    "title": "Spa & Wellness Day",
-    "date": "2026-12-05",
-    "time": "9:00 AM",
+    "title": "Poolside Golden Hour",
+    "date": "2026-11-18",
+    "time": "3:00 PM",
     "location": {
       "country": "MX",
       "state": "Quintana Roo",
       "city": "Tulum"
     },
     "platforms": [
-      "tiktok",
-      "snapchat",
-      "facebook",
-      "youtube"
+      "tiktok"
     ],
-    "spotsTotal": 8,
-    "spotsTaken": 3,
-    "minFollowers": 25000,
+    "spotsTotal": 4,
+    "spotsTaken": 1,
+    "minFollowers": 2500,
     "commissionRate": 8,
     "perks": [
-      "Late checkout",
-      "Plus-one included",
       "Complimentary 2-night stay",
-      "Complimentary 1-night stay"
+      "Spa treatment",
+      "Airport transfer"
     ],
     "deliverables": [
       "1 TikTok GO video with booking link",
-      "Raw clips shared with partner"
+      "Photo carousel post on TikTok",
+      "1 extra TikTok video"
     ],
     "status": "open"
   },
   {
     "id": "cd_003",
     "partnerId": "ptn_casa-marea-resort",
-    "title": "Family Fun Weekend",
-    "date": "2026-12-18",
-    "time": "9:00 AM",
+    "title": "Resort Day Pass Takeover",
+    "date": "2027-01-18",
+    "time": "1:00 PM",
     "location": {
       "country": "MX",
       "state": "Quintana Roo",
       "city": "Tulum"
     },
     "platforms": [
-      "tiktok",
-      "youtube",
-      "instagram"
+      "tiktok"
     ],
-    "spotsTotal": 10,
-    "spotsTaken": 8,
-    "minFollowers": 2500,
-    "commissionRate": 5,
+    "spotsTotal": 4,
+    "spotsTaken": 0,
+    "minFollowers": 10000,
+    "commissionRate": 6,
     "perks": [
-      "Welcome cocktail",
-      "Plus-one included",
-      "Spa treatment"
+      "Late checkout",
+      "Spa treatment",
+      "$150 food & beverage credit"
     ],
     "deliverables": [
       "1 TikTok GO video with booking link",
-      "1 Snapchat Spotlight"
+      "Photo carousel post on TikTok",
+      "Raw clips shared with partner",
+      "TikTok LIVE from the property"
     ],
     "status": "open"
   },
   {
     "id": "cd_004",
     "partnerId": "ptn_hotel-coral-azul",
-    "title": "Rooftop Night Shoot",
-    "date": "2026-12-10",
-    "time": "1:00 PM",
+    "title": "Suite Tour Content Day",
+    "date": "2026-12-09",
+    "time": "3:00 PM",
     "location": {
       "country": "MX",
       "state": "Quintana Roo",
       "city": "Cancún"
     },
     "platforms": [
-      "tiktok",
-      "youtube"
+      "tiktok"
     ],
-    "spotsTotal": 6,
-    "spotsTaken": 2,
-    "minFollowers": 5000,
+    "spotsTotal": 12,
+    "spotsTaken": 6,
+    "minFollowers": 10000,
     "commissionRate": 5,
     "perks": [
-      "Complimentary 1-night stay",
-      "Complimentary 2-night stay",
-      "$150 food & beverage credit",
-      "Welcome cocktail"
+      "Late checkout",
+      "Airport transfer",
+      "Spa treatment"
     ],
     "deliverables": [
       "1 TikTok GO video with booking link",
-      "Facebook Reel cross-post",
-      "3 Instagram Stories",
-      "1 Instagram Reel"
+      "TikTok LIVE from the property"
     ],
     "status": "open"
   },
   {
     "id": "cd_005",
-    "partnerId": "ptn_hotel-coral-azul",
-    "title": "Room Reveal Day",
-    "date": "2027-01-02",
-    "time": "11:00 AM",
+    "partnerId": "ptn_la-selva-boutique",
+    "title": "Hidden Gem Getaway",
+    "date": "2027-02-03",
+    "time": "9:00 AM",
     "location": {
       "country": "MX",
       "state": "Quintana Roo",
-      "city": "Cancún"
+      "city": "Playa del Carmen"
     },
     "platforms": [
-      "tiktok",
-      "snapchat"
+      "tiktok"
     ],
-    "spotsTotal": 4,
-    "spotsTaken": 2,
+    "spotsTotal": 6,
+    "spotsTaken": 5,
     "minFollowers": 25000,
-    "commissionRate": 8,
+    "commissionRate": 12,
     "perks": [
+      "Complimentary 1-night stay",
       "Complimentary 2-night stay",
-      "Welcome cocktail",
-      "Plus-one included"
+      "Airport transfer"
     ],
     "deliverables": [
       "1 TikTok GO video with booking link",
-      "1 Snapchat Spotlight"
+      "TikTok LIVE from the property"
     ],
     "status": "open"
   },
@@ -160,198 +153,156 @@
     "id": "cd_006",
     "partnerId": "ptn_la-selva-boutique",
     "title": "Hidden Gem Getaway",
-    "date": "2027-01-01",
-    "time": "5:30 PM",
+    "date": "2027-01-17",
+    "time": "1:00 PM",
     "location": {
       "country": "MX",
       "state": "Quintana Roo",
       "city": "Playa del Carmen"
     },
     "platforms": [
-      "tiktok",
-      "instagram",
-      "snapchat",
-      "youtube"
+      "tiktok"
     ],
-    "spotsTotal": 6,
-    "spotsTaken": 3,
-    "minFollowers": 1000,
-    "commissionRate": 8,
+    "spotsTotal": 12,
+    "spotsTaken": 1,
+    "minFollowers": 10000,
+    "commissionRate": 5,
     "perks": [
-      "Plus-one included",
-      "Complimentary 1-night stay",
-      "Complimentary 2-night stay"
+      "Late checkout",
+      "$150 food & beverage credit",
+      "Complimentary 1-night stay"
     ],
     "deliverables": [
       "1 TikTok GO video with booking link",
-      "3 Instagram Stories"
+      "Raw clips shared with partner",
+      "1 extra TikTok video",
+      "3 TikTok Stories"
     ],
     "status": "open"
   },
   {
     "id": "cd_007",
     "partnerId": "ptn_la-selva-boutique",
-    "title": "Design Detail Shoot",
-    "date": "2027-02-22",
-    "time": "5:30 PM",
+    "title": "Slow Morning Story Day",
+    "date": "2027-02-09",
+    "time": "1:00 PM",
     "location": {
       "country": "MX",
       "state": "Quintana Roo",
       "city": "Playa del Carmen"
     },
     "platforms": [
-      "tiktok",
-      "youtube",
-      "facebook",
-      "snapchat"
+      "tiktok"
     ],
-    "spotsTotal": 8,
-    "spotsTaken": 7,
+    "spotsTotal": 12,
+    "spotsTaken": 0,
     "minFollowers": 10000,
-    "commissionRate": 12,
+    "commissionRate": 6,
     "perks": [
-      "Spa treatment",
+      "Airport transfer",
       "$150 food & beverage credit",
-      "Welcome cocktail",
-      "Late checkout"
+      "Plus-one included"
     ],
     "deliverables": [
       "1 TikTok GO video with booking link",
-      "1 Snapchat Spotlight"
+      "1 extra TikTok video",
+      "3 TikTok Stories"
     ],
     "status": "open"
   },
   {
     "id": "cd_008",
     "partnerId": "ptn_pacific-cliffs-cabo",
-    "title": "Resort Day Pass Takeover",
-    "date": "2026-11-21",
-    "time": "11:00 AM",
+    "title": "Family Fun Weekend",
+    "date": "2026-12-26",
+    "time": "1:00 PM",
     "location": {
       "country": "MX",
       "state": "Baja California Sur",
       "city": "Los Cabos"
     },
     "platforms": [
-      "tiktok",
-      "youtube",
-      "facebook",
-      "snapchat"
+      "tiktok"
     ],
-    "spotsTotal": 8,
-    "spotsTaken": 5,
+    "spotsTotal": 12,
+    "spotsTaken": 3,
     "minFollowers": 25000,
-    "commissionRate": 8,
+    "commissionRate": 10,
     "perks": [
-      "Spa treatment",
-      "Plus-one included"
+      "Airport transfer",
+      "Plus-one included",
+      "$150 food & beverage credit"
     ],
     "deliverables": [
       "1 TikTok GO video with booking link",
-      "1 Instagram Reel",
-      "1 Snapchat Spotlight",
+      "1 extra TikTok video",
       "Raw clips shared with partner"
     ],
     "status": "open"
   },
   {
     "id": "cd_009",
-    "partnerId": "ptn_pacific-cliffs-cabo",
+    "partnerId": "ptn_villa-sol-vallarta",
     "title": "Spa & Wellness Day",
-    "date": "2027-01-13",
-    "time": "11:00 AM",
+    "date": "2026-12-19",
+    "time": "9:00 AM",
     "location": {
       "country": "MX",
-      "state": "Baja California Sur",
-      "city": "Los Cabos"
+      "state": "Jalisco",
+      "city": "Puerto Vallarta"
     },
     "platforms": [
-      "tiktok",
-      "instagram",
-      "snapchat"
+      "tiktok"
     ],
     "spotsTotal": 6,
-    "spotsTaken": 2,
-    "minFollowers": 5000,
-    "commissionRate": 6,
+    "spotsTaken": 3,
+    "minFollowers": 2500,
+    "commissionRate": 5,
     "perks": [
       "Late checkout",
-      "Complimentary 2-night stay"
-    ],
-    "deliverables": [
-      "1 TikTok GO video with booking link",
-      "3 Instagram Stories"
-    ],
-    "status": "open"
-  },
-  {
-    "id": "cd_010",
-    "partnerId": "ptn_villa-sol-vallarta",
-    "title": "Spa & Wellness Day",
-    "date": "2026-12-28",
-    "time": "11:00 AM",
-    "location": {
-      "country": "MX",
-      "state": "Jalisco",
-      "city": "Puerto Vallarta"
-    },
-    "platforms": [
-      "tiktok",
-      "instagram",
-      "youtube",
-      "facebook"
-    ],
-    "spotsTotal": 8,
-    "spotsTaken": 7,
-    "minFollowers": 25000,
-    "commissionRate": 6,
-    "perks": [
-      "Welcome cocktail",
-      "Complimentary 2-night stay"
-    ],
-    "deliverables": [
-      "1 TikTok GO video with booking link",
-      "Facebook Reel cross-post",
-      "1 Snapchat Spotlight",
-      "1 Instagram Reel"
-    ],
-    "status": "open"
-  },
-  {
-    "id": "cd_011",
-    "partnerId": "ptn_villa-sol-vallarta",
-    "title": "Spa & Wellness Day",
-    "date": "2026-12-13",
-    "time": "11:00 AM",
-    "location": {
-      "country": "MX",
-      "state": "Jalisco",
-      "city": "Puerto Vallarta"
-    },
-    "platforms": [
-      "tiktok",
-      "youtube",
-      "facebook"
-    ],
-    "spotsTotal": 12,
-    "spotsTaken": 10,
-    "minFollowers": 10000,
-    "commissionRate": 6,
-    "perks": [
       "Spa treatment",
       "$150 food & beverage credit"
     ],
     "deliverables": [
       "1 TikTok GO video with booking link",
-      "3 Instagram Stories"
+      "TikTok LIVE from the property"
     ],
     "status": "open"
   },
   {
-    "id": "cd_012",
+    "id": "cd_010",
     "partnerId": "ptn_casa-tapatia",
-    "title": "Design Detail Shoot",
-    "date": "2027-01-04",
+    "title": "Slow Morning Story Day",
+    "date": "2027-01-02",
+    "time": "11:00 AM",
+    "location": {
+      "country": "MX",
+      "state": "Jalisco",
+      "city": "Guadalajara"
+    },
+    "platforms": [
+      "tiktok"
+    ],
+    "spotsTotal": 10,
+    "spotsTaken": 7,
+    "minFollowers": 2500,
+    "commissionRate": 8,
+    "perks": [
+      "$150 food & beverage credit",
+      "Complimentary 2-night stay",
+      "Plus-one included"
+    ],
+    "deliverables": [
+      "1 TikTok GO video with booking link",
+      "TikTok LIVE from the property"
+    ],
+    "status": "open"
+  },
+  {
+    "id": "cd_011",
+    "partnerId": "ptn_casa-tapatia",
+    "title": "Hidden Gem Getaway",
+    "date": "2026-11-08",
     "time": "9:00 AM",
     "location": {
       "country": "MX",
@@ -359,97 +310,29 @@
       "city": "Guadalajara"
     },
     "platforms": [
-      "tiktok",
-      "snapchat",
-      "instagram",
-      "facebook"
-    ],
-    "spotsTotal": 6,
-    "spotsTaken": 0,
-    "minFollowers": 10000,
-    "commissionRate": 6,
-    "perks": [
-      "Plus-one included",
-      "Airport transfer",
-      "Complimentary 2-night stay",
-      "$150 food & beverage credit"
-    ],
-    "deliverables": [
-      "1 TikTok GO video with booking link",
-      "Facebook Reel cross-post",
-      "1 Snapchat Spotlight",
-      "1 Instagram Reel"
-    ],
-    "status": "open"
-  },
-  {
-    "id": "cd_013",
-    "partnerId": "ptn_casa-tapatia",
-    "title": "Hidden Gem Getaway",
-    "date": "2026-12-11",
-    "time": "11:00 AM",
-    "location": {
-      "country": "MX",
-      "state": "Jalisco",
-      "city": "Guadalajara"
-    },
-    "platforms": [
-      "tiktok",
-      "instagram",
-      "snapchat"
+      "tiktok"
     ],
     "spotsTotal": 12,
-    "spotsTaken": 3,
-    "minFollowers": 10000,
+    "spotsTaken": 8,
+    "minFollowers": 2500,
     "commissionRate": 8,
     "perks": [
-      "Complimentary 1-night stay",
-      "Late checkout",
-      "Spa treatment",
-      "Airport transfer"
+      "$150 food & beverage credit",
+      "Complimentary 2-night stay"
     ],
     "deliverables": [
       "1 TikTok GO video with booking link",
-      "1 Instagram Reel",
-      "1 Snapchat Spotlight",
-      "Facebook Reel cross-post"
+      "3 TikTok Stories",
+      "Raw clips shared with partner",
+      "1 extra TikTok video"
     ],
     "status": "open"
   },
   {
-    "id": "cd_014",
-    "partnerId": "ptn_casa-tapatia",
-    "title": "Slow Morning Story Day",
-    "date": "2026-11-12",
-    "time": "3:00 PM",
-    "location": {
-      "country": "MX",
-      "state": "Jalisco",
-      "city": "Guadalajara"
-    },
-    "platforms": [
-      "tiktok",
-      "instagram"
-    ],
-    "spotsTotal": 10,
-    "spotsTaken": 7,
-    "minFollowers": 25000,
-    "commissionRate": 6,
-    "perks": [
-      "Late checkout",
-      "Spa treatment"
-    ],
-    "deliverables": [
-      "1 TikTok GO video with booking link",
-      "Facebook Reel cross-post"
-    ],
-    "status": "open"
-  },
-  {
-    "id": "cd_015",
+    "id": "cd_012",
     "partnerId": "ptn_roma-norte-house",
-    "title": "Slow Morning Story Day",
-    "date": "2026-12-22",
+    "title": "Hidden Gem Getaway",
+    "date": "2027-02-04",
     "time": "9:00 AM",
     "location": {
       "country": "MX",
@@ -457,89 +340,174 @@
       "city": "Mexico City"
     },
     "platforms": [
-      "tiktok",
-      "youtube"
+      "tiktok"
     ],
-    "spotsTotal": 4,
-    "spotsTaken": 1,
+    "spotsTotal": 12,
+    "spotsTaken": 2,
     "minFollowers": 2500,
     "commissionRate": 10,
     "perks": [
-      "Complimentary 1-night stay",
+      "Welcome cocktail",
       "Airport transfer",
-      "$150 food & beverage credit"
+      "Complimentary 1-night stay",
+      "Complimentary 2-night stay"
     ],
     "deliverables": [
       "1 TikTok GO video with booking link",
-      "1 Instagram Reel",
-      "3 Instagram Stories",
-      "1 Snapchat Spotlight"
+      "Raw clips shared with partner"
     ],
     "status": "open"
   },
   {
-    "id": "cd_016",
-    "partnerId": "ptn_oaxaca-mezcal-trails",
-    "title": "Sunset Tour Shoot",
-    "date": "2026-12-01",
+    "id": "cd_013",
+    "partnerId": "ptn_roma-norte-house",
+    "title": "Slow Morning Story Day",
+    "date": "2026-12-07",
+    "time": "1:00 PM",
+    "location": {
+      "country": "MX",
+      "state": "Ciudad de México",
+      "city": "Mexico City"
+    },
+    "platforms": [
+      "tiktok"
+    ],
+    "spotsTotal": 10,
+    "spotsTaken": 4,
+    "minFollowers": 10000,
+    "commissionRate": 5,
+    "perks": [
+      "Spa treatment",
+      "Plus-one included",
+      "Complimentary 2-night stay",
+      "Complimentary 1-night stay"
+    ],
+    "deliverables": [
+      "1 TikTok GO video with booking link",
+      "3 TikTok Stories"
+    ],
+    "status": "open"
+  },
+  {
+    "id": "cd_014",
+    "partnerId": "ptn_roma-norte-house",
+    "title": "Slow Morning Story Day",
+    "date": "2027-01-25",
     "time": "9:00 AM",
     "location": {
       "country": "MX",
-      "state": "Oaxaca",
-      "city": "Oaxaca City"
+      "state": "Ciudad de México",
+      "city": "Mexico City"
     },
     "platforms": [
-      "tiktok",
-      "instagram"
+      "tiktok"
     ],
-    "spotsTotal": 8,
-    "spotsTaken": 7,
-    "minFollowers": 25000,
+    "spotsTotal": 6,
+    "spotsTaken": 5,
+    "minFollowers": 1000,
     "commissionRate": 12,
     "perks": [
-      "Hotel pickup & drop-off",
-      "Complimentary experience",
-      "Plus-one included"
+      "Welcome cocktail",
+      "Complimentary 1-night stay",
+      "Plus-one included",
+      "Complimentary 2-night stay"
     ],
     "deliverables": [
       "1 TikTok GO video with booking link",
-      "3 Instagram Stories",
-      "1 Instagram Reel",
-      "Facebook Reel cross-post"
+      "Photo carousel post on TikTok",
+      "TikTok LIVE from the property",
+      "3 TikTok Stories"
     ],
     "status": "open"
   },
   {
-    "id": "cd_017",
+    "id": "cd_015",
     "partnerId": "ptn_oaxaca-mezcal-trails",
-    "title": "Guided Tour Content Day",
-    "date": "2026-12-25",
-    "time": "5:30 PM",
+    "title": "Local Flavors Tour",
+    "date": "2027-01-16",
+    "time": "3:00 PM",
     "location": {
       "country": "MX",
       "state": "Oaxaca",
       "city": "Oaxaca City"
     },
     "platforms": [
-      "tiktok",
-      "facebook",
-      "instagram",
-      "youtube"
+      "tiktok"
     ],
-    "spotsTotal": 4,
-    "spotsTaken": 2,
+    "spotsTotal": 10,
+    "spotsTaken": 3,
     "minFollowers": 10000,
     "commissionRate": 8,
     "perks": [
       "Complimentary experience",
       "Hotel pickup & drop-off",
-      "Priority skip-the-line access"
+      "Priority skip-the-line access",
+      "Snacks & drinks included"
     ],
     "deliverables": [
       "1 TikTok GO video with booking link",
-      "1 Snapchat Spotlight",
-      "1 Instagram Reel",
-      "3 Instagram Stories"
+      "3 TikTok Stories"
+    ],
+    "status": "open"
+  },
+  {
+    "id": "cd_016",
+    "partnerId": "ptn_hacienda-blanca",
+    "title": "Staycation Weekend",
+    "date": "2026-12-24",
+    "time": "9:00 AM",
+    "location": {
+      "country": "MX",
+      "state": "Yucatán",
+      "city": "Mérida"
+    },
+    "platforms": [
+      "tiktok"
+    ],
+    "spotsTotal": 10,
+    "spotsTaken": 6,
+    "minFollowers": 25000,
+    "commissionRate": 10,
+    "perks": [
+      "Complimentary 1-night stay",
+      "Plus-one included"
+    ],
+    "deliverables": [
+      "1 TikTok GO video with booking link",
+      "Raw clips shared with partner",
+      "Photo carousel post on TikTok",
+      "3 TikTok Stories"
+    ],
+    "status": "open"
+  },
+  {
+    "id": "cd_017",
+    "partnerId": "ptn_hacienda-blanca",
+    "title": "Suite Tour Content Day",
+    "date": "2026-11-30",
+    "time": "5:30 PM",
+    "location": {
+      "country": "MX",
+      "state": "Yucatán",
+      "city": "Mérida"
+    },
+    "platforms": [
+      "tiktok"
+    ],
+    "spotsTotal": 10,
+    "spotsTaken": 0,
+    "minFollowers": 5000,
+    "commissionRate": 10,
+    "perks": [
+      "Airport transfer",
+      "Welcome cocktail",
+      "Late checkout",
+      "Spa treatment"
+    ],
+    "deliverables": [
+      "1 TikTok GO video with booking link",
+      "TikTok LIVE from the property",
+      "3 TikTok Stories"
     ],
     "status": "open"
   },
@@ -547,129 +515,68 @@
     "id": "cd_018",
     "partnerId": "ptn_hacienda-blanca",
     "title": "Suite Tour Content Day",
-    "date": "2027-01-14",
-    "time": "9:00 AM",
+    "date": "2026-12-24",
+    "time": "1:00 PM",
     "location": {
       "country": "MX",
       "state": "Yucatán",
       "city": "Mérida"
     },
     "platforms": [
-      "tiktok",
-      "instagram"
+      "tiktok"
     ],
-    "spotsTotal": 4,
-    "spotsTaken": 0,
-    "minFollowers": 2500,
-    "commissionRate": 12,
+    "spotsTotal": 10,
+    "spotsTaken": 6,
+    "minFollowers": 5000,
+    "commissionRate": 6,
     "perks": [
-      "Airport transfer",
-      "Plus-one included",
-      "$150 food & beverage credit"
+      "Complimentary 1-night stay",
+      "Late checkout",
+      "Complimentary 2-night stay"
     ],
     "deliverables": [
       "1 TikTok GO video with booking link",
-      "3 Instagram Stories"
+      "3 TikTok Stories",
+      "1 extra TikTok video",
+      "TikTok LIVE from the property"
     ],
     "status": "open"
   },
   {
     "id": "cd_019",
-    "partnerId": "ptn_hacienda-blanca",
-    "title": "Rooftop Night Shoot",
-    "date": "2026-12-29",
-    "time": "1:00 PM",
-    "location": {
-      "country": "MX",
-      "state": "Yucatán",
-      "city": "Mérida"
-    },
-    "platforms": [
-      "tiktok",
-      "youtube"
-    ],
-    "spotsTotal": 8,
-    "spotsTaken": 4,
-    "minFollowers": 5000,
-    "commissionRate": 6,
-    "perks": [
-      "Spa treatment",
-      "$150 food & beverage credit"
-    ],
-    "deliverables": [
-      "1 TikTok GO video with booking link",
-      "3 Instagram Stories",
-      "Facebook Reel cross-post",
-      "Raw clips shared with partner"
-    ],
-    "status": "open"
-  },
-  {
-    "id": "cd_020",
-    "partnerId": "ptn_hacienda-blanca",
-    "title": "Suite Tour Content Day",
-    "date": "2027-01-08",
-    "time": "11:00 AM",
-    "location": {
-      "country": "MX",
-      "state": "Yucatán",
-      "city": "Mérida"
-    },
-    "platforms": [
-      "tiktok",
-      "youtube",
-      "facebook"
-    ],
-    "spotsTotal": 6,
-    "spotsTaken": 3,
-    "minFollowers": 2500,
-    "commissionRate": 8,
-    "perks": [
-      "$150 food & beverage credit",
-      "Plus-one included"
-    ],
-    "deliverables": [
-      "1 TikTok GO video with booking link",
-      "3 Instagram Stories",
-      "Facebook Reel cross-post",
-      "1 Instagram Reel"
-    ],
-    "status": "open"
-  },
-  {
-    "id": "cd_021",
     "partnerId": "ptn_casa-colonial-sma",
-    "title": "Slow Morning Story Day",
+    "title": "Design Detail Shoot",
     "date": "2026-12-12",
-    "time": "1:00 PM",
+    "time": "9:00 AM",
     "location": {
       "country": "MX",
       "state": "Guanajuato",
       "city": "San Miguel de Allende"
     },
     "platforms": [
-      "tiktok",
-      "instagram"
+      "tiktok"
     ],
-    "spotsTotal": 6,
-    "spotsTaken": 2,
-    "minFollowers": 1000,
-    "commissionRate": 5,
+    "spotsTotal": 10,
+    "spotsTaken": 6,
+    "minFollowers": 5000,
+    "commissionRate": 12,
     "perks": [
-      "Plus-one included",
-      "Complimentary 1-night stay"
+      "Complimentary 1-night stay",
+      "Complimentary 2-night stay"
     ],
     "deliverables": [
       "1 TikTok GO video with booking link",
-      "1 Instagram Reel"
+      "Photo carousel post on TikTok",
+      "TikTok LIVE from the property",
+      "3 TikTok Stories"
     ],
     "status": "open"
   },
   {
-    "id": "cd_022",
+    "id": "cd_020",
     "partnerId": "ptn_casa-colonial-sma",
-    "title": "Hidden Gem Getaway",
-    "date": "2027-01-02",
+    "title": "Design Detail Shoot",
+    "date": "2026-11-23",
     "time": "3:00 PM",
     "location": {
       "country": "MX",
@@ -677,30 +584,28 @@
       "city": "San Miguel de Allende"
     },
     "platforms": [
-      "tiktok",
-      "instagram"
+      "tiktok"
     ],
     "spotsTotal": 4,
-    "spotsTaken": 1,
+    "spotsTaken": 0,
     "minFollowers": 10000,
-    "commissionRate": 12,
+    "commissionRate": 10,
     "perks": [
-      "Late checkout",
-      "Airport transfer"
+      "Complimentary 1-night stay",
+      "Complimentary 2-night stay",
+      "Late checkout"
     ],
     "deliverables": [
       "1 TikTok GO video with booking link",
-      "Facebook Reel cross-post",
-      "1 Instagram Reel",
-      "3 Instagram Stories"
+      "1 extra TikTok video"
     ],
     "status": "open"
   },
   {
-    "id": "cd_023",
+    "id": "cd_021",
     "partnerId": "ptn_casa-colonial-sma",
-    "title": "Slow Morning Story Day",
-    "date": "2027-01-15",
+    "title": "Hidden Gem Getaway",
+    "date": "2026-12-12",
     "time": "9:00 AM",
     "location": {
       "country": "MX",
@@ -708,123 +613,88 @@
       "city": "San Miguel de Allende"
     },
     "platforms": [
-      "tiktok",
-      "youtube"
+      "tiktok"
     ],
-    "spotsTotal": 6,
-    "spotsTaken": 2,
-    "minFollowers": 2500,
-    "commissionRate": 6,
+    "spotsTotal": 12,
+    "spotsTaken": 1,
+    "minFollowers": 1000,
+    "commissionRate": 5,
     "perks": [
+      "Spa treatment",
+      "Complimentary 2-night stay",
       "Welcome cocktail",
-      "Spa treatment"
+      "Plus-one included"
     ],
     "deliverables": [
       "1 TikTok GO video with booking link",
       "Raw clips shared with partner",
-      "1 Snapchat Spotlight",
-      "1 Instagram Reel"
+      "Photo carousel post on TikTok"
     ],
     "status": "open"
   },
   {
-    "id": "cd_024",
+    "id": "cd_022",
     "partnerId": "ptn_surf-shack-sayulita",
     "title": "Explore & Create Day",
-    "date": "2026-12-04",
-    "time": "11:00 AM",
+    "date": "2027-01-18",
+    "time": "9:00 AM",
     "location": {
       "country": "MX",
       "state": "Nayarit",
       "city": "Sayulita"
     },
     "platforms": [
-      "tiktok",
-      "facebook"
+      "tiktok"
     ],
     "spotsTotal": 4,
-    "spotsTaken": 1,
-    "minFollowers": 1000,
+    "spotsTaken": 2,
+    "minFollowers": 5000,
     "commissionRate": 6,
     "perks": [
-      "Priority skip-the-line access",
-      "Private guide"
-    ],
-    "deliverables": [
-      "1 TikTok GO video with booking link",
-      "1 Snapchat Spotlight",
-      "Raw clips shared with partner"
-    ],
-    "status": "open"
-  },
-  {
-    "id": "cd_025",
-    "partnerId": "ptn_cenote-explorers",
-    "title": "Adventure Day Takeover",
-    "date": "2027-02-17",
-    "time": "11:00 AM",
-    "location": {
-      "country": "MX",
-      "state": "Quintana Roo",
-      "city": "Tulum"
-    },
-    "platforms": [
-      "tiktok",
-      "youtube",
-      "facebook"
-    ],
-    "spotsTotal": 10,
-    "spotsTaken": 3,
-    "minFollowers": 10000,
-    "commissionRate": 5,
-    "perks": [
-      "Private guide",
-      "Complimentary experience"
-    ],
-    "deliverables": [
-      "1 TikTok GO video with booking link",
-      "3 Instagram Stories"
-    ],
-    "status": "open"
-  },
-  {
-    "id": "cd_026",
-    "partnerId": "ptn_cenote-explorers",
-    "title": "Explore & Create Day",
-    "date": "2026-11-14",
-    "time": "9:00 AM",
-    "location": {
-      "country": "MX",
-      "state": "Quintana Roo",
-      "city": "Tulum"
-    },
-    "platforms": [
-      "tiktok",
-      "snapchat",
-      "instagram",
-      "facebook"
-    ],
-    "spotsTotal": 10,
-    "spotsTaken": 5,
-    "minFollowers": 10000,
-    "commissionRate": 12,
-    "perks": [
-      "Hotel pickup & drop-off",
       "Snacks & drinks included",
-      "Priority skip-the-line access",
-      "Private guide"
+      "Hotel pickup & drop-off"
     ],
     "deliverables": [
       "1 TikTok GO video with booking link",
-      "Raw clips shared with partner"
+      "Raw clips shared with partner",
+      "Photo carousel post on TikTok"
     ],
     "status": "open"
   },
   {
-    "id": "cd_027",
+    "id": "cd_023",
     "partnerId": "ptn_cenote-explorers",
     "title": "Thrill Seeker Shoot",
-    "date": "2026-12-02",
+    "date": "2026-11-24",
+    "time": "3:00 PM",
+    "location": {
+      "country": "MX",
+      "state": "Quintana Roo",
+      "city": "Tulum"
+    },
+    "platforms": [
+      "tiktok"
+    ],
+    "spotsTotal": 12,
+    "spotsTaken": 5,
+    "minFollowers": 10000,
+    "commissionRate": 8,
+    "perks": [
+      "Private guide",
+      "Plus-one included"
+    ],
+    "deliverables": [
+      "1 TikTok GO video with booking link",
+      "Raw clips shared with partner",
+      "TikTok LIVE from the property"
+    ],
+    "status": "open"
+  },
+  {
+    "id": "cd_024",
+    "partnerId": "ptn_cenote-explorers",
+    "title": "Adventure Day Takeover",
+    "date": "2027-01-01",
     "time": "1:00 PM",
     "location": {
       "country": "MX",
@@ -832,30 +702,61 @@
       "city": "Tulum"
     },
     "platforms": [
-      "tiktok",
-      "youtube"
+      "tiktok"
     ],
-    "spotsTotal": 6,
-    "spotsTaken": 2,
-    "minFollowers": 10000,
-    "commissionRate": 12,
+    "spotsTotal": 8,
+    "spotsTaken": 1,
+    "minFollowers": 1000,
+    "commissionRate": 8,
     "perks": [
-      "Complimentary experience",
       "Hotel pickup & drop-off",
-      "Plus-one included"
+      "Plus-one included",
+      "Priority skip-the-line access"
     ],
     "deliverables": [
       "1 TikTok GO video with booking link",
-      "1 Snapchat Spotlight",
-      "1 Instagram Reel"
+      "1 extra TikTok video",
+      "Photo carousel post on TikTok",
+      "3 TikTok Stories"
     ],
     "status": "open"
   },
   {
-    "id": "cd_028",
+    "id": "cd_025",
+    "partnerId": "ptn_cabo-sail-snorkel",
+    "title": "Sunset Tour Shoot",
+    "date": "2026-12-12",
+    "time": "1:00 PM",
+    "location": {
+      "country": "MX",
+      "state": "Baja California Sur",
+      "city": "Los Cabos"
+    },
+    "platforms": [
+      "tiktok"
+    ],
+    "spotsTotal": 6,
+    "spotsTaken": 1,
+    "minFollowers": 10000,
+    "commissionRate": 10,
+    "perks": [
+      "Photos & drone footage shared",
+      "Hotel pickup & drop-off",
+      "Private guide",
+      "Plus-one included"
+    ],
+    "deliverables": [
+      "1 TikTok GO video with booking link",
+      "Photo carousel post on TikTok",
+      "Raw clips shared with partner"
+    ],
+    "status": "open"
+  },
+  {
+    "id": "cd_026",
     "partnerId": "ptn_cabo-sail-snorkel",
     "title": "Guided Tour Content Day",
-    "date": "2026-12-26",
+    "date": "2026-11-29",
     "time": "9:00 AM",
     "location": {
       "country": "MX",
@@ -863,122 +764,89 @@
       "city": "Los Cabos"
     },
     "platforms": [
-      "tiktok",
-      "youtube"
+      "tiktok"
     ],
-    "spotsTotal": 10,
-    "spotsTaken": 1,
-    "minFollowers": 2500,
+    "spotsTotal": 12,
+    "spotsTaken": 11,
+    "minFollowers": 1000,
     "commissionRate": 12,
     "perks": [
       "Plus-one included",
+      "Complimentary experience",
+      "Snacks & drinks included",
+      "Priority skip-the-line access"
+    ],
+    "deliverables": [
+      "1 TikTok GO video with booking link",
+      "Raw clips shared with partner",
+      "3 TikTok Stories",
+      "Photo carousel post on TikTok"
+    ],
+    "status": "open"
+  },
+  {
+    "id": "cd_027",
+    "partnerId": "ptn_cabo-sail-snorkel",
+    "title": "Sunset Tour Shoot",
+    "date": "2026-11-14",
+    "time": "1:00 PM",
+    "location": {
+      "country": "MX",
+      "state": "Baja California Sur",
+      "city": "Los Cabos"
+    },
+    "platforms": [
+      "tiktok"
+    ],
+    "spotsTotal": 10,
+    "spotsTaken": 9,
+    "minFollowers": 5000,
+    "commissionRate": 10,
+    "perks": [
+      "Snacks & drinks included",
+      "Photos & drone footage shared"
+    ],
+    "deliverables": [
+      "1 TikTok GO video with booking link",
+      "Raw clips shared with partner"
+    ],
+    "status": "open"
+  },
+  {
+    "id": "cd_028",
+    "partnerId": "ptn_chapultepec-art-walks",
+    "title": "VIP Access Content Day",
+    "date": "2026-12-13",
+    "time": "11:00 AM",
+    "location": {
+      "country": "MX",
+      "state": "Ciudad de México",
+      "city": "Mexico City"
+    },
+    "platforms": [
+      "tiktok"
+    ],
+    "spotsTotal": 8,
+    "spotsTaken": 1,
+    "minFollowers": 5000,
+    "commissionRate": 8,
+    "perks": [
+      "Priority skip-the-line access",
       "Snacks & drinks included"
     ],
     "deliverables": [
       "1 TikTok GO video with booking link",
-      "1 Snapchat Spotlight"
+      "Photo carousel post on TikTok",
+      "3 TikTok Stories",
+      "1 extra TikTok video"
     ],
     "status": "open"
   },
   {
     "id": "cd_029",
-    "partnerId": "ptn_chapultepec-art-walks",
-    "title": "VIP Access Content Day",
-    "date": "2026-12-25",
-    "time": "3:00 PM",
-    "location": {
-      "country": "MX",
-      "state": "Ciudad de México",
-      "city": "Mexico City"
-    },
-    "platforms": [
-      "tiktok",
-      "instagram"
-    ],
-    "spotsTotal": 12,
-    "spotsTaken": 1,
-    "minFollowers": 2500,
-    "commissionRate": 5,
-    "perks": [
-      "Priority skip-the-line access",
-      "Snacks & drinks included"
-    ],
-    "deliverables": [
-      "1 TikTok GO video with booking link",
-      "Facebook Reel cross-post"
-    ],
-    "status": "open"
-  },
-  {
-    "id": "cd_030",
-    "partnerId": "ptn_chapultepec-art-walks",
-    "title": "Golden Hour Experience",
-    "date": "2027-01-02",
-    "time": "5:30 PM",
-    "location": {
-      "country": "MX",
-      "state": "Ciudad de México",
-      "city": "Mexico City"
-    },
-    "platforms": [
-      "tiktok",
-      "youtube",
-      "facebook"
-    ],
-    "spotsTotal": 4,
-    "spotsTaken": 0,
-    "minFollowers": 2500,
-    "commissionRate": 12,
-    "perks": [
-      "Complimentary experience",
-      "Priority skip-the-line access",
-      "Plus-one included",
-      "Private guide"
-    ],
-    "deliverables": [
-      "1 TikTok GO video with booking link",
-      "1 Instagram Reel"
-    ],
-    "status": "open"
-  },
-  {
-    "id": "cd_031",
-    "partnerId": "ptn_chapultepec-art-walks",
-    "title": "Golden Hour Experience",
-    "date": "2026-11-11",
-    "time": "1:00 PM",
-    "location": {
-      "country": "MX",
-      "state": "Ciudad de México",
-      "city": "Mexico City"
-    },
-    "platforms": [
-      "tiktok",
-      "instagram",
-      "snapchat",
-      "facebook"
-    ],
-    "spotsTotal": 12,
-    "spotsTaken": 10,
-    "minFollowers": 5000,
-    "commissionRate": 8,
-    "perks": [
-      "Private guide",
-      "Plus-one included",
-      "Hotel pickup & drop-off"
-    ],
-    "deliverables": [
-      "1 TikTok GO video with booking link",
-      "1 Snapchat Spotlight",
-      "1 Instagram Reel"
-    ],
-    "status": "open"
-  },
-  {
-    "id": "cd_032",
     "partnerId": "ptn_the-sunset-arlo",
-    "title": "Staycation Weekend",
-    "date": "2027-01-08",
+    "title": "Suite Tour Content Day",
+    "date": "2027-02-08",
     "time": "1:00 PM",
     "location": {
       "country": "US",
@@ -986,20 +854,106 @@
       "city": "Los Angeles"
     },
     "platforms": [
-      "tiktok",
-      "snapchat",
-      "instagram",
-      "youtube"
+      "tiktok"
     ],
-    "spotsTotal": 6,
-    "spotsTaken": 2,
-    "minFollowers": 25000,
+    "spotsTotal": 4,
+    "spotsTaken": 3,
+    "minFollowers": 1000,
     "commissionRate": 6,
     "perks": [
+      "Plus-one included",
+      "Welcome cocktail"
+    ],
+    "deliverables": [
+      "1 TikTok GO video with booking link",
+      "Photo carousel post on TikTok"
+    ],
+    "status": "open"
+  },
+  {
+    "id": "cd_030",
+    "partnerId": "ptn_harborview-inn",
+    "title": "Rooftop Night Shoot",
+    "date": "2027-02-22",
+    "time": "1:00 PM",
+    "location": {
+      "country": "US",
+      "state": "California",
+      "city": "San Diego"
+    },
+    "platforms": [
+      "tiktok"
+    ],
+    "spotsTotal": 8,
+    "spotsTaken": 0,
+    "minFollowers": 5000,
+    "commissionRate": 8,
+    "perks": [
       "$150 food & beverage credit",
-      "Complimentary 2-night stay",
+      "Welcome cocktail",
+      "Complimentary 2-night stay"
+    ],
+    "deliverables": [
+      "1 TikTok GO video with booking link",
+      "Photo carousel post on TikTok",
+      "Raw clips shared with partner",
+      "TikTok LIVE from the property"
+    ],
+    "status": "open"
+  },
+  {
+    "id": "cd_031",
+    "partnerId": "ptn_harborview-inn",
+    "title": "Rooftop Night Shoot",
+    "date": "2026-11-11",
+    "time": "1:00 PM",
+    "location": {
+      "country": "US",
+      "state": "California",
+      "city": "San Diego"
+    },
+    "platforms": [
+      "tiktok"
+    ],
+    "spotsTotal": 8,
+    "spotsTaken": 3,
+    "minFollowers": 25000,
+    "commissionRate": 5,
+    "perks": [
       "Complimentary 1-night stay",
-      "Spa treatment"
+      "Airport transfer",
+      "Complimentary 2-night stay"
+    ],
+    "deliverables": [
+      "1 TikTok GO video with booking link",
+      "1 extra TikTok video",
+      "3 TikTok Stories"
+    ],
+    "status": "open"
+  },
+  {
+    "id": "cd_032",
+    "partnerId": "ptn_harborview-inn",
+    "title": "Room Reveal Day",
+    "date": "2027-01-08",
+    "time": "5:30 PM",
+    "location": {
+      "country": "US",
+      "state": "California",
+      "city": "San Diego"
+    },
+    "platforms": [
+      "tiktok"
+    ],
+    "spotsTotal": 10,
+    "spotsTaken": 4,
+    "minFollowers": 1000,
+    "commissionRate": 8,
+    "perks": [
+      "Late checkout",
+      "Plus-one included",
+      "$150 food & beverage credit",
+      "Airport transfer"
     ],
     "deliverables": [
       "1 TikTok GO video with booking link",
@@ -1009,72 +963,9 @@
   },
   {
     "id": "cd_033",
-    "partnerId": "ptn_harborview-inn",
-    "title": "Suite Tour Content Day",
-    "date": "2027-02-18",
-    "time": "9:00 AM",
-    "location": {
-      "country": "US",
-      "state": "California",
-      "city": "San Diego"
-    },
-    "platforms": [
-      "tiktok",
-      "snapchat"
-    ],
-    "spotsTotal": 8,
-    "spotsTaken": 1,
-    "minFollowers": 1000,
-    "commissionRate": 12,
-    "perks": [
-      "Complimentary 1-night stay",
-      "Plus-one included",
-      "Welcome cocktail"
-    ],
-    "deliverables": [
-      "1 TikTok GO video with booking link",
-      "Facebook Reel cross-post",
-      "Raw clips shared with partner",
-      "3 Instagram Stories"
-    ],
-    "status": "open"
-  },
-  {
-    "id": "cd_034",
-    "partnerId": "ptn_harborview-inn",
-    "title": "Room Reveal Day",
-    "date": "2026-12-16",
-    "time": "3:00 PM",
-    "location": {
-      "country": "US",
-      "state": "California",
-      "city": "San Diego"
-    },
-    "platforms": [
-      "tiktok",
-      "instagram"
-    ],
-    "spotsTotal": 6,
-    "spotsTaken": 1,
-    "minFollowers": 10000,
-    "commissionRate": 5,
-    "perks": [
-      "Complimentary 2-night stay",
-      "Complimentary 1-night stay",
-      "Late checkout",
-      "$150 food & beverage credit"
-    ],
-    "deliverables": [
-      "1 TikTok GO video with booking link",
-      "Facebook Reel cross-post"
-    ],
-    "status": "open"
-  },
-  {
-    "id": "cd_035",
     "partnerId": "ptn_desert-bloom-palms",
-    "title": "Slow Morning Story Day",
-    "date": "2026-12-18",
+    "title": "Hidden Gem Getaway",
+    "date": "2027-01-30",
     "time": "3:00 PM",
     "location": {
       "country": "US",
@@ -1082,125 +973,89 @@
       "city": "Palm Springs"
     },
     "platforms": [
-      "tiktok",
-      "facebook"
-    ],
-    "spotsTotal": 8,
-    "spotsTaken": 4,
-    "minFollowers": 2500,
-    "commissionRate": 5,
-    "perks": [
-      "$150 food & beverage credit",
-      "Plus-one included"
-    ],
-    "deliverables": [
-      "1 TikTok GO video with booking link",
-      "1 Snapchat Spotlight",
-      "Raw clips shared with partner"
-    ],
-    "status": "open"
-  },
-  {
-    "id": "cd_036",
-    "partnerId": "ptn_biscayne-bay-suites",
-    "title": "Room Reveal Day",
-    "date": "2026-12-30",
-    "time": "9:00 AM",
-    "location": {
-      "country": "US",
-      "state": "Florida",
-      "city": "Miami"
-    },
-    "platforms": [
-      "tiktok",
-      "instagram"
+      "tiktok"
     ],
     "spotsTotal": 12,
-    "spotsTaken": 3,
-    "minFollowers": 10000,
-    "commissionRate": 12,
+    "spotsTaken": 2,
+    "minFollowers": 5000,
+    "commissionRate": 6,
     "perks": [
-      "Welcome cocktail",
       "Complimentary 1-night stay",
+      "Plus-one included",
       "Complimentary 2-night stay",
       "$150 food & beverage credit"
     ],
     "deliverables": [
       "1 TikTok GO video with booking link",
-      "1 Instagram Reel",
-      "3 Instagram Stories"
+      "Raw clips shared with partner",
+      "Photo carousel post on TikTok",
+      "TikTok LIVE from the property"
     ],
     "status": "open"
   },
   {
-    "id": "cd_037",
-    "partnerId": "ptn_biscayne-bay-suites",
-    "title": "Staycation Weekend",
-    "date": "2026-12-15",
-    "time": "5:30 PM",
-    "location": {
-      "country": "US",
-      "state": "Florida",
-      "city": "Miami"
-    },
-    "platforms": [
-      "tiktok",
-      "facebook",
-      "instagram"
-    ],
-    "spotsTotal": 12,
-    "spotsTaken": 8,
-    "minFollowers": 5000,
-    "commissionRate": 8,
-    "perks": [
-      "Complimentary 1-night stay",
-      "$150 food & beverage credit"
-    ],
-    "deliverables": [
-      "1 TikTok GO video with booking link",
-      "3 Instagram Stories",
-      "1 Instagram Reel"
-    ],
-    "status": "open"
-  },
-  {
-    "id": "cd_038",
-    "partnerId": "ptn_biscayne-bay-suites",
-    "title": "Rooftop Night Shoot",
-    "date": "2026-12-14",
+    "id": "cd_034",
+    "partnerId": "ptn_desert-bloom-palms",
+    "title": "Design Detail Shoot",
+    "date": "2026-12-19",
     "time": "11:00 AM",
     "location": {
       "country": "US",
-      "state": "Florida",
-      "city": "Miami"
+      "state": "California",
+      "city": "Palm Springs"
     },
     "platforms": [
-      "tiktok",
-      "facebook"
+      "tiktok"
     ],
     "spotsTotal": 4,
-    "spotsTaken": 0,
-    "minFollowers": 25000,
-    "commissionRate": 10,
+    "spotsTaken": 3,
+    "minFollowers": 1000,
+    "commissionRate": 6,
     "perks": [
+      "Complimentary 2-night stay",
+      "Late checkout",
       "Airport transfer",
-      "Plus-one included",
-      "Welcome cocktail",
-      "Spa treatment"
+      "Welcome cocktail"
     ],
     "deliverables": [
       "1 TikTok GO video with booking link",
-      "3 Instagram Stories",
-      "Facebook Reel cross-post",
-      "Raw clips shared with partner"
+      "3 TikTok Stories"
     ],
     "status": "open"
   },
   {
-    "id": "cd_039",
+    "id": "cd_035",
+    "partnerId": "ptn_biscayne-bay-suites",
+    "title": "Staycation Weekend",
+    "date": "2027-02-24",
+    "time": "3:00 PM",
+    "location": {
+      "country": "US",
+      "state": "Florida",
+      "city": "Miami"
+    },
+    "platforms": [
+      "tiktok"
+    ],
+    "spotsTotal": 8,
+    "spotsTaken": 2,
+    "minFollowers": 1000,
+    "commissionRate": 6,
+    "perks": [
+      "Late checkout",
+      "Airport transfer"
+    ],
+    "deliverables": [
+      "1 TikTok GO video with booking link",
+      "Photo carousel post on TikTok"
+    ],
+    "status": "open"
+  },
+  {
+    "id": "cd_036",
     "partnerId": "ptn_magic-lakes-resort",
     "title": "Family Fun Weekend",
-    "date": "2026-11-25",
+    "date": "2026-11-22",
     "time": "1:00 PM",
     "location": {
       "country": "US",
@@ -1208,93 +1063,87 @@
       "city": "Orlando"
     },
     "platforms": [
-      "tiktok",
-      "youtube"
+      "tiktok"
     ],
-    "spotsTotal": 10,
-    "spotsTaken": 2,
+    "spotsTotal": 12,
+    "spotsTaken": 11,
     "minFollowers": 2500,
-    "commissionRate": 12,
+    "commissionRate": 6,
     "perks": [
-      "Plus-one included",
-      "Welcome cocktail"
+      "Welcome cocktail",
+      "Spa treatment"
     ],
     "deliverables": [
       "1 TikTok GO video with booking link",
-      "Facebook Reel cross-post",
-      "3 Instagram Stories",
-      "Raw clips shared with partner"
+      "Photo carousel post on TikTok"
     ],
     "status": "open"
   },
   {
-    "id": "cd_040",
+    "id": "cd_037",
     "partnerId": "ptn_magic-lakes-resort",
-    "title": "Family Fun Weekend",
-    "date": "2027-02-06",
-    "time": "3:00 PM",
+    "title": "Resort Day Pass Takeover",
+    "date": "2027-02-05",
+    "time": "1:00 PM",
     "location": {
       "country": "US",
       "state": "Florida",
       "city": "Orlando"
     },
     "platforms": [
-      "tiktok",
-      "facebook"
+      "tiktok"
     ],
-    "spotsTotal": 6,
+    "spotsTotal": 8,
     "spotsTaken": 0,
-    "minFollowers": 25000,
-    "commissionRate": 10,
+    "minFollowers": 1000,
+    "commissionRate": 12,
     "perks": [
-      "$150 food & beverage credit",
-      "Welcome cocktail",
-      "Airport transfer",
-      "Spa treatment"
+      "Complimentary 2-night stay",
+      "Complimentary 1-night stay",
+      "Late checkout",
+      "Airport transfer"
     ],
     "deliverables": [
       "1 TikTok GO video with booking link",
-      "3 Instagram Stories",
-      "1 Instagram Reel",
-      "1 Snapchat Spotlight"
+      "3 TikTok Stories",
+      "TikTok LIVE from the property",
+      "1 extra TikTok video"
     ],
     "status": "open"
   },
   {
-    "id": "cd_041",
+    "id": "cd_038",
     "partnerId": "ptn_conch-key-cottages",
-    "title": "Design Detail Shoot",
-    "date": "2027-01-11",
-    "time": "5:30 PM",
+    "title": "Hidden Gem Getaway",
+    "date": "2027-01-14",
+    "time": "3:00 PM",
     "location": {
       "country": "US",
       "state": "Florida",
       "city": "Key West"
     },
     "platforms": [
-      "tiktok",
-      "snapchat",
-      "facebook"
+      "tiktok"
     ],
-    "spotsTotal": 4,
-    "spotsTaken": 3,
+    "spotsTotal": 10,
+    "spotsTaken": 8,
     "minFollowers": 2500,
-    "commissionRate": 6,
+    "commissionRate": 8,
     "perks": [
       "Complimentary 1-night stay",
-      "Late checkout"
+      "Complimentary 2-night stay"
     ],
     "deliverables": [
       "1 TikTok GO video with booking link",
-      "1 Instagram Reel"
+      "1 extra TikTok video"
     ],
     "status": "open"
   },
   {
-    "id": "cd_042",
+    "id": "cd_039",
     "partnerId": "ptn_the-hudson-loft",
-    "title": "Rooftop Night Shoot",
-    "date": "2027-01-29",
+    "title": "Staycation Weekend",
+    "date": "2027-02-18",
     "time": "3:00 PM",
     "location": {
       "country": "US",
@@ -1302,314 +1151,423 @@
       "city": "New York City"
     },
     "platforms": [
-      "tiktok",
-      "facebook"
+      "tiktok"
     ],
-    "spotsTotal": 8,
+    "spotsTotal": 10,
     "spotsTaken": 1,
-    "minFollowers": 1000,
-    "commissionRate": 10,
+    "minFollowers": 5000,
+    "commissionRate": 6,
     "perks": [
-      "Complimentary 2-night stay",
-      "Complimentary 1-night stay"
+      "Plus-one included",
+      "Spa treatment",
+      "Airport transfer"
     ],
     "deliverables": [
       "1 TikTok GO video with booking link",
-      "3 Instagram Stories"
+      "3 TikTok Stories"
     ],
     "status": "open"
   },
   {
-    "id": "cd_043",
+    "id": "cd_040",
     "partnerId": "ptn_the-hudson-loft",
-    "title": "Room Reveal Day",
-    "date": "2026-11-20",
-    "time": "11:00 AM",
+    "title": "Rooftop Night Shoot",
+    "date": "2027-02-18",
+    "time": "9:00 AM",
     "location": {
       "country": "US",
       "state": "New York",
       "city": "New York City"
     },
     "platforms": [
-      "tiktok",
-      "instagram",
-      "snapchat",
-      "youtube"
+      "tiktok"
+    ],
+    "spotsTotal": 6,
+    "spotsTaken": 5,
+    "minFollowers": 1000,
+    "commissionRate": 8,
+    "perks": [
+      "Airport transfer",
+      "Late checkout",
+      "Complimentary 1-night stay",
+      "Complimentary 2-night stay"
+    ],
+    "deliverables": [
+      "1 TikTok GO video with booking link",
+      "3 TikTok Stories",
+      "Photo carousel post on TikTok"
+    ],
+    "status": "open"
+  },
+  {
+    "id": "cd_041",
+    "partnerId": "ptn_the-hudson-loft",
+    "title": "Rooftop Night Shoot",
+    "date": "2027-02-22",
+    "time": "3:00 PM",
+    "location": {
+      "country": "US",
+      "state": "New York",
+      "city": "New York City"
+    },
+    "platforms": [
+      "tiktok"
     ],
     "spotsTotal": 4,
     "spotsTaken": 0,
-    "minFollowers": 2500,
-    "commissionRate": 12,
+    "minFollowers": 25000,
+    "commissionRate": 5,
     "perks": [
-      "Complimentary 2-night stay",
-      "Spa treatment"
-    ],
-    "deliverables": [
-      "1 TikTok GO video with booking link",
-      "1 Instagram Reel",
-      "Raw clips shared with partner"
-    ],
-    "status": "open"
-  },
-  {
-    "id": "cd_044",
-    "partnerId": "ptn_the-hudson-loft",
-    "title": "Rooftop Night Shoot",
-    "date": "2026-11-11",
-    "time": "1:00 PM",
-    "location": {
-      "country": "US",
-      "state": "New York",
-      "city": "New York City"
-    },
-    "platforms": [
-      "tiktok",
-      "instagram",
-      "youtube",
-      "snapchat"
-    ],
-    "spotsTotal": 4,
-    "spotsTaken": 3,
-    "minFollowers": 1000,
-    "commissionRate": 10,
-    "perks": [
-      "Late checkout",
-      "Welcome cocktail",
       "Complimentary 1-night stay",
-      "Spa treatment"
+      "Complimentary 2-night stay",
+      "Late checkout"
     ],
     "deliverables": [
       "1 TikTok GO video with booking link",
-      "1 Instagram Reel"
+      "Photo carousel post on TikTok"
     ],
     "status": "open"
   },
   {
-    "id": "cd_045",
+    "id": "cd_042",
     "partnerId": "ptn_neon-strip-tower",
     "title": "Family Fun Weekend",
-    "date": "2026-12-08",
-    "time": "5:30 PM",
+    "date": "2026-12-18",
+    "time": "3:00 PM",
     "location": {
       "country": "US",
       "state": "Nevada",
       "city": "Las Vegas"
     },
     "platforms": [
-      "tiktok",
-      "youtube",
-      "facebook",
-      "snapchat"
+      "tiktok"
     ],
-    "spotsTotal": 12,
-    "spotsTaken": 2,
+    "spotsTotal": 8,
+    "spotsTaken": 1,
     "minFollowers": 2500,
     "commissionRate": 5,
     "perks": [
-      "Complimentary 1-night stay",
-      "Complimentary 2-night stay",
-      "Airport transfer",
-      "Welcome cocktail"
+      "Welcome cocktail",
+      "Late checkout",
+      "Spa treatment",
+      "Airport transfer"
     ],
     "deliverables": [
       "1 TikTok GO video with booking link",
-      "Facebook Reel cross-post"
+      "TikTok LIVE from the property",
+      "Photo carousel post on TikTok"
     ],
     "status": "open"
   },
   {
-    "id": "cd_046",
+    "id": "cd_043",
     "partnerId": "ptn_live-oak-lodge",
-    "title": "Design Detail Shoot",
-    "date": "2027-02-16",
-    "time": "1:00 PM",
+    "title": "Slow Morning Story Day",
+    "date": "2026-11-25",
+    "time": "11:00 AM",
     "location": {
       "country": "US",
       "state": "Texas",
       "city": "Austin"
     },
     "platforms": [
-      "tiktok",
-      "youtube"
+      "tiktok"
     ],
-    "spotsTotal": 12,
-    "spotsTaken": 7,
-    "minFollowers": 5000,
-    "commissionRate": 10,
-    "perks": [
-      "$150 food & beverage credit",
-      "Complimentary 2-night stay"
-    ],
-    "deliverables": [
-      "1 TikTok GO video with booking link",
-      "Facebook Reel cross-post",
-      "3 Instagram Stories",
-      "1 Instagram Reel"
-    ],
-    "status": "open"
-  },
-  {
-    "id": "cd_047",
-    "partnerId": "ptn_riverwalk-grand",
-    "title": "Staycation Weekend",
-    "date": "2026-12-28",
-    "time": "5:30 PM",
-    "location": {
-      "country": "US",
-      "state": "Texas",
-      "city": "San Antonio"
-    },
-    "platforms": [
-      "tiktok",
-      "youtube",
-      "snapchat"
-    ],
-    "spotsTotal": 12,
-    "spotsTaken": 7,
+    "spotsTotal": 8,
+    "spotsTaken": 0,
     "minFollowers": 1000,
-    "commissionRate": 12,
+    "commissionRate": 8,
     "perks": [
       "Spa treatment",
       "Complimentary 2-night stay",
       "Complimentary 1-night stay",
-      "Plus-one included"
+      "$150 food & beverage credit"
     ],
     "deliverables": [
       "1 TikTok GO video with booking link",
-      "3 Instagram Stories"
+      "Photo carousel post on TikTok"
     ],
     "status": "open"
   },
   {
-    "id": "cd_048",
+    "id": "cd_044",
     "partnerId": "ptn_riverwalk-grand",
-    "title": "Suite Tour Content Day",
-    "date": "2026-11-15",
-    "time": "9:00 AM",
+    "title": "Room Reveal Day",
+    "date": "2027-01-24",
+    "time": "3:00 PM",
     "location": {
       "country": "US",
       "state": "Texas",
       "city": "San Antonio"
     },
     "platforms": [
-      "tiktok",
-      "instagram",
-      "snapchat"
+      "tiktok"
     ],
-    "spotsTotal": 4,
-    "spotsTaken": 0,
-    "minFollowers": 25000,
-    "commissionRate": 8,
+    "spotsTotal": 6,
+    "spotsTaken": 2,
+    "minFollowers": 5000,
+    "commissionRate": 10,
     "perks": [
-      "Plus-one included",
-      "Complimentary 1-night stay"
+      "Complimentary 1-night stay",
+      "Complimentary 2-night stay",
+      "Late checkout"
     ],
     "deliverables": [
       "1 TikTok GO video with booking link",
-      "Facebook Reel cross-post",
-      "1 Instagram Reel",
+      "Photo carousel post on TikTok",
+      "1 extra TikTok video",
+      "TikTok LIVE from the property"
+    ],
+    "status": "open"
+  },
+  {
+    "id": "cd_045",
+    "partnerId": "ptn_riverwalk-grand",
+    "title": "Room Reveal Day",
+    "date": "2027-02-15",
+    "time": "11:00 AM",
+    "location": {
+      "country": "US",
+      "state": "Texas",
+      "city": "San Antonio"
+    },
+    "platforms": [
+      "tiktok"
+    ],
+    "spotsTotal": 8,
+    "spotsTaken": 5,
+    "minFollowers": 25000,
+    "commissionRate": 12,
+    "perks": [
+      "Late checkout",
+      "Plus-one included",
+      "Airport transfer",
+      "Complimentary 2-night stay"
+    ],
+    "deliverables": [
+      "1 TikTok GO video with booking link",
+      "Raw clips shared with partner",
+      "TikTok LIVE from the property",
+      "3 TikTok Stories"
+    ],
+    "status": "open"
+  },
+  {
+    "id": "cd_046",
+    "partnerId": "ptn_riverwalk-grand",
+    "title": "Rooftop Night Shoot",
+    "date": "2026-12-13",
+    "time": "3:00 PM",
+    "location": {
+      "country": "US",
+      "state": "Texas",
+      "city": "San Antonio"
+    },
+    "platforms": [
+      "tiktok"
+    ],
+    "spotsTotal": 4,
+    "spotsTaken": 2,
+    "minFollowers": 10000,
+    "commissionRate": 8,
+    "perks": [
+      "Complimentary 1-night stay",
+      "Spa treatment",
+      "Late checkout",
+      "Welcome cocktail"
+    ],
+    "deliverables": [
+      "1 TikTok GO video with booking link",
       "Raw clips shared with partner"
     ],
     "status": "open"
   },
   {
-    "id": "cd_049",
-    "partnerId": "ptn_riverwalk-grand",
-    "title": "Rooftop Night Shoot",
-    "date": "2026-12-02",
-    "time": "1:00 PM",
-    "location": {
-      "country": "US",
-      "state": "Texas",
-      "city": "San Antonio"
-    },
-    "platforms": [
-      "tiktok",
-      "instagram",
-      "snapchat"
-    ],
-    "spotsTotal": 10,
-    "spotsTaken": 7,
-    "minFollowers": 2500,
-    "commissionRate": 10,
-    "perks": [
-      "Spa treatment",
-      "Late checkout"
-    ],
-    "deliverables": [
-      "1 TikTok GO video with booking link",
-      "3 Instagram Stories",
-      "Facebook Reel cross-post"
-    ],
-    "status": "open"
-  },
-  {
-    "id": "cd_050",
+    "id": "cd_047",
     "partnerId": "ptn_honky-tonk-house",
-    "title": "Suite Tour Content Day",
-    "date": "2027-01-13",
-    "time": "3:00 PM",
+    "title": "Rooftop Night Shoot",
+    "date": "2027-02-24",
+    "time": "11:00 AM",
     "location": {
       "country": "US",
       "state": "Tennessee",
       "city": "Nashville"
     },
     "platforms": [
-      "tiktok",
-      "instagram",
-      "snapchat"
+      "tiktok"
     ],
-    "spotsTotal": 10,
-    "spotsTaken": 9,
-    "minFollowers": 1000,
-    "commissionRate": 12,
+    "spotsTotal": 6,
+    "spotsTaken": 2,
+    "minFollowers": 5000,
+    "commissionRate": 5,
     "perks": [
+      "Airport transfer",
       "Complimentary 1-night stay",
-      "Airport transfer"
+      "Complimentary 2-night stay",
+      "Plus-one included"
     ],
     "deliverables": [
       "1 TikTok GO video with booking link",
-      "Facebook Reel cross-post",
-      "1 Snapchat Spotlight"
+      "TikTok LIVE from the property",
+      "1 extra TikTok video",
+      "3 TikTok Stories"
     ],
     "status": "open"
   },
   {
-    "id": "cd_051",
+    "id": "cd_048",
+    "partnerId": "ptn_honky-tonk-house",
+    "title": "Room Reveal Day",
+    "date": "2027-02-18",
+    "time": "9:00 AM",
+    "location": {
+      "country": "US",
+      "state": "Tennessee",
+      "city": "Nashville"
+    },
+    "platforms": [
+      "tiktok"
+    ],
+    "spotsTotal": 10,
+    "spotsTaken": 1,
+    "minFollowers": 10000,
+    "commissionRate": 8,
+    "perks": [
+      "$150 food & beverage credit",
+      "Welcome cocktail",
+      "Plus-one included",
+      "Airport transfer"
+    ],
+    "deliverables": [
+      "1 TikTok GO video with booking link",
+      "TikTok LIVE from the property",
+      "3 TikTok Stories",
+      "Raw clips shared with partner"
+    ],
+    "status": "open"
+  },
+  {
+    "id": "cd_049",
     "partnerId": "ptn_bayou-jazz-swamp-tours",
     "title": "Guided Tour Content Day",
-    "date": "2026-12-29",
-    "time": "11:00 AM",
+    "date": "2027-01-19",
+    "time": "5:30 PM",
     "location": {
       "country": "US",
       "state": "Louisiana",
       "city": "New Orleans"
     },
     "platforms": [
-      "tiktok",
-      "instagram",
-      "snapchat"
+      "tiktok"
     ],
-    "spotsTotal": 4,
+    "spotsTotal": 10,
     "spotsTaken": 2,
-    "minFollowers": 25000,
+    "minFollowers": 2500,
     "commissionRate": 5,
     "perks": [
+      "Complimentary experience",
       "Priority skip-the-line access",
-      "Hotel pickup & drop-off",
-      "Private guide"
+      "Plus-one included",
+      "Snacks & drinks included"
     ],
     "deliverables": [
       "1 TikTok GO video with booking link",
-      "Raw clips shared with partner"
+      "TikTok LIVE from the property"
+    ],
+    "status": "open"
+  },
+  {
+    "id": "cd_050",
+    "partnerId": "ptn_bayou-jazz-swamp-tours",
+    "title": "Sunset Tour Shoot",
+    "date": "2027-02-06",
+    "time": "3:00 PM",
+    "location": {
+      "country": "US",
+      "state": "Louisiana",
+      "city": "New Orleans"
+    },
+    "platforms": [
+      "tiktok"
+    ],
+    "spotsTotal": 12,
+    "spotsTaken": 6,
+    "minFollowers": 2500,
+    "commissionRate": 10,
+    "perks": [
+      "Private guide",
+      "Snacks & drinks included"
+    ],
+    "deliverables": [
+      "1 TikTok GO video with booking link",
+      "1 extra TikTok video"
+    ],
+    "status": "open"
+  },
+  {
+    "id": "cd_051",
+    "partnerId": "ptn_aloha-tides",
+    "title": "Poolside Golden Hour",
+    "date": "2026-11-20",
+    "time": "3:00 PM",
+    "location": {
+      "country": "US",
+      "state": "Hawaii",
+      "city": "Honolulu"
+    },
+    "platforms": [
+      "tiktok"
+    ],
+    "spotsTotal": 8,
+    "spotsTaken": 0,
+    "minFollowers": 5000,
+    "commissionRate": 10,
+    "perks": [
+      "$150 food & beverage credit",
+      "Complimentary 1-night stay",
+      "Late checkout"
+    ],
+    "deliverables": [
+      "1 TikTok GO video with booking link",
+      "1 extra TikTok video"
     ],
     "status": "open"
   },
   {
     "id": "cd_052",
     "partnerId": "ptn_aloha-tides",
-    "title": "Poolside Golden Hour",
-    "date": "2026-11-25",
+    "title": "Family Fun Weekend",
+    "date": "2026-11-13",
+    "time": "3:00 PM",
+    "location": {
+      "country": "US",
+      "state": "Hawaii",
+      "city": "Honolulu"
+    },
+    "platforms": [
+      "tiktok"
+    ],
+    "spotsTotal": 12,
+    "spotsTaken": 1,
+    "minFollowers": 25000,
+    "commissionRate": 5,
+    "perks": [
+      "Plus-one included",
+      "Complimentary 2-night stay",
+      "Late checkout"
+    ],
+    "deliverables": [
+      "1 TikTok GO video with booking link",
+      "1 extra TikTok video",
+      "3 TikTok Stories"
+    ],
+    "status": "open"
+  },
+  {
+    "id": "cd_053",
+    "partnerId": "ptn_aloha-tides",
+    "title": "Resort Day Pass Takeover",
+    "date": "2026-12-02",
     "time": "1:00 PM",
     "location": {
       "country": "US",
@@ -1617,31 +1575,30 @@
       "city": "Honolulu"
     },
     "platforms": [
-      "tiktok",
-      "instagram",
-      "youtube"
+      "tiktok"
     ],
-    "spotsTotal": 10,
+    "spotsTotal": 12,
     "spotsTaken": 3,
-    "minFollowers": 1000,
-    "commissionRate": 5,
+    "minFollowers": 10000,
+    "commissionRate": 10,
     "perks": [
+      "Late checkout",
       "Airport transfer",
-      "Welcome cocktail",
-      "Complimentary 1-night stay",
-      "Complimentary 2-night stay"
+      "Plus-one included",
+      "Welcome cocktail"
     ],
     "deliverables": [
       "1 TikTok GO video with booking link",
-      "3 Instagram Stories"
+      "Photo carousel post on TikTok",
+      "3 TikTok Stories"
     ],
     "status": "open"
   },
   {
-    "id": "cd_053",
+    "id": "cd_054",
     "partnerId": "ptn_saguaro-spa-retreat",
     "title": "Family Fun Weekend",
-    "date": "2027-01-28",
+    "date": "2027-02-17",
     "time": "5:30 PM",
     "location": {
       "country": "US",
@@ -1649,58 +1606,20 @@
       "city": "Scottsdale"
     },
     "platforms": [
-      "tiktok",
-      "instagram",
-      "snapchat",
-      "facebook"
+      "tiktok"
     ],
-    "spotsTotal": 8,
-    "spotsTaken": 6,
-    "minFollowers": 5000,
-    "commissionRate": 6,
-    "perks": [
-      "Plus-one included",
-      "Complimentary 1-night stay",
-      "$150 food & beverage credit"
-    ],
-    "deliverables": [
-      "1 TikTok GO video with booking link",
-      "1 Snapchat Spotlight",
-      "1 Instagram Reel",
-      "3 Instagram Stories"
-    ],
-    "status": "open"
-  },
-  {
-    "id": "cd_054",
-    "partnerId": "ptn_windy-city-social",
-    "title": "Room Reveal Day",
-    "date": "2027-02-06",
-    "time": "3:00 PM",
-    "location": {
-      "country": "US",
-      "state": "Illinois",
-      "city": "Chicago"
-    },
-    "platforms": [
-      "tiktok",
-      "snapchat",
-      "instagram"
-    ],
-    "spotsTotal": 8,
+    "spotsTotal": 10,
     "spotsTaken": 1,
-    "minFollowers": 2500,
+    "minFollowers": 1000,
     "commissionRate": 8,
     "perks": [
-      "Complimentary 1-night stay",
-      "Complimentary 2-night stay",
-      "Welcome cocktail"
+      "$150 food & beverage credit",
+      "Plus-one included"
     ],
     "deliverables": [
       "1 TikTok GO video with booking link",
-      "1 Snapchat Spotlight",
-      "1 Instagram Reel",
-      "Facebook Reel cross-post"
+      "Raw clips shared with partner",
+      "Photo carousel post on TikTok"
     ],
     "status": "open"
   },
@@ -1708,168 +1627,187 @@
     "id": "cd_055",
     "partnerId": "ptn_windy-city-social",
     "title": "Suite Tour Content Day",
-    "date": "2027-02-13",
-    "time": "1:00 PM",
+    "date": "2027-01-17",
+    "time": "11:00 AM",
     "location": {
       "country": "US",
       "state": "Illinois",
       "city": "Chicago"
     },
     "platforms": [
-      "tiktok",
-      "facebook"
+      "tiktok"
     ],
     "spotsTotal": 8,
     "spotsTaken": 1,
-    "minFollowers": 5000,
-    "commissionRate": 12,
+    "minFollowers": 10000,
+    "commissionRate": 5,
     "perks": [
       "Spa treatment",
-      "Plus-one included"
+      "Plus-one included",
+      "Late checkout",
+      "Airport transfer"
     ],
     "deliverables": [
       "1 TikTok GO video with booking link",
-      "1 Instagram Reel"
+      "1 extra TikTok video"
     ],
     "status": "open"
   },
   {
     "id": "cd_056",
+    "partnerId": "ptn_windy-city-social",
+    "title": "Room Reveal Day",
+    "date": "2027-02-11",
+    "time": "5:30 PM",
+    "location": {
+      "country": "US",
+      "state": "Illinois",
+      "city": "Chicago"
+    },
+    "platforms": [
+      "tiktok"
+    ],
+    "spotsTotal": 4,
+    "spotsTaken": 1,
+    "minFollowers": 1000,
+    "commissionRate": 10,
+    "perks": [
+      "Complimentary 1-night stay",
+      "Complimentary 2-night stay",
+      "Plus-one included"
+    ],
+    "deliverables": [
+      "1 TikTok GO video with booking link",
+      "1 extra TikTok video",
+      "3 TikTok Stories",
+      "Raw clips shared with partner"
+    ],
+    "status": "open"
+  },
+  {
+    "id": "cd_057",
+    "partnerId": "ptn_windy-city-social",
+    "title": "Staycation Weekend",
+    "date": "2026-11-24",
+    "time": "11:00 AM",
+    "location": {
+      "country": "US",
+      "state": "Illinois",
+      "city": "Chicago"
+    },
+    "platforms": [
+      "tiktok"
+    ],
+    "spotsTotal": 12,
+    "spotsTaken": 11,
+    "minFollowers": 10000,
+    "commissionRate": 8,
+    "perks": [
+      "Spa treatment",
+      "Complimentary 1-night stay",
+      "Complimentary 2-night stay"
+    ],
+    "deliverables": [
+      "1 TikTok GO video with booking link",
+      "Photo carousel post on TikTok"
+    ],
+    "status": "open"
+  },
+  {
+    "id": "cd_058",
     "partnerId": "ptn_peachtree-food-crawl",
     "title": "Guided Tour Content Day",
-    "date": "2026-11-29",
-    "time": "11:00 AM",
+    "date": "2027-02-16",
+    "time": "3:00 PM",
     "location": {
       "country": "US",
       "state": "Georgia",
       "city": "Atlanta"
     },
     "platforms": [
-      "tiktok",
-      "instagram",
-      "snapchat",
-      "facebook"
+      "tiktok"
     ],
     "spotsTotal": 8,
-    "spotsTaken": 0,
-    "minFollowers": 5000,
-    "commissionRate": 10,
+    "spotsTaken": 6,
+    "minFollowers": 10000,
+    "commissionRate": 8,
     "perks": [
-      "Plus-one included",
-      "Complimentary experience",
-      "Photos & drone footage shared"
-    ],
-    "deliverables": [
-      "1 TikTok GO video with booking link",
-      "3 Instagram Stories",
-      "1 Instagram Reel"
-    ],
-    "status": "open"
-  },
-  {
-    "id": "cd_057",
-    "partnerId": "ptn_skyline-helicopter-tours",
-    "title": "VIP Access Content Day",
-    "date": "2026-11-25",
-    "time": "11:00 AM",
-    "location": {
-      "country": "US",
-      "state": "Nevada",
-      "city": "Las Vegas"
-    },
-    "platforms": [
-      "tiktok",
-      "facebook",
-      "instagram"
-    ],
-    "spotsTotal": 10,
-    "spotsTaken": 4,
-    "minFollowers": 25000,
-    "commissionRate": 12,
-    "perks": [
-      "Plus-one included",
-      "Priority skip-the-line access",
-      "Complimentary experience",
-      "Photos & drone footage shared"
-    ],
-    "deliverables": [
-      "1 TikTok GO video with booking link",
-      "Raw clips shared with partner",
-      "Facebook Reel cross-post",
-      "1 Snapchat Spotlight"
-    ],
-    "status": "open"
-  },
-  {
-    "id": "cd_058",
-    "partnerId": "ptn_skyline-helicopter-tours",
-    "title": "VIP Access Content Day",
-    "date": "2026-12-29",
-    "time": "5:30 PM",
-    "location": {
-      "country": "US",
-      "state": "Nevada",
-      "city": "Las Vegas"
-    },
-    "platforms": [
-      "tiktok",
-      "youtube",
-      "instagram",
-      "snapchat"
-    ],
-    "spotsTotal": 6,
-    "spotsTaken": 2,
-    "minFollowers": 25000,
-    "commissionRate": 5,
-    "perks": [
-      "Complimentary experience",
-      "Snacks & drinks included",
-      "Plus-one included",
+      "Hotel pickup & drop-off",
       "Private guide"
     ],
     "deliverables": [
       "1 TikTok GO video with booking link",
-      "3 Instagram Stories",
-      "1 Instagram Reel"
+      "TikTok LIVE from the property"
     ],
     "status": "open"
   },
   {
     "id": "cd_059",
     "partnerId": "ptn_skyline-helicopter-tours",
-    "title": "VIP Access Content Day",
-    "date": "2027-01-20",
-    "time": "5:30 PM",
+    "title": "Golden Hour Experience",
+    "date": "2027-01-26",
+    "time": "3:00 PM",
     "location": {
       "country": "US",
       "state": "Nevada",
       "city": "Las Vegas"
     },
     "platforms": [
-      "tiktok",
-      "youtube",
-      "instagram",
-      "snapchat"
+      "tiktok"
     ],
-    "spotsTotal": 4,
-    "spotsTaken": 1,
-    "minFollowers": 2500,
-    "commissionRate": 12,
+    "spotsTotal": 10,
+    "spotsTaken": 2,
+    "minFollowers": 10000,
+    "commissionRate": 5,
     "perks": [
-      "Photos & drone footage shared",
-      "Complimentary experience"
+      "Complimentary experience",
+      "Photos & drone footage shared"
     ],
     "deliverables": [
       "1 TikTok GO video with booking link",
-      "3 Instagram Stories"
+      "Photo carousel post on TikTok",
+      "3 TikTok Stories",
+      "1 extra TikTok video"
     ],
     "status": "open"
   },
   {
     "id": "cd_060",
+    "partnerId": "ptn_skyline-helicopter-tours",
+    "title": "Behind-the-Scenes Shoot",
+    "date": "2027-02-09",
+    "time": "3:00 PM",
+    "location": {
+      "country": "US",
+      "state": "Nevada",
+      "city": "Las Vegas"
+    },
+    "platforms": [
+      "tiktok"
+    ],
+    "spotsTotal": 6,
+    "spotsTaken": 0,
+    "minFollowers": 10000,
+    "commissionRate": 8,
+    "perks": [
+      "Plus-one included",
+      "Complimentary experience",
+      "Snacks & drinks included",
+      "Priority skip-the-line access"
+    ],
+    "deliverables": [
+      "1 TikTok GO video with booking link",
+      "1 extra TikTok video",
+      "3 TikTok Stories",
+      "TikTok LIVE from the property"
+    ],
+    "status": "open"
+  },
+  {
+    "id": "cd_061",
     "partnerId": "ptn_everglades-airboat-co",
-    "title": "Thrill Seeker Shoot",
-    "date": "2026-11-14",
+    "title": "Adventure Day Takeover",
+    "date": "2026-11-15",
     "time": "1:00 PM",
     "location": {
       "country": "US",
@@ -1877,83 +1815,51 @@
       "city": "Miami"
     },
     "platforms": [
-      "tiktok",
-      "snapchat",
-      "youtube"
+      "tiktok"
     ],
-    "spotsTotal": 4,
-    "spotsTaken": 3,
-    "minFollowers": 10000,
-    "commissionRate": 12,
+    "spotsTotal": 8,
+    "spotsTaken": 6,
+    "minFollowers": 5000,
+    "commissionRate": 6,
     "perks": [
-      "Hotel pickup & drop-off",
       "Priority skip-the-line access",
-      "Complimentary experience",
-      "Snacks & drinks included"
+      "Snacks & drinks included",
+      "Photos & drone footage shared"
     ],
     "deliverables": [
       "1 TikTok GO video with booking link",
-      "1 Snapchat Spotlight",
-      "1 Instagram Reel"
+      "1 extra TikTok video",
+      "3 TikTok Stories"
     ],
     "status": "open"
   },
   {
-    "id": "cd_061",
+    "id": "cd_062",
     "partnerId": "ptn_red-rock-jeep-adventures",
-    "title": "Thrill Seeker Shoot",
+    "title": "Adventure Day Takeover",
     "date": "2027-01-08",
-    "time": "5:30 PM",
+    "time": "9:00 AM",
     "location": {
       "country": "US",
       "state": "Arizona",
       "city": "Scottsdale"
     },
     "platforms": [
-      "tiktok",
-      "snapchat"
+      "tiktok"
     ],
-    "spotsTotal": 6,
-    "spotsTaken": 4,
-    "minFollowers": 2500,
-    "commissionRate": 6,
+    "spotsTotal": 4,
+    "spotsTaken": 3,
+    "minFollowers": 5000,
+    "commissionRate": 5,
     "perks": [
+      "Priority skip-the-line access",
       "Hotel pickup & drop-off",
-      "Snacks & drinks included"
+      "Private guide",
+      "Complimentary experience"
     ],
     "deliverables": [
       "1 TikTok GO video with booking link",
-      "1 Instagram Reel",
-      "3 Instagram Stories"
-    ],
-    "status": "open"
-  },
-  {
-    "id": "cd_062",
-    "partnerId": "ptn_harbor-lights-cruises",
-    "title": "Behind-the-Scenes Shoot",
-    "date": "2027-01-04",
-    "time": "3:00 PM",
-    "location": {
-      "country": "US",
-      "state": "New York",
-      "city": "New York City"
-    },
-    "platforms": [
-      "tiktok",
-      "youtube"
-    ],
-    "spotsTotal": 6,
-    "spotsTaken": 0,
-    "minFollowers": 1000,
-    "commissionRate": 6,
-    "perks": [
-      "Hotel pickup & drop-off",
-      "Plus-one included"
-    ],
-    "deliverables": [
-      "1 TikTok GO video with booking link",
-      "3 Instagram Stories"
+      "3 TikTok Stories"
     ],
     "status": "open"
   },
@@ -1961,7 +1867,7 @@
     "id": "cd_063",
     "partnerId": "ptn_harbor-lights-cruises",
     "title": "VIP Access Content Day",
-    "date": "2027-02-12",
+    "date": "2027-02-14",
     "time": "9:00 AM",
     "location": {
       "country": "US",
@@ -1969,55 +1875,54 @@
       "city": "New York City"
     },
     "platforms": [
-      "tiktok",
-      "instagram"
+      "tiktok"
     ],
     "spotsTotal": 6,
-    "spotsTaken": 2,
-    "minFollowers": 1000,
+    "spotsTaken": 5,
+    "minFollowers": 5000,
     "commissionRate": 10,
     "perks": [
-      "Complimentary experience",
-      "Snacks & drinks included",
+      "Photos & drone footage shared",
       "Hotel pickup & drop-off",
-      "Plus-one included"
+      "Priority skip-the-line access",
+      "Private guide"
     ],
     "deliverables": [
       "1 TikTok GO video with booking link",
-      "1 Instagram Reel",
-      "Raw clips shared with partner",
-      "1 Snapchat Spotlight"
+      "3 TikTok Stories",
+      "1 extra TikTok video",
+      "Photo carousel post on TikTok"
     ],
     "status": "open"
   },
   {
     "id": "cd_064",
     "partnerId": "ptn_summit-peak-chalet",
-    "title": "Poolside Golden Hour",
-    "date": "2026-11-27",
-    "time": "9:00 AM",
+    "title": "Family Fun Weekend",
+    "date": "2027-01-28",
+    "time": "5:30 PM",
     "location": {
       "country": "US",
       "state": "Colorado",
       "city": "Aspen"
     },
     "platforms": [
-      "tiktok",
-      "snapchat"
+      "tiktok"
     ],
-    "spotsTotal": 4,
-    "spotsTaken": 1,
+    "spotsTotal": 8,
+    "spotsTaken": 7,
     "minFollowers": 25000,
-    "commissionRate": 12,
+    "commissionRate": 10,
     "perks": [
       "Late checkout",
-      "Plus-one included",
       "Complimentary 1-night stay",
-      "Complimentary 2-night stay"
+      "$150 food & beverage credit"
     ],
     "deliverables": [
       "1 TikTok GO video with booking link",
-      "1 Instagram Reel"
+      "1 extra TikTok video",
+      "3 TikTok Stories",
+      "TikTok LIVE from the property"
     ],
     "status": "open"
   }

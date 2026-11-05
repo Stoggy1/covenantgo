@@ -1,11 +1,11 @@
 // Offline cache for the app shell + demo data. Bump VERSION on each deploy.
-const VERSION = 'cg-v3';
+const VERSION = 'cg-v4';
 const SHELL = [
   './', './index.html', './css/styles.css', './manifest.webmanifest',
   './js/app.js', './js/config.js', './js/services/http.js',
   './js/services/dataService.js', './js/services/authService.js',
   './data/partners.json', './data/content-days.json', './data/locations.json',
-  './icons/icon.svg', './icons/icon-180.png', './icons/icon-192.png', './icons/icon-512.png',
+  './icons/icon.svg', './icons/brand/tiktokgo-mark-w.png', './icons/brand/tiktokgo-wordmark-w.png', './icons/icon-180.png', './icons/icon-192.png', './icons/icon-512.png',
 ];
 
 self.addEventListener('install', (e) => {

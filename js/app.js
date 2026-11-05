@@ -13,6 +13,8 @@ const state = {
 // ---------- helpers ----------
 const esc = (s = '') => String(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 const $ = (sel, root = app) => root.querySelector(sel);
+const PLATFORMS = CONFIG.PLATFORMS.filter((p) => CONFIG.ENABLED_PLATFORMS.includes(p.id));
+const SINGLE_PLATFORM = PLATFORMS.length === 1;
 const platformLabel = (id) => CONFIG.PLATFORMS.find((p) => p.id === id)?.label || id;
 const countryName = (code) => state.locations?.countries.find((c) => c.code === code)?.name || code;
 const fmtNum = (n) => (n >= 1000 ? `${(n / 1000).toFixed(n % 1000 ? 1 : 0)}K` : String(n));
@@ -20,7 +22,7 @@ const parseDate = (iso) => new Date(`${iso}T12:00:00`);
 const fmtDate = (iso, opts) => parseDate(iso).toLocaleDateString('en-US', opts);
 const banner = (color) => `background: radial-gradient(circle at 85% 20%, ${color}cc, transparent 60%), linear-gradient(135deg, ${color}55, #1f1f2b);`;
 const initials = (name = '') => name.split(/\s+/).map((w) => w[0]).slice(0, 2).join('').toUpperCase();
-const totalFollowers = (u) => (u?.platforms || []).reduce((s, p) => s + (Number(p.followers) || 0), 0);
+const totalFollowers = (u) => (u?.platforms || []).filter((p) => CONFIG.ENABLED_PLATFORMS.includes(p.id)).reduce((s, p) => s + (Number(p.followers) || 0), 0);
 
 function options(list, selected, placeholder) {
   return `<option value="">${esc(placeholder)}</option>` +
@@ -43,6 +45,8 @@ function logoHtml(extra = '') {
     ? `<img class="logo-img ${extra}" src="${CONFIG.LOGO_URL}" alt="${CONFIG.APP_NAME}">`
     : `<div class="logo ${extra}">Covenant<span class="go">Go</span></div>`;
 }
+
+const goMark = () => `<img class="go-mark" src="icons/brand/tiktokgo-mark-w.png" alt="TikTok GO">`;
 
 // ---------- router ----------
 const routes = [
@@ -84,6 +88,7 @@ async function welcomeView() {
       ${logoHtml('hero-logo')}
       <h1>Get booked for content days.</h1>
       <p>CovenantGo connects TikTok GO <strong class="accent">CREATORS</strong> with hotels, resorts, and things to do across the United States and Mexico.</p>
+      <div class="built-for"><span>Built for</span><img src="icons/brand/tiktokgo-wordmark-w.png" alt="TikTok GO"><span>creators</span></div>
       <div class="hero-stats">
         <div><b>${days.length}</b><span>Open content days</span></div>
         <div><b>${partners}</b><span>Partners</span></div>
@@ -93,6 +98,7 @@ async function welcomeView() {
         <a class="btn" href="#/signup">Create creator account</a>
         <a class="btn secondary" href="#/login">I already have an account</a>
       </div>
+      <p class="trademark">TikTok and TikTok GO are trademarks of TikTok. CovenantGo is an independent creator platform.</p>
     </section>`;
 }
 
@@ -133,7 +139,7 @@ function locationFields(prefix, loc = {}) {
 }
 
 function platformFields(existing = []) {
-  return CONFIG.PLATFORMS.map((p) => {
+  return PLATFORMS.map((p) => {
     const cur = existing.find((x) => x.id === p.id) || {};
     return `
       <div class="platform-row">
@@ -145,7 +151,7 @@ function platformFields(existing = []) {
 }
 
 function readPlatforms(f) {
-  return CONFIG.PLATFORMS.map((p) => ({
+  return PLATFORMS.map((p) => ({
     id: p.id,
     handle: String(f.get(`handle-${p.id}`) || '').trim().replace(/^@?/, '@'),
     followers: Number(String(f.get(`followers-${p.id}`) || '').replace(/[^\d]/g, '')) || 0,
@@ -164,7 +170,7 @@ function signupView() {
       <div class="section-title">Where are you based?</div>
       ${locationFields('su')}
 
-      <div class="section-title">Your platforms</div>
+      <div class="section-title">${SINGLE_PLATFORM ? `Your ${esc(PLATFORMS[0].label)}` : 'Your platforms'}</div>
       ${platformFields()}
 
       <div class="error" id="err"></div>
@@ -175,7 +181,7 @@ function signupView() {
     e.preventDefault();
     const f = new FormData(e.target);
     const platforms = readPlatforms(f);
-    if (!platforms.length) return ($('#err').textContent = 'Add at least one platform handle.');
+    if (!platforms.length) return ($('#err').textContent = SINGLE_PLATFORM ? `Add your ${PLATFORMS[0].label} handle.` : 'Add at least one platform handle.');
     try {
       state.user = await authService.signUp({
         name: f.get('name'),
@@ -207,9 +213,9 @@ async function discoverView() {
       <select class="input" id="state" aria-label="State" ${f.country ? '' : 'disabled'}>${options(statesFor(f.country).map((s) => s.name), f.state, 'State')}</select>
       <select class="input" id="city" aria-label="City" ${f.state ? '' : 'disabled'}>${options(citiesFor(f.country, f.state), f.city, 'City')}</select>
     </div>
-    <div class="chips" id="platforms">
+    <div class="chips" id="platforms" ${SINGLE_PLATFORM ? 'hidden' : ''}>
       <button class="chip ${f.platform ? '' : 'active'}" data-platform="">All platforms</button>
-      ${CONFIG.PLATFORMS.slice(0, 5).map((p) => `<button class="chip ${f.platform === p.id ? 'active' : ''}" data-platform="${p.id}">${esc(p.label)}</button>`).join('')}
+      ${PLATFORMS.map((p) => `<button class="chip ${f.platform === p.id ? 'active' : ''}" data-platform="${p.id}">${esc(p.label)}</button>`).join('')}
     </div>
     <div class="chips" id="categories">
       <button class="chip ${f.category ? '' : 'active'}" data-category="">All</button>
@@ -257,14 +263,16 @@ function cardHtml(d) {
     <a class="card" href="#/day/${d.id}">
       <div class="card-banner" style="${banner(p.accentColor)}">
         <div class="date-badge"><b>${fmtDate(d.date, { day: 'numeric' })}</b><span>${fmtDate(d.date, { month: 'short' })}</span></div>
-        <span class="pill go">TikTok GO · ${d.commissionRate}%</span>
+        <span class="pill go">${goMark()}<span>${d.commissionRate}%</span></span>
       </div>
       <div class="card-body">
         <h3>${esc(d.title)}</h3>
         <div class="card-meta">${esc(p.type)} · ${esc(p.name)} · ${esc(d.location.city)}, ${esc(d.location.state)}, ${esc(d.location.country)}</div>
         <div class="card-foot">
           ${spotsHtml(d)}
-          <div class="icons">${d.platforms.map((x) => `<span>${esc(platformLabel(x))}</span>`).join('')}</div>
+          ${SINGLE_PLATFORM
+            ? `<span class="card-meta">${fmtNum(d.minFollowers)}+ followers</span>`
+            : `<div class="icons">${d.platforms.filter((x) => CONFIG.ENABLED_PLATFORMS.includes(x)).map((x) => `<span>${esc(platformLabel(x))}</span>`).join('')}</div>`}
         </div>
       </div>
     </a>`;
@@ -282,7 +290,7 @@ async function dayView(id) {
   app.innerHTML = `
     <a class="back" href="#/discover">‹ Discover</a>
     <div class="detail-banner" style="${banner(p.accentColor)}">
-      <span class="pill go" style="align-self:flex-start;margin-bottom:auto">TikTok GO partner</span>
+      <span class="pill go" style="align-self:flex-start;margin-bottom:auto">${goMark()}<span>Bookable partner</span></span>
       <h1>${esc(d.title)}</h1>
       <p>${esc(p.name)} · ${esc(p.group)}</p>
     </div>
@@ -291,7 +299,7 @@ async function dayView(id) {
       <div class="fact"><span>Call time</span><b>${esc(d.time)}</b></div>
       <div class="fact"><span>Location</span><b>${esc(d.location.city)}, ${esc(d.location.state)}</b></div>
       <div class="fact"><span>Country</span><b>${esc(countryName(d.location.country))}</b></div>
-      <div class="fact"><span>Booking commission</span><b>${d.commissionRate}% via TikTok GO</b></div>
+      <div class="fact"><span>Booking commission</span><b class="go-inline">${d.commissionRate}% via ${goMark()}</b></div>
       <div class="fact"><span>Min. followers</span><b>${fmtNum(d.minFollowers)}</b></div>
     </div>
 
@@ -301,8 +309,8 @@ async function dayView(id) {
     <div class="section-title">Deliverables</div>
     <ul class="list">${d.deliverables.map((x) => `<li>${esc(x)}</li>`).join('')}</ul>
 
-    <div class="section-title">Platforms</div>
-    <div class="chips">${d.platforms.map((x) => `<span class="chip">${esc(platformLabel(x))}</span>`).join('')}</div>
+    <div class="section-title" ${SINGLE_PLATFORM ? 'hidden' : ''}>Platforms</div>
+    <div class="chips" ${SINGLE_PLATFORM ? 'hidden' : ''}>${d.platforms.filter((x) => CONFIG.ENABLED_PLATFORMS.includes(x)).map((x) => `<span class="chip">${esc(platformLabel(x))}</span>`).join('')}</div>
 
     <div class="section-title">About the partner</div>
     <p class="card-meta">${esc(p.description)} Rated ${p.rating}★.</p>
@@ -317,7 +325,7 @@ async function dayView(id) {
     if (isApplied) {
       cta.innerHTML = `<div class="notice ok">Request sent — the partner will confirm your spot.</div>`;
     } else if (!eligible) {
-      cta.innerHTML = `<div class="notice">This day needs ${fmtNum(d.minFollowers)}+ followers. Your profile shows ${fmtNum(followers)}. <a href="#/profile">Update platforms</a></div>`;
+      cta.innerHTML = `<div class="notice">This day needs ${fmtNum(d.minFollowers)}+ followers. Your profile shows ${fmtNum(followers)}. <a href="#/profile">Update profile</a></div>`;
     } else {
       cta.innerHTML = `<button class="btn" id="apply">${full ? 'Join waitlist' : 'Request a spot'}</button>`;
       $('#apply').addEventListener('click', async () => {
@@ -369,7 +377,7 @@ function profileView() {
       <input class="input" name="name" value="${esc(u.name)}" required>
       <div class="section-title">Location</div>
       ${locationFields('pf', u.location)}
-      <div class="section-title">Platforms</div>
+      <div class="section-title">${SINGLE_PLATFORM ? esc(PLATFORMS[0].label) : 'Platforms'}</div>
       ${platformFields(u.platforms)}
       <div class="error" id="err"></div>
       <button class="btn" type="submit">Save profile</button>
@@ -384,7 +392,7 @@ function profileView() {
       state.user = await authService.updateProfile({
         name: f.get('name').trim(),
         location: { country: f.get('country'), state: f.get('state').trim(), city: f.get('city').trim() },
-        platforms: readPlatforms(f),
+        platforms: [...readPlatforms(f), ...(u.platforms || []).filter((p) => !CONFIG.ENABLED_PLATFORMS.includes(p.id))],
       });
       profileView();
     } catch (err) {

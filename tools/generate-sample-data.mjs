@@ -76,8 +76,8 @@ const themes = {
 };
 const stayPerks = ['Complimentary 1-night stay', 'Complimentary 2-night stay', '$150 food & beverage credit', 'Spa treatment', 'Welcome cocktail', 'Plus-one included', 'Airport transfer', 'Late checkout'];
 const activityPerks = ['Complimentary experience', 'Plus-one included', 'Private guide', 'Hotel pickup & drop-off', 'Photos & drone footage shared', 'Snacks & drinks included', 'Priority skip-the-line access'];
-const deliverablePool = ['1 TikTok GO video with booking link', '3 Instagram Stories', '1 Instagram Reel', '1 Snapchat Spotlight', 'Facebook Reel cross-post', 'Raw clips shared with partner'];
-const platformIds = ['tiktok', 'instagram', 'snapchat', 'facebook', 'youtube'];
+// TikTok-only for now (see CONFIG.ENABLED_PLATFORMS).
+const deliverablePool = ['1 TikTok GO video with booking link', '1 extra TikTok video', '3 TikTok Stories', 'TikTok LIVE from the property', 'Photo carousel post on TikTok', 'Raw clips shared with partner'];
 const times = ['9:00 AM', '11:00 AM', '1:00 PM', '3:00 PM', '5:30 PM'];
 
 const start = new Date('2026-11-08T12:00:00Z');
@@ -96,7 +96,7 @@ for (const p of partnerRows) {
       date: d.toISOString().slice(0, 10),
       time: pick(times),
       location: { ...p.location },
-      platforms: ['tiktok', ...pickSome(platformIds.slice(1), 1, 3)],
+      platforms: ['tiktok'],
       spotsTotal: spots,
       spotsTaken: Math.floor(rand() * spots),
       minFollowers: pick([1000, 2500, 5000, 10000, 25000]),

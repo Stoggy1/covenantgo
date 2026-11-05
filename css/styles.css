@@ -16,6 +16,7 @@
 }
 
 * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+[hidden] { display: none !important; }
 html, body { margin: 0; background: var(--bg); color: var(--text); }
 body {
   font: 16px/1.45 -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, sans-serif;
@@ -41,6 +42,15 @@ button, input, select, textarea { font: inherit; color: inherit; }
 .logo-img { display: block; height: 40px; width: auto; max-width: 70%; }
 .hero-logo.logo-img { height: 72px; }
 .accent { color: var(--cyan); }
+
+/* ---------- TikTok GO brand marks ---------- */
+.built-for { display: flex; align-items: center; gap: 10px; color: var(--muted); font-size: 14px; font-weight: 600; }
+.built-for img { height: 26px; width: auto; }
+.go-mark { height: 16px; width: auto; display: block; }
+.pill.go { display: inline-flex; align-items: center; gap: 6px; padding: 5px 10px; }
+.go-inline { display: inline-flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+.go-inline .go-mark { height: 15px; }
+.trademark { font-size: 11px !important; color: var(--muted); opacity: .7; text-align: center; }
 
 /* ---------- Welcome ---------- */
 .hero { min-height: 82dvh; display: flex; flex-direction: column; justify-content: center; gap: 20px; }
