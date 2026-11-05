@@ -1,7 +1,7 @@
 {
   "name": "CovenantGo",
   "short_name": "CovenantGo",
-  "description": "Connecting creators with TikTok GO hospitality partners.",
+  "description": "Connecting Creators with TikTok GO hospitality partners.",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",

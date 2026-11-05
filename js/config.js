@@ -35,7 +35,7 @@ export const CONFIG = {
 
   // Rewards contest. Hitting EITHER goal enters the creator for the prize.
   REWARDS: {
-    prize: 'Win a creator trip for two',
+    prize: 'Win a Creator trip for two',
     prizeDetail: 'Flights + 3 nights at a featured partner resort. Demo prize, final prize and rules TBD.',
     contentDaysGoal: 5,
     postLinksGoal: 10,

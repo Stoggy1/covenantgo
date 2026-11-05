@@ -66,7 +66,8 @@ button, input, select, textarea { font: inherit; color: inherit; }
 
 /* ---------- Welcome ---------- */
 .hero { min-height: 74dvh; display: flex; flex-direction: column; justify-content: center; gap: 20px; }
-.hero h1 { font-size: 40px; letter-spacing: -1px; }
+/* Phone: title stays on one line, sized to the screen width (fitHeroTitle() fine-tunes). */
+.hero h1 { font-size: calc((100vw - 32px) / 14.4); letter-spacing: -0.5px; white-space: nowrap; }
 .hero p { color: var(--muted); font-size: 18px; margin: 0; }
 .hero-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
 .hero-stats div { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 12px; }
@@ -313,7 +314,7 @@ select.input { appearance: none; background-image: linear-gradient(45deg, transp
 
   /* Welcome: copy left, partner photo collage right */
   .hero { min-height: calc(100dvh - 160px); display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(28px, 4vw, 56px); align-items: center; }
-  .hero h1 { font-size: clamp(42px, 5vw, 60px); letter-spacing: -2px; }
+  .hero h1 { font-size: clamp(42px, 5vw, 60px); letter-spacing: -2px; white-space: normal; }
   .hero-copy .stack { flex-direction: row; }
   .hero-copy .stack .btn { width: auto; flex: 1; }
   .trademark { text-align: left; }

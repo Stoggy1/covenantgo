@@ -1,6 +1,7 @@
 import { CONFIG } from './config.js';
 import { dataService } from './services/dataService.js';
 import { authService } from './services/authService.js';
+import { REGIONS } from './regions.js';
 
 const app = document.getElementById('app');
 const tabbar = document.getElementById('tabbar');
@@ -64,7 +65,7 @@ function agencyFields(selected = '', recruit = false) {
     <div class="field"><label for="agency">Your TikTok GO agency</label>
       <select class="input" id="agency" name="agency" required>
         ${options(CONFIG.AGENCIES, selected, 'Select your agency')}
-        <option value="${CONFIG.NO_AGENCY}" ${selected === CONFIG.NO_AGENCY ? 'selected' : ''}>No agency, I'm an independent GO creator</option>
+        <option value="${CONFIG.NO_AGENCY}" ${selected === CONFIG.NO_AGENCY ? 'selected' : ''}>No agency, I'm an independent GO Creator</option>
       </select></div>
     <label class="check" id="recruit-row" ${selected === CONFIG.NO_AGENCY ? '' : 'hidden'}>
       <input type="checkbox" name="recruitInterest" ${recruit ? 'checked' : ''}>
@@ -168,34 +169,45 @@ async function welcomeView() {
   app.innerHTML = `
     <section class="hero">
       <div class="hero-copy">
-      <h1>Get booked for content days.</h1>
+      <h1>Get Booked For Content Days.</h1>
       <p>CovenantGo connects TikTok GO <strong class="accent">CREATORS</strong> with hotels, resorts, and things to do across the United States and Mexico.</p>
-      <div class="built-for"><span>Built for</span><img src="icons/brand/tiktokgo-wordmark-w.png" alt="TikTok GO"><span>creators</span></div>
-      <p class="open-to-all">Open to every TikTok GO creator, with an agency or without one.</p>
+      <div class="built-for"><span>Built for</span><img src="icons/brand/tiktokgo-wordmark-w.png" alt="TikTok GO"><span>Creators</span></div>
+      <p class="open-to-all">Open to every TikTok GO Creator, with an agency or without one.</p>
       <div class="hero-stats">
         <div><b>${days.length}</b><span>Open content days</span></div>
         <div><b>${clips.length}</b><span>Vault clips</span></div>
         <div><b>${cities}</b><span>Cities</span></div>
       </div>
       <div class="stack">
-        <a class="btn" href="#/signup">Create creator account</a>
+        <a class="btn" href="#/signup">Create Creator account</a>
         <a class="btn secondary" href="#/login">I already have an account</a>
       </div>
       ${demoButtonHtml()}
-      <p class="trademark">TikTok and TikTok GO are trademarks of TikTok. CovenantGo is an independent creator platform.</p>
+      <p class="trademark">TikTok and TikTok GO are trademarks of TikTok. CovenantGo is an independent Creator platform.</p>
       </div>
       <div class="hero-art" aria-hidden="true">
         ${art.map((p) => `<div class="art-tile" style="background-image:url('${photo(p.photos[0], 600, 800)}')"><span>${esc(p.location.city)}</span></div>`).join('')}
       </div>
     </section>`;
   wireDemoButton();
+  fitHeroTitle();
 }
+
+// Phone only: shrink the hero title until it fits on one line (fonts differ by device).
+function fitHeroTitle() {
+  const h = $('.hero h1');
+  if (!h || getComputedStyle(h).whiteSpace !== 'nowrap') return;
+  h.style.fontSize = '';
+  let size = parseFloat(getComputedStyle(h).fontSize);
+  while (h.scrollWidth > h.clientWidth && size > 16) h.style.fontSize = `${(size -= 0.5)}px`;
+}
+window.addEventListener('resize', () => fitHeroTitle());
 
 // TEMPORARY (CONFIG.DEMO_MODE): open the app as a pre-filled demo creator.
 function demoButtonHtml() {
   if (!CONFIG.DEMO_MODE) return '';
   return `<button class="btn demo" type="button" id="demo">Preview the app (demo)</button>
-    <p class="demo-note">No sign-up needed. Opens a sample creator account.</p>`;
+    <p class="demo-note">No sign-up needed. Opens a sample Creator account.</p>`;
 }
 function wireDemoButton() {
   $('#demo')?.addEventListener('click', async () => {
@@ -237,9 +249,23 @@ function locationFields(prefix, loc = {}) {
         ${options(state.locations.countries.map((c) => ({ value: c.code, label: c.name })), country, 'Select country')}
       </select></div>
     <div class="row">
-      <div class="field"><label for="${prefix}-state">State</label><input class="input" id="${prefix}-state" name="state" value="${esc(loc.state || '')}" placeholder="e.g. Texas" required></div>
+      <div class="field"><label for="${prefix}-state">State</label>
+        <select class="input" id="${prefix}-state" name="state" required>${stateOptions(country, loc.state)}</select></div>
       <div class="field"><label for="${prefix}-city">City</label><input class="input" id="${prefix}-city" name="city" value="${esc(loc.city || '')}" placeholder="e.g. Austin" required></div>
     </div>`;
+}
+
+// State dropdown: "IA – Iowa"; saves the full name. Keeps an older free-text value if it isn't in the list.
+function stateOptions(country, selected = '') {
+  const list = REGIONS[country] || [];
+  const known = list.some(([, name]) => name === selected);
+  return `<option value="">Select state</option>`
+    + (selected && !known ? `<option value="${esc(selected)}" selected>${esc(selected)}</option>` : '')
+    + list.map(([abbr, name]) => `<option value="${esc(name)}" ${name === selected ? 'selected' : ''}>${abbr} – ${esc(name)}</option>`).join('');
+}
+// Re-fill the state list when the country changes.
+function wireLocation(prefix) {
+  $(`#${prefix}-country`).addEventListener('change', (e) => { $(`#${prefix}-state`).innerHTML = stateOptions(e.target.value); });
 }
 
 function platformFields(existing = []) {
@@ -285,6 +311,7 @@ function signupView() {
       <button class="btn" type="submit">Join CovenantGo</button>
     </form>`;
   wireAgency();
+  wireLocation('su');
 
   $('#signup').addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -443,7 +470,7 @@ async function clipView(id) {
       <div class="fact"><span>Shot by</span><b>${esc(c.shotBy)}</b></div>
       <div class="fact"><span>Shot on</span><b>${fmtDate(c.shotOn, { month: 'short', day: 'numeric', year: 'numeric' })}</b></div>
       <div class="fact"><span>Length</span><b>${fmtDuration(c.durationSec)}</b></div>
-      <div class="fact"><span>Saved by creators</span><b>${c.saves}</b></div>
+      <div class="fact"><span>Saved by Creators</span><b>${c.saves}</b></div>
     </div>
     <div class="sticky-cta"><div id="cta"></div></div>
     </aside>
@@ -631,7 +658,7 @@ function profileView() {
     ${u.agency === CONFIG.NO_AGENCY && !u.recruitInterest ? `
       <div class="recruit-card">
         <b>Not with an agency yet?</b>
-        <p>${esc(CONFIG.RECRUITING_AGENCY)} works with TikTok GO creators on hospitality deals. Tick the box under <b>Agency</b> below and our team will reach out.</p>
+        <p>${esc(CONFIG.RECRUITING_AGENCY)} works with TikTok GO Creators on hospitality deals. Tick the box under <b>Agency</b> below and our team will reach out.</p>
       </div>` : ''}
 
     <form class="stack" id="profile">
@@ -651,6 +678,7 @@ function profileView() {
     </form>
     <p class="demo-banner">MVP demo · data source: ${CONFIG.DATA_SOURCE} · auth: ${CONFIG.AUTH_PROVIDER}</p>`;
   wireAgency();
+  wireLocation('pf');
 
   $('#profile').addEventListener('submit', async (e) => {
     e.preventDefault();
