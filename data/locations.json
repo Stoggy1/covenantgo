@@ -1,0 +1,144 @@
+{
+  "countries": [
+    {
+      "code": "US",
+      "name": "United States",
+      "states": [
+        {
+          "name": "Arizona",
+          "cities": [
+            "Scottsdale"
+          ]
+        },
+        {
+          "name": "California",
+          "cities": [
+            "Los Angeles",
+            "Palm Springs",
+            "San Diego"
+          ]
+        },
+        {
+          "name": "Colorado",
+          "cities": [
+            "Aspen"
+          ]
+        },
+        {
+          "name": "Florida",
+          "cities": [
+            "Key West",
+            "Miami",
+            "Orlando"
+          ]
+        },
+        {
+          "name": "Georgia",
+          "cities": [
+            "Atlanta"
+          ]
+        },
+        {
+          "name": "Hawaii",
+          "cities": [
+            "Honolulu"
+          ]
+        },
+        {
+          "name": "Illinois",
+          "cities": [
+            "Chicago"
+          ]
+        },
+        {
+          "name": "Louisiana",
+          "cities": [
+            "New Orleans"
+          ]
+        },
+        {
+          "name": "Nevada",
+          "cities": [
+            "Las Vegas"
+          ]
+        },
+        {
+          "name": "New York",
+          "cities": [
+            "New York City"
+          ]
+        },
+        {
+          "name": "Tennessee",
+          "cities": [
+            "Nashville"
+          ]
+        },
+        {
+          "name": "Texas",
+          "cities": [
+            "Austin",
+            "San Antonio"
+          ]
+        }
+      ]
+    },
+    {
+      "code": "MX",
+      "name": "Mexico",
+      "states": [
+        {
+          "name": "Baja California Sur",
+          "cities": [
+            "Los Cabos"
+          ]
+        },
+        {
+          "name": "Ciudad de México",
+          "cities": [
+            "Mexico City"
+          ]
+        },
+        {
+          "name": "Guanajuato",
+          "cities": [
+            "San Miguel de Allende"
+          ]
+        },
+        {
+          "name": "Jalisco",
+          "cities": [
+            "Guadalajara",
+            "Puerto Vallarta"
+          ]
+        },
+        {
+          "name": "Nayarit",
+          "cities": [
+            "Sayulita"
+          ]
+        },
+        {
+          "name": "Oaxaca",
+          "cities": [
+            "Oaxaca City"
+          ]
+        },
+        {
+          "name": "Quintana Roo",
+          "cities": [
+            "Cancún",
+            "Playa del Carmen",
+            "Tulum"
+          ]
+        },
+        {
+          "name": "Yucatán",
+          "cities": [
+            "Mérida"
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,422 @@
+[
+  {
+    "id": "ptn_casa-marea-resort",
+    "name": "Casa Marea Resort",
+    "group": "Marea Hospitality",
+    "category": "Resort",
+    "tiktokGoListed": true,
+    "location": {
+      "country": "MX",
+      "state": "Quintana Roo",
+      "city": "Tulum"
+    },
+    "accentColor": "#ff3b5c",
+    "rating": 4.2,
+    "description": "Casa Marea Resort is a demo resort partner in Tulum. Replace with partner-provided copy from the TikTok GO / partner API."
+  },
+  {
+    "id": "ptn_hotel-coral-azul",
+    "name": "Hotel Coral Azul",
+    "group": "Azul Collection",
+    "category": "Hotel",
+    "tiktokGoListed": true,
+    "location": {
+      "country": "MX",
+      "state": "Quintana Roo",
+      "city": "Cancún"
+    },
+    "accentColor": "#25f4ee",
+    "rating": 4.6,
+    "description": "Hotel Coral Azul is a demo hotel partner in Cancún. Replace with partner-provided copy from the TikTok GO / partner API."
+  },
+  {
+    "id": "ptn_la-selva-boutique",
+    "name": "La Selva Boutique",
+    "group": "Independent",
+    "category": "Boutique",
+    "tiktokGoListed": true,
+    "location": {
+      "country": "MX",
+      "state": "Quintana Roo",
+      "city": "Playa del Carmen"
+    },
+    "accentColor": "#b388ff",
+    "rating": 4.8,
+    "description": "La Selva Boutique is a demo boutique partner in Playa del Carmen. Replace with partner-provided copy from the TikTok GO / partner API."
+  },
+  {
+    "id": "ptn_pacific-cliffs-cabo",
+    "name": "Pacific Cliffs Cabo",
+    "group": "Horizon Stays Group",
+    "category": "Resort",
+    "tiktokGoListed": true,
+    "location": {
+      "country": "MX",
+      "state": "Baja California Sur",
+      "city": "Los Cabos"
+    },
+    "accentColor": "#ff3b5c",
+    "rating": 4.4,
+    "description": "Pacific Cliffs Cabo is a demo resort partner in Los Cabos. Replace with partner-provided copy from the TikTok GO / partner API."
+  },
+  {
+    "id": "ptn_villa-sol-vallarta",
+    "name": "Villa Sol Vallarta",
+    "group": "Azul Collection",
+    "category": "Resort",
+    "tiktokGoListed": true,
+    "location": {
+      "country": "MX",
+      "state": "Jalisco",
+      "city": "Puerto Vallarta"
+    },
+    "accentColor": "#ff3b5c",
+    "rating": 4.5,
+    "description": "Villa Sol Vallarta is a demo resort partner in Puerto Vallarta. Replace with partner-provided copy from the TikTok GO / partner API."
+  },
+  {
+    "id": "ptn_casa-tapatia",
+    "name": "Casa Tapatía",
+    "group": "Independent",
+    "category": "Boutique",
+    "tiktokGoListed": true,
+    "location": {
+      "country": "MX",
+      "state": "Jalisco",
+      "city": "Guadalajara"
+    },
+    "accentColor": "#b388ff",
+    "rating": 4.4,
+    "description": "Casa Tapatía is a demo boutique partner in Guadalajara. Replace with partner-provided copy from the TikTok GO / partner API."
+  },
+  {
+    "id": "ptn_roma-norte-house",
+    "name": "Roma Norte House",
+    "group": "Urbano Hotels",
+    "category": "Boutique",
+    "tiktokGoListed": true,
+    "location": {
+      "country": "MX",
+      "state": "Ciudad de México",
+      "city": "Mexico City"
+    },
+    "accentColor": "#b388ff",
+    "rating": 5,
+    "description": "Roma Norte House is a demo boutique partner in Mexico City. Replace with partner-provided copy from the TikTok GO / partner API."
+  },
+  {
+    "id": "ptn_mezcal-mesa",
+    "name": "Mezcal & Mesa",
+    "group": "Independent",
+    "category": "Restaurant",
+    "tiktokGoListed": true,
+    "location": {
+      "country": "MX",
+      "state": "Oaxaca",
+      "city": "Oaxaca City"
+    },
+    "accentColor": "#ffb547",
+    "rating": 4.6,
+    "description": "Mezcal & Mesa is a demo restaurant partner in Oaxaca City. Replace with partner-provided copy from the TikTok GO / partner API."
+  },
+  {
+    "id": "ptn_hacienda-blanca",
+    "name": "Hacienda Blanca",
+    "group": "Urbano Hotels",
+    "category": "Hotel",
+    "tiktokGoListed": true,
+    "location": {
+      "country": "MX",
+      "state": "Yucatán",
+      "city": "Mérida"
+    },
+    "accentColor": "#25f4ee",
+    "rating": 4.6,
+    "description": "Hacienda Blanca is a demo hotel partner in Mérida. Replace with partner-provided copy from the TikTok GO / partner API."
+  },
+  {
+    "id": "ptn_casa-colonial-sma",
+    "name": "Casa Colonial SMA",
+    "group": "Independent",
+    "category": "Boutique",
+    "tiktokGoListed": true,
+    "location": {
+      "country": "MX",
+      "state": "Guanajuato",
+      "city": "San Miguel de Allende"
+    },
+    "accentColor": "#b388ff",
+    "rating": 4.4,
+    "description": "Casa Colonial SMA is a demo boutique partner in San Miguel de Allende. Replace with partner-provided copy from the TikTok GO / partner API."
+  },
+  {
+    "id": "ptn_surf-shack-sayulita",
+    "name": "Surf Shack Sayulita",
+    "group": "Independent",
+    "category": "Experience",
+    "tiktokGoListed": true,
+    "location": {
+      "country": "MX",
+      "state": "Nayarit",
+      "city": "Sayulita"
+    },
+    "accentColor": "#5cff9d",
+    "rating": 4.3,
+    "description": "Surf Shack Sayulita is a demo experience partner in Sayulita. Replace with partner-provided copy from the TikTok GO / partner API."
+  },
+  {
+    "id": "ptn_the-sunset-arlo",
+    "name": "The Sunset Arlo",
+    "group": "Horizon Stays Group",
+    "category": "Hotel",
+    "tiktokGoListed": true,
+    "location": {
+      "country": "US",
+      "state": "California",
+      "city": "Los Angeles"
+    },
+    "accentColor": "#25f4ee",
+    "rating": 4.9,
+    "description": "The Sunset Arlo is a demo hotel partner in Los Angeles. Replace with partner-provided copy from the TikTok GO / partner API."
+  },
+  {
+    "id": "ptn_harborview-inn",
+    "name": "Harborview Inn",
+    "group": "Coastline Hospitality",
+    "category": "Hotel",
+    "tiktokGoListed": true,
+    "location": {
+      "country": "US",
+      "state": "California",
+      "city": "San Diego"
+    },
+    "accentColor": "#25f4ee",
+    "rating": 4.9,
+    "description": "Harborview Inn is a demo hotel partner in San Diego. Replace with partner-provided copy from the TikTok GO / partner API."
+  },
+  {
+    "id": "ptn_desert-bloom-palms",
+    "name": "Desert Bloom Palms",
+    "group": "Independent",
+    "category": "Boutique",
+    "tiktokGoListed": true,
+    "location": {
+      "country": "US",
+      "state": "California",
+      "city": "Palm Springs"
+    },
+    "accentColor": "#b388ff",
+    "rating": 4.6,
+    "description": "Desert Bloom Palms is a demo boutique partner in Palm Springs. Replace with partner-provided copy from the TikTok GO / partner API."
+  },
+  {
+    "id": "ptn_biscayne-bay-suites",
+    "name": "Biscayne Bay Suites",
+    "group": "Coastline Hospitality",
+    "category": "Hotel",
+    "tiktokGoListed": true,
+    "location": {
+      "country": "US",
+      "state": "Florida",
+      "city": "Miami"
+    },
+    "accentColor": "#25f4ee",
+    "rating": 4.4,
+    "description": "Biscayne Bay Suites is a demo hotel partner in Miami. Replace with partner-provided copy from the TikTok GO / partner API."
+  },
+  {
+    "id": "ptn_magic-lakes-resort",
+    "name": "Magic Lakes Resort",
+    "group": "Horizon Stays Group",
+    "category": "Resort",
+    "tiktokGoListed": true,
+    "location": {
+      "country": "US",
+      "state": "Florida",
+      "city": "Orlando"
+    },
+    "accentColor": "#ff3b5c",
+    "rating": 4.4,
+    "description": "Magic Lakes Resort is a demo resort partner in Orlando. Replace with partner-provided copy from the TikTok GO / partner API."
+  },
+  {
+    "id": "ptn_conch-key-cottages",
+    "name": "Conch Key Cottages",
+    "group": "Independent",
+    "category": "Boutique",
+    "tiktokGoListed": true,
+    "location": {
+      "country": "US",
+      "state": "Florida",
+      "city": "Key West"
+    },
+    "accentColor": "#b388ff",
+    "rating": 4.4,
+    "description": "Conch Key Cottages is a demo boutique partner in Key West. Replace with partner-provided copy from the TikTok GO / partner API."
+  },
+  {
+    "id": "ptn_the-hudson-loft",
+    "name": "The Hudson Loft",
+    "group": "Metro Hotel Co.",
+    "category": "Hotel",
+    "tiktokGoListed": true,
+    "location": {
+      "country": "US",
+      "state": "New York",
+      "city": "New York City"
+    },
+    "accentColor": "#25f4ee",
+    "rating": 4.5,
+    "description": "The Hudson Loft is a demo hotel partner in New York City. Replace with partner-provided copy from the TikTok GO / partner API."
+  },
+  {
+    "id": "ptn_neon-strip-tower",
+    "name": "Neon Strip Tower",
+    "group": "Metro Hotel Co.",
+    "category": "Resort",
+    "tiktokGoListed": true,
+    "location": {
+      "country": "US",
+      "state": "Nevada",
+      "city": "Las Vegas"
+    },
+    "accentColor": "#ff3b5c",
+    "rating": 4.3,
+    "description": "Neon Strip Tower is a demo resort partner in Las Vegas. Replace with partner-provided copy from the TikTok GO / partner API."
+  },
+  {
+    "id": "ptn_live-oak-lodge",
+    "name": "Live Oak Lodge",
+    "group": "Independent",
+    "category": "Boutique",
+    "tiktokGoListed": true,
+    "location": {
+      "country": "US",
+      "state": "Texas",
+      "city": "Austin"
+    },
+    "accentColor": "#b388ff",
+    "rating": 4.8,
+    "description": "Live Oak Lodge is a demo boutique partner in Austin. Replace with partner-provided copy from the TikTok GO / partner API."
+  },
+  {
+    "id": "ptn_riverwalk-grand",
+    "name": "Riverwalk Grand",
+    "group": "Lone Star Hospitality",
+    "category": "Hotel",
+    "tiktokGoListed": true,
+    "location": {
+      "country": "US",
+      "state": "Texas",
+      "city": "San Antonio"
+    },
+    "accentColor": "#25f4ee",
+    "rating": 4.6,
+    "description": "Riverwalk Grand is a demo hotel partner in San Antonio. Replace with partner-provided copy from the TikTok GO / partner API."
+  },
+  {
+    "id": "ptn_honky-tonk-house",
+    "name": "Honky Tonk House",
+    "group": "Lone Star Hospitality",
+    "category": "Hotel",
+    "tiktokGoListed": true,
+    "location": {
+      "country": "US",
+      "state": "Tennessee",
+      "city": "Nashville"
+    },
+    "accentColor": "#25f4ee",
+    "rating": 4.9,
+    "description": "Honky Tonk House is a demo hotel partner in Nashville. Replace with partner-provided copy from the TikTok GO / partner API."
+  },
+  {
+    "id": "ptn_bayou-brass-kitchen",
+    "name": "Bayou Brass Kitchen",
+    "group": "Independent",
+    "category": "Restaurant",
+    "tiktokGoListed": true,
+    "location": {
+      "country": "US",
+      "state": "Louisiana",
+      "city": "New Orleans"
+    },
+    "accentColor": "#ffb547",
+    "rating": 4.8,
+    "description": "Bayou Brass Kitchen is a demo restaurant partner in New Orleans. Replace with partner-provided copy from the TikTok GO / partner API."
+  },
+  {
+    "id": "ptn_aloha-tides",
+    "name": "Aloha Tides",
+    "group": "Coastline Hospitality",
+    "category": "Resort",
+    "tiktokGoListed": true,
+    "location": {
+      "country": "US",
+      "state": "Hawaii",
+      "city": "Honolulu"
+    },
+    "accentColor": "#ff3b5c",
+    "rating": 4.3,
+    "description": "Aloha Tides is a demo resort partner in Honolulu. Replace with partner-provided copy from the TikTok GO / partner API."
+  },
+  {
+    "id": "ptn_saguaro-spa-retreat",
+    "name": "Saguaro Spa Retreat",
+    "group": "Horizon Stays Group",
+    "category": "Resort",
+    "tiktokGoListed": true,
+    "location": {
+      "country": "US",
+      "state": "Arizona",
+      "city": "Scottsdale"
+    },
+    "accentColor": "#ff3b5c",
+    "rating": 4.6,
+    "description": "Saguaro Spa Retreat is a demo resort partner in Scottsdale. Replace with partner-provided copy from the TikTok GO / partner API."
+  },
+  {
+    "id": "ptn_windy-city-social",
+    "name": "Windy City Social",
+    "group": "Metro Hotel Co.",
+    "category": "Hotel",
+    "tiktokGoListed": true,
+    "location": {
+      "country": "US",
+      "state": "Illinois",
+      "city": "Chicago"
+    },
+    "accentColor": "#25f4ee",
+    "rating": 4.3,
+    "description": "Windy City Social is a demo hotel partner in Chicago. Replace with partner-provided copy from the TikTok GO / partner API."
+  },
+  {
+    "id": "ptn_peachtree-rooftop",
+    "name": "Peachtree Rooftop",
+    "group": "Independent",
+    "category": "Restaurant",
+    "tiktokGoListed": true,
+    "location": {
+      "country": "US",
+      "state": "Georgia",
+      "city": "Atlanta"
+    },
+    "accentColor": "#ffb547",
+    "rating": 4.9,
+    "description": "Peachtree Rooftop is a demo restaurant partner in Atlanta. Replace with partner-provided copy from the TikTok GO / partner API."
+  },
+  {
+    "id": "ptn_summit-peak-chalet",
+    "name": "Summit Peak Chalet",
+    "group": "Horizon Stays Group",
+    "category": "Resort",
+    "tiktokGoListed": true,
+    "location": {
+      "country": "US",
+      "state": "Colorado",
+      "city": "Aspen"
+    },
+    "accentColor": "#ff3b5c",
+    "rating": 4.6,
+    "description": "Summit Peak Chalet is a demo resort partner in Aspen. Replace with partner-provided copy from the TikTok GO / partner API."
+  }
+]
