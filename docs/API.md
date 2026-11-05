@@ -54,6 +54,19 @@ Partners carry `listingTier` (`standard` | `featured`) and `photos[]`. The app
 only shows photos on list and detail views for `featured` partners, which is the
 paid upsell. `user.savedClips` is `[{ clipId, savedAt }]`.
 
+## Showcase, Learn, Pricing
+
+| Method | Path | Body / Query | Returns |
+|---|---|---|---|
+| GET | `/showcase` | `source` (`content_day` or `vault`) | `ShowcasePost[]` (see `data/showcase.json`) with an embedded `partner` |
+| GET | `/showcase/:id` | none | `ShowcasePost` |
+| GET | `/learn/course` | none | course with modules and lessons (see `data/course.json`) |
+| POST | `/learn/lessons/:id/complete` | none | toggles the lesson in `user.completedLessons` |
+| PUT | `/me/subscription` | `{ planId }` | starts/switches a plan (real billing via Stripe or similar) |
+| DELETE | `/me/subscription` | none | cancels |
+
+`user.plan` is `{ id, since }` or null; `user.completedLessons` is a list of lesson ids.
+
 ## Partner ingestion (server-side only)
 
 Keep the TikTok GO / hospitality-group feeds on the **server**, never in the

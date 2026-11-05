@@ -18,6 +18,34 @@ export const CONFIG = {
 
   SUPPORTED_COUNTRIES: ['US', 'MX'],
 
+  // Subscription plans (Pricing tab). DEMO prices: change freely.
+  // Subscribing is demo-only until real billing (e.g. Stripe) is connected.
+  PLANS: [
+    {
+      id: 'vault',
+      name: 'Footage Vault Unlimited',
+      price: 99,
+      tagline: 'Create anytime with our team’s footage.',
+      features: ['Unlimited Footage Vault usage', 'Every new clip as it’s added', 'Repurpose clips in your TikTok GO posts', 'Learn course included'],
+    },
+    {
+      id: 'days',
+      name: 'Content Day Pass',
+      price: 149,
+      contentDaysPerWeek: 2,
+      tagline: 'Get booked at hotels and experiences every week.',
+      features: ['{n} content days a week', 'Priority requests at Featured partners', 'Earn rewards faster', 'Learn course included'],
+    },
+    {
+      id: 'all',
+      name: 'All Access',
+      price: 199,
+      popular: true,
+      tagline: 'Everything CovenantGO offers, no limits.',
+      features: ['Unlimited Footage Vault usage', 'Unlimited content days', 'Priority requests at Featured partners', 'Learn course included'],
+    },
+  ],
+
   // true = every listing shows a photo (MVP demo look).
   // false = only Featured (paid) partners get photos; others show a plain banner (the upsell).
   PHOTOS_FOR_ALL_LISTINGS: true,

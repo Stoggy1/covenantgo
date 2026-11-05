@@ -218,6 +218,11 @@ const routes = [
   { path: /^#\/day\/([\w-]+)$/, view: dayView, tab: 'discover' },
   { path: /^#\/my-days$/, view: myDaysView, tab: 'my-days' },
   { path: /^#\/rewards$/, view: rewardsView, tab: 'rewards', layout: 'medium' },
+  { path: /^#\/showcase$/, view: showcaseView, tab: 'showcase' },
+  { path: /^#\/showcase\/([\w-]+)$/, view: showcasePostView, tab: 'showcase' },
+  { path: /^#\/learn$/, view: learnView, tab: 'learn', layout: 'medium' },
+  { path: /^#\/learn\/([\w-]+)$/, view: lessonView, tab: 'learn', layout: 'medium' },
+  { path: /^#\/pricing$/, view: pricingView, tab: 'pricing' },
   { path: /^#\/profile$/, view: profileView, tab: 'profile', layout: 'narrow' },
 ];
 
@@ -547,8 +552,11 @@ async function discoverView(mode = 'days') {
     const maxFollowers = f.followers === 'me' ? me : Number(f.followers) || '';
     const days = await dataService.getContentDays({ ...f, followers: undefined, when: undefined, maxFollowers, toDate, fromDate: today.toISOString().slice(0, 10) });
     $('#count').textContent = `${days.length} content day${days.length === 1 ? '' : 's'}`;
+    // How many upcoming dates each partner has (for the "+N more dates" tag).
+    const upcoming = await dataService.getContentDays({ fromDate: today.toISOString().slice(0, 10) });
+    const perPartner = upcoming.reduce((m, x) => ((m[x.partnerId] = (m[x.partnerId] || 0) + 1), m), {});
     $('#results').innerHTML = days.length
-      ? days.map(cardHtml).join('')
+      ? days.map((x) => cardHtml(x, perPartner[x.partnerId] - 1)).join('')
       : `<div class="empty">No content days match those filters yet.</div>`;
   };
 
@@ -624,7 +632,12 @@ function spotsHtml(d) {
   return `<span class="spots ${cls}">${left === 0 ? 'Waitlist' : `${left} of ${d.spotsTotal} spots left`}</span>`;
 }
 
-function cardHtml(d) {
+// All content days at one partner, soonest first.
+async function partnerDays(partnerId) {
+  return (await dataService.getContentDays()).filter((x) => x.partnerId === partnerId).sort((a, b) => a.date.localeCompare(b.date));
+}
+
+function cardHtml(d, moreDates = 0) {
   const p = d.partner;
   const left = d.spotsTotal - d.spotsTaken;
   return `
@@ -638,7 +651,7 @@ function cardHtml(d) {
         <span class="banner-loc">${esc(d.location.city)}, ${esc(d.location.country === 'US' ? d.location.state : countryName(d.location.country))}</span>
       </div>
       <div class="card-body">
-        <div class="card-kicker">${esc(p.type)} · ${esc(p.category)}</div>
+        <div class="card-kicker"><span>${esc(p.type)} · ${esc(p.category)}</span>${moreDates > 0 ? `<span class="more-dates">+${moreDates} more date${moreDates === 1 ? '' : 's'}</span>` : ''}</div>
         <h3>${esc(d.title)}</h3>
         <div class="card-partner"><span>${esc(p.name)}</span><span class="rating">★ ${p.rating}</span></div>
         <div class="spots-bar" aria-hidden="true"><span style="width:${Math.round((d.spotsTaken / d.spotsTotal) * 100)}%"></span></div>
@@ -737,6 +750,9 @@ async function dayView(id) {
   const followers = totalFollowers(state.user);
   const eligible = followers >= d.minFollowers;
   const full = d.spotsTaken >= d.spotsTotal;
+  // Other upcoming content days at the same partner, so Creators can switch dates.
+  const today = new Date().toISOString().slice(0, 10);
+  const dates = (await partnerDays(p.id)).filter((x) => x.date >= today || x.id === id);
 
   app.innerHTML = `
     <a class="back" href="#/discover">‹ Discover</a>
@@ -765,6 +781,18 @@ async function dayView(id) {
     </section>
 
     <aside class="d-side">
+    ${dates.length > 1 ? `
+    <div class="date-picker">
+      <div class="dp-label">${dates.length} dates available at ${esc(p.name)}</div>
+      <div class="dp-row" role="list">
+        ${dates.map((x) => `
+          <a class="dp ${x.id === id ? 'active' : ''}" href="#/day/${x.id}" role="listitem" ${x.id === id ? 'aria-current="true"' : ''}>
+            <span class="dp-dow">${fmtDate(x.date, { weekday: 'short' })}</span>
+            <b>${fmtDate(x.date, { month: 'short', day: 'numeric' })}</b>
+            <span class="dp-title">${esc(x.title)}</span>
+          </a>`).join('')}
+      </div>
+    </div>` : ''}
     <div class="facts">
       <div class="fact"><span>Date</span><b>${fmtDate(d.date, { weekday: 'short', month: 'short', day: 'numeric', year: 'numeric' })}</b></div>
       <div class="fact"><span>Call time</span><b>${esc(d.time)}</b></div>
@@ -808,7 +836,7 @@ async function dayView(id) {
         + postLinkFormHtml('After the shoot, submit your TikTok post link');
       wirePostLinkForm({ source: 'content_day', contentDayId: id }, () => renderCta(true));
     } else if (!eligible) {
-      cta.innerHTML = `<div class="notice">This day needs ${fmtNum(d.minFollowers)}+ followers. Your profile shows ${fmtNum(followers)}. <a href="#/profile">Update profile</a></div>`;
+      cta.innerHTML = `<div class="notice not-qualified">This day needs ${fmtNum(d.minFollowers)}+ followers. You do not qualify.</div>`;
     } else {
       cta.innerHTML = `<button class="btn" id="apply">${full ? 'Join waitlist' : 'Request a spot'}</button>`;
       $('#apply').addEventListener('click', async () => {
@@ -897,6 +925,11 @@ function profileView() {
         <p>${esc(CONFIG.RECRUITING_AGENCY)} works with TikTok GO Creators on hospitality deals. Tick the box under <b>Agency</b> below and our team will reach out.</p>
       </div>` : ''}
 
+    <div class="profile-tiles">
+      <a class="ptile" href="#/pricing"><span class="ptile-kicker">Your plan</span><b>${esc(planName(u))}</b><span class="ptile-cta">${u.plan ? 'Manage plan ›' : 'See plans ›'}</span></a>
+      <a class="ptile" href="#/rewards"><span class="ptile-kicker">Rewards</span><b>${esc(CONFIG.REWARDS.prize)}</b><span class="ptile-cta">View progress ›</span></a>
+    </div>
+
     <div class="section-title">Appearance</div>
     <div class="theme-picker" id="theme-picker" role="radiogroup" aria-label="Appearance">
       ${THEMES.map(([id, label]) => `<button type="button" role="radio" data-theme="${id}" aria-checked="${getTheme() === id}" class="${getTheme() === id ? 'active' : ''}">${label}</button>`).join('')}
@@ -952,6 +985,181 @@ function profileView() {
     go('#/welcome');
   });
 }
+
+// ---------- Showcase: Creator videos ----------
+const SHOWCASE_FILTERS = [['', 'All'], ['content_day', 'From Content Days'], ['vault', 'From Footage Vault']];
+const sourceLabel = (s) => (s.source === 'vault' ? 'Made with Footage Vault' : 'From a Content Day');
+
+async function showcaseView() {
+  const f = state.showcase ||= { source: '' };
+  const posts = await dataService.getShowcase(f);
+  app.innerHTML = `
+    <div class="page-head stacked">
+      <h1>Showcase</h1>
+      <p class="page-sub">TikTok GO videos Creators made at our partners. Get inspired, then go make yours.</p>
+    </div>
+    <div class="chips" id="sc-filters">
+      ${SHOWCASE_FILTERS.map(([v, l]) => `<button class="chip ${f.source === v ? 'active' : ''}" data-source="${v}">${l}</button>`).join('')}
+    </div>
+    <div class="clip-grid showcase-grid">
+      ${posts.map((s) => `
+        <a class="clip showcase" href="#/showcase/${s.id}">
+          <div class="clip-thumb" style="background-image:url('${photo(s.thumbnail, 400, 711)}')">
+            <span class="clip-tt">${goMark()}</span>
+            <span class="clip-play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>
+            <span class="sc-views">▶ ${fmtNum(s.views)}</span>
+          </div>
+          <div class="clip-body">
+            <div class="sc-creator"><span class="sc-avatar">${esc(initials(s.creatorName))}</span><b>${esc(s.handle)}</b></div>
+            <h3>${esc(s.title)}</h3>
+            <div class="card-meta">${esc(s.partner.name)} · ${esc(s.location.city)}</div>
+          </div>
+        </a>`).join('')}
+    </div>
+    <p class="demo-banner">Demo Showcase: Creators and stats are sample data.</p>`;
+  $('#sc-filters').addEventListener('click', (e) => {
+    const b = e.target.closest('[data-source]'); if (!b) return;
+    f.source = b.dataset.source; showcaseView();
+  });
+}
+
+async function showcasePostView(id) {
+  const s = await dataService.getShowcasePost(id);
+  if (!s) { app.innerHTML = `<div class="empty">Video not found.</div>`; return; }
+  const link = s.source === 'vault'
+    ? { href: `#/clip/${s.clipId}`, label: 'Use this vault clip' }
+    : { href: `#/day/${s.contentDayId}`, label: 'See this content day' };
+  app.innerHTML = `
+    <a class="back" href="#/showcase">‹ Showcase</a>
+    <div class="detail clip-detail">
+      <div class="d-banner">
+        <div class="clip-hero" style="background-image:url('${photo(s.thumbnail, 720, 1280)}')">
+          <span class="clip-tt">${goMark()}</span>
+          <span class="clip-play big" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>
+        </div>
+      </div>
+      <aside class="d-side">
+        <div class="sc-creator big"><span class="sc-avatar">${esc(initials(s.creatorName))}</span><div><b>${esc(s.creatorName)}</b><div class="card-meta">${esc(s.handle)} · ${fmtNum(s.followers)} followers</div></div></div>
+        <h1 class="clip-title">${esc(s.title)}</h1>
+        <p class="card-meta">${esc(sourceLabel(s))} · ${esc(s.partner.name)} · ${esc(s.location.city)}, ${esc(s.location.state)}</p>
+        <div class="facts">
+          <div class="fact"><span>Views</span><b>${fmtNum(s.views)}</b></div>
+          <div class="fact"><span>Likes</span><b>${fmtNum(s.likes)}</b></div>
+          <div class="fact"><span>Bookings via TikTok GO</span><b>${s.bookings}</b></div>
+          <div class="fact"><span>Posted</span><b>${fmtDate(s.postedOn, { month: 'short', day: 'numeric', year: 'numeric' })}</b></div>
+        </div>
+        <a class="btn" href="${link.href}">${link.label}</a>
+      </aside>
+      <section class="d-body">
+        <div class="section-title">Why it works</div>
+        <ul class="list do-list">
+          <li>Strong hook in the first 2 seconds</li>
+          <li>Shows exactly what guests get when they book</li>
+          <li>TikTok GO booking link and partner tagged</li>
+        </ul>
+        <a class="btn secondary" href="#/learn" style="margin-top:12px">Learn how to make videos like this</a>
+      </section>
+    </div>`;
+}
+
+// ---------- Learn: course ----------
+const allLessons = (course) => course.modules.flatMap((m) => m.lessons.map((l) => ({ ...l, module: m })));
+const lessonDone = (id) => (state.user.completedLessons || []).includes(id);
+
+async function learnView() {
+  const course = await dataService.getCourse();
+  const lessons = allLessons(course);
+  const done = lessons.filter((l) => lessonDone(l.id)).length;
+  const next = lessons.find((l) => !lessonDone(l.id));
+  app.innerHTML = `
+    <div class="page-head stacked">
+      <h1>Learn</h1>
+      <p class="page-sub">${esc(course.intro)}</p>
+    </div>
+    <div class="course-card">
+      <div class="course-top">
+        <div><span class="course-kicker">Course</span><b>${esc(course.title)}</b></div>
+        <span class="go-inline">${goMark()}</span>
+      </div>
+      <div class="goal"><span>${done} of ${lessons.length} lessons complete</span><b>${Math.round((done / lessons.length) * 100)}%</b></div>
+      ${bar(done, lessons.length)}
+      ${next ? `<a class="btn" href="#/learn/${next.id}">${done ? 'Continue' : 'Start course'}: ${esc(next.title)}</a>` : '<div class="notice ok">🎉 Course complete! You’re ready to create.</div>'}
+    </div>
+    ${course.modules.map((m, mi) => `
+      <div class="section-title">Module ${mi + 1} · ${esc(m.title)}</div>
+      <ul class="list lesson-list">
+        ${m.lessons.map((l) => `
+          <li><a href="#/learn/${l.id}">
+            <span class="lesson-check ${lessonDone(l.id) ? 'done' : ''}">${lessonDone(l.id) ? '✓' : ''}</span>
+            <span class="lesson-text"><b>${esc(l.title)}</b><small>${l.minutes} min · ${esc(l.summary)}</small></span>
+            <span class="lesson-go">›</span>
+          </a></li>`).join('')}
+      </ul>`).join('')}`;
+}
+
+async function lessonView(id) {
+  const course = await dataService.getCourse();
+  const lessons = allLessons(course);
+  const i = lessons.findIndex((l) => l.id === id);
+  const l = lessons[i];
+  if (!l) { app.innerHTML = `<div class="empty">Lesson not found.</div>`; return; }
+  const next = lessons[i + 1];
+  const mi = course.modules.indexOf(l.module);
+  const render = () => {
+    app.innerHTML = `
+      <a class="back" href="#/learn">‹ Learn</a>
+      <div class="lesson-wrap">
+        <div class="lesson-video">
+          <span class="clip-play big" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>
+          <span class="lesson-video-note">Video lesson coming soon</span>
+        </div>
+        <div class="course-kicker">Module ${mi + 1} · ${esc(l.module.title)} · Lesson ${i + 1} of ${lessons.length}</div>
+        <h1 class="clip-title">${esc(l.title)}</h1>
+        <p class="card-meta">${l.minutes} min · ${esc(l.summary)}</p>
+        <div class="section-title">Step by step</div>
+        <ol class="list deliv-list">${l.steps.map((s, k) => `<li><span class="deliv-num">${k + 1}</span><span>${esc(s)}</span></li>`).join('')}</ol>
+        <div class="lesson-actions">
+          <button class="btn ${lessonDone(id) ? 'secondary' : ''}" id="complete">${lessonDone(id) ? '✓ Completed · tap to undo' : 'Mark as complete'}</button>
+          ${next ? `<a class="btn secondary" href="#/learn/${next.id}">Next: ${esc(next.title)} ›</a>` : '<a class="btn secondary" href="#/learn">Back to course</a>'}
+        </div>
+      </div>`;
+    $('#complete').addEventListener('click', async () => {
+      state.user = await authService.toggleLesson(id);
+      render();
+    });
+  };
+  render();
+}
+
+// ---------- Pricing: subscription plans (demo) ----------
+function pricingView() {
+  const current = state.user.plan?.id || '';
+  app.innerHTML = `
+    <div class="page-head stacked center">
+      <h1>Choose your plan</h1>
+      <p class="page-sub">Subscribe to unlock the Footage Vault, more content days, or everything CovenantGO offers.</p>
+    </div>
+    <div class="plans">
+      ${CONFIG.PLANS.map((p) => `
+        <div class="plan ${p.popular ? 'popular' : ''} ${current === p.id ? 'current' : ''}">
+          ${p.popular ? '<span class="plan-flag">Most popular</span>' : ''}
+          <h2>${esc(p.name)}</h2>
+          <p class="plan-tagline">${esc(p.tagline)}</p>
+          <div class="plan-price"><b>$${p.price}</b><span>/month</span></div>
+          <ul class="plan-features">${p.features.map((x) => `<li>${esc(x.replace('{n}', p.contentDaysPerWeek))}</li>`).join('')}</ul>
+          ${current === p.id
+            ? `<button class="btn secondary" data-plan="">✓ Your plan · Cancel</button>`
+            : `<button class="btn ${p.popular ? '' : 'secondary'}" data-plan="${p.id}">${current ? 'Switch to this plan' : 'Subscribe'}</button>`}
+        </div>`).join('')}
+    </div>
+    <p class="demo-banner">Demo pricing. Subscribing here is a preview only; no payment is taken.</p>`;
+  app.querySelector('.plans').addEventListener('click', async (e) => {
+    const b = e.target.closest('[data-plan]'); if (!b) return;
+    state.user = await authService.setPlan(b.dataset.plan || null);
+    pricingView();
+  });
+}
+const planName = (u) => CONFIG.PLANS.find((p) => p.id === u?.plan?.id)?.name || 'Free';
 
 // ---------- boot ----------
 async function boot() {

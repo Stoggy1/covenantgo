@@ -25,6 +25,10 @@ data, and it's set up so a real API and database can be plugged in later.
 - **Expedia-style search**: category tabs (All / Hotels & Resorts / Things to Do), Content Days / Footage Vault switch, then a search card with Where to? (autocomplete: cities, states, countries, hotels), When, and Followers needed ("I qualify" / "Up to 1K…25K"); cards show "✓ You qualify" or "Needs X+ followers"
 - **Location picker**: State dropdown (IA – Iowa…) fills the City dropdown (`js/cities.js`), with "Other" to type a city
 - **Appearance**: Dark / Light / Match device in Profile (saved per device)
+- **Showcase**: TikTok GO videos Creators made at partners (sample data in `data/showcase.json`), each linking to the content day or vault clip it came from
+- **Learn**: course on creating TikTok GO content (content day playbook + using Footage Vault clips) with lesson progress; content in `data/course.json`
+- **Pricing**: three subscription plans in `CONFIG.PLANS` (Footage Vault Unlimited, Content Day Pass, All Access). Demo prices; subscribing is a preview, no payment taken
+- **Switch dates**: content day pages list the partner's other dates; cards show "+N more dates"
 - **Profile**: edit phone, agency, location and TikTok
 - **Desktop layout** (900px+): top menu, multi-column grids, two-column detail pages; phone layout unchanged
 - **Demo preview** (temporary): "Preview the app (demo)" opens a pre-filled sample creator. Turn off with `DEMO_MODE: false` in `js/config.js` before launch

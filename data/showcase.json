@@ -1,0 +1,254 @@
+[
+  {
+    "id": "sc_001",
+    "creatorName": "Maya Ortiz",
+    "handle": "@wanderwithmaya",
+    "followers": 180084,
+    "source": "content_day",
+    "contentDayId": "cd_001",
+    "clipId": null,
+    "partnerId": "ptn_casa-marea-resort",
+    "title": "Is Casa Marea Resort worth it? Full tour",
+    "thumbnail": "https://images.unsplash.com/photo-1549294413-26f195200c16",
+    "views": 749077,
+    "likes": 61926,
+    "bookings": 42,
+    "postedOn": "2026-10-27",
+    "location": {
+      "country": "MX",
+      "state": "Quintana Roo",
+      "city": "Tulum"
+    }
+  },
+  {
+    "id": "sc_002",
+    "creatorName": "Jordan Lee",
+    "handle": "@jordanstays",
+    "followers": 120611,
+    "source": "content_day",
+    "contentDayId": "cd_014",
+    "clipId": null,
+    "partnerId": "ptn_roma-norte-house",
+    "title": "The Mexico City spot everyone’s booking",
+    "thumbnail": "https://images.unsplash.com/photo-1584132967334-10e028bd69f7",
+    "views": 433776,
+    "likes": 24901,
+    "bookings": 28,
+    "postedOn": "2026-10-13",
+    "location": {
+      "country": "MX",
+      "state": "Ciudad de México",
+      "city": "Mexico City"
+    }
+  },
+  {
+    "id": "sc_003",
+    "creatorName": "Sofía Ramírez",
+    "handle": "@sofiaviaja",
+    "followers": 100634,
+    "source": "vault",
+    "contentDayId": null,
+    "clipId": "clip_017",
+    "partnerId": "ptn_cenote-explorers",
+    "title": "Hidden gem in Tulum: Cenote Explorers",
+    "thumbnail": "https://images.unsplash.com/photo-1546838849-6eb6269ae2db",
+    "views": 958986,
+    "likes": 56564,
+    "bookings": 22,
+    "postedOn": "2026-10-02",
+    "location": {
+      "country": "MX",
+      "state": "Quintana Roo",
+      "city": "Tulum"
+    }
+  },
+  {
+    "id": "sc_004",
+    "creatorName": "Tyler Brooks",
+    "handle": "@tylertakesoff",
+    "followers": 27907,
+    "source": "content_day",
+    "contentDayId": "cd_067",
+    "clipId": null,
+    "partnerId": "ptn_harbor-lights-cruises",
+    "title": "24 hours at Harbor Lights Cruises in New York City",
+    "thumbnail": "https://images.unsplash.com/photo-1669652513253-98335d27e82e",
+    "views": 182630,
+    "likes": 10407,
+    "bookings": 47,
+    "postedOn": "2026-10-10",
+    "location": {
+      "country": "US",
+      "state": "New York",
+      "city": "New York City"
+    }
+  },
+  {
+    "id": "sc_005",
+    "creatorName": "Aaliyah King",
+    "handle": "@aaliyahabroad",
+    "followers": 29788,
+    "source": "content_day",
+    "contentDayId": "cd_013",
+    "clipId": null,
+    "partnerId": "ptn_roma-norte-house",
+    "title": "Is Roma Norte House worth it? Full tour",
+    "thumbnail": "https://images.unsplash.com/photo-1618773928121-c32242e63f39",
+    "views": 983189,
+    "likes": 63909,
+    "bookings": 55,
+    "postedOn": "2026-10-03",
+    "location": {
+      "country": "MX",
+      "state": "Ciudad de México",
+      "city": "Mexico City"
+    }
+  },
+  {
+    "id": "sc_006",
+    "creatorName": "Diego Navarro",
+    "handle": "@diegoexplora",
+    "followers": 197620,
+    "source": "vault",
+    "contentDayId": null,
+    "clipId": "clip_028",
+    "partnerId": "ptn_biscayne-bay-suites",
+    "title": "3 reasons to book Miami this season",
+    "thumbnail": "https://images.unsplash.com/photo-1657639754447-950d2f314481",
+    "views": 185158,
+    "likes": 42116,
+    "bookings": 19,
+    "postedOn": "2026-09-21",
+    "location": {
+      "country": "US",
+      "state": "Florida",
+      "city": "Miami"
+    }
+  },
+  {
+    "id": "sc_007",
+    "creatorName": "Brooke Hayes",
+    "handle": "@brookebooksit",
+    "followers": 113075,
+    "source": "content_day",
+    "contentDayId": "cd_037",
+    "clipId": null,
+    "partnerId": "ptn_magic-lakes-resort",
+    "title": "POV: you got invited to Magic Lakes Resort",
+    "thumbnail": "https://images.unsplash.com/photo-1782890790046-2aefb0b503cb",
+    "views": 541200,
+    "likes": 53741,
+    "bookings": 62,
+    "postedOn": "2026-09-24",
+    "location": {
+      "country": "US",
+      "state": "Florida",
+      "city": "Orlando"
+    }
+  },
+  {
+    "id": "sc_008",
+    "creatorName": "Marcus Bell",
+    "handle": "@marcusmoves",
+    "followers": 67998,
+    "source": "content_day",
+    "contentDayId": "cd_014",
+    "clipId": null,
+    "partnerId": "ptn_roma-norte-house",
+    "title": "Is Roma Norte House worth it? Full tour",
+    "thumbnail": "https://images.unsplash.com/photo-1584132967334-10e028bd69f7",
+    "views": 231462,
+    "likes": 52051,
+    "bookings": 32,
+    "postedOn": "2026-09-06",
+    "location": {
+      "country": "MX",
+      "state": "Ciudad de México",
+      "city": "Mexico City"
+    }
+  },
+  {
+    "id": "sc_009",
+    "creatorName": "Camila Torres",
+    "handle": "@camilaconcafe",
+    "followers": 5552,
+    "source": "vault",
+    "contentDayId": null,
+    "clipId": "clip_010",
+    "partnerId": "ptn_roma-norte-house",
+    "title": "Hidden gem in Mexico City: Roma Norte House",
+    "thumbnail": "https://images.unsplash.com/photo-1618773928121-c32242e63f39",
+    "views": 569443,
+    "likes": 86299,
+    "bookings": 9,
+    "postedOn": "2026-09-06",
+    "location": {
+      "country": "MX",
+      "state": "Ciudad de México",
+      "city": "Mexico City"
+    }
+  },
+  {
+    "id": "sc_010",
+    "creatorName": "Nina Patel",
+    "handle": "@ninaonthego",
+    "followers": 201812,
+    "source": "content_day",
+    "contentDayId": "cd_040",
+    "clipId": null,
+    "partnerId": "ptn_the-hudson-loft",
+    "title": "I stayed at The Hudson Loft so you don’t have to guess",
+    "thumbnail": "https://images.unsplash.com/photo-1652058812572-fad90a1ee06b",
+    "views": 982905,
+    "likes": 75579,
+    "bookings": 21,
+    "postedOn": "2026-09-18",
+    "location": {
+      "country": "US",
+      "state": "New York",
+      "city": "New York City"
+    }
+  },
+  {
+    "id": "sc_011",
+    "creatorName": "Chris Walker",
+    "handle": "@chriswandering",
+    "followers": 97842,
+    "source": "content_day",
+    "contentDayId": "cd_039",
+    "clipId": null,
+    "partnerId": "ptn_the-hudson-loft",
+    "title": "Is The Hudson Loft worth it? Full tour",
+    "thumbnail": "https://images.unsplash.com/photo-1618773928121-c32242e63f39",
+    "views": 456092,
+    "likes": 89212,
+    "bookings": 12,
+    "postedOn": "2026-10-27",
+    "location": {
+      "country": "US",
+      "state": "New York",
+      "city": "New York City"
+    }
+  },
+  {
+    "id": "sc_012",
+    "creatorName": "Lupe Medina",
+    "handle": "@lupelocal",
+    "followers": 58055,
+    "source": "vault",
+    "contentDayId": null,
+    "clipId": "clip_053",
+    "partnerId": "ptn_red-rock-jeep-adventures",
+    "title": "Hidden gem in Scottsdale: Red Rock Jeep Adventures",
+    "thumbnail": "https://images.unsplash.com/photo-1467489904517-075c242c2b4f",
+    "views": 422949,
+    "likes": 52381,
+    "bookings": 12,
+    "postedOn": "2026-10-05",
+    "location": {
+      "country": "US",
+      "state": "Arizona",
+      "city": "Scottsdale"
+    }
+  }
+]

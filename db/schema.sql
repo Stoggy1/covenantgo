@@ -174,6 +174,46 @@ create table post_links (
 );
 -- Content days count toward rewards when applications.status = 'completed' (partner check-in).
 
+-- ---------- Subscriptions (Pricing tab) ----------
+create table plans (
+  id              text primary key,                -- vault | days | all
+  name            text not null,
+  price_cents     integer not null,
+  content_days_per_week integer,                   -- null = unlimited / not included
+  unlimited_footage boolean not null default false
+);
+create table subscriptions (
+  user_id         uuid primary key references users(id) on delete cascade,
+  plan_id         text not null references plans(id),
+  status          text not null default 'active' check (status in ('active','past_due','canceled')),
+  provider_ref    text,                            -- e.g. Stripe subscription id
+  started_at      timestamptz not null default now(),
+  renews_at       timestamptz
+);
+
+-- ---------- Showcase (Creator videos) ----------
+create table showcase_posts (
+  id              text primary key,
+  user_id         uuid references users(id) on delete set null,
+  tiktok_url      text not null,
+  title           text not null,
+  source          text not null check (source in ('content_day','vault')),
+  content_day_id  text references content_days(id),
+  clip_id         text references vault_clips(id),
+  partner_id      text references partners(id),
+  views           integer, likes integer, bookings integer,
+  posted_on       date,
+  approved        boolean not null default false     -- team picks which posts get showcased
+);
+
+-- ---------- Learn (course progress) ----------
+create table lesson_progress (
+  user_id         uuid not null references users(id) on delete cascade,
+  lesson_id       text not null,
+  completed_at    timestamptz not null default now(),
+  primary key (user_id, lesson_id)
+);
+
 -- spots_taken is derived, never stored
 create view content_days_with_spots as
 select cd.*,

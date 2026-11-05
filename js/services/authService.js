@@ -158,6 +158,31 @@ const localProvider = {
   },
 };
 
+// Shared helper for the local provider: load, change, and save the signed-in user.
+function mutateUser(fn) {
+  const email = read(SESSION_KEY, null);
+  const users = read(USERS_KEY, {});
+  const user = users[email];
+  if (!user) throw new Error('Not signed in.');
+  fn(user);
+  write(USERS_KEY, users);
+  return publicUser(user);
+}
+Object.assign(localProvider, {
+  // Pricing: DEMO subscription, no payment is taken.
+  async setPlan(planId) {
+    return mutateUser((u) => { u.plan = planId ? { id: planId, since: new Date().toISOString(), demo: true } : null; });
+  },
+  // Learn: mark a lesson complete / not complete.
+  async toggleLesson(lessonId) {
+    return mutateUser((u) => {
+      u.completedLessons ||= [];
+      const i = u.completedLessons.indexOf(lessonId);
+      if (i >= 0) u.completedLessons.splice(i, 1); else u.completedLessons.push(lessonId);
+    });
+  },
+});
+
 // Accepts tiktok.com links only; returns a cleaned URL or throws.
 export function normalizeTikTokUrl(raw) {
   let u;
@@ -202,6 +227,14 @@ const apiProvider = {
   },
   async submitPostLink(link) {
     await apiRequest('/me/post-links', { method: 'POST', body: { ...link, url: normalizeTikTokUrl(link.url) } });
+    return apiRequest('/me');
+  },
+  async setPlan(planId) {
+    await apiRequest('/me/subscription', { method: planId ? 'PUT' : 'DELETE', body: planId ? { planId } : undefined });
+    return apiRequest('/me');
+  },
+  async toggleLesson(lessonId) {
+    await apiRequest(`/learn/lessons/${encodeURIComponent(lessonId)}/complete`, { method: 'POST' });
     return apiRequest('/me');
   },
 };

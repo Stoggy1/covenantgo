@@ -72,6 +72,20 @@ const staticProvider = {
   async getAds(placement = 'top') {
     return (await loadJson('ads')).filter((a) => a.placement === placement);
   },
+  // Showcase: Creator videos made from content days / vault clips.
+  async getShowcase(filters = {}) {
+    const [posts, partners] = await Promise.all([loadJson('showcase'), loadJson('partners')]);
+    const byId = Object.fromEntries(partners.map((p) => [p.id, p]));
+    return posts
+      .filter((s) => !filters.source || s.source === filters.source)
+      .map((s) => ({ ...s, partner: byId[s.partnerId] }))
+      .sort((a, b) => b.postedOn.localeCompare(a.postedOn));
+  },
+  async getShowcasePost(id) {
+    return (await this.getShowcase()).find((s) => s.id === id) || null;
+  },
+  // Learn: course modules and lessons.
+  getCourse: () => loadJson('course'),
 };
 
 const featuredRank = (p) => (p?.listingTier === 'featured' ? 0 : 1);
@@ -85,6 +99,9 @@ const apiProvider = {
   getClips: (filters = {}) => apiRequest('/vault/clips', { query: filters }),
   getClip: (id) => apiRequest(`/vault/clips/${encodeURIComponent(id)}`),
   getAds: (placement = 'top') => apiRequest('/ads', { query: { placement } }),
+  getShowcase: (filters = {}) => apiRequest('/showcase', { query: filters }),
+  getShowcasePost: (id) => apiRequest(`/showcase/${encodeURIComponent(id)}`),
+  getCourse: () => apiRequest('/learn/course'),
 };
 
 export const dataService = CONFIG.DATA_SOURCE === 'api' ? apiProvider : staticProvider;

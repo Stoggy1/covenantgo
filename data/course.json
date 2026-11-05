@@ -1,0 +1,160 @@
+{
+  "title": "Creating TikTok GO Content",
+  "intro": "A short course from the Covenant Creative team on making TikTok GO videos that get booked: what to do at a content day, and how to turn Footage Vault clips into your own videos.",
+  "modules": [
+    {
+      "id": "m1",
+      "title": "TikTok GO basics",
+      "lessons": [
+        {
+          "id": "l1",
+          "title": "How TikTok GO pays you",
+          "minutes": 4,
+          "summary": "Every TikTok GO video carries a booking link. When viewers book through it, you earn a commission.",
+          "steps": [
+            "Each content day lists its commission rate, shown next to the TikTok GO logo on the card.",
+            "Your main deliverable is always a TikTok GO video with the partner's booking link attached.",
+            "Views matter, but bookings pay. Show viewers exactly what they'd get if they booked.",
+            "Posts made with Footage Vault clips can carry booking links too, so you can earn without traveling."
+          ]
+        },
+        {
+          "id": "l2",
+          "title": "Set up your Creator profile",
+          "minutes": 3,
+          "summary": "Partners look at your profile before confirming your spot. Make it easy to say yes.",
+          "steps": [
+            "Add your TikTok handle and current follower count in Profile.",
+            "Pick your TikTok GO agency, or \"No agency\" if you're independent.",
+            "Set your home state and city so we can match you with nearby content days.",
+            "Use \"I qualify\" in search to see only the content days you can request."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "m2",
+      "title": "The content day playbook",
+      "lessons": [
+        {
+          "id": "l3",
+          "title": "Before you arrive",
+          "minutes": 5,
+          "summary": "The best content days are planned the night before.",
+          "steps": [
+            "Read \"What you'll do\" and your 5 deliverables on the content day page.",
+            "Write a simple shot list: arrival, room reveal, amenities, food, golden hour, your hook.",
+            "Charge everything, clear phone storage, and pack a small light and a mic.",
+            "Arrive at the call time. Partners plan staff and access around it."
+          ]
+        },
+        {
+          "id": "l4",
+          "title": "On site: what to film and how",
+          "minutes": 6,
+          "summary": "Capture the moments that make someone book, in vertical 9:16.",
+          "steps": [
+            "Open with the arrival POV: walking in, check-in, the first look.",
+            "Visit different room categories and film a quick reveal of each.",
+            "Show the exclusive amenities: pools, cabanas, spa, rooftop, dining.",
+            "Get b-roll: slow pans, details, people enjoying the space (with permission).",
+            "Film golden hour last. It's usually your strongest footage."
+          ]
+        },
+        {
+          "id": "l5",
+          "title": "Working with the partner team",
+          "minutes": 3,
+          "summary": "Be the Creator partners ask for again.",
+          "steps": [
+            "Introduce yourself to your contact and confirm what's off-limits to film.",
+            "Respect guests' privacy: no faces without permission.",
+            "Thank the team on camera. It makes great content and builds the relationship.",
+            "Share raw clips if it's one of your deliverables."
+          ]
+        },
+        {
+          "id": "l6",
+          "title": "Your 5 deliverables, explained",
+          "minutes": 4,
+          "summary": "Every content day has 5 TikTok deliverables. Here's how to nail them.",
+          "steps": [
+            "The TikTok GO video with booking link is the main one. Post it first.",
+            "Stories and LIVEs are for real-time energy: post them during the day.",
+            "Photo carousels work best for room and amenity details.",
+            "Submit each post link on the content day page to earn rewards."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "m3",
+      "title": "Creating with the Footage Vault",
+      "lessons": [
+        {
+          "id": "l7",
+          "title": "Picking the right clips",
+          "minutes": 3,
+          "summary": "Our team films partner properties so you can create without traveling.",
+          "steps": [
+            "Search the Footage Vault by city, state, or partner, just like content days.",
+            "Pick 3–5 clips with a clear story: arrival, highlight, payoff.",
+            "Check the tags: drone, POV, golden hour, no music.",
+            "Save clips to \"My vault clips\" so they're ready when you edit."
+          ]
+        },
+        {
+          "id": "l8",
+          "title": "Turn vault clips into your own video",
+          "minutes": 6,
+          "summary": "Vault footage plus your voice equals your video.",
+          "steps": [
+            "Start with a hook in the first 2 seconds: a question, a surprise, or a price.",
+            "Add your own voiceover or on-screen text so it sounds like you.",
+            "Mix in a clip of yourself (selfie or reaction) to make it personal.",
+            "Keep it 15–30 seconds, add captions, and end with a clear call to book."
+          ]
+        },
+        {
+          "id": "l9",
+          "title": "Footage Vault usage rules",
+          "minutes": 2,
+          "summary": "Free to use, with two simple rules.",
+          "steps": [
+            "Always tag the partner in your post.",
+            "Always use the partner's TikTok GO booking link.",
+            "Don't resell or share raw vault clips outside your own TikTok posts."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "m4",
+      "title": "Post, earn, repeat",
+      "lessons": [
+        {
+          "id": "l10",
+          "title": "Posting with your TikTok GO link",
+          "minutes": 3,
+          "summary": "Small details make a big difference in bookings.",
+          "steps": [
+            "Add the booking link before you publish. It can't be added later.",
+            "Name the place and city in your caption and on screen.",
+            "Post when your audience is most active, then reply to comments in the first hour."
+          ]
+        },
+        {
+          "id": "l11",
+          "title": "Submit links and earn rewards",
+          "minutes": 2,
+          "summary": "Every post you submit moves you closer to the prize.",
+          "steps": [
+            "Paste your TikTok link on the content day page, the vault clip page, or Rewards.",
+            "Attending content days and submitting post links both count toward the prize.",
+            "Your best posts could be featured in the Showcase tab."
+          ]
+        }
+      ]
+    }
+  ]
+}

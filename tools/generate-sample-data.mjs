@@ -191,6 +191,46 @@ for (const p of partnerRows) {
   });
 }
 
+// ---------- Showcase (Creator videos made from content days / vault clips) ----------
+// Fictional demo Creators. Own seed so it never shifts the data above.
+let seed3 = 99;
+const rand3 = () => ((seed3 = (seed3 * 16807) % 2147483647) / 2147483647);
+const pick3 = (arr) => arr[Math.floor(rand3() * arr.length)];
+const creators = [
+  ['Maya Ortiz', '@wanderwithmaya'], ['Jordan Lee', '@jordanstays'], ['Sofía Ramírez', '@sofiaviaja'],
+  ['Tyler Brooks', '@tylertakesoff'], ['Aaliyah King', '@aaliyahabroad'], ['Diego Navarro', '@diegoexplora'],
+  ['Brooke Hayes', '@brookebooksit'], ['Marcus Bell', '@marcusmoves'], ['Camila Torres', '@camilaconcafe'],
+  ['Nina Patel', '@ninaonthego'], ['Chris Walker', '@chriswandering'], ['Lupe Medina', '@lupelocal'],
+];
+const showcaseHooks = {
+  content_day: ['POV: you got invited to {p}', 'I stayed at {p} so you don’t have to guess', 'Is {p} worth it? Full tour', '24 hours at {p} in {c}', 'The {c} spot everyone’s booking'],
+  vault: ['3 reasons to book {c} this season', '{c} in 30 seconds', 'Your sign to go to {c}', 'Hidden gem in {c}: {p}'],
+};
+const showcase = creators.map(([name, handle], i) => {
+  const fromVault = i % 3 === 2;
+  const src = fromVault ? pick3(clips) : pick3(days);
+  const p = partnerById[src.partnerId];
+  const posted = new Date('2026-10-28T12:00:00Z');
+  posted.setUTCDate(posted.getUTCDate() - Math.floor(rand3() * 60));
+  return {
+    id: `sc_${String(i + 1).padStart(3, '0')}`,
+    creatorName: name,
+    handle,
+    followers: Math.round((3 + rand3() * 220) * 1000),
+    source: fromVault ? 'vault' : 'content_day',
+    contentDayId: fromVault ? null : src.id,
+    clipId: fromVault ? src.id : null,
+    partnerId: p.id,
+    title: pick3(showcaseHooks[fromVault ? 'vault' : 'content_day']).replace('{p}', p.name).replace('{c}', p.location.city),
+    thumbnail: p.photos[(i + 1) % p.photos.length],
+    views: Math.round((20 + rand3() * 980) * 1000),
+    likes: Math.round((1 + rand3() * 90) * 1000),
+    bookings: Math.floor(3 + rand3() * 60),
+    postedOn: posted.toISOString().slice(0, 10),
+    location: { ...p.location },
+  };
+});
+
 // ---------- Locations (from partners) ----------
 const locations = { countries: [] };
 for (const [code, name] of [['US', 'United States'], ['MX', 'Mexico']]) {
@@ -210,4 +250,5 @@ writeFileSync('data/partners.json', JSON.stringify(partnerRows, null, 2));
 writeFileSync('data/content-days.json', JSON.stringify(days, null, 2));
 writeFileSync('data/vault-clips.json', JSON.stringify(clips, null, 2));
 writeFileSync('data/locations.json', JSON.stringify(locations, null, 2));
-console.log(`partners: ${partnerRows.length} (${featured.size} featured), content days: ${days.length}, vault clips: ${clips.length}`);
+writeFileSync('data/showcase.json', JSON.stringify(showcase, null, 2));
+console.log(`partners: ${partnerRows.length} (${featured.size} featured), content days: ${days.length}, vault clips: ${clips.length}, showcase: ${showcase.length}`);
