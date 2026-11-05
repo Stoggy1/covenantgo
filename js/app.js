@@ -83,7 +83,7 @@ async function welcomeView() {
     <section class="hero">
       ${logoHtml('hero-logo')}
       <h1>Get booked for content days.</h1>
-      <p>CovenantGo connects TikTok GO <strong class="accent">creators</strong> with hotels, resorts, and things to do across the United States and Mexico.</p>
+      <p>CovenantGo connects TikTok GO <strong class="accent">CREATORS</strong> with hotels, resorts, and things to do across the United States and Mexico.</p>
       <div class="hero-stats">
         <div><b>${days.length}</b><span>Open content days</span></div>
         <div><b>${partners}</b><span>Partners</span></div>
