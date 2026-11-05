@@ -804,3 +804,80 @@ body.sheet-open { overflow: hidden; }
 .msg.sms { background: color-mix(in srgb, var(--ok) 12%, var(--surface-2)); border-bottom-left-radius: 4px; }
 .msg.email { background: var(--surface-2); }
 .msg.off { opacity: .4; text-decoration: line-through; }
+
+/* =====================================================================
+   Layout polish pass (iPhone + computer)
+   ===================================================================== */
+
+/* iOS: keep text size stable when rotating; respect notch / rounded corners */
+html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+.app-header, #app, .adbar {
+  padding-left: max(16px, env(safe-area-inset-left));
+  padding-right: max(16px, env(safe-area-inset-right));
+}
+
+/* Back links: real, easy-to-tap pill buttons */
+.back {
+  display: inline-flex; align-items: center; gap: 4px; min-height: 40px; padding: 0 14px 0 10px;
+  border-radius: 999px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--text); font-size: 14px; margin-bottom: 14px;
+}
+.back:hover { border-color: var(--border-strong); }
+
+/* Search fields: the whole box is the control (bigger tap area) */
+.sfield { position: relative; display: block; min-height: 60px; padding: 0; }
+.sfield > svg { position: absolute; left: 13px; top: 50%; transform: translateY(-50%); pointer-events: none; }
+.sfield label { position: absolute; left: 46px; top: 10px; z-index: 1; pointer-events: none; }
+.sfield input, .sfield select {
+  position: absolute; inset: 0; width: 100%; height: 100%; padding: 27px 40px 9px 46px;
+  border-radius: 12px; font-size: 16px; font-weight: 600;
+}
+.sfield select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%239a9ab0' stroke-width='2.5' stroke-linecap='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat; background-position: right 14px center; background-size: 16px;
+}
+.sfield-clear { position: absolute; right: 10px; top: 50%; transform: translateY(-50%); z-index: 2; }
+.sfield .suggest { top: calc(100% + 6px); }
+
+/* Bigger tap targets */
+.result-count button { padding: 10px 4px; margin: -10px -4px; }
+.list.links a { padding: 11px 0 8px; }
+
+@media (max-width: 759px) {
+  /* Leave room above the pinned Request / Save button so nothing hides under it */
+  #app:has(.sticky-cta) { padding-bottom: calc(var(--safe-bottom) + 170px); }
+  .sticky-cta { padding-bottom: 12px; }
+}
+
+/* Footer: computer only (phones have the tab bar) */
+.site-footer { display: none; }
+
+@media (min-width: 760px) {
+  /* Ad banner is always full width, so ads never get squeezed */
+  .adbar,
+  body[data-layout="narrow"] .adbar,
+  body[data-layout="medium"] .adbar { max-width: 1200px; }
+  body[data-layout="narrow"] .ad-track,
+  body[data-layout="medium"] .ad-track { grid-auto-columns: calc(50% - 8px); }
+  .adbar { padding-left: 32px; padding-right: 32px; }
+  #app { padding-left: 32px; padding-right: 32px; }
+  .app-header { padding-left: 32px; padding-right: 32px; }
+
+  /* Larger page titles */
+  .page-head h1 { font-size: 34px; letter-spacing: -.6px; }
+  .page-head.stacked { margin-bottom: 18px; }
+  .page-sub { font-size: 16px; }
+
+  .site-footer {
+    display: block; border-top: 1px solid var(--border); margin-top: 24px;
+    padding: 22px 32px 28px; color: var(--muted); font-size: 13px;
+  }
+  .site-footer > div { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+  .site-footer b { color: var(--text); }
+  .site-footer .go { background: linear-gradient(65deg, #FE4908 8%, #FE2C55 42%, #2FFAF6 78%); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  #app { padding-bottom: 32px; }
+}
+@media (min-width: 760px) and (max-width: 1023px) {
+  .adbar, #app, .app-header { padding-left: 24px; padding-right: 24px; }
+  .site-footer { padding-left: 24px; padding-right: 24px; }
+}
