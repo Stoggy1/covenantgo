@@ -1113,7 +1113,7 @@ async function showcaseView() {
   app.innerHTML = `
     <div class="page-head stacked">
       <h1>Showcase</h1>
-      <p class="page-sub">TikTok GO videos Creators made at our partners. Get inspired, then go make yours.</p>
+      <p class="page-sub">TikTok GO Creators’ videos made at our partners. Get inspired, then go make yours.</p>
     </div>
     <div class="chips" id="sc-filters">
       ${SHOWCASE_FILTERS.map(([v, l]) => `<button class="chip ${f.source === v ? 'active' : ''}" data-source="${v}">${l}</button>`).join('')}
