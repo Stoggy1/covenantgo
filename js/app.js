@@ -782,7 +782,7 @@ async function dayView(id) {
     <p class="custom-note">${esc(d.customNote || 'Every content day is custom to our partnership with this partner.')}</p>
 
     <div class="section-title tt-title">${goMark()}<span>Deliverables · ${d.deliverables.length} TikTok posts</span></div>
-    <ul class="list tt-list">${d.deliverables.map((x) => `<li>${goMark()}<span>${esc(x)}</span></li>`).join('')}</ul>
+    <ol class="list deliv-list">${d.deliverables.map((x, i) => `<li><span class="deliv-num">${i + 1}</span><span>${esc(x)}</span></li>`).join('')}</ol>
 
     <div class="section-title" ${SINGLE_PLATFORM ? 'hidden' : ''}>Platforms</div>
     <div class="chips" ${SINGLE_PLATFORM ? 'hidden' : ''}>${d.platforms.filter((x) => CONFIG.ENABLED_PLATFORMS.includes(x)).map((x) => `<span class="chip">${esc(platformLabel(x))}</span>`).join('')}</div>
