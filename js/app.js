@@ -164,7 +164,6 @@ async function welcomeView() {
   const cities = new Set(days.map((d) => d.location.city)).size;
   app.innerHTML = `
     <section class="hero">
-      ${logoHtml('hero-logo')}
       <h1>Get booked for content days.</h1>
       <p>CovenantGo connects TikTok GO <strong class="accent">CREATORS</strong> with hotels, resorts, and things to do across the United States and Mexico.</p>
       <div class="built-for"><span>Built for</span><img src="icons/brand/tiktokgo-wordmark-w.png" alt="TikTok GO"><span>creators</span></div>
@@ -289,9 +288,6 @@ async function discoverView(mode = 'days') {
   const vault = mode === 'vault';
   const categories = ['Hotels & Resorts', 'Things to Do'];
   app.innerHTML = `
-    <div class="page-head">
-      ${logoHtml()}
-    </div>
     <nav class="segmented" aria-label="Browse">
       <a href="#/discover" class="${vault ? '' : 'active'}">Content Days</a>
       <a href="#/vault" class="${vault ? 'active' : ''}">Footage Vault</a>
@@ -636,6 +632,8 @@ function profileView() {
 
 // ---------- boot ----------
 async function boot() {
+  // Shared header on every page.
+  document.getElementById('brand').innerHTML = `${logoHtml()}<span class="brand-tag">for TikTok creators</span>`;
   app.innerHTML = `<div class="loading">Loading…</div>`;
   [state.user, state.locations] = await Promise.all([authService.currentUser(), dataService.getLocations()]);
   window.addEventListener('hashchange', router);
