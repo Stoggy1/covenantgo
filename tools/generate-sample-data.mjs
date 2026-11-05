@@ -10,10 +10,13 @@ const partners = [
   ['Villa Sol Vallarta', 'Azul Collection', 'Resort', 'MX', 'Jalisco', 'Puerto Vallarta'],
   ['Casa Tapatía', 'Independent', 'Boutique', 'MX', 'Jalisco', 'Guadalajara'],
   ['Roma Norte House', 'Urbano Hotels', 'Boutique', 'MX', 'Ciudad de México', 'Mexico City'],
-  ['Mezcal & Mesa', 'Independent', 'Restaurant', 'MX', 'Oaxaca', 'Oaxaca City'],
+  ['Oaxaca Mezcal Trails', 'Independent', 'Tour', 'MX', 'Oaxaca', 'Oaxaca City'],
   ['Hacienda Blanca', 'Urbano Hotels', 'Hotel', 'MX', 'Yucatán', 'Mérida'],
   ['Casa Colonial SMA', 'Independent', 'Boutique', 'MX', 'Guanajuato', 'San Miguel de Allende'],
-  ['Surf Shack Sayulita', 'Independent', 'Experience', 'MX', 'Nayarit', 'Sayulita'],
+  ['Surf Shack Sayulita', 'Independent', 'Adventure', 'MX', 'Nayarit', 'Sayulita'],
+  ['Cenote Explorers', 'Independent', 'Adventure', 'MX', 'Quintana Roo', 'Tulum'],
+  ['Cabo Sail & Snorkel', 'Independent', 'Tour', 'MX', 'Baja California Sur', 'Los Cabos'],
+  ['Chapultepec Art Walks', 'Independent', 'Attraction', 'MX', 'Ciudad de México', 'Mexico City'],
   ['The Sunset Arlo', 'Horizon Stays Group', 'Hotel', 'US', 'California', 'Los Angeles'],
   ['Harborview Inn', 'Coastline Hospitality', 'Hotel', 'US', 'California', 'San Diego'],
   ['Desert Bloom Palms', 'Independent', 'Boutique', 'US', 'California', 'Palm Springs'],
@@ -25,15 +28,21 @@ const partners = [
   ['Live Oak Lodge', 'Independent', 'Boutique', 'US', 'Texas', 'Austin'],
   ['Riverwalk Grand', 'Lone Star Hospitality', 'Hotel', 'US', 'Texas', 'San Antonio'],
   ['Honky Tonk House', 'Lone Star Hospitality', 'Hotel', 'US', 'Tennessee', 'Nashville'],
-  ['Bayou Brass Kitchen', 'Independent', 'Restaurant', 'US', 'Louisiana', 'New Orleans'],
+  ['Bayou Jazz & Swamp Tours', 'Independent', 'Tour', 'US', 'Louisiana', 'New Orleans'],
   ['Aloha Tides', 'Coastline Hospitality', 'Resort', 'US', 'Hawaii', 'Honolulu'],
   ['Saguaro Spa Retreat', 'Horizon Stays Group', 'Resort', 'US', 'Arizona', 'Scottsdale'],
   ['Windy City Social', 'Metro Hotel Co.', 'Hotel', 'US', 'Illinois', 'Chicago'],
-  ['Peachtree Rooftop', 'Independent', 'Restaurant', 'US', 'Georgia', 'Atlanta'],
+  ['Peachtree Food Crawl', 'Independent', 'Tour', 'US', 'Georgia', 'Atlanta'],
+  ['Skyline Helicopter Tours', 'Independent', 'Attraction', 'US', 'Nevada', 'Las Vegas'],
+  ['Everglades Airboat Co.', 'Independent', 'Adventure', 'US', 'Florida', 'Miami'],
+  ['Red Rock Jeep Adventures', 'Independent', 'Adventure', 'US', 'Arizona', 'Scottsdale'],
+  ['Harbor Lights Cruises', 'Independent', 'Attraction', 'US', 'New York', 'New York City'],
   ['Summit Peak Chalet', 'Horizon Stays Group', 'Resort', 'US', 'Colorado', 'Aspen'],
 ];
 
-const hues = { Resort: '#ff3b5c', Hotel: '#25f4ee', Boutique: '#b388ff', Restaurant: '#ffb547', Experience: '#5cff9d' };
+// Two partner categories; "type" is the sub-type shown on cards.
+const categoryOf = { Hotel: 'Hotels & Resorts', Resort: 'Hotels & Resorts', Boutique: 'Hotels & Resorts', Tour: 'Things to Do', Attraction: 'Things to Do', Adventure: 'Things to Do' };
+const hues = { Resort: '#ff3b5c', Hotel: '#25f4ee', Boutique: '#b388ff', Tour: '#ffb547', Attraction: '#ff8a3d', Adventure: '#5cff9d' };
 const slug = (s) => s.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
 
 let seed = 42;
@@ -44,26 +53,29 @@ const pickSome = (arr, min, max) => {
   return [...arr].sort(() => rand() - 0.5).slice(0, n);
 };
 
-const partnerRows = partners.map(([name, group, category, country, state, city]) => ({
+const partnerRows = partners.map(([name, group, type, country, state, city]) => ({
   id: `ptn_${slug(name)}`,
   name,
   group,
-  category,
+  category: categoryOf[type],
+  type,
   tiktokGoListed: true,
   location: { country, state, city },
-  accentColor: hues[category],
+  accentColor: hues[type],
   rating: Math.round((4.2 + rand() * 0.8) * 10) / 10,
-  description: `${name} is a demo ${category.toLowerCase()} partner in ${city}. Replace with partner-provided copy from the TikTok GO / partner API.`,
+  description: `${name} is a demo ${type.toLowerCase()} partner in ${city}. Replace with partner-provided copy from the TikTok GO / partner API.`,
 }));
 
 const themes = {
   Resort: ['Poolside Golden Hour', 'Resort Day Pass Takeover', 'Spa & Wellness Day', 'Family Fun Weekend'],
   Hotel: ['Suite Tour Content Day', 'Rooftop Night Shoot', 'Staycation Weekend', 'Room Reveal Day'],
   Boutique: ['Design Detail Shoot', 'Hidden Gem Getaway', 'Slow Morning Story Day'],
-  Restaurant: ['Chef’s Table Tasting', 'Brunch Content Day', 'Signature Cocktail Night'],
-  Experience: ['Surf Lesson & Stay', 'Local Adventure Day'],
+  Tour: ['Guided Tour Content Day', 'Local Flavors Tour', 'Sunset Tour Shoot'],
+  Attraction: ['VIP Access Content Day', 'Behind-the-Scenes Shoot', 'Golden Hour Experience'],
+  Adventure: ['Adventure Day Takeover', 'Thrill Seeker Shoot', 'Explore & Create Day'],
 };
-const perkPool = ['Complimentary 1-night stay', 'Complimentary 2-night stay', '$150 food & beverage credit', 'Spa treatment', 'Welcome cocktail', 'Plus-one included', 'Airport transfer', 'Late checkout', 'Tasting menu for two'];
+const stayPerks = ['Complimentary 1-night stay', 'Complimentary 2-night stay', '$150 food & beverage credit', 'Spa treatment', 'Welcome cocktail', 'Plus-one included', 'Airport transfer', 'Late checkout'];
+const activityPerks = ['Complimentary experience', 'Plus-one included', 'Private guide', 'Hotel pickup & drop-off', 'Photos & drone footage shared', 'Snacks & drinks included', 'Priority skip-the-line access'];
 const deliverablePool = ['1 TikTok GO video with booking link', '3 Instagram Stories', '1 Instagram Reel', '1 Snapchat Spotlight', 'Facebook Reel cross-post', 'Raw clips shared with partner'];
 const platformIds = ['tiktok', 'instagram', 'snapchat', 'facebook', 'youtube'];
 const times = ['9:00 AM', '11:00 AM', '1:00 PM', '3:00 PM', '5:30 PM'];
@@ -80,7 +92,7 @@ for (const p of partnerRows) {
     days.push({
       id: `cd_${String(n++).padStart(3, '0')}`,
       partnerId: p.id,
-      title: pick(themes[p.category]),
+      title: pick(themes[p.type]),
       date: d.toISOString().slice(0, 10),
       time: pick(times),
       location: { ...p.location },
@@ -89,7 +101,7 @@ for (const p of partnerRows) {
       spotsTaken: Math.floor(rand() * spots),
       minFollowers: pick([1000, 2500, 5000, 10000, 25000]),
       commissionRate: pick([5, 6, 8, 10, 12]),
-      perks: pickSome(perkPool, 2, 4),
+      perks: pickSome(p.category === 'Things to Do' ? activityPerks : stayPerks, 2, 4),
       deliverables: ['1 TikTok GO video with booking link', ...pickSome(deliverablePool.slice(1), 1, 3)],
       status: 'open',
     });

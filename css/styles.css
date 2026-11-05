@@ -38,6 +38,9 @@ button, input, select, textarea { font: inherit; color: inherit; }
   background: linear-gradient(90deg, var(--cyan), var(--pink));
   -webkit-background-clip: text; background-clip: text; color: transparent;
 }
+.logo-img { display: block; height: 40px; width: auto; max-width: 70%; }
+.hero-logo.logo-img { height: 72px; }
+.accent { color: var(--cyan); }
 
 /* ---------- Welcome ---------- */
 .hero { min-height: 82dvh; display: flex; flex-direction: column; justify-content: center; gap: 20px; }

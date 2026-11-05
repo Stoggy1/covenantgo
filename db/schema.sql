@@ -41,7 +41,8 @@ create table partners (
   id              text primary key,                -- e.g. ptn_casa-marea-resort
   group_id        uuid references partner_groups(id),
   name            text not null,
-  category        text not null check (category in ('Hotel','Resort','Boutique','Restaurant','Experience')),
+  category        text not null check (category in ('Hotels & Resorts','Things to Do')),
+  type            text not null,                   -- sub-type: Hotel, Resort, Boutique, Tour, Attraction, Adventure
   tiktok_go_listed boolean not null default false,
   tiktok_go_id    text unique,                     -- id from TikTok GO / affiliate feed when available
   country         char(2) not null,

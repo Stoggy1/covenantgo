@@ -4,6 +4,9 @@
 export const CONFIG = {
   APP_NAME: 'CovenantGo',
 
+  // Brand logo image, e.g. "icons/logo.png". Empty = text logo.
+  LOGO_URL: '',
+
   // "static" = read bundled JSON in /data, "api" = call API_BASE_URL
   DATA_SOURCE: 'static',
 

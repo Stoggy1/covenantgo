@@ -37,6 +37,13 @@ function citiesFor(country, st) {
   return statesFor(country).find((s) => s.name === st)?.cities || [];
 }
 
+// Set CONFIG.LOGO_URL to use the brand logo image instead of the text logo.
+function logoHtml(extra = '') {
+  return CONFIG.LOGO_URL
+    ? `<img class="logo-img ${extra}" src="${CONFIG.LOGO_URL}" alt="${CONFIG.APP_NAME}">`
+    : `<div class="logo ${extra}">Covenant<span class="go">Go</span></div>`;
+}
+
 // ---------- router ----------
 const routes = [
   { path: /^#\/welcome$/, view: welcomeView, public: true },
@@ -74,9 +81,9 @@ async function welcomeView() {
   const cities = new Set(days.map((d) => d.location.city)).size;
   app.innerHTML = `
     <section class="hero">
-      <div class="logo">Covenant<span class="go">Go</span></div>
-      <h1>Get booked for hospitality content days.</h1>
-      <p>CovenantGo connects creators with TikTok GO hotel, resort, and restaurant partners across the USA and Mexico.</p>
+      ${logoHtml('hero-logo')}
+      <h1>Get booked for content days.</h1>
+      <p>CovenantGo connects TikTok GO <strong class="accent">creators</strong> with hotels, resorts, and things to do across the United States and Mexico.</p>
       <div class="hero-stats">
         <div><b>${days.length}</b><span>Open content days</span></div>
         <div><b>${partners}</b><span>Partners</span></div>
@@ -186,10 +193,10 @@ function signupView() {
 
 async function discoverView() {
   const f = state.filters;
-  const categories = ['Hotel', 'Resort', 'Boutique', 'Restaurant', 'Experience'];
+  const categories = ['Hotels & Resorts', 'Things to Do'];
   app.innerHTML = `
     <div class="page-head">
-      <div class="logo">Covenant<span class="go">Go</span></div>
+      ${logoHtml()}
     </div>
     <div class="search">
       <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
@@ -205,7 +212,7 @@ async function discoverView() {
       ${CONFIG.PLATFORMS.slice(0, 5).map((p) => `<button class="chip ${f.platform === p.id ? 'active' : ''}" data-platform="${p.id}">${esc(p.label)}</button>`).join('')}
     </div>
     <div class="chips" id="categories">
-      <button class="chip ${f.category ? '' : 'active'}" data-category="">All types</button>
+      <button class="chip ${f.category ? '' : 'active'}" data-category="">All</button>
       ${categories.map((c) => `<button class="chip ${f.category === c ? 'active' : ''}" data-category="${c}">${c}</button>`).join('')}
     </div>
     <div class="result-count"><span id="count"></span><button id="clear" type="button">Clear filters</button></div>
@@ -254,7 +261,7 @@ function cardHtml(d) {
       </div>
       <div class="card-body">
         <h3>${esc(d.title)}</h3>
-        <div class="card-meta">${esc(p.name)} · ${esc(d.location.city)}, ${esc(d.location.state)}, ${esc(d.location.country)}</div>
+        <div class="card-meta">${esc(p.type)} · ${esc(p.name)} · ${esc(d.location.city)}, ${esc(d.location.state)}, ${esc(d.location.country)}</div>
         <div class="card-foot">
           ${spotsHtml(d)}
           <div class="icons">${d.platforms.map((x) => `<span>${esc(platformLabel(x))}</span>`).join('')}</div>

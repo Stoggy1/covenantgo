@@ -1,7 +1,7 @@
 # CovenantGo
 
-**CovenantGo** connects creators with TikTok GO hospitality partners (hotels,
-resorts, boutiques, restaurants) for **content days** in the USA and Mexico.
+**CovenantGo** connects TikTok GO creators with **hotels, resorts, and things
+to do** for **content days** across the United States and Mexico.
 
 This is the MVP. It's an installable web app (PWA) hosted free on GitHub Pages
 that you open on an iPhone and add to the home screen. It runs on static demo
@@ -12,7 +12,7 @@ data, and it's set up so a real API and database can be plugged in later.
 ## What the MVP does
 
 - **Account creation**: name, email, password, home location (country/state/city), and social platforms (TikTok, Instagram, Snapchat, Facebook, YouTube, X) with handles and follower counts
-- **Discover**: browse upcoming content days, search by keyword, filter by **Country → State → City** (USA and Mexico), platform, and partner type
+- **Discover**: browse upcoming content days, search by keyword, filter by **Country → State → City** (USA and Mexico), platform, and category (Hotels & Resorts / Things to Do)
 - **Content day details**: perks, deliverables, TikTok GO commission %, minimum followers, spots left
 - **Request a spot**: eligibility check against the creator's follower count
 - **My Days**: track requests
