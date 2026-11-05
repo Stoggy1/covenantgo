@@ -18,6 +18,10 @@ export const CONFIG = {
 
   SUPPORTED_COUNTRIES: ['US', 'MX'],
 
+  // TEMPORARY: shows a "Preview the app (demo)" button that skips sign-up.
+  // Set to false before real launch.
+  DEMO_MODE: true,
+
   // TikTok GO agencies for the sign-up picker.
   // TODO: replace the placeholders with the 14 official TikTok GO agency names.
   AGENCIES: [

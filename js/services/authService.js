@@ -5,6 +5,7 @@ import { apiRequest, tokenStore } from './http.js';
 
 const USERS_KEY = 'cg_users';
 const SESSION_KEY = 'cg_session';
+const DEMO_EMAIL = 'demo@covenantgo.demo';
 
 function read(key, fallback) {
   try { return JSON.parse(localStorage.getItem(key)) ?? fallback; } catch { return fallback; }
@@ -65,6 +66,42 @@ const localProvider = {
 
   async signOut() {
     try { localStorage.removeItem(SESSION_KEY); } catch { /* ignore */ }
+  },
+
+  // TEMPORARY demo account (CONFIG.DEMO_MODE): no password, pre-filled activity.
+  async demoSignIn() {
+    const users = read(USERS_KEY, {});
+    if (!users[DEMO_EMAIL]) {
+      const now = new Date().toISOString();
+      users[DEMO_EMAIL] = {
+        id: 'usr_demo',
+        isDemo: true,
+        name: 'Demo Creator',
+        email: DEMO_EMAIL,
+        phone: '',
+        agency: 'Covenant Creative',
+        recruitInterest: false,
+        location: { country: 'US', state: 'Texas', city: 'Austin' },
+        platforms: [{ id: 'tiktok', handle: '@democreator', followers: 48000 }],
+        applications: [
+          { contentDayId: 'cd_002', note: '', status: 'completed', appliedAt: now },
+          { contentDayId: 'cd_010', note: '', status: 'completed', appliedAt: now },
+          { contentDayId: 'cd_021', note: '', status: 'approved', appliedAt: now },
+          { contentDayId: 'cd_034', note: '', status: 'pending', appliedAt: now },
+        ],
+        savedClips: [{ clipId: 'clip_002', savedAt: now }, { clipId: 'clip_007', savedAt: now }, { clipId: 'clip_015', savedAt: now }],
+        postLinks: [
+          { url: 'https://www.tiktok.com/@democreator/video/1001', source: 'content_day', clipId: null, contentDayId: 'cd_002', status: 'approved', submittedAt: now },
+          { url: 'https://www.tiktok.com/@democreator/video/1002', source: 'vault', clipId: 'clip_002', contentDayId: null, status: 'approved', submittedAt: now },
+          { url: 'https://www.tiktok.com/@democreator/video/1003', source: 'vault', clipId: 'clip_007', contentDayId: null, status: 'pending', submittedAt: now },
+          { url: 'https://www.tiktok.com/@democreator/video/1004', source: 'other', clipId: null, contentDayId: null, status: 'pending', submittedAt: now },
+        ],
+        createdAt: now,
+      };
+      write(USERS_KEY, users);
+    }
+    write(SESSION_KEY, DEMO_EMAIL);
+    return publicUser(users[DEMO_EMAIL]);
   },
 
   async currentUser() {
@@ -150,6 +187,11 @@ const apiProvider = {
     return apiRequest('/me').catch(() => null);
   },
   updateProfile: (patch) => apiRequest('/me', { method: 'PATCH', body: patch }),
+  async demoSignIn() {
+    const { token, user } = await apiRequest('/auth/demo', { method: 'POST' });
+    tokenStore.set(token);
+    return user;
+  },
   async applyToContentDay(contentDayId, note = '') {
     await apiRequest(`/content-days/${encodeURIComponent(contentDayId)}/applications`, { method: 'POST', body: { note } });
     return apiRequest('/me');

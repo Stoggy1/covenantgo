@@ -128,15 +128,15 @@ function wirePostLinkForm(extra, onDone) {
 // ---------- router ----------
 const routes = [
   { path: /^#\/welcome$/, view: welcomeView, public: true },
-  { path: /^#\/login$/, view: loginView, public: true },
-  { path: /^#\/signup$/, view: signupView, public: true },
+  { path: /^#\/login$/, view: loginView, public: true, layout: 'narrow' },
+  { path: /^#\/signup$/, view: signupView, public: true, layout: 'narrow' },
   { path: /^#\/discover$/, view: () => discoverView('days'), tab: 'discover' },
   { path: /^#\/vault$/, view: () => discoverView('vault'), tab: 'discover' },
   { path: /^#\/clip\/([\w-]+)$/, view: clipView, tab: 'discover' },
   { path: /^#\/day\/([\w-]+)$/, view: dayView, tab: 'discover' },
   { path: /^#\/my-days$/, view: myDaysView, tab: 'my-days' },
-  { path: /^#\/rewards$/, view: rewardsView, tab: 'rewards' },
-  { path: /^#\/profile$/, view: profileView, tab: 'profile' },
+  { path: /^#\/rewards$/, view: rewardsView, tab: 'rewards', layout: 'medium' },
+  { path: /^#\/profile$/, view: profileView, tab: 'profile', layout: 'narrow' },
 ];
 
 async function router() {
@@ -147,6 +147,8 @@ async function router() {
   if (route.public && state.user) return go('#/discover');
 
   tabbar.hidden = !!route.public;
+  app.dataset.layout = route.layout || 'wide';
+  document.body.classList.toggle('is-public', !!route.public);
   tabbar.querySelectorAll('a').forEach((a) => a.classList.toggle('active', a.dataset.tab === route.tab));
   const params = hash.match(route.path).slice(1);
   window.scrollTo(0, 0);
@@ -160,10 +162,12 @@ const go = (hash) => { location.hash = hash; };
 
 // ---------- views ----------
 async function welcomeView() {
-  const [days, clips] = await Promise.all([dataService.getContentDays(), dataService.getClips()]);
+  const [days, clips, partners] = await Promise.all([dataService.getContentDays(), dataService.getClips(), dataService.getPartners()]);
+  const art = partners.filter(isFeatured).slice(0, 4);
   const cities = new Set(days.map((d) => d.location.city)).size;
   app.innerHTML = `
     <section class="hero">
+      <div class="hero-copy">
       <h1>Get booked for content days.</h1>
       <p>CovenantGo connects TikTok GO <strong class="accent">CREATORS</strong> with hotels, resorts, and things to do across the United States and Mexico.</p>
       <div class="built-for"><span>Built for</span><img src="icons/brand/tiktokgo-wordmark-w.png" alt="TikTok GO"><span>creators</span></div>
@@ -177,8 +181,27 @@ async function welcomeView() {
         <a class="btn" href="#/signup">Create creator account</a>
         <a class="btn secondary" href="#/login">I already have an account</a>
       </div>
+      ${demoButtonHtml()}
       <p class="trademark">TikTok and TikTok GO are trademarks of TikTok. CovenantGo is an independent creator platform.</p>
+      </div>
+      <div class="hero-art" aria-hidden="true">
+        ${art.map((p) => `<div class="art-tile" style="background-image:url('${photo(p.photos[0], 600, 800)}')"><span>${esc(p.location.city)}</span></div>`).join('')}
+      </div>
     </section>`;
+  wireDemoButton();
+}
+
+// TEMPORARY (CONFIG.DEMO_MODE): open the app as a pre-filled demo creator.
+function demoButtonHtml() {
+  if (!CONFIG.DEMO_MODE) return '';
+  return `<button class="btn demo" type="button" id="demo">Preview the app (demo)</button>
+    <p class="demo-note">No sign-up needed. Opens a sample creator account.</p>`;
+}
+function wireDemoButton() {
+  $('#demo')?.addEventListener('click', async () => {
+    state.user = await authService.demoSignIn();
+    go('#/discover');
+  });
 }
 
 function loginView() {
@@ -191,7 +214,9 @@ function loginView() {
       <div class="error" id="err"></div>
       <button class="btn" type="submit">Log in</button>
       <a class="btn ghost" href="#/signup">New here? Create an account</a>
+      ${demoButtonHtml()}
     </form>`;
+  wireDemoButton();
   $('#login').addEventListener('submit', async (e) => {
     e.preventDefault();
     const f = new FormData(e.target);
@@ -245,7 +270,7 @@ function signupView() {
       <div class="field"><label for="name">Full name</label><input class="input" id="name" name="name" autocomplete="name" required></div>
       <div class="field"><label for="email">Email</label><input class="input" id="email" name="email" type="email" autocomplete="email" required></div>
       <div class="field"><label for="password">Password</label><input class="input" id="password" name="password" type="password" minlength="8" autocomplete="new-password" required></div>
-      <div class="field"><label for="phone">Phone number <span class="optional">(optional)</span></label><input class="input" id="phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" placeholder="(555) 555-5555"></div>
+      <div class="field"><label for="phone">Phone number</label><input class="input" id="phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" placeholder="(555) 555-5555"></div>
 
       <div class="section-title">TikTok GO agency</div>
       ${agencyFields()}
@@ -293,6 +318,7 @@ async function discoverView(mode = 'days') {
       <a href="#/vault" class="${vault ? 'active' : ''}">Footage Vault</a>
     </nav>
     ${vault ? '<p class="mode-intro">Clips our team shot at partner properties. Save them and repurpose them in your own TikTok GO posts.</p>' : ''}
+    <div class="controls">
     <div class="search">
       <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
       <input class="input" id="q" type="search" placeholder="Search hotels, groups, cities…" value="${esc(f.q)}">
@@ -301,6 +327,7 @@ async function discoverView(mode = 'days') {
       <select class="input" id="country" aria-label="Country">${options(state.locations.countries.map((c) => ({ value: c.code, label: c.name })), f.country, 'Country')}</select>
       <select class="input" id="state" aria-label="State" ${f.country ? '' : 'disabled'}>${options(statesFor(f.country).map((s) => s.name), f.state, 'State')}</select>
       <select class="input" id="city" aria-label="City" ${f.state ? '' : 'disabled'}>${options(citiesFor(f.country, f.state), f.city, 'City')}</select>
+    </div>
     </div>
     <div class="chips" id="platforms" ${SINGLE_PLATFORM ? 'hidden' : ''}>
       <button class="chip ${f.platform ? '' : 'active'}" data-platform="">All platforms</button>
@@ -400,11 +427,15 @@ async function clipView(id) {
   const p = c.partner;
   app.innerHTML = `
     <a class="back" href="#/vault">‹ Footage Vault</a>
+    <div class="detail clip-detail">
+    <div class="d-banner">
     <div class="clip-hero" style="background-image:url('${photo(c.thumbnail, 720, 1280)}')">
       <span class="clip-badge">${esc(c.resolution)} · ${esc(c.orientation)}</span>
       <span class="clip-play big" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>
       <span class="clip-duration">${fmtDuration(c.durationSec)}</span>
     </div>
+    </div>
+    <aside class="d-side">
     <h1 class="clip-title">${esc(c.title)}</h1>
     <p class="card-meta">${esc(p.type)} · ${esc(p.name)} · ${esc(c.location.city)}, ${esc(c.location.state)}</p>
 
@@ -414,7 +445,10 @@ async function clipView(id) {
       <div class="fact"><span>Length</span><b>${fmtDuration(c.durationSec)}</b></div>
       <div class="fact"><span>Saved by creators</span><b>${c.saves}</b></div>
     </div>
+    <div class="sticky-cta"><div id="cta"></div></div>
+    </aside>
 
+    <section class="d-body">
     <div class="section-title">Tags</div>
     <div class="chips">${c.tags.map((t) => `<span class="chip">${esc(t)}</span>`).join('')}</div>
 
@@ -423,8 +457,8 @@ async function clipView(id) {
 
     <div class="section-title">Earn rewards</div>
     <div id="clip-link"></div>
-
-    <div class="sticky-cta"><div id="cta"></div></div>`;
+    </section>
+    </div>`;
 
   const renderLink = () => {
     const mine = (state.user.postLinks || []).filter((l) => l.clipId === id);
@@ -458,11 +492,15 @@ async function dayView(id) {
 
   app.innerHTML = `
     <a class="back" href="#/discover">‹ Discover</a>
+    <div class="detail">
+    <div class="d-banner">
     <div class="detail-banner ${isFeatured(p) ? 'has-photo' : ''}" style="${partnerBanner(p, 1000)}">
       <span class="pill go" style="align-self:flex-start;margin-bottom:auto">${goMark()}<span>Bookable partner</span></span>
       <h1>${esc(d.title)}</h1>
       <p>${esc(p.name)} · ${esc(p.group)}</p>
     </div>
+    </div>
+    <aside class="d-side">
     <div class="facts">
       <div class="fact"><span>Date</span><b>${fmtDate(d.date, { weekday: 'short', month: 'short', day: 'numeric', year: 'numeric' })}</b></div>
       <div class="fact"><span>Call time</span><b>${esc(d.time)}</b></div>
@@ -471,7 +509,10 @@ async function dayView(id) {
       <div class="fact"><span>Booking commission</span><b class="go-inline">${d.commissionRate}% via ${goMark()}</b></div>
       <div class="fact"><span>Min. followers</span><b>${fmtNum(d.minFollowers)}</b></div>
     </div>
+    <div class="sticky-cta"><div id="cta"></div></div>
+    </aside>
 
+    <section class="d-body">
     <div class="section-title">What you get</div>
     <ul class="list">${d.perks.map((x) => `<li>${esc(x)}</li>`).join('')}</ul>
 
@@ -488,13 +529,17 @@ async function dayView(id) {
     <p>${spotsHtml(d)}</p>
 
     <div id="day-link"></div>
-
-    <div class="sticky-cta"><div id="cta"></div></div>`;
+    </section>
+    </div>`;
 
   const cta = $('#cta');
   const renderCta = (isApplied) => {
     if (isApplied) {
-      cta.innerHTML = `<div class="notice ok">Request sent — the partner will confirm your spot.</div>`;
+      const status = state.user.applications?.find((a) => a.contentDayId === id)?.status;
+      cta.innerHTML = `<div class="notice ok">${
+        ATTENDED.includes(status) ? '✓ You attended this content day. It counts toward rewards.'
+        : status === 'approved' ? '✓ You’re confirmed! See you there.'
+        : 'Request sent. The partner will confirm your spot.'}</div>`;
       const mine = (state.user.postLinks || []).filter((l) => l.contentDayId === id);
       $('#day-link').innerHTML = `<div class="section-title">Earn rewards</div>`
         + (mine.length ? `<div class="notice ok">${mine.length} post link${mine.length === 1 ? '' : 's'} submitted for this day.</div>` : '')
@@ -592,7 +637,7 @@ function profileView() {
     <form class="stack" id="profile">
       <div class="section-title">Name</div>
       <input class="input" name="name" value="${esc(u.name)}" required>
-      <div class="section-title">Phone <span class="optional">(optional)</span></div>
+      <div class="section-title">Phone</div>
       <input class="input" name="phone" type="tel" autocomplete="tel" inputmode="tel" value="${esc(u.phone || '')}" placeholder="(555) 555-5555">
       <div class="section-title">Agency</div>
       ${agencyFields(u.agency || '', !!u.recruitInterest)}
