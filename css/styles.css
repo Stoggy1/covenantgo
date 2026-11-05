@@ -881,3 +881,10 @@ html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
   .adbar, #app, .app-header { padding-left: 24px; padding-right: 24px; }
   .site-footer { padding-left: 24px; padding-right: 24px; }
 }
+
+/* Saved: empty states get breathing room; darker "Browse the Footage Vault" button */
+.saved-empty { padding: 28px 12px 8px; margin-bottom: 28px; display: flex; flex-direction: column; align-items: center; gap: 4px; }
+.saved-empty .btn { margin-top: 14px; }
+.btn.dark { background: #000; color: #fff; border: 1px solid #2b2b3a; }
+.btn.dark:hover { border-color: #3d3d52; }
+@media (min-width: 760px) { .saved-empty .btn { min-width: 280px; } }

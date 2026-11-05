@@ -981,11 +981,11 @@ async function myDaysView() {
           <div class="card-meta">${esc(r.day.partner.name)} · ${esc(r.day.location.city)}, ${esc(r.day.location.state)}</div>
         </div>
       </a>`).join('')}</div>`
-    : `<div class="empty">You haven't requested any content days yet.<a class="btn" href="#/discover">Find content days</a></div>`}
+    : `<div class="empty saved-empty">You haven't requested any content days yet.<a class="btn" href="#/discover">Find content days</a></div>`}
     <div class="section-title">My vault clips</div>
     ${saved.length
       ? `<div class="clip-grid">${saved.map(clipCardHtml).join('')}</div>`
-      : `<div class="empty">No saved clips yet.<a class="btn secondary" href="#/vault">Browse the Footage Vault</a></div>`}`;
+      : `<div class="empty saved-empty">No saved clips yet.<a class="btn dark" href="#/vault">Browse the Footage Vault</a></div>`}`;
 }
 
 function profileView() {
