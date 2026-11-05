@@ -18,6 +18,10 @@ export const CONFIG = {
 
   SUPPORTED_COUNTRIES: ['US', 'MX'],
 
+  // true = every listing shows a photo (MVP demo look).
+  // false = only Featured (paid) partners get photos; others show a plain banner (the upsell).
+  PHOTOS_FOR_ALL_LISTINGS: true,
+
   // TEMPORARY: shows a "Preview the app (demo)" button that skips sign-up.
   // Set to false before real launch.
   DEMO_MODE: true,

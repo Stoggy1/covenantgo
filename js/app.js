@@ -27,10 +27,13 @@ const banner = (color) => `background: radial-gradient(circle at 85% 20%, ${colo
 // Unsplash supports on-the-fly resizing via query params.
 const photo = (url, w = 800, h) => `${url}?auto=format&fit=crop&q=70&w=${w}${h ? `&h=${h}` : ''}`;
 const isFeatured = (p) => p.listingTier === 'featured' && p.photos?.length;
-// Featured (paid) partners show their photo; standard listings keep the plain banner.
-const partnerBanner = (p, w) => (isFeatured(p)
-  ? `background-image: linear-gradient(180deg, rgba(0,0,0,.15), rgba(0,0,0,.55)), url('${photo(p.photos[0], w)}');`
-  : banner(p.accentColor));
+// CONFIG.PHOTOS_FOR_ALL_LISTINGS: every listing shows a photo (MVP demo).
+// Set false to go back to "photos only for Featured" (the paid upsell).
+const showsPhoto = (p) => (CONFIG.PHOTOS_FOR_ALL_LISTINGS ? !!p.photos?.length : isFeatured(p));
+// Days at the same partner rotate through its photos so the list doesn't repeat.
+const dayPhoto = (d) => d.partner.photos[(parseInt(d.id.replace(/\D/g, ''), 10) || 0) % d.partner.photos.length];
+const photoBg = (url, w) => `background-image: linear-gradient(180deg, rgba(0,0,0,.10), rgba(0,0,0,.55)), url('${photo(url, w)}');`;
+const partnerBanner = (p, w, url = p.photos?.[0]) => (showsPhoto(p) ? photoBg(url, w) : banner(p.accentColor));
 const fmtDuration = (sec) => `${Math.floor(sec / 60)}:${String(sec % 60).padStart(2, '0')}`;
 const initials = (name = '') => name.split(/\s+/).map((w) => w[0]).slice(0, 2).join('').toUpperCase();
 const totalFollowers = (u) => (u?.platforms || []).filter((p) => CONFIG.ENABLED_PLATFORMS.includes(p.id)).reduce((s, p) => s + (Number(p.followers) || 0), 0);
@@ -504,6 +507,7 @@ async function discoverView(mode = 'days') {
     </nav>
     ${vault ? '<p class="mode-intro">Clips our team shot at partner properties. Save them and repurpose them in your own TikTok GO posts.</p>' : ''}
 
+    <div class="search-brand"><span class="wordmark-badge"><img src="icons/brand/tiktokgo-wordmark-color.png" alt="TikTok GO"></span></div>
     <form class="search-card ${vault ? 'is-vault' : ''}" id="search" role="search" autocomplete="off">
       <div class="sfield where">
         ${svg(ICONS.pin)}
@@ -622,20 +626,24 @@ function spotsHtml(d) {
 
 function cardHtml(d) {
   const p = d.partner;
+  const left = d.spotsTotal - d.spotsTaken;
   return `
-    <a class="card" href="#/day/${d.id}">
-      <div class="card-banner ${isFeatured(p) ? 'has-photo' : ''}" style="${partnerBanner(p, 800)}">
+    <a class="card ${isFeatured(p) ? 'is-featured' : ''}" href="#/day/${d.id}">
+      <div class="card-banner ${showsPhoto(p) ? 'has-photo' : ''}" style="${partnerBanner(p, 800, showsPhoto(p) ? dayPhoto(d) : undefined)}">
         <div class="date-badge"><b>${fmtDate(d.date, { day: 'numeric' })}</b><span>${fmtDate(d.date, { month: 'short' })}</span></div>
         <div class="pill-stack">
           <span class="pill go">${goMark()}<span>${d.commissionRate}%</span></span>
-          ${isFeatured(p) ? '<span class="pill featured">Featured</span>' : ''}
+          ${isFeatured(p) ? '<span class="pill featured">★ Featured</span>' : ''}
         </div>
+        <span class="banner-loc">${esc(d.location.city)}, ${esc(d.location.country === 'US' ? d.location.state : countryName(d.location.country))}</span>
       </div>
       <div class="card-body">
+        <div class="card-kicker">${esc(p.type)} · ${esc(p.category)}</div>
         <h3>${esc(d.title)}</h3>
-        <div class="card-meta">${esc(p.type)} · ${esc(p.name)} · ${esc(d.location.city)}, ${esc(d.location.state)}, ${esc(d.location.country)}</div>
+        <div class="card-partner"><span>${esc(p.name)}</span><span class="rating">★ ${p.rating}</span></div>
+        <div class="spots-bar" aria-hidden="true"><span style="width:${Math.round((d.spotsTaken / d.spotsTotal) * 100)}%"></span></div>
         <div class="card-foot">
-          ${spotsHtml(d)}
+          ${left === 0 ? '<span class="spots full">Waitlist</span>' : `<span class="spots ${left <= 2 ? 'low' : ''}">${left} of ${d.spotsTotal} spots left</span>`}
           ${SINGLE_PLATFORM
             ? qualifyHtml(d)
             : `<div class="icons">${d.platforms.filter((x) => CONFIG.ENABLED_PLATFORMS.includes(x)).map((x) => `<span>${esc(platformLabel(x))}</span>`).join('')}</div>`}
@@ -734,7 +742,7 @@ async function dayView(id) {
     <a class="back" href="#/discover">‹ Discover</a>
     <div class="detail">
     <div class="d-banner">
-    <div class="detail-banner ${isFeatured(p) ? 'has-photo' : ''}" style="${partnerBanner(p, 1000)}">
+    <div class="detail-banner ${showsPhoto(p) ? 'has-photo' : ''}" style="${partnerBanner(p, 1000, showsPhoto(p) ? dayPhoto(d) : undefined)}">
       <span class="pill go" style="align-self:flex-start;margin-bottom:auto">${goMark()}<span>Bookable partner</span></span>
       <h1>${esc(d.title)}</h1>
       <p>${esc(p.name)} · ${esc(p.group)}</p>
@@ -745,7 +753,7 @@ async function dayView(id) {
       <div class="section-title">About the partner</div>
       <div class="partner-card">
         <div class="partner-head">
-          <div class="partner-avatar" style="${isFeatured(p) ? `background-image:url('${photo(p.photos[0], 160, 160)}')` : `background:${p.accentColor}`}">${isFeatured(p) ? '' : esc(initials(p.name))}</div>
+          <div class="partner-avatar" style="${showsPhoto(p) ? `background-image:url('${photo(p.photos[0], 160, 160)}')` : `background:${p.accentColor}`}">${showsPhoto(p) ? '' : esc(initials(p.name))}</div>
           <div>
             <b>${esc(p.name)}</b>
             <div class="card-meta">${esc(p.type)} · ${esc(p.group)}</div>
@@ -852,9 +860,10 @@ async function myDaysView() {
     ${rewardsCardHtml(state.user, { compact: true })}
     <div class="section-title">My content days</div>
     ${rows.length ? `<div class="cards">${rows.map((r) => `
-      <a class="card" href="#/day/${r.day.id}">
+      <a class="card row-card" href="#/day/${r.day.id}">
+        <div class="row-thumb" style="${partnerBanner(r.day.partner, 240, showsPhoto(r.day.partner) ? dayPhoto(r.day) : undefined)}"></div>
         <div class="card-body">
-          <div class="card-foot" style="margin:0 0 6px"><span class="card-meta">${fmtDate(r.day.date, { weekday: 'short', month: 'short', day: 'numeric' })} · ${esc(r.day.time)}</span><span class="status">${esc(r.status)}</span></div>
+          <div class="card-foot" style="margin:0 0 4px"><span class="card-meta">${fmtDate(r.day.date, { weekday: 'short', month: 'short', day: 'numeric' })} · ${esc(r.day.time)}</span><span class="status status-${esc(r.status)}">${esc(r.status)}</span></div>
           <h3>${esc(r.day.title)}</h3>
           <div class="card-meta">${esc(r.day.partner.name)} · ${esc(r.day.location.city)}, ${esc(r.day.location.state)}</div>
         </div>
