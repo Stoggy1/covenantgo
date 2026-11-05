@@ -20,6 +20,10 @@ data, and it's set up so a real API and database can be plugged in later.
 - **Featured listings** (future paid upsell): featured partners show photos on list views; standard listings show a plain banner
 - **Agency + recruiting**: creators pick one of the TikTok GO agencies or "No agency"; independent creators can opt in to hear from Covenant Creative
 - **Rewards**: progress toward a prize (attend X content days or submit X TikTok post links); goals set in `CONFIG.REWARDS`
+- **Sponsored ads**: swipeable ad carousel under the header (paid placement); data in `data/ads.json`
+- **Featured first**: featured partners' content days sort to the top of Discover
+- **Followers filter**: "I qualify" / "Up to 1K…25K"; cards show "✓ You qualify" or "Needs X+ followers"
+- **Appearance**: Dark / Light / Match device in Profile (saved per device)
 - **Profile**: edit phone, agency, location and TikTok
 - **Desktop layout** (900px+): top menu, multi-column grids, two-column detail pages; phone layout unchanged
 - **Demo preview** (temporary): "Preview the app (demo)" opens a pre-filled sample creator. Turn off with `DEMO_MODE: false` in `js/config.js` before launch

@@ -16,12 +16,21 @@
   <link rel="icon" type="image/svg+xml" href="icons/icon.svg" />
   <link rel="manifest" href="manifest.webmanifest" />
 
-  <link rel="stylesheet" href="css/styles.css?v=12" />
+  <link rel="stylesheet" href="css/styles.css?v=15" />
+  <script>
+    // Apply the saved Light/Dark choice before the page draws (avoids a flash).
+    (function () {
+      var t = 'dark';
+      try { t = localStorage.getItem('cg_theme') || 'dark'; } catch (e) {}
+      document.documentElement.setAttribute('data-theme', t);
+    })();
+  </script>
 </head>
 <body>
   <header class="app-header">
     <a class="brand" id="brand" href="#/discover" aria-label="CovenantGo for TikTok GO Creators, home"></a>
   </header>
+  <aside id="adbar" class="adbar" aria-label="Sponsored" hidden></aside>
   <div id="app" aria-live="polite"></div>
 
   <nav id="tabbar" class="tabbar" hidden>
@@ -43,6 +52,6 @@
     </a>
   </nav>
 
-  <script type="module" src="js/app.js?v=12"></script>
+  <script type="module" src="js/app.js?v=15"></script>
 </body>
 </html>

@@ -1,0 +1,62 @@
+[
+  {
+    "id": "ad_001",
+    "placement": "top",
+    "partnerId": "ptn_casa-marea-resort",
+    "headline": "Golden hour in Tulum",
+    "body": "2-night stay + spa for TikTok GO Creators. 8% booking commission.",
+    "cta": "See content day",
+    "href": "#/day/cd_002",
+    "image": "https://images.unsplash.com/photo-1623718649591-311775a30c43"
+  },
+  {
+    "id": "ad_002",
+    "placement": "top",
+    "partnerId": "ptn_skyline-helicopter-tours",
+    "headline": "Shoot Vegas from the sky",
+    "body": "Behind-the-scenes helicopter content day. Limited spots.",
+    "cta": "Request a spot",
+    "href": "#/day/cd_061",
+    "image": "https://images.unsplash.com/photo-1607525884336-66ccfac7ab56"
+  },
+  {
+    "id": "ad_003",
+    "placement": "top",
+    "partnerId": "ptn_summit-peak-chalet",
+    "headline": "Aspen spa & wellness day",
+    "body": "Ski-season chalet stay for Creators. Book through TikTok GO.",
+    "cta": "See content day",
+    "href": "#/day/cd_060",
+    "image": "https://images.unsplash.com/photo-1678384982946-69f649058b68"
+  },
+  {
+    "id": "ad_004",
+    "placement": "top",
+    "partnerId": "ptn_cenote-explorers",
+    "headline": "Swim the cenotes",
+    "body": "Free footage in the Vault, plus a Thrill Seeker content day.",
+    "cta": "See content day",
+    "href": "#/day/cd_023",
+    "image": "https://images.unsplash.com/photo-1763722682615-60ebd0ee2268"
+  },
+  {
+    "id": "ad_005",
+    "placement": "top",
+    "partnerId": "ptn_pacific-cliffs-cabo",
+    "headline": "Cabo cliffside weekend",
+    "body": "Family Fun Weekend shoot with ocean-view suites.",
+    "cta": "See content day",
+    "href": "#/day/cd_008",
+    "image": "https://images.unsplash.com/photo-1757924382007-7b3228526d09"
+  },
+  {
+    "id": "ad_house",
+    "placement": "top",
+    "house": true,
+    "headline": "Your property here",
+    "body": "Put your hotel or experience in front of TikTok GO Creators. Ad space available.",
+    "cta": "Advertise with Covenant Creative",
+    "href": "",
+    "image": ""
+  }
+]

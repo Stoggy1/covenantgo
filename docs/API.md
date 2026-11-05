@@ -42,11 +42,12 @@ All authenticated requests send `Authorization: Bearer <token>`.
 | GET | `/locations` | — | `{ countries: [{ code, name, states: [{ name, cities: [] }] }] }` |
 | GET | `/partners` | — | `Partner[]` (see `data/partners.json`) |
 | GET | `/partners/:id` | — | `Partner` |
-| GET | `/content-days` | `q, country, state, city, platform, category, fromDate` | `ContentDay[]` with an embedded `partner` object |
+| GET | `/content-days` | `q, country, state, city, platform, category, maxFollowers, fromDate` | `ContentDay[]` with an embedded `partner`, **featured partners first**, then by date. `maxFollowers` keeps days whose `minFollowers` ≤ it |
 | GET | `/content-days/:id` | — | `ContentDay` with an embedded `partner` |
 | POST | `/content-days/:id/applications` | `{ note }` | `201` |
 | GET | `/vault/clips` | `q, country, state, city, category` | `Clip[]` (see `data/vault-clips.json`) with an embedded `partner` |
 | GET | `/vault/clips/:id` | — | `Clip` with an embedded `partner` |
+| GET | `/ads` | `placement` (e.g. `top`) | `Ad[]` (see `data/ads.json`): sponsored carousel under the header; `house: true` = "ad space available" card |
 | POST | `/vault/clips/:id/save` | — | toggles the clip in the user's `savedClips`; `204` |
 
 Partners carry `listingTier` (`standard` | `featured`) and `photos[]`. The app

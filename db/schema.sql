@@ -133,6 +133,22 @@ create table saved_clips (
   primary key (user_id, clip_id)
 );
 
+-- ---------- Sponsored ads (paid placements, e.g. carousel under the header) ----------
+create table ads (
+  id              text primary key,
+  placement       text not null default 'top',
+  partner_id      text references partners(id) on delete cascade,  -- null for house ads
+  headline        text not null,
+  body            text,
+  cta             text,
+  href            text,                            -- in-app link, e.g. #/day/cd_002
+  image_url       text,
+  is_house        boolean not null default false,  -- 'ad space available' promo
+  starts_at       timestamptz not null default now(),
+  ends_at         timestamptz,
+  priority        integer not null default 0
+);
+
 -- ---------- Rewards (gamification) ----------
 create table reward_programs (
   id              uuid primary key default gen_random_uuid(),

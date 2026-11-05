@@ -5,10 +5,11 @@ import { REGIONS } from './regions.js';
 
 const app = document.getElementById('app');
 const tabbar = document.getElementById('tabbar');
+const adbar = document.getElementById('adbar');
 const state = {
   user: null,
   locations: null,
-  filters: { q: '', country: '', state: '', city: '', platform: '', category: '' },
+  filters: { q: '', country: '', state: '', city: '', platform: '', category: '', followers: '' },
 };
 
 // ---------- helpers ----------
@@ -55,7 +56,23 @@ function logoHtml(extra = '') {
     : `<div class="logo ${extra}">Covenant<span class="go">Go</span></div>`;
 }
 
-const goMark = () => `<img class="go-mark" src="icons/brand/tiktokgo-mark-w.png" alt="TikTok GO">`;
+// White-lettering mark for dark backgrounds, black-lettering for light (CSS shows the right one).
+const goMark = () => `<img class="go-mark mark-dark" src="icons/brand/tiktokgo-mark-w.png" alt="TikTok GO"><img class="go-mark mark-light" src="icons/brand/tiktokgo-mark-b.png" alt="TikTok GO">`;
+
+// ---------- appearance (light / dark) ----------
+const THEME_KEY = 'cg_theme';
+const THEMES = [['dark', 'Dark'], ['light', 'Light'], ['system', 'Match device']];
+const getTheme = () => { try { return localStorage.getItem(THEME_KEY) || 'dark'; } catch { return 'dark'; } };
+function applyTheme(t) {
+  document.documentElement.dataset.theme = t;
+  const light = t === 'light' || (t === 'system' && matchMedia('(prefers-color-scheme: light)').matches);
+  document.querySelector('meta[name=theme-color]')?.setAttribute('content', light ? '#f5f5f8' : '#0b0b10');
+}
+function setTheme(t) {
+  try { localStorage.setItem(THEME_KEY, t); } catch { /* storage unavailable */ }
+  applyTheme(t);
+}
+matchMedia('(prefers-color-scheme: light)').addEventListener('change', () => applyTheme(getTheme()));
 
 // ---------- agency + recruiting ----------
 const agencyLabel = (a) => (!a || a === CONFIG.NO_AGENCY ? 'No agency' : a);
@@ -126,6 +143,66 @@ function wirePostLinkForm(extra, onDone) {
   });
 }
 
+// ---------- sponsored ad carousel (under the header) ----------
+function adHtml(ad, partner) {
+  if (ad.house) {
+    return `
+      <div class="ad house">
+        <div class="ad-img house-art" aria-hidden="true"><span>AD</span></div>
+        <div class="ad-copy">
+          <span class="ad-label">Ad space available</span>
+          <b class="ad-headline">${esc(ad.headline)}</b>
+          <span class="ad-body">${esc(ad.body)}</span>
+          <span class="ad-cta">${esc(ad.cta)}</span>
+        </div>
+      </div>`;
+  }
+  return `
+    <a class="ad" href="${esc(ad.href)}">
+      <div class="ad-img" style="background-image:url('${photo(ad.image, 480, 480)}')"></div>
+      <div class="ad-copy">
+        <span class="ad-label">Sponsored · ${esc(partner?.name || '')}</span>
+        <b class="ad-headline">${esc(ad.headline)}</b>
+        <span class="ad-body">${esc(ad.body)}</span>
+        <span class="ad-cta">${esc(ad.cta)} ›</span>
+      </div>
+    </a>`;
+}
+
+async function renderAdbar() {
+  const [ads, partners] = await Promise.all([dataService.getAds('top'), dataService.getPartners()]);
+  if (!ads.length) return;
+  const byId = Object.fromEntries(partners.map((p) => [p.id, p]));
+  adbar.innerHTML = `
+    <div class="ad-track" id="ad-track">${ads.map((a) => `<div class="ad-slide">${adHtml(a, byId[a.partnerId])}</div>`).join('')}</div>
+    <div class="ad-dots" id="ad-dots">${ads.map((_, i) => `<button type="button" aria-label="Ad ${i + 1}" data-i="${i}"></button>`).join('')}</div>`;
+
+  const track = adbar.querySelector('#ad-track');
+  const dots = [...adbar.querySelectorAll('#ad-dots button')];
+  const slideW = () => track.querySelector('.ad-slide').getBoundingClientRect().width + parseFloat(getComputedStyle(track).columnGap || 0);
+  const current = () => Math.round(track.scrollLeft / slideW());
+  const visible = () => Math.max(1, Math.round(track.clientWidth / slideW()));
+  const goTo = (i) => track.scrollTo({ left: i * slideW(), behavior: 'smooth' });
+  const sync = () => {
+    const i = current();
+    dots.forEach((d, k) => d.classList.toggle('active', k >= i && k < i + visible()));
+  };
+  track.addEventListener('scroll', () => requestAnimationFrame(sync), { passive: true });
+  dots.forEach((d) => d.addEventListener('click', () => goTo(Number(d.dataset.i))));
+  sync();
+
+  // Auto-rotate; pauses while the user touches/hovers it. Off for reduced motion.
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  let paused = false;
+  ['pointerenter', 'touchstart', 'focusin'].forEach((ev) => adbar.addEventListener(ev, () => { paused = true; }, { passive: true }));
+  ['pointerleave', 'touchend', 'focusout'].forEach((ev) => adbar.addEventListener(ev, () => { paused = false; }, { passive: true }));
+  setInterval(() => {
+    if (paused || adbar.hidden || document.hidden) return;
+    const next = current() + 1;
+    goTo(next > ads.length - visible() ? 0 : next);
+  }, 5000);
+}
+
 // ---------- router ----------
 const routes = [
   { path: /^#\/welcome$/, view: welcomeView, public: true },
@@ -150,6 +227,8 @@ async function router() {
   tabbar.hidden = !!route.public;
   app.dataset.layout = route.layout || 'wide';
   document.body.classList.toggle('is-public', !!route.public);
+  document.body.dataset.layout = route.layout || 'wide';
+  adbar.hidden = !!route.public;
   tabbar.querySelectorAll('a').forEach((a) => a.classList.toggle('active', a.dataset.tab === route.tab));
   const params = hash.match(route.path).slice(1);
   window.scrollTo(0, 0);
@@ -171,7 +250,7 @@ async function welcomeView() {
       <div class="hero-copy">
       <h1>Get Booked For Content Days.</h1>
       <p>CovenantGo connects TikTok GO <strong class="accent">CREATORS</strong> with hotels, resorts, and things to do across the United States and Mexico.</p>
-      <div class="built-for"><img src="icons/brand/tiktokgo-mark-w.png" alt=""><span>Built for TikTok GO Creators</span></div>
+      <div class="built-for"><img class="mark-dark" src="icons/brand/tiktokgo-mark-w.png" alt=""><img class="mark-light" src="icons/brand/tiktokgo-mark-b.png" alt=""><span>Built for TikTok GO Creators</span></div>
       <p class="open-to-all">Open to every TikTok GO Creator, with an agency or without one.</p>
       <div class="hero-stats">
         <div><b>${days.length}</b><span>Open content days</span></div>
@@ -364,6 +443,11 @@ async function discoverView(mode = 'days') {
       <button class="chip ${f.category ? '' : 'active'}" data-category="">All</button>
       ${categories.map((c) => `<button class="chip ${f.category === c ? 'active' : ''}" data-category="${c}">${c}</button>`).join('')}
     </div>
+    ${vault ? '' : `
+    <div class="chips followers-row" id="followers" role="group" aria-label="Followers needed">
+      <span class="chips-label">Followers needed</span>
+      ${FOLLOWER_FILTERS.map(([v, label]) => `<button class="chip ${String(f.followers) === v ? 'active' : ''}" data-followers="${v}">${v === 'me' ? `✓ I qualify (${fmtNum(totalFollowers(state.user))})` : label}</button>`).join('')}
+    </div>`}
     <div class="result-count"><span id="count"></span><button id="clear" type="button">Clear filters</button></div>
     <div class="${vault ? 'clip-grid' : 'cards'}" id="results"><div class="loading">Loading…</div></div>`;
 
@@ -376,7 +460,8 @@ async function discoverView(mode = 'days') {
         : `<div class="empty">No vault clips for those filters yet.</div>`;
       return;
     }
-    const days = await dataService.getContentDays({ ...f, fromDate: new Date().toISOString().slice(0, 10) });
+    const maxFollowers = f.followers === 'me' ? totalFollowers(state.user) : Number(f.followers) || '';
+    const days = await dataService.getContentDays({ ...f, followers: undefined, maxFollowers, fromDate: new Date().toISOString().slice(0, 10) });
     $('#count').textContent = `${days.length} content day${days.length === 1 ? '' : 's'}`;
     $('#results').innerHTML = days.length
       ? days.map(cardHtml).join('')
@@ -396,10 +481,22 @@ async function discoverView(mode = 'days') {
     const b = e.target.closest('[data-category]'); if (!b) return;
     f.category = b.dataset.category; discoverView(mode);
   });
+  $('#followers')?.addEventListener('click', (e) => {
+    const b = e.target.closest('[data-followers]'); if (!b) return;
+    f.followers = b.dataset.followers; discoverView(mode);
+  });
   $('#clear').addEventListener('click', () => {
-    Object.assign(f, { q: '', country: '', state: '', city: '', platform: '', category: '' }); discoverView(mode);
+    Object.assign(f, { q: '', country: '', state: '', city: '', platform: '', category: '', followers: '' }); discoverView(mode);
   });
   await refresh();
+}
+
+// Followers filter options: value = max followers a content day may require.
+const FOLLOWER_FILTERS = [['', 'Any'], ['me', 'I qualify'], ['1000', 'Up to 1K'], ['2500', 'Up to 2.5K'], ['5000', 'Up to 5K'], ['10000', 'Up to 10K'], ['25000', 'Up to 25K']];
+function qualifyHtml(d) {
+  return totalFollowers(state.user) >= d.minFollowers
+    ? `<span class="qualify yes">✓ You qualify</span>`
+    : `<span class="qualify no">Needs ${fmtNum(d.minFollowers)}+ followers</span>`;
 }
 
 function spotsHtml(d) {
@@ -425,7 +522,7 @@ function cardHtml(d) {
         <div class="card-foot">
           ${spotsHtml(d)}
           ${SINGLE_PLATFORM
-            ? `<span class="card-meta">${fmtNum(d.minFollowers)}+ followers</span>`
+            ? qualifyHtml(d)
             : `<div class="icons">${d.platforms.filter((x) => CONFIG.ENABLED_PLATFORMS.includes(x)).map((x) => `<span>${esc(platformLabel(x))}</span>`).join('')}</div>`}
         </div>
       </div>
@@ -661,6 +758,11 @@ function profileView() {
         <p>${esc(CONFIG.RECRUITING_AGENCY)} works with TikTok GO Creators on hospitality deals. Tick the box under <b>Agency</b> below and our team will reach out.</p>
       </div>` : ''}
 
+    <div class="section-title">Appearance</div>
+    <div class="theme-picker" id="theme-picker" role="radiogroup" aria-label="Appearance">
+      ${THEMES.map(([id, label]) => `<button type="button" role="radio" data-theme="${id}" aria-checked="${getTheme() === id}" class="${getTheme() === id ? 'active' : ''}">${label}</button>`).join('')}
+    </div>
+
     <form class="stack" id="profile">
       <div class="section-title">Name</div>
       <input class="input" name="name" value="${esc(u.name)}" required>
@@ -679,6 +781,15 @@ function profileView() {
     <p class="demo-banner">MVP demo · data source: ${CONFIG.DATA_SOURCE} · auth: ${CONFIG.AUTH_PROVIDER}</p>`;
   wireAgency();
   wireLocation('pf');
+  // Appearance applies instantly (no Save needed) and is remembered on this device.
+  $('#theme-picker').addEventListener('click', (e) => {
+    const b = e.target.closest('[data-theme]'); if (!b) return;
+    setTheme(b.dataset.theme);
+    $('#theme-picker').querySelectorAll('button').forEach((x) => {
+      x.classList.toggle('active', x === b);
+      x.setAttribute('aria-checked', String(x === b));
+    });
+  });
 
   $('#profile').addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -705,8 +816,10 @@ function profileView() {
 
 // ---------- boot ----------
 async function boot() {
+  applyTheme(getTheme());
   // Shared header on every page.
   document.getElementById('brand').innerHTML = `${logoHtml()}<span class="brand-tag">for TikTok GO Creators</span>`;
+  renderAdbar().catch(() => {});
   app.innerHTML = `<div class="loading">Loading…</div>`;
   [state.user, state.locations] = await Promise.all([authService.currentUser(), dataService.getLocations()]);
   window.addEventListener('hashchange', router);

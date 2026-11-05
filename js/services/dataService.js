@@ -21,6 +21,7 @@ function matches(day, partner, f) {
   if (f.city && day.location.city !== f.city) return false;
   if (f.platform && day.platforms && !day.platforms.includes(f.platform)) return false;
   if (f.category && partner?.category !== f.category) return false;
+  if (f.maxFollowers !== undefined && f.maxFollowers !== '' && day.minFollowers > Number(f.maxFollowers)) return false;
   if (f.fromDate && day.date < f.fromDate) return false;
   if (f.q) {
     const q = f.q.toLowerCase();
@@ -47,7 +48,8 @@ const staticProvider = {
     return days
       .filter((d) => matches(d, byId[d.partnerId], filters))
       .map((d) => ({ ...d, partner: byId[d.partnerId] }))
-      .sort((a, b) => a.date.localeCompare(b.date));
+      // Featured (paid) partners first, then soonest date.
+      .sort((a, b) => featuredRank(a.partner) - featuredRank(b.partner) || a.date.localeCompare(b.date));
   },
   async getContentDay(id) {
     const all = await this.getContentDays();
@@ -65,7 +67,13 @@ const staticProvider = {
     const all = await this.getClips();
     return all.find((c) => c.id === id) || null;
   },
+  // Sponsored ad slots (e.g. placement "top" = carousel under the header).
+  async getAds(placement = 'top') {
+    return (await loadJson('ads')).filter((a) => a.placement === placement);
+  },
 };
+
+const featuredRank = (p) => (p?.listingTier === 'featured' ? 0 : 1);
 
 const apiProvider = {
   getLocations: () => apiRequest('/locations'),
@@ -75,6 +83,7 @@ const apiProvider = {
   getContentDay: (id) => apiRequest(`/content-days/${encodeURIComponent(id)}`),
   getClips: (filters = {}) => apiRequest('/vault/clips', { query: filters }),
   getClip: (id) => apiRequest(`/vault/clips/${encodeURIComponent(id)}`),
+  getAds: (placement = 'top') => apiRequest('/ads', { query: { placement } }),
 };
 
 export const dataService = CONFIG.DATA_SOURCE === 'api' ? apiProvider : staticProvider;
