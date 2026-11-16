@@ -61,8 +61,23 @@ and pauses all sending until someone turns it back on.
 Not ready to connect the script? Leave it on **Download the list**: download each batch's CSV,
 send however you do today, then click **Mark done** and paste any handles that failed.
 
-## Sharing with the team
+## Using it on your phone
 
-By default only the computer running it can open the hub. To let others on the same Wi-Fi use it,
-start it with `HOST=0.0.0.0` and have them open `http://<that computer's IP>:5190`.
-There are no passwords, so only do this on a trusted network.
+The hub keeps running on the computer; your phone opens it over the network.
+
+1. On the computer, double-click **`Start Recruiting Hub (phone access).bat`**.
+   If Windows asks whether Node.js may use the network, allow it on **private networks**.
+2. On the computer, go to **Settings → Phone access** and set a passcode (6+ characters).
+   That card also shows the address to open on your phone, like `http://192.168.0.190:5190`.
+3. On your phone (same Wi-Fi), open that address, enter your name and the passcode.
+4. Tap Share → **Add to Home Screen** so it opens like an app. Phones stay signed in for 90 days.
+
+**Away from home:** install the free [Tailscale](https://tailscale.com) app on the computer and the phone,
+signed in to the same account. The Phone access card then also lists a `100.x.x.x` address that works from anywhere.
+
+Notes:
+- The computer must be on and the hub window open.
+- The computer itself never asks for the passcode. Changing the passcode signs out every phone;
+  **Sign out all devices** does the same without changing it.
+- The script command and script folder can only be changed on the computer, not from a phone.
+- Wrong passcodes are limited to 8 tries per 15 minutes.

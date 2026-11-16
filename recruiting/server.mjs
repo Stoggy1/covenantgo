@@ -6,6 +6,8 @@ import { DatabaseSync } from 'node:sqlite';
 import { readFile, writeFile } from 'node:fs/promises';
 import { mkdirSync } from 'node:fs';
 import { spawn } from 'node:child_process';
+import { randomBytes, scryptSync, timingSafeEqual } from 'node:crypto';
+import { networkInterfaces } from 'node:os';
 import { dirname, join, extname, normalize } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -758,11 +760,12 @@ route('DELETE', '/api/hours/:id', ({ params, who }) => { db.prepare('DELETE FROM
 route('GET', '/api/activity', ({ query }) => db.prepare('SELECT * FROM activity ORDER BY id DESC LIMIT ?').all(Math.min(1000, Number(query.limit) || 200)));
 
 route('GET', '/api/settings', () => { const s = settings(); return { ...s, api_key: s.api_key ? '••••••••' : '' }; });
-route('PUT', '/api/settings', ({ body, who }) => {
+route('PUT', '/api/settings', ({ body, who, local }) => {
   const before = settings();
   const changed = [];
   for (const k of SETTING_KEYS) {
     if (body[k] === undefined || k === 'paused') continue;
+    if (!local && (k === 'send_command' || k === 'send_cwd')) continue; // only from the computer itself
     if (k === 'api_key' && body[k] === '••••••••') continue;
     if (String(body[k]) !== String(before[k])) { setSetting(k, body[k]); changed.push(k); }
   }
@@ -775,25 +778,117 @@ route('DELETE', '/api/sample', ({ who }) => clearSample(who));
 
 const TYPES = { '.html': 'text/html; charset=utf-8', '.js': 'text/javascript', '.css': 'text/css', '.svg': 'image/svg+xml', '.json': 'application/json' };
 
+// ---------- phone / other-device access ----------
+// The computer running the hub never needs a passcode. Any other device (a phone on the
+// same Wi-Fi, or over Tailscale) must sign in with the passcode set on the computer.
+db.exec(`CREATE TABLE IF NOT EXISTS sessions (token TEXT PRIMARY KEY, created_at TEXT, ip TEXT, agent TEXT)`);
+const SESSION_DAYS = 90;
+const isLocal = (req) => ['127.0.0.1', '::1', '::ffff:127.0.0.1'].includes(req.socket.remoteAddress);
+const passcodeHash = () => db.prepare("SELECT value FROM settings WHERE key = 'passcode_hash'").get()?.value || '';
+function hashPasscode(code, salt = randomBytes(16).toString('hex')) {
+  return `${salt}:${scryptSync(String(code), salt, 32).toString('hex')}`;
+}
+function checkPasscode(code) {
+  const stored = passcodeHash();
+  if (!stored) return false;
+  const [salt, hash] = stored.split(':');
+  const a = Buffer.from(hash, 'hex'), b = scryptSync(String(code), salt, 32);
+  return a.length === b.length && timingSafeEqual(a, b);
+}
+const cookieToken = (req) => (req.headers.cookie || '').split(/;\s*/).map((c) => c.split('=')).find(([k]) => k === 'hub_session')?.[1] || '';
+function hasSession(req) {
+  const t = cookieToken(req);
+  if (!t) return false;
+  const row = db.prepare('SELECT created_at FROM sessions WHERE token = ?').get(t);
+  if (!row) return false;
+  return Date.now() - new Date(row.created_at.replace(' ', 'T')).getTime() < SESSION_DAYS * 864e5;
+}
+const failedLogins = new Map(); // ip -> { n, until }
+function lanAddresses() {
+  const out = [];
+  for (const [name, list] of Object.entries(networkInterfaces())) {
+    for (const a of list || []) {
+      if (a.family === 'IPv4' && !a.internal) out.push({ name, url: `http://${a.address}:${PORT}`, tailscale: /^100\.(6[4-9]|[7-9]\d|1[01]\d|12[0-7])\./.test(a.address) });
+    }
+  }
+  return out;
+}
+async function handleAuth(req, res, url, send, readBody) {
+  const local = isLocal(req);
+  const ip = req.socket.remoteAddress;
+  if (url.pathname === '/api/auth' && req.method === 'GET') {
+    return send(200, {
+      local, signedIn: local || hasSession(req), passcodeSet: !!passcodeHash(),
+      shared: HOST !== '127.0.0.1' && HOST !== 'localhost', addresses: local ? lanAddresses() : undefined,
+      devices: local ? db.prepare('SELECT count(*) n FROM sessions').get().n : undefined,
+    });
+  }
+  if (url.pathname === '/api/login' && req.method === 'POST') {
+    const f = failedLogins.get(ip);
+    if (f && f.n >= 8 && f.until > Date.now()) return send(429, { error: 'Too many wrong tries. Wait 15 minutes.' });
+    if (!passcodeHash()) return send(409, { error: 'No passcode is set yet. Set one in Settings on the computer running the hub.' });
+    const body = await readBody();
+    if (!checkPasscode(body.passcode || '')) {
+      const n = (f && f.until > Date.now() ? f.n : 0) + 1;
+      failedLogins.set(ip, { n, until: Date.now() + 15 * 60000 });
+      return send(401, { error: 'Wrong passcode' });
+    }
+    failedLogins.delete(ip);
+    const token = randomBytes(32).toString('hex');
+    db.prepare('INSERT INTO sessions(token, created_at, ip, agent) VALUES (?, ?, ?, ?)').run(token, now(), ip, String(req.headers['user-agent'] || '').slice(0, 200));
+    log(body.name || 'Someone', 'Signed in from another device', ip);
+    res.setHeader('Set-Cookie', `hub_session=${token}; Path=/; HttpOnly; SameSite=Strict; Max-Age=${SESSION_DAYS * 86400}`);
+    return send(200, { ok: true });
+  }
+  if (url.pathname === '/api/logout' && req.method === 'POST') {
+    db.prepare('DELETE FROM sessions WHERE token = ?').run(cookieToken(req));
+    res.setHeader('Set-Cookie', 'hub_session=; Path=/; HttpOnly; SameSite=Strict; Max-Age=0');
+    return send(200, { ok: true });
+  }
+  if (url.pathname === '/api/passcode' && req.method === 'POST') {
+    if (!local) return send(403, { error: 'The passcode can only be changed on the computer running the hub.' });
+    const body = await readBody();
+    const code = String(body.passcode || '');
+    if (code.length < 6) return send(400, { error: 'Use at least 6 characters' });
+    setSetting('passcode_hash', hashPasscode(code));
+    db.prepare('DELETE FROM sessions').run(); // old devices must sign in with the new passcode
+    log(decodeURIComponent(req.headers['x-user'] || '') || 'Someone', 'Set the phone passcode', 'all other devices were signed out');
+    return send(200, { ok: true });
+  }
+  if (url.pathname === '/api/devices/signout' && req.method === 'POST') {
+    if (!local) return send(403, { error: 'Only from the computer running the hub' });
+    const n = db.prepare('DELETE FROM sessions').run().changes;
+    return send(200, { ok: true, removed: n });
+  }
+  return null;
+}
+
 createServer(async (req, res) => {
   const url = new URL(req.url, 'http://x');
   const send = (status, obj) => {
     res.writeHead(status, { 'Content-Type': 'application/json', 'Cache-Control': 'no-store' }).end(JSON.stringify(obj));
   };
+  const readBody = async () => {
+    const chunks = [];
+    let size = 0;
+    for await (const c of req) { size += c.length; if (size > 25e6) throw new HttpError(413, 'Upload too large'); chunks.push(c); }
+    return chunks.length ? JSON.parse(Buffer.concat(chunks).toString('utf8')) : {};
+  };
   if (url.pathname.startsWith('/api/')) {
+    try {
+      if ((await handleAuth(req, res, url, send, readBody)) !== null || res.headersSent) return;
+    } catch (e) { return send(400, { error: e.message }); }
+    if (!isLocal(req) && !hasSession(req)) return send(401, { error: 'Please sign in', login: true });
+    // Block cross-site requests from other web pages (the hub's own page never sends these).
+    const origin = req.headers.origin;
+    if (origin && req.method !== 'GET' && new URL(origin).host !== req.headers.host) return send(403, { error: 'Blocked request from another site' });
     const r = routes.find((x) => x.method === req.method && x.re.test(url.pathname));
     if (!r) return send(404, { error: 'Not found' });
     try {
-      let body = {};
-      if (req.method !== 'GET' && req.method !== 'DELETE') {
-        const chunks = [];
-        let size = 0;
-        for await (const c of req) { size += c.length; if (size > 25e6) throw new HttpError(413, 'Upload too large'); chunks.push(c); }
-        body = chunks.length ? JSON.parse(Buffer.concat(chunks).toString('utf8')) : {};
-      }
+      const body = req.method !== 'GET' && req.method !== 'DELETE' ? await readBody() : {};
       let who = 'Someone';
       try { who = decodeURIComponent(req.headers['x-user'] || '') || 'Someone'; } catch {}
-      const out = await r.fn({ params: url.pathname.match(r.re).groups || {}, query: Object.fromEntries(url.searchParams), body, who });
+      const out = await r.fn({ params: url.pathname.match(r.re).groups || {}, query: Object.fromEntries(url.searchParams), body, who, local: isLocal(req) });
       return send(200, out ?? { ok: true });
     } catch (e) {
       if (!(e instanceof HttpError)) console.error(e);
@@ -812,6 +907,12 @@ createServer(async (req, res) => {
   }
 }).listen(PORT, HOST, () => {
   console.log(`Covenant Creative Recruiting Hub: http://localhost:${PORT}`);
+  if (HOST !== '127.0.0.1' && HOST !== 'localhost') {
+    console.log('\nPhone access is ON. On your phone, open one of these:');
+    for (const a of lanAddresses()) console.log(`  ${a.url}   ${a.tailscale ? '(Tailscale: works from anywhere)' : `(same Wi-Fi, ${a.name})`}`);
+    if (!passcodeHash()) console.log('  First set a passcode: Settings > Phone access, on this computer.');
+    console.log('');
+  }
   console.log(`Data is saved in ${join(dataDir, 'recruiting.db')}`);
 });
 

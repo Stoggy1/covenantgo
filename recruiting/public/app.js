@@ -34,6 +34,7 @@ async function api(path, { method = 'GET', body } = {}) {
     headers: { 'content-type': 'application/json', 'x-user': encodeURIComponent(USER || '') },
   });
   const j = await r.json().catch(() => ({}));
+  if (r.status === 401 && j.login) { showLogin(); throw new Error('Please sign in'); }
   if (!r.ok) throw new Error(j.error || `Something went wrong (${r.status})`);
   return j;
 }
@@ -120,8 +121,35 @@ function askUser() {
 }
 $('#who').onclick = askUser;
 setUser(USER);
-if (!USER) askUser();
-render();
+
+// Phones and other devices sign in with the passcode set on the computer running the hub.
+let AUTH = { local: true };
+function showLogin() {
+  if ($('#login')) return;
+  $('#main').innerHTML = '';
+  const sheet = openModal(`<form id="login"><h2>Sign in to the Recruiting Hub</h2>
+    <p class="muted">Enter the passcode that was set on the computer running the hub.</p>
+    <div class="form" style="grid-template-columns:1fr">
+      <label class="f">Your name<input name="name" required value="${esc(USER)}" autocomplete="name"></label>
+      <label class="f">Passcode<input name="passcode" type="password" required autocomplete="current-password"></label>
+    </div><p id="lerr" class="muted"></p>
+    <div class="foot"><button class="primary">Sign in</button></div></form>`);
+  $('#modal').onclick = null; // can't dismiss the sign-in screen
+  $('#login', sheet).onsubmit = async (e) => {
+    e.preventDefault();
+    const f = formData(e.target);
+    const r = await fetch('/api/login', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(f) });
+    const j = await r.json().catch(() => ({}));
+    if (!r.ok) { $('#lerr', sheet).textContent = j.error || 'Could not sign in'; return; }
+    setUser(f.name); closeModal(); render();
+  };
+}
+(async () => {
+  try { AUTH = await (await fetch('/api/auth')).json(); } catch {}
+  if (!AUTH.signedIn) return showLogin();
+  if (!USER) askUser();
+  render();
+})();
 
 // ---------- Dashboard ----------
 async function dashboard(main) {
@@ -586,6 +614,24 @@ async function activity(main) {
 }
 
 // ---------- Settings ----------
+function phoneCard() {
+  if (!AUTH.local) {
+    return `<div class="card" style="margin-bottom:14px"><h2>This device</h2><p class="muted">You're signed in on this phone or computer.</p><button id="plo">Sign out</button></div>`;
+  }
+  const addrs = AUTH.addresses || [];
+  const ts = addrs.filter((a) => a.tailscale), wifi = addrs.filter((a) => !a.tailscale);
+  return `<div class="card" style="margin-bottom:14px"><h2>Phone access</h2>
+    ${AUTH.shared
+      ? `<p>Phone access is <b>on</b>. On your phone, open:</p>
+         <div class="list">${wifi.map((a) => `<div class="it"><b>${esc(a.url)}</b><small>same Wi-Fi as this computer</small></div>`).join('')}
+         ${ts.map((a) => `<div class="it"><b>${esc(a.url)}</b><small>Tailscale: works from anywhere</small></div>`).join('')}</div>
+         <p class="muted">Then tap Share → <b>Add to Home Screen</b> so it opens like an app. This computer has to stay on with the hub running.</p>`
+      : `<div class="alert info">Phone access is <b>off</b>. To turn it on, close the hub and start it with <b>Start Recruiting Hub (phone access).bat</b> instead.</div>`}
+    <h3>Passcode</h3>
+    <p class="muted">${AUTH.passcodeSet ? 'A passcode is set. Saving a new one signs out every phone.' : '<b>No passcode yet.</b> Phones can\'t sign in until you set one.'} This computer never needs it.</p>
+    <form id="pcf" class="row"><input name="passcode" type="password" minlength="6" required placeholder="At least 6 characters" autocomplete="new-password" style="width:240px"><button class="primary">${AUTH.passcodeSet ? 'Change passcode' : 'Set passcode'}</button></form>
+    ${AUTH.devices ? `<p class="row" style="margin-top:12px"><span class="muted">${AUTH.devices} device(s) signed in.</span><button id="pso" class="danger">Sign out all devices</button></p>` : ''}</div>`;
+}
 async function settingsPage(main) {
   const s = await api('/api/settings');
   const inp = (k, label, type = 'text', extra = '') => `<label class="f">${label}<input name="${k}" type="${type}" value="${esc(s[k])}" ${extra}></label>`;
@@ -617,6 +663,7 @@ async function settingsPage(main) {
         <label class="f" style="grid-column:1/-1">Message template <small>({name} becomes the creator's name)</small><textarea name="message_template">${esc(s.message_template)}</textarea></label>
       </div></div>
     </form>
+    ${phoneCard()}
     <div class="card"><h2>Sample data</h2><p class="muted">60 made-up creators (handles start with "sample_") to try things out. Remove them before real work.</p>
       <div class="row"><button id="sl">Load sample data</button><button id="sr" class="danger">Remove sample data</button></div></div>`;
   $('#save').onclick = act(async () => { const r = await api('/api/settings', { method: 'PUT', body: formData($('#sf')) }); toast(r.changed.length ? 'Settings saved' : 'Nothing changed'); render(); });
@@ -625,6 +672,16 @@ async function settingsPage(main) {
     try { out.textContent = JSON.stringify(await api('/api/check/test', { method: 'POST', body: { handle: $('#th').value, settings: formData($('#sf')) } }), null, 2); }
     catch (e) { out.textContent = e.message; }
   });
+  $('#pcf')?.addEventListener('submit', act(async (e) => {
+    e.preventDefault();
+    await api('/api/passcode', { method: 'POST', body: formData(e.target) });
+    toast('Passcode saved. Phones can sign in now.'); AUTH = await api('/api/auth'); render();
+  }));
+  $('#pso')?.addEventListener('click', act(async () => {
+    if (!confirm('Sign out every phone and other device?')) return;
+    const r = await api('/api/devices/signout', { method: 'POST' }); toast(`Signed out ${r.removed} device(s)`); AUTH = await api('/api/auth'); render();
+  }));
+  $('#plo')?.addEventListener('click', act(async () => { await api('/api/logout', { method: 'POST' }); location.reload(); }));
   $('#sl').onclick = act(async () => { const r = await api('/api/sample', { method: 'POST' }); toast(`Loaded ${r.created} sample creators`); });
   $('#sr').onclick = act(async () => { if (!confirm('Remove all sample creators and their data?')) return; const r = await api('/api/sample', { method: 'DELETE' }); toast(`Removed ${r.removed} sample creators`); });
 }
