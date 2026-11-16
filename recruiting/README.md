@@ -4,6 +4,18 @@ A point-and-click app for Covenant Creative's TikTok LIVE and TikTok Go creator 
 It replaces running scripts from the terminal: anyone on the team can import lists, check
 creator data, send outreach in safe batches, and track results, without touching code.
 
+## Two ways to use it
+
+| | Web link | Office computer |
+| --- | --- | --- |
+| Open | https://stoggy1.github.io/covenantgo/recruiting/public/ | Start file below, then http://localhost:5190 |
+| Sign-in | None | None on the computer; passcode for phones |
+| Where data is saved | In that browser, on that device only | One shared database on the computer |
+| Run the DM script | No (download each batch's list instead) | Yes |
+
+Both run the same code (`public/core.js`). The web link switches to in-browser mode on its own when there's no server.
+In web mode, Settings → **Download backup** saves a copy; **Restore backup** loads it on another device.
+
 ## Start it
 
 - **Windows:** double-click `Start Recruiting Hub.bat`. Keep the black window open while you work.

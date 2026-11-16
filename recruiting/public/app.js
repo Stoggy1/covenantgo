@@ -28,7 +28,9 @@ const BATCH = { ready: 'Ready', sending: 'Sending', sent: 'Sent', partial: 'Part
 const badge = (key, label) => `<span class="badge b-${esc(key)}">${esc(label ?? key)}</span>`;
 const meter = (v, max) => { const p = pct(v, max); return `<div class="meter ${p >= 100 ? 'bad' : p >= 80 ? 'warn' : ''}"><i style="width:${p}%"></i></div>`; };
 
+let STANDALONE = null; // set when there is no server (the GitHub link): the CRM runs in this browser
 async function api(path, { method = 'GET', body } = {}) {
+  if (STANDALONE) return STANDALONE.api(path, method, body === undefined ? undefined : JSON.parse(JSON.stringify(body)), USER);
   const r = await fetch(path, {
     method, body: body === undefined ? undefined : JSON.stringify(body),
     headers: { 'content-type': 'application/json', 'x-user': encodeURIComponent(USER || '') },
@@ -145,7 +147,21 @@ function showLogin() {
   };
 }
 (async () => {
-  try { AUTH = await (await fetch('/api/auth')).json(); } catch {}
+  let server = false;
+  try {
+    const r = await fetch('/api/auth');
+    if (r.ok && (r.headers.get('content-type') || '').includes('json')) { AUTH = await r.json(); server = true; }
+  } catch {}
+  if (!server) {
+    // No server here (e.g. the GitHub link): run the whole CRM in this browser, no sign-in.
+    try {
+      STANDALONE = await (await import('./standalone.js')).startStandalone();
+      AUTH = { local: true, signedIn: true, standalone: true };
+    } catch (e) {
+      $('#main').innerHTML = `<div class="alert bad">${esc(e.message)}</div>`;
+      return;
+    }
+  }
   if (!AUTH.signedIn) return showLogin();
   if (!USER) askUser();
   render();
@@ -170,6 +186,7 @@ async function dashboard(main) {
       <li>Build a batch of up to ${g.batchSize} on <a href="#outreach">Outreach</a> and send it</li>
       <li>Update each creator's status as they reply, get invited and join</li></ol>
       <button id="sample">Load sample data to try it out</button> <small>Sample creators start with "sample_" and can be removed in Settings.</small></div>` : ''}
+    ${STANDALONE ? `<div class="alert info">Web version: your data is saved on <b>this device only</b>. Use <a href="#settings">Settings → Download backup</a> to keep a copy or move it to another device.</div>` : ''}
     ${s.sample ? `<div class="alert info">${s.sample} sample creators are loaded. Remove them in <a href="#settings">Settings</a> before real work.</div>` : ''}
     ${s.apiMode !== 'http' ? `<div class="alert warn"><b>Creator data API is in demo mode.</b> "Check data" fills in made-up numbers until the chosen API is set up in <a href="#settings">Settings</a>.</div>` : ''}
     <div class="grid g4">
@@ -614,7 +631,17 @@ async function activity(main) {
 }
 
 // ---------- Settings ----------
+function deviceCard() {
+  return `<div class="card" style="margin-bottom:14px"><h2>Data on this device</h2>
+    <p class="muted">This web version saves everything in this browser on this device. Another phone or computer starts empty.
+    To move your data, download a backup here and restore it on the other device. Clearing this browser's site data erases it, so download a backup now and then.</p>
+    ${STANDALONE.storageOk() ? '' : '<div class="alert bad">This browser is blocking storage (private mode?). Changes will be lost when you close the page.</div>'}
+    <div class="row"><button type="button" id="dbk" class="primary">Download backup</button>
+      <label class="btn" style="cursor:pointer">Restore backup<input type="file" id="drs" accept=".db,.sqlite" hidden></label>
+      <button type="button" id="der" class="danger">Erase everything</button></div></div>`;
+}
 function phoneCard() {
+  if (STANDALONE) return deviceCard();
   if (!AUTH.local) {
     return `<div class="card" style="margin-bottom:14px"><h2>This device</h2><p class="muted">You're signed in on this phone or computer.</p><button id="plo">Sign out</button></div>`;
   }
@@ -657,9 +684,9 @@ async function settingsPage(main) {
     <div class="card" style="margin-bottom:14px"><h2>Sending</h2>
       <p class="muted"><b>Download the list</b>: you get a CSV for each batch and mark it done afterward. <b>Run a script</b>: the hub runs the messaging script for you. It passes the batch file as <code>{file}</code> (also in the <code>BATCH_FILE</code> environment variable) and the message in <code>MESSAGE_TEMPLATE</code>. If the script prints <code>SENT handle</code> or <code>FAIL handle</code> lines, the hub records each one. It stops and pauses sending if the output mentions spam, rate limits, captchas or a restricted account.</p>
       <div class="form">
-        <label class="f">How messages go out<select name="send_mode"><option value="export" ${s.send_mode !== 'command' ? 'selected' : ''}>Download the list</option><option value="command" ${s.send_mode === 'command' ? 'selected' : ''}>Run a script</option></select></label>
-        <label class="f" style="grid-column:span 2">Script command<input name="send_command" value="${esc(s.send_command)}" placeholder='python send_dms.py {file}'></label>
-        <label class="f">Script folder<input name="send_cwd" value="${esc(s.send_cwd)}" placeholder="C:\\path\\to\\script"></label>
+        <label class="f">How messages go out<select name="send_mode"><option value="export" ${s.send_mode !== 'command' ? 'selected' : ''}>Download the list</option>${STANDALONE ? '' : `<option value="command" ${s.send_mode === 'command' ? 'selected' : ''}>Run a script</option>`}</select></label>
+        ${STANDALONE ? '' : `<label class="f" style="grid-column:span 2">Script command<input name="send_command" value="${esc(s.send_command)}" placeholder='python send_dms.py {file}'></label>
+        <label class="f">Script folder<input name="send_cwd" value="${esc(s.send_cwd)}" placeholder="C:\\path\\to\\script"></label>`}
         <label class="f" style="grid-column:1/-1">Message template <small>({name} becomes the creator's name)</small><textarea name="message_template">${esc(s.message_template)}</textarea></label>
       </div></div>
     </form>
@@ -680,6 +707,20 @@ async function settingsPage(main) {
   $('#pso')?.addEventListener('click', act(async () => {
     if (!confirm('Sign out every phone and other device?')) return;
     const r = await api('/api/devices/signout', { method: 'POST' }); toast(`Signed out ${r.removed} device(s)`); AUTH = await api('/api/auth'); render();
+  }));
+  $('#dbk')?.addEventListener('click', () => {
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(new Blob([STANDALONE.backup()], { type: 'application/octet-stream' }));
+    a.download = `recruitment-crm-backup-${todayStr()}.db`; a.click();
+  });
+  $('#drs')?.addEventListener('change', act(async (e) => {
+    const f = e.target.files[0]; if (!f) return;
+    if (!confirm('Replace everything on this device with this backup?')) return;
+    await STANDALONE.restore(new Uint8Array(await f.arrayBuffer())); location.reload();
+  }));
+  $('#der')?.addEventListener('click', act(async () => {
+    if (!confirm('Erase all CRM data on this device? Download a backup first if you might need it.')) return;
+    await STANDALONE.erase(); location.reload();
   }));
   $('#plo')?.addEventListener('click', act(async () => { await api('/api/logout', { method: 'POST' }); location.reload(); }));
   $('#sl').onclick = act(async () => { const r = await api('/api/sample', { method: 'POST' }); toast(`Loaded ${r.created} sample creators`); });
